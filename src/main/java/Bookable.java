@@ -19,12 +19,4 @@ public abstract class Bookable {
     protected UUID getId() {
         return this.id;
     }
-
-    protected int getNum() {
-        return num;
-    }
-
-    protected double getPrice() {
-        return price;
-    }
 }
