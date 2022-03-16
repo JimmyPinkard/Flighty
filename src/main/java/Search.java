@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 /**
  * Search abstract class
@@ -5,7 +6,7 @@ import java.util.List;
 public abstract class Search {
 
     protected Enum possibleFilters;
-    protected SearchPrefrences prefrences;
+    protected SearchPreferences prefrences;
 
     public Search() {
         //TODO: Search Constructor
@@ -18,6 +19,6 @@ public abstract class Search {
      */
     public List<Listing> search(List<Enum> filters) {
         //TODO: Search Function
-        return new List<Listing>();
+        return new ArrayList<Listing>();
     }
 }
