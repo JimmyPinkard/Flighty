@@ -18,7 +18,9 @@ public abstract class BookingLayout {
     /**
      * Get an option based on the layout string
      */
-    public abstract Bookable getOption(int x, int y);
+    public Bookable getOption(int x, int y) {
+        return new Bookable() {};
+    }
 
     public List<Bookable> getOptions() {
         return new ArrayList<Bookable>();
