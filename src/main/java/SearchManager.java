@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
+/**
+ * Manages searching
+ */
 public class SearchManager {
     private Filter filter;
     private Search search;

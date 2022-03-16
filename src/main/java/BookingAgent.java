@@ -1,3 +1,6 @@
+/**
+ * Handes booking
+ */
 public class BookingAgent {
     private Data data;
 
