@@ -16,6 +16,10 @@ public abstract class Bookable {
         amenities = new ArrayList<String>();
     }
 
+    /**
+     * Gets bookable's ID
+     * @return UUID
+     */
     protected UUID getId() {
         return this.id;
     }
