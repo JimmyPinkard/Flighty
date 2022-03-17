@@ -1,0 +1,15 @@
+[
+    {
+        "id": "3c2ec15b-123a-4af1-8245-7c814a6f1a5c",
+        "company": "Delta",
+        "to": "San Diego",
+        "from": "Columbia",
+        "time": "12:00 UTC",
+        "date": "2/22/22",
+        "cost": 100.00,
+        "rating": 4.0,
+        "seats": [
+            "7ce9ffe5-e973-404d-a505-efe963f33308"
+        ]
+    }
+]
