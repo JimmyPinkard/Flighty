@@ -1,0 +1,14 @@
+[
+    {
+        "id": "34c68600-4ab7-4cd1-b0b9-0048dfd4d8c6",
+        "email": "jd@gmail.com",
+        "password": "hashword",
+        "travelers": [
+            "passportId": "de72302c-ea30-4054-8333-1c2c4b8c08df"
+        ]
+        "bookedListings": [
+            "7ce9ffe5-e973-404d-a505-efe963f33308",
+            "a7a4ea7d-7d50-4bed-b1d5-bfd045f9f908"
+        ]
+    }
+]

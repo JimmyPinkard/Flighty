@@ -1,7 +1,7 @@
 import java.util.List;
 
 /**
- * Searching algorighm for Flights
+ * Searching algorithm for Flights
  */
 public class SearchFlight extends Search {
 
