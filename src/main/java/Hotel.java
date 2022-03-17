@@ -7,14 +7,16 @@ public class Hotel extends TravelObject {
 
     private List<String> features;
     private String location;
+    private int numBeds;
 
     /**
      * Creates a new hotel object
      */
-    public Hotel(List<String> features, String location, BookingLayout layout) {
+    public Hotel(List<String> features, String location, int numBeds, BookingLayout layout) {
         super(layout);
         this.features = features;
         this.location = location;
+        this.numBeds = numBeds;
     }
 
     /**
@@ -31,6 +33,14 @@ public class Hotel extends TravelObject {
      */
     public String getLocation() {
         return location;
+    }
+
+    /**
+     * Gets the number of available beds
+     * @return numBeds
+     */
+    public int getBeds() {
+        return numBeds;
     }
 
 }
