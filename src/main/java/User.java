@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Saves all user related data
+ */
 public class User {
     private String username;
     private String password;
