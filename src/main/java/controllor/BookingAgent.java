@@ -2,7 +2,7 @@ package controllor;
 
 import model.bookables.Listing;
 import database.Data;
-import model.users.info.User;
+import model.users.User;
 
 /**
  * Handes booking

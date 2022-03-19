@@ -3,7 +3,7 @@ package database;
 import controllor.Booking;
 import model.bookables.flight.Flight;
 import model.bookables.hotel.Hotel;
-import model.users.info.User;
+import model.users.User;
 
 import java.util.List;
 

@@ -2,7 +2,7 @@ package search;
 
 import search.filters.SearchFilter;
 import model.bookables.Listing;
-import model.users.info.SearchPreferences;
+import model.users.SearchPreferences;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
 package controllor;
 
 import database.Data;
-import model.users.info.User;
+import model.users.User;
 
 import java.util.List;
 /**

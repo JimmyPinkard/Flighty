@@ -1,6 +1,6 @@
 package controllor;
 
-import model.users.info.User;
+import model.users.User;
 
 /**
  * Stores a user booking
