@@ -1,5 +1,5 @@
 import database.Data;
-import controllor.UserManager;
+import controller.UserManager;
 
 import java.util.ArrayList;
 import java.util.List;

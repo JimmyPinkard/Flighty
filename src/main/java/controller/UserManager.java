@@ -1,4 +1,4 @@
-package controllor;
+package controller;
 
 import database.Data;
 import model.users.User;

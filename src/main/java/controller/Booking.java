@@ -1,4 +1,4 @@
-package controllor;
+package controller;
 
 import model.users.User;
 

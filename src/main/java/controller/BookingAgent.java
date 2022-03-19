@@ -1,4 +1,4 @@
-package controllor;
+package controller;
 
 import model.bookables.Listing;
 import database.Data;

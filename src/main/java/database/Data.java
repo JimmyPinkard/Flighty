@@ -1,6 +1,6 @@
 package database;
 
-import controllor.Booking;
+import controller.Booking;
 import model.bookables.flight.Flight;
 import model.bookables.hotel.Hotel;
 import model.users.User;

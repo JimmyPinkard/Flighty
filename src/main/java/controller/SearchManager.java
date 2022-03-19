@@ -1,4 +1,4 @@
-package controllor;
+package controller;
 
 import search.filters.SearchFilter;
 import model.bookables.Listing;
