@@ -1,3 +1,10 @@
+package Database;
+
+import Bookables.Booking;
+import Bookables.Flight.Flight;
+import Bookables.Hotel.Hotel;
+import Users.User;
+
 import java.util.List;
 
 public class Data {

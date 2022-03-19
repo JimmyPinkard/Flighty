@@ -1,3 +1,4 @@
+package Users.Info;
 
 /**
  * Holds a person

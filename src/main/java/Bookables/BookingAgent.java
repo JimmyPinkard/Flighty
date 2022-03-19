@@ -1,3 +1,8 @@
+package Bookables;
+
+import Database.Data;
+import Users.User;
+
 /**
  * Handes booking
  */

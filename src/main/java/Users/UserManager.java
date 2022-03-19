@@ -1,3 +1,7 @@
+package Users;
+
+import Database.Data;
+
 import java.util.List;
 /**
  * Handles all user related tasks
@@ -7,7 +11,7 @@ public class UserManager {
     private List<User> users;
 
     /**
-     * Creates a new UserManager
+     * Creates a new Users.UserManager
      * @param data
      */
     public UserManager(Data data) {

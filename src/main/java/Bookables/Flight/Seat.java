@@ -1,8 +1,12 @@
+package Bookables.Flight;
+
+import Bookables.Bookable;
+
 /**
  * 
  * @author Jack Hyatt
  */
-public class Seat extends Bookable{
+public class Seat extends Bookable {
     private String whichClass;
     private boolean isBooked;
 

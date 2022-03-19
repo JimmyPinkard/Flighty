@@ -1,3 +1,7 @@
+package Bookables.Hotel;
+
+import Bookables.Bookable;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +10,7 @@ import java.util.List;
  * 
  * @author Jack Hyatt
  */
-public class Room extends Bookable{
+public class Room extends Bookable {
     private String info;
     private List<LocalDate> bookedDays;
 
@@ -15,7 +19,7 @@ public class Room extends Bookable{
      */
     public Room() {
         super();
-        info = "A Room";
+        info = "A Bookables.Hotel.Hotel.Room";
         bookedDays = new ArrayList<LocalDate>();
     }
 

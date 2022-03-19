@@ -19,7 +19,6 @@
             <artifactId>json</artifactId>
             <version>20211205</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
         <!-- Possibly be used
         <dependency>
             <groupId>org.postgresql</groupId>

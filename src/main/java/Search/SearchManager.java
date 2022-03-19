@@ -1,12 +1,16 @@
+package Search;
+
+import Search.Filters.SearchFilter;
+import Bookables.Listing;
+
 import java.util.ArrayList;
-import java.util.EnumSet;
 import java.util.List;
 
 /**
  * Manages searching
  */
 public class SearchManager {
-    private Filter filter;
+    private SearchFilter filter;
     private Search search;
 
     public SearchManager() {}
@@ -17,9 +21,12 @@ public class SearchManager {
         return new ArrayList<Listing>();
     }
 
-    public void addFilter(Filter filter) {}
+    public void addFilter(SearchFilter filter) {}
 
-    public void removeFilter(Filter filter) {}
+    public void removeFilter(SearchFilter filter) {}
 
-    public Filter getFilters() {}
+    public SearchFilter getFilters() {
+        //ToDo: stub
+        return null;
+    }
 }

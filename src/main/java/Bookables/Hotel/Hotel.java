@@ -1,6 +1,11 @@
+package Bookables.Hotel;
+
+import Bookables.BookingLayout;
+import Bookables.TravelObject;
+
 import java.util.List;
 /**
- * Hotel object
+ * Bookables.Hotel.Hotel object
  * @author rengotap
  */
 public class Hotel extends TravelObject {

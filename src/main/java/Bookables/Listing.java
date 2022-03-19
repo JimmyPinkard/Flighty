@@ -1,3 +1,7 @@
+package Bookables;
+
+import Bookables.TravelObject;
+
 /**
  * Wrapper for travel objects
  */
@@ -47,7 +51,7 @@ public class Listing {
      * Prints the listing as a string
      */
     public String toString() {
-        //TODO: Listing toString
+        //TODO: Bookables.Listing toString
         return "temp";
     }
 }

@@ -1,3 +1,6 @@
+import Database.Data;
+import Users.UserManager;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -120,11 +123,11 @@ public class Flighty {
     }
 
     public void mainMenu() {
-        String flight = "Find a Flight";
-        String hotel = "Find a Hotel";
+        String flight = "Find a Bookables.Flight.Flight";
+        String hotel = "Find a Bookables.Hotel.Hotel";
         String bookings = "Manage Bookings";
-        String manage_user = "Manage User";
-        String create_user = "Create User";
+        String manage_user = "Manage Users.User";
+        String create_user = "Create Users.User";
         String logout = "Logout";
         String exit = "Exit";
 

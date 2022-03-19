@@ -1,9 +1,11 @@
+package Database;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONObject;
 
 /**
- * Manages IO
+ * Manages Utils.IO
  */
 public class IO {
     private IO instance;
@@ -12,7 +14,7 @@ public class IO {
     private IO() {}
 
     /**
-     * Ensures there is only one IO instance by getting the IO class instance if one already exists,
+     * Ensures there is only one Utils.IO instance by getting the Utils.IO class instance if one already exists,
      * otherwise it returns a creates a new one
      */
     public static IO getInstance() {

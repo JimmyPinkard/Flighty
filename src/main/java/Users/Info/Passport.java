@@ -1,3 +1,5 @@
+package Users.Info;
+
 import java.time.LocalDate;
 
 /**
@@ -10,5 +12,6 @@ public class Passport {
     private String number;
     private String gender;
 
-    public Passport(Person person) {}
+    public Passport(Person person) {
+    }
 }

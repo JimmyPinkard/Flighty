@@ -1,3 +1,8 @@
+package Bookables;
+
+import Bookables.Bookable;
+import Bookables.BookingLayout;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +15,7 @@ public abstract class TravelObject {
     protected List<String> features;
 
 /**
- * Constructor for TravelObject
+ * Constructor for Bookables.TravelObject
  * @param layout the layout of either hotel or flight
  */
     public TravelObject(BookingLayout layout) {

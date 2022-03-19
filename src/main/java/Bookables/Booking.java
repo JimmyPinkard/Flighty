@@ -1,3 +1,7 @@
+package Bookables;
+
+import Users.User;
+
 /**
  * Stores a user booking
  */

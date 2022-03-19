@@ -1,3 +1,7 @@
+package Bookables;
+
+import Bookables.Bookable;
+
 import java.util.ArrayList;
 import java.util.List;
 

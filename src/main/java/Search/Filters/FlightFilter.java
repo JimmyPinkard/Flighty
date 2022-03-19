@@ -1,8 +1,13 @@
+package Search.Filters;
+
+import Search.Filters.SearchFilter;
+
 /**
- * List of Flight Filters
+ * List of Bookables.Flight.Flight Filters
  * @author Rengotap
  */
 public enum FlightFilter implements SearchFilter {
+    FLIGHT,
     AIRPORT,
     COMPANY,
     PRICE,
@@ -11,5 +16,5 @@ public enum FlightFilter implements SearchFilter {
     TIME_END,
     PETS_ALLOWED,
     FLIGHTS_LAYOVER,
-    FLIGHT
+
 }
