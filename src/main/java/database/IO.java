@@ -1,14 +1,19 @@
 package database;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
 import org.json.JSONObject;
 
 /**
  * Manages Utils.IO
  */
 public class IO {
-    private IO instance;
+    private static IO instance;
     private Data data;
 
     private IO() {}
@@ -18,24 +23,74 @@ public class IO {
      * otherwise it returns a creates a new one
      */
     public static IO getInstance() {
-        return new IO();
+        if(instance == null)
+        {
+            instance = new IO();
+        }
+        return instance;
     }
 
     /**
      * Parses JSON file
+     * @param path
+     * @author Jimmy
      */
-    private JSONObject readFile(String path) {
-        return new JSONObject();
+    private JSONObject readFile(final String path) {
+        StringBuilder builder = new StringBuilder();
+        try {
+            final Scanner in = new Scanner(path);
+            while(in.hasNextLine()) {
+                builder.append(in.nextLine());
+            }
+        }
+        catch (Exception exception) {
+            System.err.println(exception.getCause().getMessage());
+            System.exit(1);
+        }
+        return new JSONObject(builder.toString());
     }
 
     /**
-     * Gets files in a directory
+     * Gets contents of all files in a directory
+     * @param path
+     * @author Jimmy
      */
-    private List<String> readDirectoryContents(String path) {
-        return new ArrayList<String>();
+    private List<String> readDirectoryContents(final String path) {
+        final List<String> contents = new ArrayList<String>();
+        final File dir = new File(path);
+        if(!dir.isDirectory()) {
+            return contents;
+        }
+        final File[] files = dir.listFiles();
+        if(files == null) {
+            return contents;
+        }
+        for(File file : files) {
+            if(file.isDirectory()) {
+                contents.addAll(readDirectoryContents(file.getPath()));
+                continue;
+            }
+            contents.add(readFile(file.getPath()).toString());
+        }
+        return contents;
     }
 
-    private void writeJSONtoFile(String path, JSONObject object) {}
+    /**
+     * Writes JSON to a file
+     * @param path
+     * @param object
+     * @author Jimmy
+     */
+    private void writeJSONtoFile(final String path, final JSONObject object) {
+        try {
+            final PrintWriter writer = new PrintWriter(path);
+            writer.write(object.toString());
+        }
+        catch (IOException exception) {
+            System.err.println(exception.getCause().getMessage());
+            System.exit(1);
+        }
+    }
 
     /**
      * Writes all data to the disk

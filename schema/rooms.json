@@ -2,8 +2,27 @@
     {
         "id": "a7a4ea7d-7d50-4bed-b1d5-bfd045f9f908",
         "roomNum": 101,
+        "numBeds": 1,
+        "info": "idk",
+        "amenities":
+        [
+            "pool", "food"
+        ],
         "isBooked": true,
         "from": "2/20/22",
         "to": "2/22/22"
+    },
+    {
+        "id": "d442cff7-5cce-4e45-b8fe-6e8b928bfbe0",
+        "roomNum": 102,
+        "numBeds": 2,
+        "info": "idk",
+        "amenities":
+        [
+            "pool", "food"
+        ],
+        "isBooked": false,
+        "from": "",
+        "to": ""
     }
 ]

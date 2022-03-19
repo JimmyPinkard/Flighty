@@ -1,15 +1,15 @@
 [
     {
         "id": "3bee4758-5bd5-4189-a36c-b454163048d0",
-        "company": "Delta",
-        "location": "San Diego",
-        "numBeds": 1,
+        "company": "Wyndham",
+        "location": "San Diego, CA",
         "time": "12:00 UTC",
         "date": "2/22/22",
         "cost": 100.00,
         "rating": 4.0,
-        "rooms": [
-            "a7a4ea7d-7d50-4bed-b1d5-bfd045f9f908"
+        "rooms":
+        [
+            "a7a4ea7d-7d50-4bed-b1d5-bfd045f9f908", "d442cff7-5cce-4e45-b8fe-6e8b928bfbe0"
         ]
     }
 ]

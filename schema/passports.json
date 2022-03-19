@@ -5,7 +5,16 @@
         "lastName": "Doe",
         "dateOfBirth": "1/1/1970",
         "expirationDate": "2/22/22",
-        "number": 69,
+        "number": "(803)-CAS-HNOW",
         "gender": "Male"
+    },
+    {
+        "id": "422344ba-257d-46ef-ad13-25263d575556",
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "dateOfBirth": "1/1/1972",
+        "expirationDate": "2/22/22",
+        "number": "(803)-404-6969",
+        "gender": "Female"
     }
 ]
