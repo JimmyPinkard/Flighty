@@ -1,19 +1,19 @@
 [
     {
         "id": "34c68600-4ab7-4cd1-b0b9-0048dfd4d8c6",
-        "username": "username",
-        "password": "hashword",
-        "email": "johndoe@gmail.com",
-        "phone": "5555555555",
+        "username": "realHughMann",
+        "password": "p",
+        "email": "imaRealHughMann@email.com",
+        "phone": "555-555-5555",
         "prefAirline":"Delta",
-        "prefClass": "Economy",
+        "prefClass": "economy",
         "homeAirport":"ATL",
         "prefHotel":"Hilton",
         "depEarly":900,
         "depLate":1900,
         "specialReq":
         [
-            "accommodation A", "accommodation B", "accommodation C"
+            "Tree nut Allergy", "High Blood Pressure"
         ],
         "passports":
         [

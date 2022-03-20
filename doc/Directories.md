@@ -9,6 +9,9 @@
 ## database
 * The directory with our data stored in JSON files.
 
+## database/userdata
+* Stores user data between sessions.
+
 ## src/main/java - (src/ hereafter)
 * The root directory for source code
 
