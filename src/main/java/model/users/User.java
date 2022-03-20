@@ -3,8 +3,9 @@ package model.users;
 import model.bookables.TravelObject;
 import model.users.info.Passport;
 import model.users.info.Person;
-import java.util.ArrayList;
+
 import java.util.List;
+import java.io.File;
 
 /**
  * All user related data
@@ -15,8 +16,21 @@ public class User {
     private String username;
     private String password;
     private String email;
+    private String name;
+
+    //Temporary prefrences while prefrences are unfinished
+    private String prefAirline;
+    private String prefClass;
+    private String homeAirport;
+    private String prefHotel;
+    private int depEarly;
+    private int depLate;
+
     private SearchPreferences searchPrefs;
+
+    private List<String>specialReq;
     private List<Passport> travelers;
+    private List<TravelObject> bookingHistory;
     private Person person;
 
     /**
@@ -27,7 +41,9 @@ public class User {
      * @param password password
      */
     public User(Person person, String username, String password) {
-
+        this.name = person.getFirstName();
+        this.username = username;
+        this.password = password;
     }
 
     /**
@@ -39,8 +55,8 @@ public class User {
      *  if the user desires using registerUser() method
      */
     public User() {
+        name = "Guest";
         username = "temp";
-        password = "temp";
     }
 
     /**
@@ -50,21 +66,57 @@ public class User {
      * @return True if operation was successful
      */
     public boolean registerUser(String username, String password) {
-        // === PSEUDO CODE === 
-        // check to see if specified requested username is available
-        // assign new user selected username and password
-        // set LoggedIn in UserManager to be the current user, (should be taken care of?)
-        this.username = username;
-        this.password = password;
-        //TODO: Check if username is available
-        return false;
+        File saveData = new File("./database/userdata" + username + ".json");
+        if (saveData.exists()) {
+            System.out.println("This username is already taken.");
+            return false;
+        } else {  // Changes the guest credentials effectively transfering it to the new user
+            this.username = username;
+            this.password = password;
+            // TODO: set LoggedIn in UserManager to be the current user, (may be taken care of???)
+            return true;
+        }
     }
+
+    /**
+     * Gets the username
+     * @return username
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * Gets the password, feels wrong setting it to
+     * public since its a password but it makes sense.
+     * @return password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * Adds a special accommodation to the user profile
+     * @param toAdd
+     */
+    public void addSpecial(String toAdd) {
+        specialReq.remove(toAdd);
+    }
+
+    /**
+     * Removes a special accommodation from the user profile
+     * @param toRemove
+     */
+    public void removeSpecial(String toRemove) {
+        specialReq.remove(toRemove);
+    }
+
     /**
      * Adds a traveler (family)
      * @param passport
      */
     public void addTraveler(Passport passport) {
-        //TODO: add traveler to travelers
+        travelers.add(passport);
     }
 
     /**
@@ -72,15 +124,15 @@ public class User {
      * @param passport
      */
     public void removeTraveler(Passport passport) {
-        //TODO: remove traveler from travelers
+        travelers.remove(passport);
     }
 
     /**
      * Gives a list of all travelers associated with this account
-     * @return Array list of travelers
+     * @return list of travelers
      */
     public List<Passport> getTravelers() {
-        return new ArrayList<Passport>();
+        return travelers;
     }
 
     /**
@@ -100,6 +152,14 @@ public class User {
     }
 
     /**
+     * Gets the user's first name for display arounf the UI
+     * @return first name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
      * Changes the user's Email
      * @param email new email to set
      */
@@ -107,22 +167,29 @@ public class User {
         this.email = email;
     }
 
-    // User Booking History Methods
-
     /**
      * Saves a previous booking
      * For booking flights/reservations
      * @param toAdd
      */
     public void addBooking(TravelObject toAdd) {
-        // TODO: add booking to json history
+        bookingHistory.add(toAdd);
     }
 
     /**
      * Removes a previous booking
      * For canceling flights/reservations
+     * @param toRemove
      */
-    public void removeBooking() {
-        // TODO: remove booking form json history
+    public void removeBooking(TravelObject toRemove) {
+        bookingHistory.remove(toRemove);
+    }
+
+    /**
+     * Gets a list of the user's previous bookings
+     * @return booking history
+     */
+    public List<TravelObject> getBookingHistory() {
+        return bookingHistory;
     }
 }

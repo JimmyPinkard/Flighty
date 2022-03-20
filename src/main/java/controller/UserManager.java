@@ -3,59 +3,60 @@ package controller;
 import database.Data;
 import model.users.User;
 import java.util.List;
+import java.io.File;
+import org.json.JSONObject;
 
 /**
- * Linked list that handles user related tasks
- * For sanity, users are currently beind stored: [     ]
+ * List that handles user related tasks
+ * For sanity, users are currently beind stored: [./database/userdata]
  * 
  * @author rengotap
  */
 public class UserManager {
 
-    private User loggedIn; // save data here
-    private User currentUser; // curr user in LL
-    private List<User> users; // LL
+    private User currentUser; // User we're reading and writing from
+    private List<User> users; // list of users
 
     /**
      * Creates a new Controllor.UserManager
      * @param data
      */
     public UserManager(Data data) {
-        // ====PSEUDOCODE====
-
-        // ---STARTUP(list)---
-        // add all users to the user list, not sure why but the UML says so, easy enough
-
         // ---STARTUP(temp)---
         // check to see if user "temp" exists
-        // if it does (from a bad exit), wipe and create a new one.
-        // temp will be a guest account 
+        // if it does (from a bad exit or something), wipe and create a new one.
+        if (saveDataExists("temp")) {
+            //TODO: delete "temp"
+        }
+        registerUser(new User());  // creates a new guest account called temp at the start of the list
+        currentUser = users.get(0); // sets currentUser as the guest account
 
-        // ---LOGIN/SEARCH---
-        // if nobody is logged in create a new guest account to store prefrences
-        // If someone logs in Login() and set loggedIn
-        // wipe "temp" and write to the new account
+        // ---STARTUP(list)---
+        // Cycle through user data (which doesn't really exist yet so what am i gonna do)
+        // add all users to the user list, easy enough
+
 
     }
 
     /**
      * Checks to see if user input matches login and password information
+     * wipes "temp" and sets the new account as logged in
      * @param username saved username
      * @param password saved password
      * @return login accepted (T/F)
      */
     public boolean login(String username, String password) {
         // Checking to see if the user can access the data
-        if (saveDataExists(username))
+        if (saveDataExists(username)) {
+            System.out.println("Username is incorrect, please try again.");
             return false;
-        if (!passwordCorrect(username, password))
+        }
+        if (!passwordCorrect(username, password)) {
+            System.out.println("Password is incorrect, please try again.");
             return false;
-        // Accessing the user data
-
-        // TODO: actually set the user data
-
-        // Sets loggedIn as the logged in user
-        loggedIn = new User(person, username, password);
+        }
+        currentUser = users.get(findUserIndex(username));
+        // Clean up temp, return everything to defaults
         return true;
     }
 
@@ -64,7 +65,7 @@ public class UserManager {
      * @param user user to register
      */
     public void registerUser(User user) {
-        // TODO: registerUser
+        users.add(user);
     }
 
     /**
@@ -72,7 +73,7 @@ public class UserManager {
      * @param user user to remove
      */
     public void unregisterUser(User user) {
-        // TODO: unregisterUser
+        users.remove(user);
     }
 
     /**
@@ -84,24 +85,46 @@ public class UserManager {
     }
 
     /**
-     * Checks to see if the user exists in the database
-     * @param username
-     * @return a file for user data exists(T/F)
+     * Searches for a user by their username
+     * returns -1, if user not found
+     * @param username user's username/name of file
+     * @return position in users
      */
-    public boolean saveDataExists(String username) {
-        //TODO: check save data
-        return false;
+    private int findUserIndex(String username) {
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getUsername().equals(username))
+                return i;
+        }
+        return -1;
     }
 
     /**
-     * Checks login credentials before allowing the user to be created
+     * Checks to see if the user exists in the database
+     * @param username the name of the file
+     * @return a file for user data exists(T/F)
+     */
+    public boolean saveDataExists(String username) {
+        File saveData = new File("./database/userdata" + username + ".json");
+        if (saveData.exists()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     *  compare desired user to credentials, if correct return true
      * @param username user's name
      * @param password user's secret password
      * @return username password combo is correct
      */
     public boolean passwordCorrect(String username, String password) {
-        //TODO: read password
-        return false;
+        // search by username since we know it exists.
+        if(users.get(findUserIndex(username)).getPassword().equals(password)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
