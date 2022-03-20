@@ -23,8 +23,41 @@ public class Search {
      * @param filters
      * @return
      */
-    public List<Listing> search(List<SearchFilter> filters) {
+    public List<Listing> search(final List<SearchFilter> filters) {
         //TODO: Search.Search Function
-        return new ArrayList<Listing>();
+        return filter(filters);
+    }
+
+    /**
+     * The searching algorithm
+     * @return
+     * @author Jimmy
+     */
+    private List<Listing> filter(final List<SearchFilter> filters) {
+        final List<Listing> filteredList = new ArrayList<>();
+        for(final Listing listing : this.travelObjects) {
+            if(hasFilters(listing, filters)) {
+                filteredList.add(listing);
+            }
+        }
+        return filteredList;
+    }
+
+    /**
+     * Needs finishing
+     * @param listing
+     * @param filters
+     * @return
+     * @author Jimmy
+     */
+    private boolean hasFilters(final Listing listing, final List<SearchFilter> filters) {
+        /*
+        for(final SearchFilter filter : filters) {
+            if() {
+                return false;
+            }
+        }
+        */
+        return true;
     }
 }
