@@ -1,6 +1,8 @@
+import code
 import csv
 import json
 import random
+import datetime
 from uuid import uuid4
 
 POSSIBLE_COMPANIES = [
@@ -13,14 +15,27 @@ POSSIBLE_COMPANIES = [
     "Spirit Airlines",
 ]
 
-PLANE_TYPES = {"Airbus A330", "Boeing 737", "Boeing 777", "Airbus A320", "Douglas DC-3"}
+POSSIBLE_PLANE_TYPES = [
+    "Airbus A330",
+    "Boeing 737",
+    "Douglas DC-3",
+]
+
+POSSIBLE_DATES = [
+    "1/1/22",
+    "1/2/22",
+    "1/3/22",
+    "1/4/22",
+    "1/5/22",
+    "1/6/22",
+    "1/7/22",
+    "1/8/22",
+]
 
 airports = []
 
 
-def parse_flights_csv_to_texas_airports():
-    texas_airports = []
-
+def get_texas_flights():
     with open("utils/us-airports.csv", newline="") as f:
         reader = csv.reader(f)
         for row in reader:
@@ -37,7 +52,7 @@ def parse_flights_csv_to_texas_airports():
             if state != "Texas" or code == "":
                 continue
 
-            texas_airports.append(
+            airports.append(
                 {
                     "name": airport_name,
                     "x": pos_x,
@@ -48,11 +63,9 @@ def parse_flights_csv_to_texas_airports():
                 }
             )
 
-    return texas_airports
 
-
-def dist_to_hr(dist):
-    return 1 / (dist * 0.24)
+def dist_to_min(dist):
+    return int((1 / (dist * 0.24)) * 60)
 
 
 def dist_between(x1, y1, x2, y2):
@@ -60,15 +73,31 @@ def dist_between(x1, y1, x2, y2):
 
 
 def create_flight_entry():
-    created = {}
-    created["id"] = str(uuid4())
-    created["company"] = random.choice(POSSIBLE_COMPANIES)
+    f = {}
+    f["id"] = str(uuid4())
+    f["company"] = random.choice(POSSIBLE_COMPANIES)
 
     a_from, a_to = random.sample(airports, 2)
 
-    created["rating"] = round(random.uniform(0, 5), 1)
+    f["airport_code_from"] = a_from["code"]
+    f["airport_code_to"] = a_to["code"]
 
-    return created
+    f["city_from"] = a_from["city"]
+    f["city_to"] = a_to["city"]
+
+    day = int(random.uniform(1, 10))
+    hour = int(random.uniform(1, 23))
+    date = datetime.datetime(2022, 1, day, hour)
+
+    f["date"] = date.strftime("%m/%d/%y")
+    f["time_depart"] = date.strftime("%H:%M UTC")
+
+    dist = dist_between(a_from["x"], a_from["y"], a_to["x"], a_to["y"])
+    date = date + datetime.timedelta(minutes=dist_to_min(dist))
+
+    f["rating"] = round(random.uniform(0, 5), 1)
+
+    return f
 
 
 def create_json():
@@ -80,7 +109,8 @@ def create_json():
 
 
 def main():
-    print(dist_to_hr(dist_between(1, 101.782, 0, 98.613)))
+    get_texas_flights()
+    print(dist_to_min(dist_between(1, 101.782, 0, 98.613)))
     print(create_json())
 
 
