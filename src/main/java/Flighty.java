@@ -123,32 +123,46 @@ public class Flighty {
     }
 
     public void mainMenu() {
-        String flight = "Find a Bookables.Flight.Flight";
-        String hotel = "Find a Bookables.Hotel.Hotel";
-        String bookings = "Manage Bookings";
-        String manage_user = "Manage Users.User";
-        String create_user = "Create Users.User";
-        String logout = "Logout";
-        String exit = "Exit";
+        final String OPTION_FLIGHT = "Find a Flight";
+        final String OPTION_HOTEL = "Find a Hotel";
+        final String OPTION_BOOKINGS = "Manage Bookings";
+        final String OPTION_MANAGE_USER = "Manage Users";
+        final String OPTION_CREATE_USER = "Create Users";
+        final String OPTION_LOGOUT = "Logout";
+        final String OPTION_EXIT = "Exit";
 
         List<String> options = new ArrayList<String>();
 
         String currUserName = "";
         if (userManager.getCurrentUser() == null) {
-            options.add(create_user);
+            options.add(OPTION_CREATE_USER);
         } else {
-            options.add(manage_user);
-            options.add(logout);
+            options.add(OPTION_MANAGE_USER);
+            options.add(OPTION_LOGOUT);
 
             currUserName = userManager.getCurrentUser().getRegisteredPerson().getFirstName();
         }
 
-        options.add(flight);
-        options.add(hotel);
-        options.add(bookings);
-        options.add(exit);
+        options.add(OPTION_FLIGHT);
+        options.add(OPTION_HOTEL);
+        options.add(OPTION_BOOKINGS);
+        options.add(OPTION_EXIT);
 
         println("Welcome" + currUserName);
-        numberedMenu("Enter a Number", options);
+        String response = numberedMenu("Enter a Number", options);
+
+        switch (response) {
+            case OPTION_EXIT:
+                exit();
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    public void exit() {
+        println("Exiting...");
+        System.exit(0);
     }
 }
