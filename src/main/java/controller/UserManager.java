@@ -4,7 +4,6 @@ import database.Data;
 import model.users.User;
 import java.util.List;
 import java.io.File;
-import org.json.JSONObject;
 
 /**
  * List that handles user related tasks
