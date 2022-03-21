@@ -2,6 +2,8 @@ package controller;
 
 import database.Data;
 import model.users.User;
+import model.users.info.Person;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.io.File;
@@ -23,20 +25,25 @@ public class UserManager {
      */
     public UserManager(Data data) {
         users = new ArrayList<User>();
-        // ---STARTUP(temp)---
-        // check to see if user "temp" exists
-        // if it does (from a bad exit or something), wipe and create a new one.
+    
         if (saveDataExists("temp")) {
-            //TODO: delete "temp"
+            //TODO: delete "temp" from disk or override with a default, waiting on IO for that
         }
         registerUser(new User());  // creates a new guest account called temp at the start of the list
         currentUser = users.get(0); // sets currentUser as the guest account
 
-        // ---STARTUP(list)---
-        // Cycle through user data (which doesn't really exist yet so what am i gonna do)
-        // add all users to the user list, easy enough
-
-
+        // Cycle through user data (this is going to have to become a helper method)
+        int numUsers = new File("./database/userdata").list().length;
+        for(int i = 0; i < numUsers; i++) {
+            // TODO: figure out how to convert whatever comes in from Data data into the all of the users.
+            // Can't really do this without the Data class though
+            User toAdd = new User(new Person("placeholder", "placeholder"), "placeholder", "placeholder");
+            toAdd.setEmail("placeholder");
+                // loop to add booking history
+                // loop to add travelers
+                // loop to add prefrences
+            registerUser(toAdd);
+        }
     }
 
     /**
