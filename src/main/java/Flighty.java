@@ -106,6 +106,24 @@ public class Flighty {
     }
 
     /**
+     * Prints a cool logo
+     * @author rengotap
+     */
+    private void printHeader() {   
+        println("88888888888  88  88               88" +'\n'
+        +"88           88  "+"''"+"               88            ,d"+'\n'
+        +"88           88                   88            88"+'\n'
+        +"88aaaaa      88  88   ,adPPYb,d8  88,dPPYba,  MM88MMM  8b       d8"+'\n'
+        +"88'''''      88  88  a8'    `Y88  88P'    '8a   88     `8b     d8'"+'\n'
+        +"88           88  88  8b       88  88       88   88      `8b   d8'"+'\n'
+        +"88           88  88  '8a,   ,d88  88       88   88,      `8b,d8'"+'\n'
+        +"88           88  88   `'YbbdP'Y8  88       88   'Y888      Y88'"+'\n'
+        +"                      aa,    ,88                           d8'"+'\n'
+        +"                       'Y8bbdP'                           d8'"+'\n'
+        +"                  Flight & Hotel Booking Program");
+    }
+
+    /**
      * Creates a numbered menu and promps the user to choose an option
      * 
      * @param options options for the user to choose from
@@ -147,6 +165,7 @@ public class Flighty {
         options.add(OPTION_BOOKINGS);
         options.add(OPTION_EXIT);
 
+        printHeader();
         println("Welcome " + currUserName);
         String response = numberedMenu("Enter a Number", options);
 
