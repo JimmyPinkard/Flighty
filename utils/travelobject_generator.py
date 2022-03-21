@@ -140,8 +140,8 @@ def create_hotel_entry():
     for i in range(random.randrange(3, 20)):
         room_num += 1
         room_id = str(uuid4())
-        write_room(create_room_dict(room_id, room_num))
-        h["rooms"].append(room_id)
+        room_dict = create_room_dict(room_id, room_num)
+        h["rooms"].append(room_dict)
 
     return h
 
@@ -184,20 +184,20 @@ def create_flight_entry():
         seat = create_seat_dict(
             uuid, 1, i, price, random.choice(POSSIBLE_PLANE_CLASSES)
         )
-        write_seat(seat)
-        f["seats"].append(uuid)
+        f["seats"].append(seat)
 
     return f
 
 
 def create_hotels_json():
+    entries = []
+
     amount = len(airports) * 2
-
     for i in range(amount):
-        entry = create_hotel_entry()
+        entries.append(create_hotel_entry())
 
-        with open("database/hotels/" + str(entry["id"]) + ".json", "w") as f:
-            f.write(json.dumps([entry]))
+        with open("database/hotels.json", "w") as f:
+            f.write(json.dumps(entries))
 
 
 def write_seat(seat_dict):
@@ -241,13 +241,14 @@ def create_seat_dict(uuid, row, col, price, class_type):
 
 
 def create_flights_json():
+    entries = []
+
     amount = len(POSSIBLE_DATES) * len(airports) * 4
-
     for i in range(amount):
-        entry = create_flight_entry()
+        entries.append(create_flight_entry())
 
-        with open("database/flights/" + str(entry["id"]) + ".json", "w") as f:
-            f.write(json.dumps([entry]))
+    with open("database/flights.json", "w") as f:
+        f.write(json.dumps(entries))
 
 
 def delete_json_in_dir(path):
@@ -257,11 +258,6 @@ def delete_json_in_dir(path):
 
 
 def main():
-    delete_json_in_dir("database/flights")
-    delete_json_in_dir("database/seats")
-    delete_json_in_dir("database/hotels")
-    delete_json_in_dir("database/rooms")
-    # exit()
     get_texas_flights()
     create_flights_json()
     create_hotels_json()
