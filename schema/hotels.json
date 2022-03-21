@@ -8,7 +8,25 @@
         "rating": 4.0,
         "rooms":
         [
-            "a7a4ea7d-7d50-4bed-b1d5-bfd045f9f908", "d442cff7-5cce-4e45-b8fe-6e8b928bfbe0"
+            {
+                "id": "a7a4ea7d-7d50-4bed-b1d5-bfd045f9f908",
+                "price": 100,
+                "roomNum": 101,
+                "sleepingCapacity": 2,
+                "bedInfo": "1 Queen bed",
+                "bookings": [
+                    "2/20/22",
+                    "2/24/22"
+                ]
+            },
+            {
+                "id": "d442cff7-5cce-4e45-b8fe-6e8b928bfbe0",
+                "price": 200,
+                "roomNum": 102,
+                "sleepingCapacity": 2,
+                "bedInfo": "2 king bed",
+                "bookings": []
+            }
         ],
         "filters":
         [

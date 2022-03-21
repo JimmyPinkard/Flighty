@@ -13,7 +13,29 @@
         "rating": 4.0,
         "seats":
         [
-            "7ce9ffe5-e973-404d-a505-efe963f33308", "7aaf8b64-b58a-42ea-804a-e471f9f2b4d4"
+            {
+                "id": "7aaf8b64-b58a-42ea-804a-e471f9f2b4d4",
+                "class": "first",
+                "price": 123.56,
+                "row": 1,
+                "column": 1,
+                "isBooked": false,
+                "amenities": [
+                    "peanuts"
+                ]
+            },
+            {
+                "id": "7ce9ffe5-e973-404d-a505-efe963f33308",
+                "class": "first",
+                "price": 130.00,
+                "row": 1,
+                "column": 2,
+                "isBooked": true,
+                "amenities": [
+                    "peanuts",
+                    "movie"
+                ]
+            }
         ],
         "filters":
         [
