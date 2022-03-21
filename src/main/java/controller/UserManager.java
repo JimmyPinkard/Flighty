@@ -3,6 +3,7 @@ package controller;
 import database.Data;
 import model.users.User;
 import java.util.List;
+import java.util.ArrayList;
 import java.io.File;
 
 /**
@@ -21,6 +22,7 @@ public class UserManager {
      * @param data
      */
     public UserManager(Data data) {
+        users = new ArrayList<User>();
         // ---STARTUP(temp)---
         // check to see if user "temp" exists
         // if it does (from a bad exit or something), wipe and create a new one.

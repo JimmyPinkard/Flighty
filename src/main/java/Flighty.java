@@ -126,21 +126,20 @@ public class Flighty {
         final String OPTION_FLIGHT = "Find a Flight";
         final String OPTION_HOTEL = "Find a Hotel";
         final String OPTION_BOOKINGS = "Manage Bookings";
-        final String OPTION_MANAGE_USER = "Manage Users";
-        final String OPTION_CREATE_USER = "Create Users";
+        final String OPTION_MANAGE_USER = "Manage User Profile";
+        final String OPTION_CREATE_USER = "Create User Profile";
         final String OPTION_LOGOUT = "Logout";
         final String OPTION_EXIT = "Exit";
 
         List<String> options = new ArrayList<String>();
 
-        String currUserName = "";
-        if (userManager.getCurrentUser() == null) {
+        // temp is a default guest account that saves data before making an account
+        String currUserName = userManager.getCurrentUser().getName();
+        if (userManager.getCurrentUser().getUsername().equals("temp")) {
             options.add(OPTION_CREATE_USER);
         } else {
             options.add(OPTION_MANAGE_USER);
             options.add(OPTION_LOGOUT);
-
-            currUserName = userManager.getCurrentUser().getRegisteredPerson().getFirstName();
         }
 
         options.add(OPTION_FLIGHT);
@@ -148,7 +147,7 @@ public class Flighty {
         options.add(OPTION_BOOKINGS);
         options.add(OPTION_EXIT);
 
-        println("Welcome" + currUserName);
+        println("Welcome " + currUserName);
         String response = numberedMenu("Enter a Number", options);
 
         switch (response) {

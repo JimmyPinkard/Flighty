@@ -42,6 +42,7 @@ public class User {
      */
     public User(Person person, String username, String password) {
         this.name = person.getFirstName();
+        this.person = person;
         this.username = username;
         this.password = password;
     }
@@ -57,6 +58,7 @@ public class User {
     public User() {
         name = "Guest";
         username = "temp";
+        this.person = new Person("temp", "temp");
     }
 
     /**
