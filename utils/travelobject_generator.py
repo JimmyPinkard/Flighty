@@ -5,7 +5,17 @@ import random
 import datetime
 from uuid import uuid4
 
-POSSIBLE_COMPANIES = [
+POSSIBLE_HOTEL_COMPANIES = [
+    "Wyndham",
+    "Marriott",
+    "Choice",
+    "Hilton",
+    "InterContinental",
+    "Accor",
+    "Red Lion",
+]
+
+POSSIBLE_PLANE_COMPANIES = [
     "Allegiant Air",
     "American Airlines",
     "Delta Air Lines",
@@ -72,10 +82,30 @@ def dist_between(x1, y1, x2, y2):
     return ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
 
 
+def create_hotel_entry():
+    h = {}
+    h["id"] = str(uuid4())
+    h["company"] = random.choice(POSSIBLE_HOTEL_COMPANIES)
+
+    airport = random.choice(airports)
+    h["location"] = airport["city"]
+
+    day = int(random.uniform(1, 10))
+    hour = int(random.uniform(1, 23))
+    date = datetime.datetime(2022, 1, day, hour)
+
+    h["check_out_time"] = str(random.randrange(10, 13)) + " :00 UTS"
+
+    h["date"] = date.strftime("%m/%d/%y")
+    h["rating"] = round(random.uniform(0, 5), 1)
+
+    return h
+
+
 def create_flight_entry():
     f = {}
     f["id"] = str(uuid4())
-    f["company"] = random.choice(POSSIBLE_COMPANIES)
+    f["company"] = random.choice(POSSIBLE_PLANE_COMPANIES)
 
     a_from, a_to = random.sample(airports, 2)
 
@@ -95,23 +125,45 @@ def create_flight_entry():
     dist = dist_between(a_from["x"], a_from["y"], a_to["x"], a_to["y"])
     date = date + datetime.timedelta(minutes=dist_to_min(dist))
 
+    f["time_arrive"] = date.strftime("%H:%M UTC")
+
     f["rating"] = round(random.uniform(0, 5), 1)
 
     return f
 
 
-def create_json():
+def create_hotels_json():
     created = []
 
-    created.append(create_flight_entry())
+    amount = len(airports) * 2
 
-    return json.dumps(created)
+    for i in range(amount):
+        created.append(create_hotel_entry())
+
+    with open("database/hotels.json", "w") as f:
+        f.write(json.dumps(created))
+
+    # TODO: create seats
+
+
+def create_flights_json():
+    created = []
+
+    amount = len(POSSIBLE_DATES) * len(airports) * 4
+
+    for i in range(amount):
+        created.append(create_flight_entry())
+
+    with open("database/flights.json", "w") as f:
+        f.write(json.dumps(created))
+
+    # TODO: create seats
 
 
 def main():
     get_texas_flights()
-    print(dist_to_min(dist_between(1, 101.782, 0, 98.613)))
-    print(create_json())
+    create_flights_json()
+    create_hotels_json()
 
 
 if __name__ == "__main__":

@@ -3,9 +3,8 @@
         "id": "3bee4758-5bd5-4189-a36c-b454163048d0",
         "company": "Wyndham",
         "location": "San Diego, CA",
-        "time": "12:00 UTC",
+        "check_out_time": "12:00 UTC",
         "date": "2/22/22",
-        "cost": 100.00,
         "rating": 4.0,
         "rooms":
         [
