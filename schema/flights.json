@@ -4,6 +4,8 @@
         "company": "Delta",
         "airport_code_from": "FJS",
         "airport_code_to": "JTW",
+        "city_from": "Houston",
+        "city_to": "Lubbock",
         "time_depart": "12:00 UTC",
         "time_arrive": "12:00 UTC",
         "plane_type": "Airbus A330",
