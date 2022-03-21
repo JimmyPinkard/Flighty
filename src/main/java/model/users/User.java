@@ -4,6 +4,7 @@ import model.bookables.TravelObject;
 import model.users.info.Passport;
 import model.users.info.Person;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
 
@@ -26,10 +27,10 @@ public class User {
     private int depEarly;
     private int depLate;
 
-    private SearchPreferences searchPrefs;
+    private SearchPreferences preferences;
 
     private List<String>specialReq;
-    private List<Passport> travelers;
+    private List<Passport> travelers; // passport 0 should always be the user
     private List<TravelObject> bookingHistory;
     private Person person;
 
@@ -45,6 +46,11 @@ public class User {
         this.person = person;
         this.username = username;
         this.password = password;
+
+        preferences = new SearchPreferences();
+        specialReq = new ArrayList<String>();
+        travelers = new ArrayList<Passport>();
+        bookingHistory = new ArrayList<TravelObject>();
     }
 
     /**
@@ -59,6 +65,9 @@ public class User {
         name = "Guest";
         username = "temp";
         this.person = new Person("temp", "temp");
+        preferences = new SearchPreferences();
+        specialReq = new ArrayList<String>();
+        bookingHistory = new ArrayList<TravelObject>();
     }
 
     /**
