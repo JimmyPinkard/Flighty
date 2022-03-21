@@ -12,6 +12,10 @@
         "seats":
         [
             "7ce9ffe5-e973-404d-a505-efe963f33308", "7aaf8b64-b58a-42ea-804a-e471f9f2b4d4"
+        ],
+        "filters":
+        [
+            "FLIGHT"
         ]
     }
 ]
