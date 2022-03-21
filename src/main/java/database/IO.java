@@ -14,17 +14,21 @@ import org.json.JSONObject;
  */
 public class IO {
     private static IO instance;
-    private Data data;
+    private final Data data;
 
-    private IO() {}
+    /**
+     *
+     */
+    private IO() {
+        this.data = Data.getInstance();
+    }
 
     /**
      * Ensures there is only one Utils.IO instance by getting the Utils.IO class instance if one already exists,
      * otherwise it returns a creates a new one
      */
     public static IO getInstance() {
-        if(instance == null)
-        {
+        if(instance == null) {
             instance = new IO();
         }
         return instance;

@@ -14,13 +14,18 @@ public class Search {
     protected List<SearchFilter> possibleFilters;
     protected SearchPreferences preferences;
     protected List<Listing> travelObjects;
+
+    /**
+     *
+     */
     public Search() {
         //TODO: Search.Search Constructor
     }
 
     /**
-     * Search.Search Function
+     * search.Search Function
      * @param filters
+     * @author Jimmy
      * @return
      */
     public List<Listing> search(final List<SearchFilter> filters) {
