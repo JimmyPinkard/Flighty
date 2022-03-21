@@ -3,6 +3,7 @@ package model.users;
 import model.bookables.TravelObject;
 import model.users.info.Passport;
 import model.users.info.Person;
+import org.json.JSONObject;
 
 import java.util.List;
 import java.io.File;
@@ -18,7 +19,7 @@ public class User {
     private String email;
     private String name;
 
-    //Temporary prefrences while prefrences are unfinished
+    //Temporary preferences while preferences are unfinished
     private String prefAirline;
     private String prefClass;
     private String homeAirport;
@@ -45,6 +46,10 @@ public class User {
         this.person = person;
         this.username = username;
         this.password = password;
+    }
+
+    public User(JSONObject json) {
+        fromJSON(json);
     }
 
     /**
@@ -193,5 +198,20 @@ public class User {
      */
     public List<TravelObject> getBookingHistory() {
         return bookingHistory;
+    }
+
+    /**
+     * Turns object into JSON
+     * @return
+     */
+    protected JSONObject toJSON() {
+        return null;
+    }
+
+    /**
+     * Constructs object from JSON
+     * @param json
+     */
+    protected void fromJSON(final JSONObject json) {
     }
 }

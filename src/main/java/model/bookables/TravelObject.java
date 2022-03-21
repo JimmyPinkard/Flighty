@@ -1,5 +1,8 @@
 package model.bookables;
 
+import org.json.JSONObject;
+import search.filters.SearchFilter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +13,7 @@ public abstract class TravelObject {
     protected double rating;
     protected BookingLayout layout;
     protected List<String> features;
+    protected List<SearchFilter> filters;
 
 /**
  * Constructor for Bookables.TravelObject
@@ -22,6 +26,10 @@ public abstract class TravelObject {
         this.bookables = new ArrayList<Bookable>();
         this.features = new ArrayList<String>();
         this.layout = layout;
+    }
+
+    public TravelObject(JSONObject json) {
+        fromJSON(json);
     }
 
     /**
@@ -38,6 +46,31 @@ public abstract class TravelObject {
      */
     public boolean book(Bookable booking){
         return bookables.remove(booking);
+    }
+
+    /**
+     * Turns object into JSON
+     * @return
+     */
+    protected JSONObject toJSON() {
+        //TODO: Implement
+        return null;
+    }
+
+    /**
+     * Constructs object from JSON
+     * @param json
+     */
+    protected void fromJSON(final JSONObject json) {
+        //TODO: Implement
+    }
+
+    public List<SearchFilter> getFilters() {
+        return filters;
+    }
+
+    public void setFilters(final List<SearchFilter> filters) {
+        //TODO: Implement
     }
 
 }

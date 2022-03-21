@@ -1,6 +1,7 @@
 package model.bookables.flight;
 
 import model.bookables.Bookable;
+import org.json.JSONObject;
 
 /**
  * 
@@ -16,7 +17,13 @@ public class Seat extends Bookable {
     public Seat() {
         super();
         whichClass = "First CLass";
-        isBooked= false;
+        isBooked = false;
+    }
+
+    public Seat(final JSONObject object) {
+        super(object);
+        whichClass = "First CLass";
+        isBooked = false;
     }
 
     /**

@@ -1,6 +1,7 @@
 package model.bookables.hotel;
 
 import model.bookables.Bookable;
+import org.json.JSONObject;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,6 +20,12 @@ public class Room extends Bookable {
      */
     public Room() {
         super();
+        info = "A Bookables.Hotel.Hotel.Room";
+        bookedDays = new ArrayList<LocalDate>();
+    }
+
+    public Room(final JSONObject object) {
+        super(object);
         info = "A Bookables.Hotel.Hotel.Room";
         bookedDays = new ArrayList<LocalDate>();
     }

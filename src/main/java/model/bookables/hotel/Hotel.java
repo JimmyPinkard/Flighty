@@ -2,6 +2,7 @@ package model.bookables.hotel;
 
 import model.bookables.BookingLayout;
 import model.bookables.TravelObject;
+import org.json.JSONObject;
 
 import java.util.List;
 /**
@@ -22,6 +23,15 @@ public class Hotel extends TravelObject {
         this.features = features;
         this.location = location;
         this.numBeds = numBeds;
+    }
+
+    public Hotel(final JSONObject json) {
+        super(json);
+        /*
+        this.features = json.get("features");
+        this.location = json.get("location");
+        this.numBeds = json.get("numBeds");
+        */
     }
 
     /**

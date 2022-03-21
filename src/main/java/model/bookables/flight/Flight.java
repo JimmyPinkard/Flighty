@@ -2,6 +2,7 @@ package model.bookables.flight;
 
 import model.bookables.BookingLayout;
 import model.bookables.TravelObject;
+import org.json.JSONObject;
 
 import java.time.LocalDate;
 
@@ -19,6 +20,10 @@ public class Flight extends TravelObject {
         super(layout);
         this.departureTime = departureTime;
         this.arivalTime = arivalTime;
+    }
+
+    public Flight(JSONObject json) {
+        super(json);
     }
 
     /**
