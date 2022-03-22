@@ -21,12 +21,6 @@ public class User {
     private String name;
 
     //Temporary preferences while preferences are unfinished
-    private String prefAirline;
-    private String prefClass;
-    private String homeAirport;
-    private String prefHotel;
-    private int depEarly;
-    private int depLate;
 
     private SearchPreferences preferences;
 
