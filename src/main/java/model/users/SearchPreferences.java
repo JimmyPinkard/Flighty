@@ -3,35 +3,77 @@ package model.users;
 import java.util.EnumMap;
 
 import search.filters.FlightFilter;
-import search.filters.SearchFilter;
+import search.filters.HotelFilter;
 
 /**
  * Stores a user's prefrences
+ * @author rengotap
  */
 public class SearchPreferences {
 
-    public EnumMap<FlightFilter, String> preferences;
+    public EnumMap<FlightFilter, String> fpref;
+    public EnumMap<HotelFilter, String> hPref;
 
     /**
      * Generates default SearchPrefrences with all set to 'none'
      */
     public SearchPreferences() {
-        preferences = new EnumMap<>(FlightFilter.class);
-        preferences.put(FlightFilter.FLIGHT, "none");
-        preferences.put(FlightFilter.AIRPORT, "none");
-        preferences.put(FlightFilter.COMPANY, "none");
-        preferences.put(FlightFilter.PRICE, "none");
-        preferences.put(FlightFilter.DURATION, "none");
-        preferences.put(FlightFilter.TIME_START, "none");
-        preferences.put(FlightFilter.TIME_END, "none");
-        preferences.put(FlightFilter.PETS_ALLOWED, "none");
-        preferences.put(FlightFilter.FLIGHTS_LAYOVER, "none");
+        fpref = new EnumMap<>(FlightFilter.class);
+        fpref.put(FlightFilter.FLIGHT, "none");
+        fpref.put(FlightFilter.AIRPORT, "none");
+        fpref.put(FlightFilter.COMPANY, "none");
+        fpref.put(FlightFilter.PRICE, "none");
+        fpref.put(FlightFilter.DURATION, "none");
+        fpref.put(FlightFilter.TIME_START, "none");
+        fpref.put(FlightFilter.TIME_END, "none");
+        fpref.put(FlightFilter.PETS_ALLOWED, "none");
+        fpref.put(FlightFilter.FLIGHTS_LAYOVER, "none");
         
+        hPref = new EnumMap<>(HotelFilter.class);
+        hPref.put(HotelFilter.HOTEL, "none");
+        hPref.put(HotelFilter.COMPANY, "none");
+        hPref.put(HotelFilter.PRICE, "none");
+        hPref.put(HotelFilter.TIME_START, "none");
+        hPref.put(HotelFilter.TIME_END, "none");
+        hPref.put(HotelFilter.PETS_ALLOWED, "none");
     }
     /**
-     * Generates SearchPrefrences based on what was passed from the user profile    
+     * Generates SearchPrefrences based on what was passed from the user profile
      */
-    public SearchPreferences(String data) {
+    public SearchPreferences(String data) {  //TODO: import search prefrences from data
+        fpref = new EnumMap<>(FlightFilter.class);
+        fpref.put(FlightFilter.FLIGHT, "none");
+        fpref.put(FlightFilter.AIRPORT, "none");
+        fpref.put(FlightFilter.COMPANY, "none");
+        fpref.put(FlightFilter.PRICE, "none");
+        fpref.put(FlightFilter.DURATION, "none");
+        fpref.put(FlightFilter.TIME_START, "none");
+        fpref.put(FlightFilter.TIME_END, "none");
+        fpref.put(FlightFilter.PETS_ALLOWED, "none");
+        fpref.put(FlightFilter.FLIGHTS_LAYOVER, "none");
+        
+        hPref = new EnumMap<>(HotelFilter.class);
+        hPref.put(HotelFilter.HOTEL, "none");
+        hPref.put(HotelFilter.COMPANY, "none");
+        hPref.put(HotelFilter.PRICE, "none");
+        hPref.put(HotelFilter.TIME_START, "none");
+        hPref.put(HotelFilter.TIME_END, "none");
+        hPref.put(HotelFilter.PETS_ALLOWED, "none");
+    }
 
+    /**
+     * Returns the User's Flight prefrences
+     * @return fPref
+     */
+    public EnumMap<FlightFilter, String> getFPref(){
+        return fpref;
+    }
+
+    /**
+     * Returns the User's Hotel prefrences
+     * @return
+     */
+    public EnumMap<HotelFilter, String> getHPref() {
+        return hPref;
     }
 }

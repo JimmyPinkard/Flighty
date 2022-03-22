@@ -3,11 +3,14 @@ package model.users;
 import model.bookables.TravelObject;
 import model.users.info.Passport;
 import model.users.info.Person;
-import org.json.JSONObject;
+import search.filters.FlightFilter;
+import search.filters.HotelFilter;
 
+import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
+import java.util.EnumMap;
 
 /**
  * All user related data
@@ -19,8 +22,6 @@ public class User {
     private String password;
     private String email;
     private String name;
-
-    //Temporary preferences while preferences are unfinished
 
     private SearchPreferences preferences;
 
@@ -42,7 +43,7 @@ public class User {
         this.username = username;
         this.password = password;
 
-        preferences = new SearchPreferences();
+        preferences = new SearchPreferences();  //TODO: Import Prefrences from data
         specialReq = new ArrayList<String>();
         travelers = new ArrayList<Passport>();
         bookingHistory = new ArrayList<TravelObject>();
@@ -103,6 +104,30 @@ public class User {
      */
     public String getPassword() {
         return password;
+    }
+
+    /**
+     * Gets the SearchPrefrences OBJECT
+     * @return SearchPrefrences
+     */
+    public SearchPreferences getSearchPreferences() {
+        return preferences;
+    }
+
+    /**
+     * Gets the flight prefrences from SearchPreferences
+     * @return EnumMap of flight prefrences
+     */
+    public EnumMap<FlightFilter, String> getFPref() {
+        return preferences.getFPref();
+    }
+
+    /**
+     * Gets the hotel prefrences from SearchPreferences
+     * @return EnumMap of hotel prefrences
+     */
+    public EnumMap<HotelFilter, String> getHPref() {
+        return preferences.getHPref();
     }
 
     /**
