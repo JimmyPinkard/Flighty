@@ -2,12 +2,16 @@ package model.bookables;
 
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import javax.persistence.*;
 
-public abstract class Bookable {
-    protected UUID id;
+@MappedSuperclas
+public abstract class Bookable implements Serializable {
+    @Column(name = "id")
+    protected String id;
     protected int num;
     protected double price;
     protected List<String> amenities;

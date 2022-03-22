@@ -3,16 +3,21 @@ package model.bookables.hotel;
 import model.bookables.Bookable;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
+import javax.persistence.*;
 /**
  * 
  * @author Jack Hyatt
  */
-public class Room extends Bookable {
+@Entity
+@Table
+public class Room extends Bookable implements Serializable {
+    @Column(name = "info")
     private String info;
+    @Column(name = "bookedDays")
     private List<LocalDate> bookedDays;
 
     /**

@@ -10,10 +10,14 @@ import java.util.List;
  * @author rengotap
  */
 @Entity
+@Table
 public class Hotel extends TravelObject {
 
+    @Column(name = "features")
     private List<String> features;
+    @Column(name = "location")
     private String location;
+    @Column(name = "numBeds")
     private int numBeds;
 
     /**

@@ -1,23 +1,30 @@
 package model.bookables;
 
-import org.json.JSONObject;
 import search.filters.SearchFilter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import javax.persistence.*;
 
-@Entity
-public abstract class TravelObject {
+@MappedSuperclas
+public abstract class TravelObject implements Serializable {
     @Id
-    protected UUID id;
+    @Column(name = "id")
+    protected String id;
     protected List<Bookable> bookables;
+    @Column(name = "company")
     protected String company;
+    @Column(name = "cost")
     protected double cost;
+    @Column(name = "rating")
     protected double rating;
     protected BookingLayout layout;
+    @Column(name = "features")
     protected List<String> features;
+    @Column(name = "filters")
     protected List<SearchFilter> filters;
 
 /**

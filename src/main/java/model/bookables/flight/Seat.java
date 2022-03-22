@@ -7,8 +7,12 @@ import org.json.JSONObject;
  * 
  * @author Jack Hyatt
  */
+@Entity
+@Table
 public class Seat extends Bookable {
+    @Column(name = "class")
     private String whichClass;
+    @Column(name = "isBooked")
     private boolean isBooked;
 
     /**

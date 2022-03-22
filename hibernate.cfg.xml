@@ -1,7 +1,6 @@
 <?xml version = "1.0" encoding = "utf-8"?>
 <!DOCTYPE hibernate-configuration SYSTEM
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
-
 <hibernate-configuration>
     <session-factory>
 
@@ -13,14 +12,14 @@
             com.mysql.jdbc.Driver
         </property>
 
-        <!-- Assume students is the database name -->
+        <!-- Assume test is the database name -->
 
         <property name = "hibernate.connection.url">
-            jdbc:mysql://localhost/test
+            jdbc:mysql://localhost:3306/Flighty
         </property>
 
         <property name = "hibernate.connection.username">
-            jimmy
+            admin
         </property>
 
         <property name = "hibernate.connection.password">

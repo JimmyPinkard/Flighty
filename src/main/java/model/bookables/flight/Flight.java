@@ -9,8 +9,13 @@ import java.time.LocalDate;
 /**
  * @author Jack Hyatt
  */
+
+@Entity
+@Table
 public class Flight extends TravelObject {
+    @Column(name = "departureTime")
     private LocalDate departureTime;
+    @Column(name = "arrivalTime")
     private LocalDate arivalTime;
 
     /**

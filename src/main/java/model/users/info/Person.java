@@ -1,12 +1,19 @@
 package model.users.info;
 
+import javax.persistence.*;
+import java.io.Serializable;
+
 /**
  * Holds a Person's first and last name
  * @author rengotap
  */
-public class Person {
+@Entity
+@Table(name = "Person")
+public class Person implements Serializable {
 
+    @Column(name = "")
     private String firstName;
+    @Column(name = "")
     private String lastName;
 
     /**
