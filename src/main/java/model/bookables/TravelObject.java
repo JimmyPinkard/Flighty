@@ -3,10 +3,15 @@ package model.bookables;
 import org.json.JSONObject;
 import search.filters.SearchFilter;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
+@Entity
 public abstract class TravelObject {
+    @Id
+    protected UUID id;
     protected List<Bookable> bookables;
     protected String company;
     protected double cost;
@@ -30,6 +35,10 @@ public abstract class TravelObject {
 
     public TravelObject(JSONObject json) {
         fromJSON(json);
+    }
+
+    public TravelObject() {
+
     }
 
     /**

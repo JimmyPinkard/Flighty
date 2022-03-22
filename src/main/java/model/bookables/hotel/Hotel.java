@@ -1,5 +1,5 @@
 package model.bookables.hotel;
-
+import javax.persistence.*;
 import model.bookables.BookingLayout;
 import model.bookables.TravelObject;
 import org.json.JSONObject;
@@ -9,6 +9,7 @@ import java.util.List;
  * Bookables.Hotel.Hotel object
  * @author rengotap
  */
+@Entity
 public class Hotel extends TravelObject {
 
     private List<String> features;
@@ -32,6 +33,10 @@ public class Hotel extends TravelObject {
         this.location = json.get("location");
         this.numBeds = json.get("numBeds");
         */
+    }
+
+    public Hotel() {
+        super();
     }
 
     /**
