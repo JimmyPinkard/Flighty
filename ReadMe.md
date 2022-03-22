@@ -1,5 +1,5 @@
 # Flighty
-
+```
 88888888888  88  88               88
 88           88  ''               88            ,d
 88           88                   88            88
@@ -10,6 +10,7 @@
 88           88  88   `'YbbdP'Y8  88       88   'Y888      Y88'
                       aa,    ,88                           d8'
                        'Y8bbdP'                           d8'
+```
 ## By DuckDuckGoose
 
 Our final group project for CSCE 247.
