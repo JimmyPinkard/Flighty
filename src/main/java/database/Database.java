@@ -39,6 +39,17 @@ public class Database {
         return null;
     }
 
+    public Object get(String entityType) {
+        try {
+            return datastore.find(entityType).first();
+        }
+        catch (Exception e) {
+            System.err.println(e.getMessage());
+            System.exit(1);
+        }
+        return null;
+    }
+
     public List<Object> getAll(String entityType) {
         List<Object> objs = null;
         try {
