@@ -160,6 +160,7 @@ public class IO {
      * @author Jimmy
      */
     private void loadObjects(final String key, final List<JSONObject> objects) {
+        /*
         if(key.equalsIgnoreCase("flight")) {
             for(JSONObject object : objects) {
                 this.data.travelObjects.add(new Flight(object));
@@ -180,6 +181,7 @@ public class IO {
                 this.data.bookings.add(new Booking(object));
             }
         }
+        */
     }
 
     /**

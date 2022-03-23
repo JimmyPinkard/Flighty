@@ -1,5 +1,6 @@
 package model.bookables;
 
+import dev.morphia.annotations.*;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -7,16 +8,20 @@ import java.util.List;
 import java.util.UUID;
 
 public abstract class Bookable {
-    protected UUID id;
+    @Id
+    protected String id;
+    @Property("num")
     protected int num;
+    @Property("price")
     protected double price;
+    @Property("amenities")
     protected List<String> amenities;
 
     /**
      * Constructor for bookable
      */
     public Bookable() {
-        this.id = UUID.randomUUID();
+        this.id = UUID.randomUUID().toString();
         amenities = new ArrayList<String>();
     }
 
@@ -28,7 +33,7 @@ public abstract class Bookable {
      * Gets bookable's ID
      * @return UUID
      */
-    protected UUID getId() {
+    protected String getId() {
         return this.id;
     }
 

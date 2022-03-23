@@ -1,12 +1,15 @@
 package model.users.info;
 
+import dev.morphia.annotations.Property;
+
 /**
  * Holds a Person's first and last name
  * @author rengotap
  */
 public class Person {
-
+    @Property("firstName")
     private String firstName;
+    @Property("lastName")
     private String lastName;
 
     /**

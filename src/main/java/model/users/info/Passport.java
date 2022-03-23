@@ -1,16 +1,29 @@
 package model.users.info;
 
+import dev.morphia.annotations.Entity;
+import dev.morphia.annotations.Id;
+import dev.morphia.annotations.Property;
+
 import java.time.LocalDate;
+import java.util.UUID;
 
 /**
  * Holds passport info (a traveler)
  * @author rengotap
  */
+@Entity("Passport")
 public class Passport {
+    @Id
+    private String id;
+    @Property("person")
     private Person person;
+    @Property("dateOfBirth")
     private LocalDate dateOfBirth;
+    @Property("expirationDate")
     private LocalDate expirationDate;
+    @Property("number")
     private String number;
+    @Property("gender")
     private String gender;
 
     /**
@@ -19,6 +32,7 @@ public class Passport {
      */
     public Passport(Person person, LocalDate dateOfBirth, 
         LocalDate expirationDate, String number, String gender) {
+        this.id = UUID.randomUUID().toString();
         this.person = person;
         this.dateOfBirth = dateOfBirth;
         this.expirationDate = expirationDate;

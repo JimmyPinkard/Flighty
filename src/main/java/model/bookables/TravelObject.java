@@ -1,18 +1,25 @@
 package model.bookables;
 
-import org.json.JSONObject;
+import dev.morphia.annotations.Property;
 import search.filters.SearchFilter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class TravelObject {
+    @Property("bookables")
     protected List<Bookable> bookables;
+    @Property("company")
     protected String company;
+    @Property("cost")
     protected double cost;
+    @Property("rating")
     protected double rating;
+    @Property("layout")
     protected BookingLayout layout;
+    @Property("features")
     protected List<String> features;
+    @Property("filters")
     protected List<SearchFilter> filters;
 
 /**
@@ -26,10 +33,6 @@ public abstract class TravelObject {
         this.bookables = new ArrayList<Bookable>();
         this.features = new ArrayList<String>();
         this.layout = layout;
-    }
-
-    public TravelObject(JSONObject json) {
-        fromJSON(json);
     }
 
     /**
@@ -48,22 +51,7 @@ public abstract class TravelObject {
         return bookables.remove(booking);
     }
 
-    /**
-     * Turns object into JSON
-     * @return
-     */
-    protected JSONObject toJSON() {
-        //TODO: Implement
-        return null;
-    }
 
-    /**
-     * Constructs object from JSON
-     * @param json
-     */
-    protected void fromJSON(final JSONObject json) {
-        //TODO: Implement
-    }
 
     public List<SearchFilter> getFilters() {
         return filters;

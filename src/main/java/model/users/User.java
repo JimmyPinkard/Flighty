@@ -1,5 +1,8 @@
 package model.users;
 
+import dev.morphia.annotations.Entity;
+import dev.morphia.annotations.Property;
+import dev.morphia.annotations.Reference;
 import model.bookables.TravelObject;
 import model.users.info.Passport;
 import model.users.info.Person;
@@ -17,12 +20,17 @@ import java.util.EnumMap;
  * Edit this, then write it to the file
  * @author rengotap
  */
+@Entity("Users")
 public class User {
+    @Property("username")
     private String username;
+    @Property("password")
     private String password;
+    @Property("email")
     private String email;
+    @Property("name")
     private String name;
-
+    @Property("preferences")
     private SearchPreferences preferences;
 
     private List<String>specialReq;
