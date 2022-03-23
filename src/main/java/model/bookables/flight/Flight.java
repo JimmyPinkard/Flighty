@@ -1,5 +1,7 @@
 package model.bookables.flight;
 
+import dev.morphia.annotations.Entity;
+import dev.morphia.annotations.Property;
 import model.bookables.BookingLayout;
 import model.bookables.TravelObject;
 import org.json.JSONObject;
@@ -9,8 +11,11 @@ import java.time.LocalDate;
 /**
  * @author Jack Hyatt
  */
+@Entity("Flight")
 public class Flight extends TravelObject {
+    @Property("departure")
     private LocalDate departureTime;
+    @Property("arrival")
     private LocalDate arivalTime;
 
     /**
@@ -20,10 +25,6 @@ public class Flight extends TravelObject {
         super(layout);
         this.departureTime = departureTime;
         this.arivalTime = arivalTime;
-    }
-
-    public Flight(JSONObject json) {
-        super(json);
     }
 
     /**

@@ -1,5 +1,8 @@
 package model.bookables.hotel;
 
+import dev.morphia.annotations.Entity;
+import dev.morphia.annotations.Property;
+import dev.morphia.annotations.Reference;
 import model.bookables.BookingLayout;
 import model.bookables.TravelObject;
 import org.json.JSONObject;
@@ -9,10 +12,14 @@ import java.util.List;
  * Bookables.Hotel.Hotel object
  * @author rengotap
  */
+@Entity("Hotel")
 public class Hotel extends TravelObject {
 
+    @Reference
     private List<String> features;
+    @Property("location")
     private String location;
+    @Property("numBeds")
     private int numBeds;
 
     /**
@@ -23,15 +30,6 @@ public class Hotel extends TravelObject {
         this.features = features;
         this.location = location;
         this.numBeds = numBeds;
-    }
-
-    public Hotel(final JSONObject json) {
-        super(json);
-        /*
-        this.features = json.get("features");
-        this.location = json.get("location");
-        this.numBeds = json.get("numBeds");
-        */
     }
 
     /**
