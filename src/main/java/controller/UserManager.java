@@ -68,6 +68,19 @@ public class UserManager {
         return true;
     }
 
+    public boolean credentialsCorrect(String username, String password) {
+        for (User user : users) {
+            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void logoutCurrent() {
+        currentUser = null;
+    }
+
     /**
      * Registers the user
      * @param user user to register

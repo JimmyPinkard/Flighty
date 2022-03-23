@@ -106,6 +106,10 @@ public class User {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     /**
      * Gets the SearchPrefrences OBJECT
      * @return SearchPrefrences
