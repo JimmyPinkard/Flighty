@@ -33,9 +33,13 @@ public class User {
     @Property("preferences")
     private SearchPreferences preferences;
 
+    @Property("requirements")
     private List<String>specialReq;
+    @Property("travelers")
     private List<Passport> travelers; // passport 0 should always be the user
+    @Property("bookingHistory")
     private List<TravelObject> bookingHistory;
+    @Property("person")
     private Person person;
 
     /**
