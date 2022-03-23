@@ -1,12 +1,16 @@
 package model.bookables;
 
+import dev.morphia.annotations.Id;
 import dev.morphia.annotations.Property;
 import search.filters.SearchFilter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public abstract class TravelObject {
+    @Id
+    protected String id;
     @Property("bookables")
     protected List<Bookable> bookables;
     @Property("company")
@@ -27,6 +31,7 @@ public abstract class TravelObject {
  * @param layout the layout of either hotel or flight
  */
     public TravelObject(BookingLayout layout) {
+        this.id = UUID.randomUUID().toString();
         this.company = "";
         this.cost = 0;
         this.rating = 0;

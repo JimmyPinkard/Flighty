@@ -12,10 +12,10 @@ import java.util.List;
  * Bookables.Hotel.Hotel object
  * @author rengotap
  */
-@Entity("Hotel")
+@Entity("Hotels")
 public class Hotel extends TravelObject {
 
-    @Reference
+    @Property("features")
     private List<String> features;
     @Property("location")
     private String location;

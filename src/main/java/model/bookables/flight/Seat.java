@@ -9,11 +9,11 @@ import org.json.JSONObject;
  * 
  * @author Jack Hyatt
  */
-@Entity("Seat")
+@Entity("Seats")
 public class Seat extends Bookable {
     @Property("class")
     private String whichClass;
-    @Property("username")
+    @Property("isBooked")
     private boolean isBooked;
 
     /**

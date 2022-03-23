@@ -1,11 +1,5 @@
 import database.Data;
 import controller.UserManager;
-import database.Database;
-import model.bookables.flight.Seat;
-import model.users.info.Passport;
-import model.users.info.Person;
-
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

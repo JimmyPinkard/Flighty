@@ -3,6 +3,7 @@ package model.users.info;
 import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Id;
 import dev.morphia.annotations.Property;
+import org.bson.Document;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -11,7 +12,7 @@ import java.util.UUID;
  * Holds passport info (a traveler)
  * @author rengotap
  */
-@Entity("Passport")
+@Entity("Passports")
 public class Passport {
     @Id
     private String id;
@@ -38,6 +39,15 @@ public class Passport {
         this.expirationDate = expirationDate;
         this.number = number;
         this.gender = gender;
+    }
+
+    public Passport(final Document document) {
+        this.id = (String) document.get("id");
+        this.person = new Person(document);
+        this.dateOfBirth = (LocalDate) document.get("dateOfBirth");
+        this.expirationDate = (LocalDate) document.get("expirationDate");
+        this.number = (String) document.get("number");
+        this.gender = (String) document.get("gender");
     }
 
     /**
@@ -78,5 +88,17 @@ public class Passport {
      */
     public String getGender() {
         return gender;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "id:'" + id + '\'' +
+                ", person:" + person +
+                ", dateOfBirth:" + dateOfBirth +
+                ", expirationDate:" + expirationDate +
+                ", number:'" + number + '\'' +
+                ", gender:'" + gender + '\'' +
+                '}';
     }
 }

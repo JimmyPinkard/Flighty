@@ -14,11 +14,11 @@ import java.util.List;
  * 
  * @author Jack Hyatt
  */
-@Entity("Room")
+@Entity("Rooms")
 public class Room extends Bookable {
     @Property("info")
     private String info;
-    @Reference
+    @Property("bookedDays")
     private List<LocalDate> bookedDays;
 
     /**

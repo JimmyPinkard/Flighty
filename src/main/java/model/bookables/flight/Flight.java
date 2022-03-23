@@ -4,27 +4,26 @@ import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Property;
 import model.bookables.BookingLayout;
 import model.bookables.TravelObject;
-import org.json.JSONObject;
 
 import java.time.LocalDate;
 
 /**
  * @author Jack Hyatt
  */
-@Entity("Flight")
+@Entity("Flights")
 public class Flight extends TravelObject {
     @Property("departure")
     private LocalDate departureTime;
     @Property("arrival")
-    private LocalDate arivalTime;
+    private LocalDate arrivalTime;
 
     /**
      * Constructor for Bookables.Flight.Flight
      */
-    public Flight(LocalDate departureTime, LocalDate arivalTime, BookingLayout layout) {
+    public Flight(LocalDate departureTime, LocalDate arrivalTime, BookingLayout layout) {
         super(layout);
         this.departureTime = departureTime;
-        this.arivalTime = arivalTime;
+        this.arrivalTime = arrivalTime;
     }
 
     /**
@@ -39,7 +38,7 @@ public class Flight extends TravelObject {
      * 
      * @return the arival time of the flight as a LocalDate data type
      */
-    public LocalDate getArivalTime() {
-        return this.arivalTime;
+    public LocalDate getArrivalTime() {
+        return this.arrivalTime;
     }
 }
