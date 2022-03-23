@@ -1,4 +1,6 @@
 import database.Data;
+import model.users.User;
+import model.users.info.Person;
 import controller.UserManager;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +11,7 @@ public class Flighty {
     private UserManager userManager;
     private Data data;
 
-    public static void main(final String[] args)
-    {
+    public static void main(final String[] args) {
         Flighty app = new Flighty();
         app.mainMenu();
     }
@@ -140,42 +141,98 @@ public class Flighty {
     }
 
     public void mainMenu() {
-        final String OPTION_FLIGHT = "Find a Flight";
-        final String OPTION_HOTEL = "Find a Hotel";
-        final String OPTION_BOOKINGS = "Manage Bookings";
-        final String OPTION_MANAGE_USER = "Manage User Profile";
-        final String OPTION_CREATE_USER = "Create User Profile";
-        final String OPTION_LOGOUT = "Logout";
-        final String OPTION_EXIT = "Exit";
+        while (true) {
+            final String OPTION_FLIGHT = "Find a Flight";
+            final String OPTION_HOTEL = "Find a Hotel";
+            final String OPTION_BOOKINGS = "Manage Bookings";
+            final String OPTION_MANAGE_USER = "Manage User Profile";
+            final String OPTION_CREATE_USER = "Create User Profile";
+            final String OPTION_LOGOUT = "Logout";
+            final String OPTION_EXIT = "Exit";
 
-        List<String> options = new ArrayList<String>();
+            List<String> options = new ArrayList<String>();
 
-        // temp is a default guest account that saves data before making an account
-        String currUserName = userManager.getCurrentUser().getName();
-        if (userManager.getCurrentUser().getUsername().equals("temp")) {
-            options.add(OPTION_CREATE_USER);
-        } else {
-            options.add(OPTION_MANAGE_USER);
-            options.add(OPTION_LOGOUT);
-        }
+            // temp is a default guest account that saves data before making an account
+            String currUserName = userManager.getCurrentUser().getName();
+            if (userManager.getCurrentUser().getUsername().equals("temp")) {
+                options.add(OPTION_CREATE_USER);
+            } else {
+                options.add(OPTION_MANAGE_USER);
+                options.add(OPTION_LOGOUT);
+            }
 
-        options.add(OPTION_FLIGHT);
-        options.add(OPTION_HOTEL);
-        options.add(OPTION_BOOKINGS);
-        options.add(OPTION_EXIT);
+            options.add(OPTION_FLIGHT);
+            options.add(OPTION_HOTEL);
+            options.add(OPTION_BOOKINGS);
+            options.add(OPTION_EXIT);
 
-        printHeader();
-        println("Welcome " + currUserName);
-        String response = numberedMenu("Enter a Number", options);
+            printHeader();
+            println("Welcome " + currUserName);
+            String response = numberedMenu("Enter a Number", options);
 
-        switch (response) {
-            case OPTION_EXIT:
+            if (response == OPTION_EXIT) {
                 exit();
-                break;
-
-            default:
-                break;
+            } else if (response == OPTION_CREATE_USER) {
+                createUserMenu();
+            } else if (response == OPTION_LOGOUT) {
+                userManager.logoutCurrent();
+            } else if (response == OPTION_MANAGE_USER) {
+                manageCurrentUserMenu();
+            }
         }
+    }
+
+    public void manageCurrentUserMenu() {
+        while (true) {
+            final String OPTION_CHANGE_EMAIL = "Change Email";
+            final String OPTION_CHANGE_PASSWORD = "Change password";
+            final String OPTION_CHANGE_SEARCH_PREFERNECES = "Change search defaults";
+            final String OPTION_DELETE_USER =
+                    "Delete " + userManager.getCurrentUser().getUsername();
+            final String OPTION_BACK = "Back to Main Menu";
+
+            List<String> options = new ArrayList<String>();
+
+            options.add(OPTION_CHANGE_EMAIL);
+            options.add(OPTION_CHANGE_PASSWORD);
+            options.add(OPTION_CHANGE_SEARCH_PREFERNECES);
+            options.add(OPTION_DELETE_USER);
+            options.add(OPTION_BACK);
+
+            println(userManager.getCurrentUser().getUsername() + " Preferences");
+            String response = numberedMenu("Enter a Number", options);
+
+            if (response.equals(OPTION_CHANGE_EMAIL)) {
+                String email = promptString("Enter a new email");
+                userManager.getCurrentUser().setEmail(email);
+            } else if (response.equals(OPTION_CHANGE_PASSWORD)) {
+                String password = promptString("Enter a new password");
+                userManager.getCurrentUser().setPassword(password);
+            } else if (response.equals(OPTION_CHANGE_SEARCH_PREFERNECES)) {
+            } else if (response.equals(OPTION_DELETE_USER)) {
+                userManager.unregisterUser(userManager.getCurrentUser());
+                return;
+            } else if (response.equals(OPTION_BACK)) {
+                return;
+            }
+        }
+    }
+
+    public void createUserMenu() {
+        String firstName = promptString("Enter a first name");
+        String lastName = promptString("Enter a last name");
+        String username = promptString("Enter a username:");
+        // TODO: check if user already exists
+        String password = promptString("Enter a password:");
+
+        Person newPerson = new Person(firstName, lastName);
+        User newUser = new User(newPerson, username, password);
+        userManager.registerUser(newUser);
+
+        userManager.logoutCurrent();
+        userManager.login(username, password);
+
+        println("Created " + username);
     }
 
     public void exit() {
