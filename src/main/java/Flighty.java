@@ -159,10 +159,12 @@ public class Flighty {
             List<String> options = new ArrayList<String>();
 
             // temp is a default guest account that saves data before making an account
-            String currUserName = userManager.getCurrentUser().getName();
-            if (userManager.getCurrentUser().getUsername().equals("temp")) {
+            String currUserName;
+            if (!userManager.isAnyoneLoggedIn()) {
                 options.add(OPTION_CREATE_USER);
+                currUserName = "";
             } else {
+                currUserName = userManager.getCurrentUser().getFirstName();
                 options.add(OPTION_MANAGE_USER);
                 options.add(OPTION_LOGOUT);
             }
@@ -222,6 +224,23 @@ public class Flighty {
                 return;
             }
         }
+    }
+
+    public void loginUserMenu() {
+        String username = promptString("Enter a username:");
+        if (!userManager.userExists(username)) {
+            println("Not a registered user");
+            return;
+        }
+
+        String password = promptString("Enter a password:");
+        if (!userManager.credentialsCorrect(username, password)) {
+            println("Wrong credentials");
+            return;
+        }
+
+        userManager.login(username, password);
+        println("Logged in");
     }
 
     public void createUserMenu() {

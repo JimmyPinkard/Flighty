@@ -29,9 +29,8 @@ public class UserManager {
         if (saveDataExists("temp")) {
             //TODO: delete "temp" from disk or override with a default, waiting on IO for that
         }
-        registerUser(new User());  // creates a new guest account called temp at the start of the list
-        currentUser = users.get(0); // sets currentUser as the guest account
 
+        // TODO: (James) move to data or io - usermanager is not responsible for io
         // Cycle through user data (this is going to have to become a helper method)
         int numUsers = new File("./database/userdata").list().length;
         for(int i = 0; i < numUsers; i++) {
@@ -53,19 +52,21 @@ public class UserManager {
      * @param password saved password
      * @return login accepted (T/F)
      */
-    public boolean login(String username, String password) {
-        // Checking to see if the user can access the data
-        if (saveDataExists(username)) {
-            System.out.println("Username is incorrect, please try again.");
-            return false;
-        }
-        if (!passwordCorrect(username, password)) {
-            System.out.println("Password is incorrect, please try again.");
-            return false;
-        }
+    public void login(String username, String password) {
         currentUser = users.get(findUserIndex(username));
-        // Clean up temp, return everything to defaults
-        return true;
+    }
+
+    public boolean userExists(String username) {
+        for (User user : users) {
+            if (user.getUsername().equals(username)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isAnyoneLoggedIn() {
+        return currentUser != null;
     }
 
     public boolean credentialsCorrect(String username, String password) {

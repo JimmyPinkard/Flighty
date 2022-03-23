@@ -28,8 +28,6 @@ public class User {
     private String password;
     @Property("email")
     private String email;
-    @Property("name")
-    private String name;
     @Property("preferences")
     private SearchPreferences preferences;
 
@@ -46,7 +44,6 @@ public class User {
      * @param password password
      */
     public User(Person person, String username, String password) {
-        this.name = person.getFirstName();
         this.person = person;
         this.username = username;
         this.password = password;
@@ -70,7 +67,6 @@ public class User {
      *  if the user desires using registerUser() method
      */
     public User() {
-        name = "Guest";
         username = "temp";
         this.person = new Person("temp", "temp");
         preferences = new SearchPreferences();
@@ -78,6 +74,7 @@ public class User {
         bookingHistory = new ArrayList<TravelObject>();
     }
 
+    // TODO: (James) not the user's job - should be moved to userManager
     /**
      * Takes temporary guest data and saves it as a registered user for later
      * @param username new username
@@ -202,8 +199,8 @@ public class User {
      * Gets the user's first name for display arounf the UI
      * @return first name
      */
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return person.getFirstName();
     }
 
     /**
