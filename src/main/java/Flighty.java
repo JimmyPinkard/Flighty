@@ -236,13 +236,13 @@ public class Flighty {
     }
 
     public void loginUserMenu() {
-        String username = promptString("Enter a username:");
+        String username = promptString("Enter a username");
         if (!userManager.userExists(username)) {
             println("Not a registered user");
             return;
         }
 
-        String password = promptString("Enter a password:");
+        String password = promptString("Enter a password");
         if (!userManager.credentialsCorrect(username, password)) {
             println("Wrong credentials");
             return;
@@ -255,9 +255,16 @@ public class Flighty {
     public void createUserMenu() {
         String firstName = promptString("Enter a first name");
         String lastName = promptString("Enter a last name");
-        String username = promptString("Enter a username:");
-        // TODO: check if user already exists
-        String password = promptString("Enter a password:");
+        String username;
+        while (true) {
+            username = promptString("Enter a username");
+            if (userManager.userExists(username)) {
+                println("User already exists");
+            } else {
+                break;
+            }
+        }
+        String password = promptString("Enter a password");
 
         Person newPerson = new Person(firstName, lastName);
         User newUser = new User(newPerson, username, password);
