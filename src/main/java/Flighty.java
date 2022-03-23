@@ -146,6 +146,7 @@ public class Flighty {
             final String OPTION_HOTEL = "Find a Hotel";
             final String OPTION_BOOKINGS = "Manage Bookings";
             final String OPTION_MANAGE_USER = "Manage User Profile";
+            final String OPTION_LOGIN = "Login";
             final String OPTION_CREATE_USER = "Create User Profile";
             final String OPTION_LOGOUT = "Logout";
             final String OPTION_EXIT = "Exit";
@@ -156,6 +157,7 @@ public class Flighty {
             String currUserName;
             if (!userManager.isAnyoneLoggedIn()) {
                 options.add(OPTION_CREATE_USER);
+                options.add(OPTION_LOGIN);
                 currUserName = "";
             } else {
                 currUserName = userManager.getCurrentUser().getFirstName();
@@ -176,6 +178,8 @@ public class Flighty {
                 exit();
             } else if (response == OPTION_CREATE_USER) {
                 createUserMenu();
+            } else if (response == OPTION_LOGIN) {
+                loginUserMenu();
             } else if (response == OPTION_LOGOUT) {
                 userManager.logoutCurrent();
             } else if (response == OPTION_MANAGE_USER) {
@@ -201,7 +205,17 @@ public class Flighty {
             options.add(OPTION_DELETE_USER);
             options.add(OPTION_BACK);
 
-            println(userManager.getCurrentUser().getUsername() + " Preferences");
+            User currUser = userManager.getCurrentUser();
+            println(String.format("""
+                    NAME: %s %s
+                    USERNAME: %s
+                    EMAIL: %s
+                    PASSWORD: %s
+                    """, currUser.getRegisteredPerson().getFirstName(),
+                    currUser.getRegisteredPerson().getLastName(), currUser.getUsername(),
+                    currUser.getEmail(), currUser.getPassword()));
+
+            println(currUser.getUsername() + " Preferences");
             String response = numberedMenu("Enter a Number", options);
 
             if (response.equals(OPTION_CHANGE_EMAIL)) {
@@ -211,6 +225,7 @@ public class Flighty {
                 String password = promptString("Enter a new password");
                 userManager.getCurrentUser().setPassword(password);
             } else if (response.equals(OPTION_CHANGE_SEARCH_PREFERNECES)) {
+                // TODO
             } else if (response.equals(OPTION_DELETE_USER)) {
                 userManager.unregisterUser(userManager.getCurrentUser());
                 return;
