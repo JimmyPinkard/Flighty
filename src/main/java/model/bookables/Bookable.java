@@ -7,26 +7,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public abstract class Bookable {
+public abstract class Bookable implements Comparable<Bookable> {
     @Id
     protected String id;
-    @Property("num")
-    protected int num;
+    @Property("row")
+    protected int row;
+    @Property("col")
+    protected String col;
     @Property("price")
     protected double price;
     @Property("amenities")
     protected List<String> amenities;
 
     /**
-     * Constructor for bookable
+     * Constructor for a bookable, with a row and a col
+     * @param row: int for the row it is in (would be plane row or hotel floor)
+     * @param col: string for the colum (would be the plane column or hotel roomnumber without the floor)
+     * column is a string so that the plane can have seats have letters
      */
-    public Bookable() {
-        this.id = UUID.randomUUID().toString();
-        amenities = new ArrayList<String>();
-    }
-
-    public Bookable(JSONObject json) {
-        fromJSON(json);
+    public Bookable(int row, String col) {
+        this.row = row;
+        this.col = col;
     }
 
     /**
@@ -38,17 +39,32 @@ public abstract class Bookable {
     }
 
     /**
-     * Turns object into JSON
-     * @return
+     * Gets the row number
+     * @return integer of the row
      */
-    protected JSONObject toJSON() {
-        return null;
+    public int getRow(){
+        return this.row;
     }
 
     /**
-     * Constructs object from JSON
-     * @param json
+     * Gets the col
+     * @return string for the column
      */
-    protected void fromJSON(final JSONObject json) {
+    public String getCol(){
+        return this.col;
+    }
+
+    /**
+     * Method to compare a bookable to another
+     * @return 0 if the compared bookable is null or the same as this bookable
+     * returns less than 0 if this bookable has a lower row, or a lower column if the rows are the same
+     * returns greater than 0 if this bookable has a higher row, or a higher column if the rows are the same
+     */
+    public int compareTo(Bookable other){
+        if(other==null)
+            return 0;
+        if(this.row!=other.getRow())
+            return this.row-other.getRow();
+        return this.col.compareTo(other.getCol());
     }
 }

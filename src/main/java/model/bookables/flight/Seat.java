@@ -19,17 +19,13 @@ public class Seat extends Bookable {
     /**
      * Constructor for seat
      */
-    public Seat() {
-        super();
+    public Seat(int seatRow, String seatCol) {
+        super(seatRow, seatCol);
         whichClass = "First CLass";
         isBooked = false;
     }
 
-    public Seat(final JSONObject object) {
-        super(object);
-        whichClass = "First CLass";
-        isBooked = false;
-    }
+    
 
     /**
      * Method to set the booking of the seat
@@ -47,7 +43,7 @@ public class Seat extends Bookable {
      * @return seat number as an integer
      */
     public int getSeatNum() {
-        return this.num;
+        return this.row;
     }
 
     /**

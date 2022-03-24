@@ -24,17 +24,13 @@ public class Room extends Bookable {
     /**
      * Constructor for room
      */
-    public Room() {
-        super();
+    public Room(int floor, String roomNum) {
+        super(floor, roomNum);
         info = "A Bookables.Hotel.Hotel.Room";
         bookedDays = new ArrayList<LocalDate>();
     }
 
-    public Room(final JSONObject object) {
-        super(object);
-        info = "A Bookables.Hotel.Hotel.Room";
-        bookedDays = new ArrayList<LocalDate>();
-    }
+    
 
     /**
      * Method to add days that are booked for a room
@@ -51,7 +47,7 @@ public class Room extends Bookable {
      * @return room number as an integer
      */
     public int getRoomNum() {
-        return this.num;
+        return this.row;
     }
 
     /**
