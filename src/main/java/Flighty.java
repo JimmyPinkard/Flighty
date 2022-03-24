@@ -9,6 +9,8 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import search.filters.FlightFilter;
+import search.filters.HotelFilter;
 
 public class Flighty {
     private Scanner input;
@@ -297,7 +299,7 @@ public class Flighty {
                 String password = promptString("Enter a new password");
                 userManager.getCurrentUser().setPassword(password);
             } else if (response.equals(OPTION_CHANGE_SEARCH_PREFERNECES)) {
-                // TODO
+                menuChangePref();
             } else if (response.equals(OPTION_MANAGE_PASSPORTS)) {
                 menuManagePassports();
             } else if (response.equals(OPTION_DELETE_USER)) {
@@ -332,7 +334,7 @@ public class Flighty {
                 options.add(OPTION_REMOVE);
             }
             options.add(OPTION_BACK);
-
+            promptNumber("1. Change Flight Preferences"+'\n'+"2. Change Hotel Preferences", 1, 2);
             String response = menuNumbered("Enter a Number", options);
 
             if (response.equals(OPTION_ADD)) {
@@ -417,13 +419,106 @@ public class Flighty {
         }
         String password = promptString("Enter a password");
 
-        User newUser = new User(newPerson, username, password);
+        User newUser = new User(newPerson, username, password);  // TODO: Bookmark
         userManager.registerUser(newUser);
 
         userManager.logoutCurrent();
         userManager.login(username, password);
 
         println("Created " + username);
+    }
+
+    /**
+     * User search preferences menu
+     * @author rengotap
+     */
+    private void menuChangePref() {
+        final String OPTION_FPREF = "Change Flight Preferences";
+        final String OPTION_HPREF = "Change Hotel Preferences";
+        final String OPTION_BACK = "Back to User Menu";
+
+        List<String> options = new ArrayList<String>();
+
+        options.add(OPTION_FPREF);
+        options.add(OPTION_HPREF);
+        options.add(OPTION_BACK);
+
+        String response = menuNumbered("Enter a Number", options);
+        if (response.equals(OPTION_FPREF)) {
+            menuChangeFPref();
+        } else if (response.equals(OPTION_HPREF)) {
+            menuChangeHPref();
+        } else if (response.equals(OPTION_BACK)) {
+            menuManageCurrentUser();
+        }
+
+    }
+
+    /**
+     * Changes user Flight prefrences
+     * @author rengotap
+     */
+    private void menuChangeFPref() {
+        println("Your current flight preferences:");
+        final String OPTION_HOMEPORT = "Home Airport:" + userManager.getCurrentUser().getFPref().get(FlightFilter.AIRPORT);
+        final String OPTION_COMPANY = "Company: " + userManager.getCurrentUser().getFPref().get(FlightFilter.COMPANY);
+        final String OPTION_TIME_START = "Earliest Departure Time: " + userManager.getCurrentUser().getFPref().get(FlightFilter.TIME_START);
+        final String OPTION_TIME_END = "Latest Departure Time: " + userManager.getCurrentUser().getFPref().get(FlightFilter.TIME_END);
+        final String OPTION_PETS = "Pets allowed: " + userManager.getCurrentUser().getFPref().get(FlightFilter.PETS_ALLOWED);
+        final String OPTION_LAYOVER = "Layover preference: " + userManager.getCurrentUser().getFPref().get(FlightFilter.FLIGHTS_LAYOVER);
+        final String OPTION_BACK = "Back to User Menu";
+        List<String> options = new ArrayList<String>();
+
+        options.add(OPTION_HOMEPORT);
+        options.add(OPTION_COMPANY);
+        options.add(OPTION_TIME_START);
+        options.add(OPTION_TIME_END);
+        options.add(OPTION_PETS);
+        options.add(OPTION_LAYOVER);
+        options.add(OPTION_BACK);
+
+        String response = menuNumbered("Enter a Number", options);
+        if(response.equals(OPTION_HOMEPORT)) {
+            userManager.getCurrentUser().getFPref().put(FlightFilter.AIRPORT, promptString("Enter a new Home Airport: "));
+        } else if(response.equals(OPTION_COMPANY)) {
+            userManager.getCurrentUser().getFPref().put(FlightFilter.COMPANY, promptString("Enter a new Company: "));
+        } else if (response.equals(OPTION_TIME_START)) {
+            userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_START, promptString("Enter your earliest time: "));
+        } else if (response.equals(OPTION_TIME_END)) {
+            userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_END, promptString("Enter your latest time: "));
+        } else if (response.equals(OPTION_PETS)) {
+            userManager.getCurrentUser().getFPref().put(FlightFilter.PETS_ALLOWED, promptString("Enter a pet preference: "));
+        } else if (response.equals(OPTION_LAYOVER)) {
+            userManager.getCurrentUser().getFPref().put(FlightFilter.FLIGHTS_LAYOVER, promptString("Enter a layover preference: "));
+        } else if (response.equals(OPTION_BACK)) {
+            menuManageCurrentUser();
+        }
+    }
+
+    /**
+     * Changes user Hotel preferences
+     * @author rengotap
+     */
+    private void menuChangeHPref() {
+        println("Your current hotel preferences");
+        final String OPTION_COMPANY = "Company: " + userManager.getCurrentUser().getHPref().get(HotelFilter.COMPANY);
+        final String OPTION_PETS_ALLOWED = "Pet Preference: " + userManager.getCurrentUser().getHPref().get(HotelFilter.PETS_ALLOWED);
+        final String OPTION_BACK = "Back to User Menu";
+
+        List<String> options = new ArrayList<String>();
+
+        options.add(OPTION_COMPANY);
+        options.add(OPTION_PETS_ALLOWED);
+        options.add(OPTION_BACK);
+
+        String response = menuNumbered("Enter a Number", options);
+        if (response.equals(OPTION_COMPANY)) {
+            userManager.getCurrentUser().getHPref().put(HotelFilter.COMPANY, promptString("Enter a new company name:"));
+        } else if (response.equals(OPTION_PETS_ALLOWED)) {
+            userManager.getCurrentUser().getHPref().put(HotelFilter.COMPANY, promptString("Enter a pet preference:"));
+        } else if (response.equals(OPTION_BACK)) {
+            menuManageCurrentUser();
+        }
     }
 
     List<String> toStringTable(List<List<String>> table) {
