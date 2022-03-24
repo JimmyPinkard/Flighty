@@ -2,7 +2,6 @@ package model.users;
 
 import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Property;
-import dev.morphia.annotations.Reference;
 import model.bookables.TravelObject;
 import model.users.info.Passport;
 import model.users.info.Person;
