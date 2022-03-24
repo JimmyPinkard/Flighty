@@ -13,6 +13,7 @@ import java.util.List;
 
 public class Data {
     private static Data instance;
+    private final Database db;
     public List<User> users;
     public List<TravelObject> travelObjects;
     public List<Booking> bookings;
@@ -21,6 +22,7 @@ public class Data {
      * Constructor
      */
     private Data() {
+        this.db = Database.getInstance();
         this.users = new ArrayList<>();
         this.travelObjects = new ArrayList<>();
         this.bookings = new ArrayList<>();
@@ -40,10 +42,9 @@ public class Data {
 
     public List<Flight> getFlights() {
         List<Flight> flights = new ArrayList<>();
-        for(TravelObject object : travelObjects) {
-            if(object.getFilters().contains(FlightFilter.FLIGHT)) {
-                flights.add((Flight) object);
-            }
+        db.getAll("Flights");
+        for(Object object : db.getAll("Flights")) {
+            flights.add((Flight) object);
         }
         return flights;
     }
@@ -56,5 +57,40 @@ public class Data {
             }
         }
         return hotels;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void loadFlights() {
+        for(Object object : db.getAll("Flights")) {
+            travelObjects.add((TravelObject) object);
+        }
+    }
+
+    public void loadHotels() {
+        for(Object object : db.getAll("Hotels")) {
+            travelObjects.add((Flight) object);
+        }
+    }
+
+    public void loadUsers() {
+        for(Object object : db.getAll("Users")) {
+            users.add((User) object);
+        }
+    }
+
+    public void loadBookings() {
+        for(Object object : db.getAll("Bookings")) {
+            bookings.add((Booking) object);
+        }
+    }
+
+    public void saveAll() {
     }
 }
