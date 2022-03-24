@@ -1,7 +1,11 @@
 import database.Data;
 import model.users.User;
+import model.users.info.Passport;
 import model.users.info.Person;
 import controller.UserManager;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -13,7 +17,7 @@ public class Flighty {
 
     public static void main(final String[] args) {
         Flighty app = new Flighty();
-        app.mainMenu();
+        app.menuMain();
     }
 
     public Flighty() {
@@ -22,11 +26,77 @@ public class Flighty {
         userManager = new UserManager(data);
     }
 
-    public String promptString(String prompt) {
+    private String promptString(String prompt) {
         print(prompt + "\n> ");
         String response = input.nextLine();
 
         return response;
+    }
+
+    private LocalDate promptDate(String prompt) {
+        println(prompt + " (MM/DD/YY)");
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/y");
+        String response;
+
+        while (true) {
+            print("> ");
+            response = input.nextLine();
+            try {
+                LocalDate date = LocalDate.parse(response, formatter);
+                return date;
+            } catch (DateTimeParseException e) {
+                println("Invalid date");
+                continue;
+            }
+        }
+    }
+
+    private String toString(LocalDate date) {
+        return date.format(DateTimeFormatter.ofPattern("MM/DD/YY"));
+    }
+
+    private List<String> passportsToStringTable(List<Passport> passports) {
+        List<List<String>> table = new ArrayList<List<String>>();
+
+        List<String> headerRow = new ArrayList<String>();
+        headerRow.add("NAME");
+        headerRow.add("DOB");
+        headerRow.add("GENDER");
+        headerRow.add("EXPIRATION");
+        headerRow.add("NUMBER");
+
+        table.add(headerRow);
+
+        for (Passport passport : passports) {
+            table.add(toRow(passport));
+        }
+
+        return toStringTable(table);
+    }
+
+    private List<String> toRow(Passport passport) {
+        List<String> row = new ArrayList<String>();
+
+        row.add(passport.getPerson().getFirstName() + " " + passport.getPerson().getLastName());
+        row.add(toString(passport.getDOB()));
+        row.add(passport.getGender());
+        row.add(toString(passport.getExpDate()));
+        row.add(passport.getNumber());
+
+        return row;
+    }
+
+    private String toString(Passport passport) {
+        return String.format("""
+                NAME: %s %s
+                GENDER: %s
+                DOB: %s
+                EXPIRATION: %s
+                NUMBER: %s
+                """, passport.getPerson().getFirstName(), passport.getPerson().getLastName(),
+                passport.getGender(), toString(passport.getDOB()), toString(passport.getExpDate()),
+                passport.getNumber());
     }
 
     private String toString(List<String> options) {
@@ -49,7 +119,7 @@ public class Flighty {
      * @param options entered string must be in
      * @return string user entered
      */
-    public String promptOptions(String prompt, List<String> options) {
+    private String promptOptions(String prompt, List<String> options) {
         print(prompt + toString(options));
 
         while (true) {
@@ -74,7 +144,7 @@ public class Flighty {
      * @param to entered number must be less than or equal to
      * @return number user entered
      */
-    public int promptNumber(String prompt, int from, int to) {
+    private int promptNumber(String prompt, int from, int to) {
         println(prompt);
 
         while (true) {
@@ -129,7 +199,7 @@ public class Flighty {
      * @param options options for the user to choose from
      * @return chosen option from options
      */
-    private String numberedMenu(String prompt, List<String> options) {
+    private String menuNumbered(String prompt, List<String> options) {
         for (int i = 0; i < options.size(); i++) {
             println(String.format("%d. %s", i + 1, options.get(i)));
         }
@@ -140,7 +210,7 @@ public class Flighty {
         return options.get(response - 1);
     }
 
-    public void mainMenu() {
+    private void menuMain() {
         while (true) {
             final String OPTION_FLIGHT = "Find a Flight";
             final String OPTION_HOTEL = "Find a Hotel";
@@ -172,27 +242,28 @@ public class Flighty {
 
             printHeader();
             println("Welcome " + currUserName);
-            String response = numberedMenu("Enter a Number", options);
+            String response = menuNumbered("Enter a Number", options);
 
             if (response == OPTION_EXIT) {
                 exit();
             } else if (response == OPTION_CREATE_USER) {
-                createUserMenu();
+                menuCreateUser();
             } else if (response == OPTION_LOGIN) {
-                loginUserMenu();
+                menuLoginUser();
             } else if (response == OPTION_LOGOUT) {
                 userManager.logoutCurrent();
             } else if (response == OPTION_MANAGE_USER) {
-                manageCurrentUserMenu();
+                menuManageCurrentUser();
             }
         }
     }
 
-    public void manageCurrentUserMenu() {
+    private void menuManageCurrentUser() {
         while (true) {
             final String OPTION_CHANGE_EMAIL = "Change Email";
             final String OPTION_CHANGE_PASSWORD = "Change password";
             final String OPTION_CHANGE_SEARCH_PREFERNECES = "Change search defaults";
+            final String OPTION_MANAGE_PASSPORTS = "Manage passports";
             final String OPTION_DELETE_USER =
                     "Delete " + userManager.getCurrentUser().getUsername();
             final String OPTION_BACK = "Back to Main Menu";
@@ -202,6 +273,7 @@ public class Flighty {
             options.add(OPTION_CHANGE_EMAIL);
             options.add(OPTION_CHANGE_PASSWORD);
             options.add(OPTION_CHANGE_SEARCH_PREFERNECES);
+            options.add(OPTION_MANAGE_PASSPORTS);
             options.add(OPTION_DELETE_USER);
             options.add(OPTION_BACK);
 
@@ -216,7 +288,7 @@ public class Flighty {
                     currUser.getEmail(), currUser.getPassword()));
 
             println(currUser.getUsername() + " Preferences");
-            String response = numberedMenu("Enter a Number", options);
+            String response = menuNumbered("Enter a Number", options);
 
             if (response.equals(OPTION_CHANGE_EMAIL)) {
                 String email = promptString("Enter a new email");
@@ -226,6 +298,8 @@ public class Flighty {
                 userManager.getCurrentUser().setPassword(password);
             } else if (response.equals(OPTION_CHANGE_SEARCH_PREFERNECES)) {
                 // TODO
+            } else if (response.equals(OPTION_MANAGE_PASSPORTS)) {
+                menuManagePassports();
             } else if (response.equals(OPTION_DELETE_USER)) {
                 userManager.unregisterUser(userManager.getCurrentUser());
                 return;
@@ -235,7 +309,78 @@ public class Flighty {
         }
     }
 
-    public void loginUserMenu() {
+    private void menuManagePassports() {
+        while (true) {
+            var passports = userManager.getCurrentUser().getTravelers();
+            if (passports.size() > 0) {
+                for (String string : passportsToStringTable(passports)) {
+                    println(string);
+                }
+            } else {
+                println("No passports on file");
+            }
+            println("");
+
+            final String OPTION_ADD = "Add passport";
+            final String OPTION_REMOVE = "Remove passport";
+            final String OPTION_BACK = "Back";
+
+            List<String> options = new ArrayList<String>();
+
+            options.add(OPTION_ADD);
+            if (userManager.getCurrentUser().getTravelers().size() != 0) {
+                options.add(OPTION_REMOVE);
+            }
+            options.add(OPTION_BACK);
+
+            String response = menuNumbered("Enter a Number", options);
+
+            if (response.equals(OPTION_ADD)) {
+                menuAddPassport();
+            } else if (response.equals(OPTION_REMOVE)) {
+                menuRemovePassport();
+            } else if (response.equals(OPTION_BACK)) {
+                return;
+            }
+        }
+
+    }
+
+    private void menuRemovePassport() {
+        var passports = userManager.getCurrentUser().getTravelers();
+
+        List<String> options = passportsToStringTable(passports);
+        String header = options.get(0);
+        options.remove(0);
+
+        println("   " + header);
+        String choice = menuNumbered("Choose a passport to remove", options);
+
+        for (Passport passport : userManager.getCurrentUser().getTravelers()) {
+            String currRow = String.join("", toRow(passport)).replace(" ", "");
+            String choiceRow = choice.replace(" ", "");
+            if (currRow.equals(choiceRow)) {
+                userManager.getCurrentUser().removeTraveler(passport);
+                println("Passport removed");
+                return;
+            }
+        }
+    }
+
+    private void menuAddPassport() {
+        Person newPerson = promptCreatePerson();
+        String gender = promptString("Enter a gender");
+        LocalDate birth = promptDate("Enter the date of birth");
+        String number = promptString("Enter the passport number");
+        LocalDate expiration = promptDate("Enter the passport expiration date");
+
+        userManager.getCurrentUser()
+                .addTraveler(new Passport(newPerson, birth, expiration, number, gender));
+
+        println("Passport added");
+    }
+
+    private void menuLoginUser() {
         String username = promptString("Enter a username");
         if (!userManager.userExists(username)) {
             println("Not a registered user");
@@ -252,9 +397,15 @@ public class Flighty {
         println("Logged in");
     }
 
-    public void createUserMenu() {
+    private Person promptCreatePerson() {
         String firstName = promptString("Enter a first name");
         String lastName = promptString("Enter a last name");
+
+        return new Person(firstName, lastName);
+    }
+
+    private void menuCreateUser() {
+        Person newPerson = promptCreatePerson();
         String username;
         while (true) {
             username = promptString("Enter a username");
@@ -266,7 +417,6 @@ public class Flighty {
         }
         String password = promptString("Enter a password");
 
-        Person newPerson = new Person(firstName, lastName);
         User newUser = new User(newPerson, username, password);
         userManager.registerUser(newUser);
 
@@ -274,6 +424,34 @@ public class Flighty {
         userManager.login(username, password);
 
         println("Created " + username);
+    }
+
+    List<String> toStringTable(List<List<String>> table) {
+        if (table.size() == 0)
+            return new ArrayList<String>();
+
+        int numCol = table.get(0).size();
+        int[] colPadding = new int[numCol];
+        for (int row = 0; row < table.size(); row++) {
+            for (int col = 0; col < numCol; col++) {
+                int currStringLen = table.get(row).get(col).length();
+                if (colPadding[col] < currStringLen) {
+                    colPadding[col] = currStringLen;
+                }
+            }
+        }
+
+        List<String> out = new ArrayList<String>();
+        for (int row = 0; row < table.size(); row++) {
+            String rowString = "";
+            for (int col = 0; col < numCol; col++) {
+                rowString += String.format("%-" + colPadding[col] + "s", table.get(row).get(col));
+                rowString += " ";
+            }
+            out.add(rowString);
+        }
+
+        return out;
     }
 
     public void exit() {
