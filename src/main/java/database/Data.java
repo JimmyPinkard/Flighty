@@ -70,13 +70,13 @@ public class Data {
 
     public void loadFlights() {
         for(Object object : db.getAll("Flights")) {
-            travelObjects.add((TravelObject) object);
+            travelObjects.add((Flight) object);
         }
     }
 
     public void loadHotels() {
         for(Object object : db.getAll("Hotels")) {
-            travelObjects.add((Flight) object);
+            travelObjects.add((Hotel) object);
         }
     }
 
