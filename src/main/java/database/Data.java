@@ -42,9 +42,10 @@ public class Data {
 
     public List<Flight> getFlights() {
         List<Flight> flights = new ArrayList<>();
-        db.getAll("Flights");
-        for(Object object : db.getAll("Flights")) {
-            flights.add((Flight) object);
+        for(TravelObject object : travelObjects) {
+            if(object.getFilters().contains(HotelFilter.HOTEL)) {
+                flights.add((Flight) object);
+            }
         }
         return flights;
     }
@@ -69,13 +70,13 @@ public class Data {
 
     public void loadFlights() {
         for(Object object : db.getAll("Flights")) {
-            travelObjects.add((TravelObject) object);
+            travelObjects.add((Flight) object);
         }
     }
 
     public void loadHotels() {
         for(Object object : db.getAll("Hotels")) {
-            travelObjects.add((Flight) object);
+            travelObjects.add((Hotel) object);
         }
     }
 

@@ -14,6 +14,7 @@ import org.json.JSONObject;
 /**
  * Manages Utils.IO
  */
+@Deprecated
 public class IO {
     private static IO instance;
     private final Data data;
