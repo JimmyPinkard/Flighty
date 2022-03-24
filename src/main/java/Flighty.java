@@ -1,4 +1,5 @@
 import database.Data;
+import model.users.SearchPreferences;
 import model.users.User;
 import model.users.info.Passport;
 import model.users.info.Person;
@@ -165,6 +166,10 @@ public class Flighty {
 
             println("Invalid option");
         }
+    }
+
+    private int promptNumber(String prompt) {
+        return promptNumber(prompt, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
     private void print(String string) {
