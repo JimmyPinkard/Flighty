@@ -3,6 +3,7 @@ package database;
 import com.mongodb.client.MongoClients;
 import dev.morphia.Datastore;
 import dev.morphia.Morphia;
+import dev.morphia.mapping.Mapper;
 import dev.morphia.query.experimental.filters.Filters;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public class Database {
 
     private Database() {
         datastore = Morphia.createDatastore(MongoClients.create(), "Flighty");
-        datastore.getMapper().mapPackage("model");
+        mapPackages();
         datastore.ensureIndexes();
     }
 
@@ -22,6 +23,14 @@ public class Database {
             database = new Database();
         }
         return database;
+    }
+
+    private void mapPackages() {
+        Mapper mapper = datastore.getMapper();
+        mapper.mapPackage("model");
+        mapper.mapPackage("model.users");
+        mapper.mapPackage("model.bookables.hotel");
+        mapper.mapPackage("model.bookables.flight");
     }
 
     public <T> void create(T object) {
@@ -41,7 +50,7 @@ public class Database {
 
     public Object get(String entityType) {
         try {
-            return datastore.find(entityType).first();
+            return datastore.find(entityType).toDocument();
         }
         catch (Exception e) {
             System.err.println(e.getMessage());
@@ -56,7 +65,7 @@ public class Database {
             objs = datastore.find(entityType).iterator().toList();
         }
         catch(Exception e) {
-            System.err.println();
+            System.err.println(e.getMessage());
             System.exit(1);
         }
         return objs;

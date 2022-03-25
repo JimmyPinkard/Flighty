@@ -1,11 +1,14 @@
 package model.bookables;
 
+import dev.morphia.annotations.Entity;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Stores the user viewable layout of bookables for a travelobject
  */
+@Entity("BookingLayout")
 public abstract class BookingLayout {
     /**
      * All possible bookable objects that may or may not be avalable

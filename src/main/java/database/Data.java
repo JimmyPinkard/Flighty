@@ -1,11 +1,10 @@
 package database;
 
-import controller.Booking;
+import model.Booking;
 import model.bookables.TravelObject;
 import model.bookables.flight.Flight;
 import model.bookables.hotel.Hotel;
 import model.users.User;
-import search.filters.FlightFilter;
 import search.filters.HotelFilter;
 
 import java.util.ArrayList;

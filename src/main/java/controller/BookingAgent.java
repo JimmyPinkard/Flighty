@@ -1,5 +1,6 @@
 package controller;
 
+import model.Booking;
 import model.bookables.Listing;
 import database.Data;
 import model.users.User;

@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
+@Entity("Bookable")
 public abstract class Bookable {
     @Id
     protected String id;
