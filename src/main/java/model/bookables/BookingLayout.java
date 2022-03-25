@@ -26,7 +26,7 @@ public abstract class BookingLayout {
      * Static method 
      * @return
      */
-    public static List<Bookable> loadOptions(){
+    public static List<Bookable> loadOptions(String placeHolderArg){
         //TODO Have the list return bookables from the database
         //TODO Delete the stub return statement
         return new ArrayList<Bookable>();
@@ -42,13 +42,6 @@ public abstract class BookingLayout {
         Iterator<Bookable> itr = options.iterator();
         
         return "";
-    }
-
-    /**
-     * Get an option based on the layout string
-     */
-    public Bookable getOption(int x, int y) {
-        return new Bookable() {};
     }
 
     public List<Bookable> getOptions() {
