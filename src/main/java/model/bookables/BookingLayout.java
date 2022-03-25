@@ -23,6 +23,17 @@ public abstract class BookingLayout {
     }
 
     /**
+     * Static method 
+     * @return
+     */
+    public static List<Bookable> loadOptions(){
+        //TODO Have the list return bookables from the database
+        //TODO Delete the stub return statement
+        return new ArrayList<Bookable>();
+    }
+
+
+    /**
      * String that shows the layout and avalable options of the travelobject
      * (Notes for James): each bookable has it's row as an int, and its column as a string. Bookable's toString is just {row}{col}.
      * So like a seat would be 13B and a room would be 165.
