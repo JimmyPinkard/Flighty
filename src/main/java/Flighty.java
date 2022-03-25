@@ -29,6 +29,14 @@ public class Flighty {
         userManager = new UserManager(data);
     }
 
+    public void start() {
+        data.loadAll();
+    }
+
+    public void stop() {
+        data.saveAll();
+    }
+
     private String promptString(String prompt) {
         print(prompt + "\n> ");
         String response = input.nextLine();
