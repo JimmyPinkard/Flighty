@@ -31,13 +31,12 @@ public class Flighty {
         Flighty app = new Flighty();
         app.start();
 
-        EnumMap<FlightFilter, String> prefs = new EnumMap<FlightFilter, String>(FlightFilter.class);
-        prefs.put(FlightFilter.AIRPORT_FROM, "arg1");
-        prefs.put(FlightFilter.AIRPORT_TO, "arg1");
-        List<Flight> f = SearchFlights.execute(app.data, prefs);
-        app.println("");
-
-        // app.menuMain();
+        // EnumMap<FlightFilter, String> prefs = new EnumMap<FlightFilter,
+        // String>(FlightFilter.class);
+        // prefs.put(FlightFilter.AIRPORT_FROM, "arg1");
+        // prefs.put(FlightFilter.AIRPORT_TO, "arg1");
+        // List<Flight> f = SearchFlights.execute(app.data, prefs);
+        // app.println("");
     }
 
     /**
@@ -54,6 +53,7 @@ public class Flighty {
      */
     public void start() {
         data.loadAll();
+        menuMain();
     }
 
     /**
