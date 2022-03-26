@@ -25,6 +25,7 @@ public class Data {
         this.users = new ArrayList<>();
         this.travelObjects = new ArrayList<>();
         this.bookings = new ArrayList<>();
+        loadAll();
     }
 
     /**
