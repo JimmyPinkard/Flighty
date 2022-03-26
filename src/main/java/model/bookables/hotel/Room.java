@@ -1,7 +1,6 @@
 package model.bookables.hotel;
 
 import model.bookables.Bookable;
-import org.json.JSONObject;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

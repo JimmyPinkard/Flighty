@@ -4,7 +4,6 @@ import com.mongodb.DBObject;
 import model.bookables.Bookable;
 import model.bookables.BookingLayout;
 import model.bookables.TravelObject;
-import model.bookables.flight.Seat;
 
 import java.util.ArrayList;
 import java.util.List;

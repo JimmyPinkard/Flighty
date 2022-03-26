@@ -1,7 +1,6 @@
 package model.bookables;
 
 import com.mongodb.DBObject;
-import search.filters.FlightFilter;
 import search.filters.SearchFilter;
 
 import java.util.ArrayList;
