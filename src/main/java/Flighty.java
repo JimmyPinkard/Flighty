@@ -1,4 +1,5 @@
 import database.Data;
+import model.bookables.flight.Flight;
 import model.users.User;
 import model.users.info.Passport;
 import model.users.info.Person;
@@ -7,8 +8,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Scanner;
+import search.SearchFlights;
 import search.filters.FlightFilter;
 import search.filters.HotelFilter;
 
@@ -26,7 +29,15 @@ public class Flighty {
      */
     public static void main(final String[] args) {
         Flighty app = new Flighty();
-        app.menuMain();
+        app.start();
+
+        EnumMap<FlightFilter, String> prefs = new EnumMap<FlightFilter, String>(FlightFilter.class);
+        prefs.put(FlightFilter.AIRPORT_FROM, "arg1");
+        prefs.put(FlightFilter.AIRPORT_TO, "arg1");
+        List<Flight> f = SearchFlights.execute(app.data, prefs);
+        app.println("");
+
+        // app.menuMain();
     }
 
     /**
@@ -577,10 +588,13 @@ public class Flighty {
      */
     private void menuChangeFPref() {
         println("Your current flight preferences:");
-        final String OPTION_HOMEPORT = "Home Airport:" + userManager.getCurrentUser().getFPref().get(FlightFilter.AIRPORT);
+        final String OPTION_HOMEPORT = "Home Airport:"
+                + userManager.getCurrentUser().getFPref().get(FlightFilter.AIRPORT_FROM);
         final String OPTION_COMPANY = "Company: " + userManager.getCurrentUser().getFPref().get(FlightFilter.COMPANY);
-        final String OPTION_TIME_START = "Earliest Departure Time: " + userManager.getCurrentUser().getFPref().get(FlightFilter.TIME_START);
-        final String OPTION_TIME_END = "Latest Departure Time: " + userManager.getCurrentUser().getFPref().get(FlightFilter.TIME_END);
+        final String OPTION_TIME_START = "Earliest Departure Time: "
+                + userManager.getCurrentUser().getFPref().get(FlightFilter.TIME_DEPART);
+        final String OPTION_TIME_END = "Latest Departure Time: "
+                + userManager.getCurrentUser().getFPref().get(FlightFilter.TIME_ARRIVE);
         final String OPTION_PETS = "Pets allowed: " + userManager.getCurrentUser().getFPref().get(FlightFilter.PETS_ALLOWED);
         final String OPTION_LAYOVER = "Layover preference: " + userManager.getCurrentUser().getFPref().get(FlightFilter.FLIGHTS_LAYOVER);
         final String OPTION_BACK = "Back to User Menu";
@@ -596,13 +610,16 @@ public class Flighty {
 
         String response = menuNumbered("Enter a Number", options);
         if(response.equals(OPTION_HOMEPORT)) {
-            userManager.getCurrentUser().getFPref().put(FlightFilter.AIRPORT, promptString("Enter a new Home Airport: "));
+            userManager.getCurrentUser().getFPref().put(FlightFilter.AIRPORT_FROM,
+                    promptString("Enter a new Home Airport: "));
         } else if(response.equals(OPTION_COMPANY)) {
             userManager.getCurrentUser().getFPref().put(FlightFilter.COMPANY, promptString("Enter a new Company: "));
         } else if (response.equals(OPTION_TIME_START)) {
-            userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_START, promptString("Enter your earliest time: "));
+            userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_DEPART,
+                    promptString("Enter your earliest time: "));
         } else if (response.equals(OPTION_TIME_END)) {
-            userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_END, promptString("Enter your latest time: "));
+            userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_ARRIVE,
+                    promptString("Enter your latest time: "));
         } else if (response.equals(OPTION_PETS)) {
             userManager.getCurrentUser().getFPref().put(FlightFilter.PETS_ALLOWED, promptString("Enter a pet preference: "));
         } else if (response.equals(OPTION_LAYOVER)) {
@@ -651,11 +668,11 @@ public class Flighty {
         String pets;
         destination = promptString("Please enter a destination");
 
-        if(curr.getFPref().get(FlightFilter.AIRPORT).equals("none")) {  // Check for user pref
+        if (curr.getFPref().get(FlightFilter.AIRPORT_FROM).equals("none")) { // Check for user pref
             home = promptString("What is your home airport?");
         } else {
-            home = curr.getFPref().get(FlightFilter.AIRPORT);
-            userManager.getCurrentUser().getFPref().put(FlightFilter.AIRPORT, home);
+            home = curr.getFPref().get(FlightFilter.AIRPORT_FROM);
+            userManager.getCurrentUser().getFPref().put(FlightFilter.AIRPORT_FROM, home);
         }
 
         depart = promptDate("Choose a departure date");
