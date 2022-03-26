@@ -91,8 +91,28 @@ public class Data {
         }
     }
 
-    public void saveAll() {
+    private void saveUsers() {
+        for(User user : users) {
+            db.create(user);
+        }
+    }
 
+    private void saveFlights() {
+        for(Flight flight : getFlights()) {
+            db.create(flight);
+        }
+    }
+
+    private void saveHotels() {
+        for(Hotel hotel : getHotels()) {
+            db.create(hotel);
+        }
+    }
+
+    private void saveBookings() {
+        for(Booking booking : bookings) {
+            db.create(booking);
+        }
     }
 
     public void loadAll() {
@@ -100,5 +120,12 @@ public class Data {
         loadHotels();
         loadUsers();
         loadBookings();
+    }
+
+    public void saveAll() {
+        saveUsers();
+        saveFlights();
+        saveHotels();
+        saveBookings();
     }
 }
