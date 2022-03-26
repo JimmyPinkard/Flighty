@@ -1,5 +1,6 @@
 package model.bookables;
 
+import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Id;
 import dev.morphia.annotations.Property;
 import search.filters.SearchFilter;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Entity("TravelObject")
 public abstract class TravelObject {
     @Id
     protected String id;

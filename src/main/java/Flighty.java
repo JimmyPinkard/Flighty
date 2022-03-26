@@ -29,6 +29,14 @@ public class Flighty {
         userManager = new UserManager(data);
     }
 
+    public void start() {
+        data.loadAll();
+    }
+
+    public void stop() {
+        data.saveAll();
+    }
+
     private String promptString(String prompt) {
         print(prompt + "\n> ");
         String response = input.nextLine();
@@ -339,7 +347,7 @@ public class Flighty {
                 options.add(OPTION_REMOVE);
             }
             options.add(OPTION_BACK);
-            promptNumber("1. Change Flight Preferences"+'\n'+"2. Change Hotel Preferences", 1, 2);
+
             String response = menuNumbered("Enter a Number", options);
 
             if (response.equals(OPTION_ADD)) {

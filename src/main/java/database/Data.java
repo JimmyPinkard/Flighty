@@ -1,11 +1,10 @@
 package database;
 
-import controller.Booking;
+import model.Booking;
 import model.bookables.TravelObject;
 import model.bookables.flight.Flight;
 import model.bookables.hotel.Hotel;
 import model.users.User;
-import search.filters.FlightFilter;
 import search.filters.HotelFilter;
 
 import java.util.ArrayList;
@@ -68,30 +67,38 @@ public class Data {
         return bookings;
     }
 
-    public void loadFlights() {
+    private void loadFlights() {
         for(Object object : db.getAll("Flights")) {
             travelObjects.add((Flight) object);
         }
     }
 
-    public void loadHotels() {
+    private void loadHotels() {
         for(Object object : db.getAll("Hotels")) {
             travelObjects.add((Hotel) object);
         }
     }
 
-    public void loadUsers() {
+    private void loadUsers() {
         for(Object object : db.getAll("Users")) {
             users.add((User) object);
         }
     }
 
-    public void loadBookings() {
+    private void loadBookings() {
         for(Object object : db.getAll("Bookings")) {
             bookings.add((Booking) object);
         }
     }
 
     public void saveAll() {
+
+    }
+
+    public void loadAll() {
+        loadFlights();
+        loadHotels();
+        loadUsers();
+        loadBookings();
     }
 }
