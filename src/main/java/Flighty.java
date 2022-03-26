@@ -568,7 +568,7 @@ public class Flighty {
         }
         String password = promptString("Enter a password");
 
-        User newUser = new User(newPerson, username, password);  // TODO: Bookmark
+        User newUser = new User(newPerson, username, password);
         userManager.registerUser(newUser);
 
         userManager.logoutCurrent();
@@ -616,8 +616,8 @@ public class Flighty {
                 + userManager.getCurrentUser().getFPref().get(FlightFilter.TIME_DEPART);
         final String OPTION_TIME_ARRIVE = "Latest Departure Time: "
                 + userManager.getCurrentUser().getFPref().get(FlightFilter.TIME_ARRIVE);
-        final String OPTION_PETS = "Pets allowed: " + userManager.getCurrentUser().getFPref().get(FlightFilter.PETS_ALLOWED);
-        final String OPTION_LAYOVER = "Layover preference: " + userManager.getCurrentUser().getFPref().get(FlightFilter.FLIGHTS_LAYOVER);
+        final String OPTION_PETS = "Traveling with Pets: " + userManager.getCurrentUser().getFPref().get(FlightFilter.PETS_ALLOWED);
+        final String OPTION_LAYOVER = "Layovers: " + userManager.getCurrentUser().getFPref().get(FlightFilter.FLIGHTS_LAYOVER);
         final String OPTION_BACK = "Back to User Menu";
         List<String> options = new ArrayList<String>();
 
@@ -642,9 +642,9 @@ public class Flighty {
             userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_ARRIVE,
                     promptString("Enter your latest time: "));
         } else if (response.equals(OPTION_PETS)) {
-            userManager.getCurrentUser().getFPref().put(FlightFilter.PETS_ALLOWED, promptString("Enter a pet preference: "));
+            userManager.getCurrentUser().getFPref().put(FlightFilter.PETS_ALLOWED, Boolean.toString(promptYN("Will you be traveling with pets?")));
         } else if (response.equals(OPTION_LAYOVER)) {
-            userManager.getCurrentUser().getFPref().put(FlightFilter.FLIGHTS_LAYOVER, promptString("Enter a layover preference: "));
+            userManager.getCurrentUser().getFPref().put(FlightFilter.FLIGHTS_LAYOVER, Boolean.toString(promptYN("Are you willing to take a layover?")));
         } else if (response.equals(OPTION_BACK)) {
             return;
         }
@@ -690,7 +690,7 @@ public class Flighty {
         String timeLate;
         boolean layover;
         String company;
-        String pets;
+        boolean pets;
 
         destination = promptString("Please enter a destination");
         
@@ -757,18 +757,18 @@ public class Flighty {
             }
     
             if (hasPref(curr.getFPref().get(FlightFilter.PETS_ALLOWED))) {
-                pets = curr.getFPref().get(FlightFilter.PETS_ALLOWED); //TODO: make bool
+                pets = Boolean.parseBoolean(curr.getFPref().get(FlightFilter.PETS_ALLOWED)); //TODO: make bool
             } else {
-                pets = promptString("What pet policy preference do you have?");
+                pets = promptYN("Will you be traveling with any pets?");
                 if (promptYN("Would you like to save this as a default option?")) {
                     println("Setting as user default");
-                    userManager.getCurrentUser().getFPref().put(FlightFilter.PETS_ALLOWED, pets);
+                    userManager.getCurrentUser().getFPref().put(FlightFilter.PETS_ALLOWED, Boolean.toString(pets));
                 }
 
             }
         } else {
             company = promptString("What company would you like to book with?");
-            pets = promptString("What pet policy preference do you have?"); // TODO: make bool
+            pets = promptYN("Will you be traveling with any pets?"); // TODO: make bool
         }
         
 
@@ -788,7 +788,7 @@ public class Flighty {
         LocalDate end;
         String price;
         String company;
-        String pets;
+        boolean pets;
 
         location = promptString("Where would you like to make a reservation?");
         start = promptDate("When would you like to start your reservation?");
@@ -805,17 +805,17 @@ public class Flighty {
                 }
             }
             if(hasPref(curr.getHPref().get(HotelFilter.PETS_ALLOWED))) {
-                pets = curr.getHPref().get(HotelFilter.PETS_ALLOWED);
+                pets = Boolean.parseBoolean(curr.getHPref().get(HotelFilter.PETS_ALLOWED));
             } else {
-                pets = promptString("What pet policy preference do you have?");
+                pets = promptYN("Will you be traveling with any pets?");
                 if (promptYN("Would you like to save this as a default option?")) {
                     println("Setting as user default");
-                    userManager.getCurrentUser().getHPref().put(HotelFilter.PETS_ALLOWED, pets);
+                    userManager.getCurrentUser().getHPref().put(HotelFilter.PETS_ALLOWED, Boolean.toString(pets));
                 }
             }
         } else {
             company = promptString("What company would you like to book with?");
-            pets = promptString("What pet policy preference do you have?");
+            pets = promptYN("Will you be traveling with any pets?");
         }
 
         println("Searching with for a hotel with the following parameters:"+'\n'+location+'\n'+start+'\n'
