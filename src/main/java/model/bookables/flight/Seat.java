@@ -1,7 +1,6 @@
 package model.bookables.flight;
 
 import model.bookables.Bookable;
-import org.json.JSONObject;
 
 /**
  * 

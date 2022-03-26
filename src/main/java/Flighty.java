@@ -1,4 +1,5 @@
 import database.Data;
+import model.bookables.flight.Flight;
 import model.users.User;
 import model.users.info.Passport;
 import model.users.info.Person;
@@ -7,8 +8,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Scanner;
+import search.SearchFlights;
 import search.filters.FlightFilter;
 import search.filters.HotelFilter;
 
@@ -26,7 +29,14 @@ public class Flighty {
      */
     public static void main(final String[] args) {
         Flighty app = new Flighty();
-        app.menuMain();
+        app.start();
+
+        // EnumMap<FlightFilter, String> prefs = new EnumMap<FlightFilter,
+        // String>(FlightFilter.class);
+        // prefs.put(FlightFilter.AIRPORT_FROM, "arg1");
+        // prefs.put(FlightFilter.AIRPORT_TO, "arg1");
+        // List<Flight> f = SearchFlights.execute(app.data, prefs);
+        // app.println("");
     }
 
     /**
@@ -43,6 +53,7 @@ public class Flighty {
      */
     public void start() {
         data.loadAll();
+        menuMain();
     }
 
     /**
@@ -598,10 +609,13 @@ public class Flighty {
      */
     private void menuChangeFPref() {
         println("Your current flight preferences:");
-        final String OPTION_HOMEPORT = "Home Airport:" + userManager.getCurrentUser().getFPref().get(FlightFilter.AIRPORT);
+        final String OPTION_HOMEPORT = "Home Airport:"
+                + userManager.getCurrentUser().getFPref().get(FlightFilter.AIRPORT_FROM);
         final String OPTION_COMPANY = "Company: " + userManager.getCurrentUser().getFPref().get(FlightFilter.COMPANY);
-        final String OPTION_TIME_START = "Earliest Departure Time: " + userManager.getCurrentUser().getFPref().get(FlightFilter.TIME_START);
-        final String OPTION_TIME_END = "Latest Departure Time: " + userManager.getCurrentUser().getFPref().get(FlightFilter.TIME_END);
+        final String OPTION_TIME_DEPART = "Earliest Departure Time: "
+                + userManager.getCurrentUser().getFPref().get(FlightFilter.TIME_DEPART);
+        final String OPTION_TIME_ARRIVE = "Latest Departure Time: "
+                + userManager.getCurrentUser().getFPref().get(FlightFilter.TIME_ARRIVE);
         final String OPTION_PETS = "Pets allowed: " + userManager.getCurrentUser().getFPref().get(FlightFilter.PETS_ALLOWED);
         final String OPTION_LAYOVER = "Layover preference: " + userManager.getCurrentUser().getFPref().get(FlightFilter.FLIGHTS_LAYOVER);
         final String OPTION_BACK = "Back to User Menu";
@@ -609,21 +623,24 @@ public class Flighty {
 
         options.add(OPTION_HOMEPORT);
         options.add(OPTION_COMPANY);
-        options.add(OPTION_TIME_START);
-        options.add(OPTION_TIME_END);
+        options.add(OPTION_TIME_DEPART);
+        options.add(OPTION_TIME_ARRIVE);
         options.add(OPTION_PETS);
         options.add(OPTION_LAYOVER);
         options.add(OPTION_BACK);
 
         String response = menuNumbered("Enter a Number", options);
         if(response.equals(OPTION_HOMEPORT)) {
-            userManager.getCurrentUser().getFPref().put(FlightFilter.AIRPORT, promptString("Enter a new Home Airport: "));
+            userManager.getCurrentUser().getFPref().put(FlightFilter.AIRPORT_FROM,
+                    promptString("Enter a new Home Airport: "));
         } else if(response.equals(OPTION_COMPANY)) {
             userManager.getCurrentUser().getFPref().put(FlightFilter.COMPANY, promptString("Enter a new Company: "));
-        } else if (response.equals(OPTION_TIME_START)) {
-            userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_START, promptString("Enter your earliest time: "));
-        } else if (response.equals(OPTION_TIME_END)) {
-            userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_END, promptString("Enter your latest time: "));
+        } else if (response.equals(OPTION_TIME_DEPART)) {
+            userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_DEPART,
+                    promptString("Enter your earliest time: "));
+        } else if (response.equals(OPTION_TIME_ARRIVE)) {
+            userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_ARRIVE,
+                    promptString("Enter your latest time: "));
         } else if (response.equals(OPTION_PETS)) {
             userManager.getCurrentUser().getFPref().put(FlightFilter.PETS_ALLOWED, promptString("Enter a pet preference: "));
         } else if (response.equals(OPTION_LAYOVER)) {
@@ -678,33 +695,33 @@ public class Flighty {
         destination = promptString("Please enter a destination");
         
         if (userManager.isAnyoneLoggedIn()) {
-            if (hasPref(curr.getFPref().get(FlightFilter.AIRPORT))) {  // Check for user pref
-                home = curr.getFPref().get(FlightFilter.AIRPORT);
+            if (hasPref(curr.getFPref().get(FlightFilter.AIRPORT_FROM))) {  // Check for user pref
+                home = curr.getFPref().get(FlightFilter.AIRPORT_FROM);
             } else {
                 home = promptString("What is your home airport?");
                 if (promptYN("Would you like to save this as a default option?")) {
                     println("Setting as user default");
-                    userManager.getCurrentUser().getFPref().put(FlightFilter.AIRPORT, home);
+                    userManager.getCurrentUser().getFPref().put(FlightFilter.AIRPORT_FROM, home);
                 }
             }
 
-            if (hasPref(curr.getFPref().get(FlightFilter.TIME_START))) {
-                timeEarly = curr.getFPref().get(FlightFilter.TIME_START);
+            if (hasPref(curr.getFPref().get(FlightFilter.TIME_DEPART))) {
+                timeEarly = curr.getFPref().get(FlightFilter.TIME_DEPART);
             } else {
                 timeEarly = promptString("What is the earliest time you would be willing to leave?");
                 if (promptYN("Would you like to save this as a default option?")) {
                     println("Setting as user default");
-                    userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_START, timeEarly);
+                    userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_DEPART, timeEarly);
                 }
             }
 
-            if (hasPref(curr.getFPref().get(FlightFilter.TIME_END))) {
-                timeLate = curr.getFPref().get(FlightFilter.TIME_END);
+            if (hasPref(curr.getFPref().get(FlightFilter.TIME_ARRIVE))) {
+                timeLate = curr.getFPref().get(FlightFilter.TIME_ARRIVE);
             } else {
                 timeLate = promptString("What is the latest time you would be willing to leave?");
                 if (promptYN("Would you like to save this as a default option?")) {
                     println("Setting as user default");
-                    userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_END, timeLate);
+                    userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_ARRIVE, timeLate);
                 }
             }
 

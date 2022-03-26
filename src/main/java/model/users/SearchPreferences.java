@@ -20,12 +20,13 @@ public class SearchPreferences {
     public SearchPreferences() {
         fpref = new EnumMap<>(FlightFilter.class);
         fpref.put(FlightFilter.FLIGHT, "none");
-        fpref.put(FlightFilter.AIRPORT, "none");
+        fpref.put(FlightFilter.AIRPORT_FROM, "none");
+        fpref.put(FlightFilter.AIRPORT_TO, "none");
         fpref.put(FlightFilter.COMPANY, "none");
         fpref.put(FlightFilter.PRICE, "none");
         fpref.put(FlightFilter.DURATION, "none");
-        fpref.put(FlightFilter.TIME_START, "none");
-        fpref.put(FlightFilter.TIME_END, "none");
+        fpref.put(FlightFilter.TIME_DEPART, "none");
+        fpref.put(FlightFilter.TIME_ARRIVE, "none");
         fpref.put(FlightFilter.PETS_ALLOWED, "none");
         fpref.put(FlightFilter.FLIGHTS_LAYOVER, "none");
         
@@ -33,7 +34,7 @@ public class SearchPreferences {
         hPref.put(HotelFilter.HOTEL, "none");
         hPref.put(HotelFilter.COMPANY, "none");
         hPref.put(HotelFilter.PRICE, "none");
-        hPref.put(HotelFilter.TIME_START, "none");
+        hPref.put(HotelFilter.TIME_DEPART, "none");
         hPref.put(HotelFilter.TIME_END, "none");
         hPref.put(HotelFilter.PETS_ALLOWED, "none");
     }
@@ -41,24 +42,7 @@ public class SearchPreferences {
      * Generates SearchPrefrences based on what was passed from the user profile
      */
     public SearchPreferences(String data) {  //TODO: import search prefrences from data
-        fpref = new EnumMap<>(FlightFilter.class);
-        fpref.put(FlightFilter.FLIGHT, "none");
-        fpref.put(FlightFilter.AIRPORT, "none");
-        fpref.put(FlightFilter.COMPANY, "none");
-        fpref.put(FlightFilter.PRICE, "none");
-        fpref.put(FlightFilter.DURATION, "none");
-        fpref.put(FlightFilter.TIME_START, "none");
-        fpref.put(FlightFilter.TIME_END, "none");
-        fpref.put(FlightFilter.PETS_ALLOWED, "none");
-        fpref.put(FlightFilter.FLIGHTS_LAYOVER, "none");
-        
-        hPref = new EnumMap<>(HotelFilter.class);
-        hPref.put(HotelFilter.HOTEL, "none");
-        hPref.put(HotelFilter.COMPANY, "none");
-        hPref.put(HotelFilter.PRICE, "none");
-        hPref.put(HotelFilter.TIME_START, "none");
-        hPref.put(HotelFilter.TIME_END, "none");
-        hPref.put(HotelFilter.PETS_ALLOWED, "none");
+        this();
     }
 
     /**

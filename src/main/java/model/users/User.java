@@ -7,7 +7,6 @@ import model.users.info.Person;
 import search.filters.FlightFilter;
 import search.filters.HotelFilter;
 
-import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;

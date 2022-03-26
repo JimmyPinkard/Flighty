@@ -1,7 +1,6 @@
 package model.bookables;
 
 import com.mongodb.DBObject;
-import search.filters.FlightFilter;
 import search.filters.SearchFilter;
 
 import java.util.ArrayList;
@@ -59,7 +58,9 @@ public abstract class TravelObject {
         return bookables.remove(booking);
     }
 
-
+    public double getCost() {
+        return cost;
+    }
 
     public List<SearchFilter> getFilters() {
         return filters;

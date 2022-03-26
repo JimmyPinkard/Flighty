@@ -3,7 +3,6 @@ package model;
 import com.mongodb.DBObject;
 import model.bookables.Bookable;
 import model.users.User;
-import org.json.JSONObject;
 
 /**
  * Stores a user booking
