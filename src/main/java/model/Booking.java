@@ -18,11 +18,8 @@ public class Booking {
     }
 
     public Booking(final DBObject object) {
-        //TODO
-    }
-
-    public Booking(final JSONObject object) {
-        //TODO
+        this.user = new User(object);
+        this.booked = (Bookable) object.get("booked");
     }
 
     @Override
