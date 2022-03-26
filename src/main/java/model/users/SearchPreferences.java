@@ -19,46 +19,46 @@ public class SearchPreferences {
      */
     public SearchPreferences() {
         fpref = new EnumMap<>(FlightFilter.class);
-        fpref.put(FlightFilter.FLIGHT, "none");
-        fpref.put(FlightFilter.AIRPORT, "none");
-        fpref.put(FlightFilter.COMPANY, "none");
-        fpref.put(FlightFilter.PRICE, "none");
-        fpref.put(FlightFilter.DURATION, "none");
-        fpref.put(FlightFilter.TIME_START, "none");
-        fpref.put(FlightFilter.TIME_END, "none");
-        fpref.put(FlightFilter.PETS_ALLOWED, "none");
-        fpref.put(FlightFilter.FLIGHTS_LAYOVER, "none");
+        fpref.put(FlightFilter.FLIGHT, "");
+        fpref.put(FlightFilter.AIRPORT, "");
+        fpref.put(FlightFilter.COMPANY, "");
+        fpref.put(FlightFilter.PRICE, "");
+        fpref.put(FlightFilter.DURATION, "");
+        fpref.put(FlightFilter.TIME_START, "");
+        fpref.put(FlightFilter.TIME_END, "");
+        fpref.put(FlightFilter.PETS_ALLOWED, "");
+        fpref.put(FlightFilter.FLIGHTS_LAYOVER, "");
         
         hPref = new EnumMap<>(HotelFilter.class);
-        hPref.put(HotelFilter.HOTEL, "none");
-        hPref.put(HotelFilter.COMPANY, "none");
-        hPref.put(HotelFilter.PRICE, "none");
-        hPref.put(HotelFilter.TIME_START, "none");
-        hPref.put(HotelFilter.TIME_END, "none");
-        hPref.put(HotelFilter.PETS_ALLOWED, "none");
+        hPref.put(HotelFilter.HOTEL, "");
+        hPref.put(HotelFilter.COMPANY, "");
+        hPref.put(HotelFilter.PRICE, "");
+        hPref.put(HotelFilter.TIME_START, "");
+        hPref.put(HotelFilter.TIME_END, "");
+        hPref.put(HotelFilter.PETS_ALLOWED, "");
     }
     /**
      * Generates SearchPrefrences based on what was passed from the user profile
      */
     public SearchPreferences(String data) {  //TODO: import search prefrences from data
         fpref = new EnumMap<>(FlightFilter.class);
-        fpref.put(FlightFilter.FLIGHT, "none");
-        fpref.put(FlightFilter.AIRPORT, "none");
-        fpref.put(FlightFilter.COMPANY, "none");
-        fpref.put(FlightFilter.PRICE, "none");
-        fpref.put(FlightFilter.DURATION, "none");
-        fpref.put(FlightFilter.TIME_START, "none");
-        fpref.put(FlightFilter.TIME_END, "none");
-        fpref.put(FlightFilter.PETS_ALLOWED, "none");
-        fpref.put(FlightFilter.FLIGHTS_LAYOVER, "none");
+        fpref.put(FlightFilter.FLIGHT, "");
+        fpref.put(FlightFilter.AIRPORT, "");
+        fpref.put(FlightFilter.COMPANY, "");
+        fpref.put(FlightFilter.PRICE, "");
+        fpref.put(FlightFilter.DURATION, "");
+        fpref.put(FlightFilter.TIME_START, "");
+        fpref.put(FlightFilter.TIME_END, "");
+        fpref.put(FlightFilter.PETS_ALLOWED, "");
+        fpref.put(FlightFilter.FLIGHTS_LAYOVER, "");
         
         hPref = new EnumMap<>(HotelFilter.class);
-        hPref.put(HotelFilter.HOTEL, "none");
-        hPref.put(HotelFilter.COMPANY, "none");
-        hPref.put(HotelFilter.PRICE, "none");
-        hPref.put(HotelFilter.TIME_START, "none");
-        hPref.put(HotelFilter.TIME_END, "none");
-        hPref.put(HotelFilter.PETS_ALLOWED, "none");
+        hPref.put(HotelFilter.HOTEL, "");
+        hPref.put(HotelFilter.COMPANY, "");
+        hPref.put(HotelFilter.PRICE, "");
+        hPref.put(HotelFilter.TIME_START, "");
+        hPref.put(HotelFilter.TIME_END, "");
+        hPref.put(HotelFilter.PETS_ALLOWED, "");
     }
 
     /**

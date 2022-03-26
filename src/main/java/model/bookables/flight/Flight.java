@@ -14,6 +14,8 @@ import java.util.List;
  * @author Jack Hyatt
  */
 public class Flight extends TravelObject {
+    private String airportFrom;
+    private String airportTo;
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
     private List<FlightFilter> filters;
@@ -29,9 +31,20 @@ public class Flight extends TravelObject {
 
     public Flight(DBObject object) {
         super(object);
-        this.departureTime = TimeUtils.genDateTime(object.get("date") + " " + ((String)object.get("time_depart")).substring(0, 5));
-        this.arrivalTime = TimeUtils.genDateTime(object.get("date") + " " + ((String)object.get("time_arrive")).substring(0, 5));
+        this.departureTime = TimeUtils.genDateTime(
+                object.get("date") + " " + ((String) object.get("time_depart")).substring(0, 5));
+        this.arrivalTime = TimeUtils.genDateTime(
+                object.get("date") + " " + ((String) object.get("time_arrive")).substring(0, 5));
         this.bookables = (List<Bookable>) object.get("seats");
+    }
+
+
+    public String getAirportFrom() {
+        return airportFrom;
+    }
+
+    public String getAirportTo() {
+        return airportTo;
     }
 
     /**
@@ -52,9 +65,7 @@ public class Flight extends TravelObject {
 
     @Override
     public String toString() {
-        return "{" +
-                "departureTime:" + departureTime +
-                ", arrivalTime:" + arrivalTime +
-                "} " + super.toString();
+        return "{" + "departureTime:" + departureTime + ", arrivalTime:" + arrivalTime + "} "
+                + super.toString();
     }
 }
