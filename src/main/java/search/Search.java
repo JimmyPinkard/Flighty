@@ -7,6 +7,6 @@ import model.bookables.TravelObject;
 import search.filters.SearchFilter;
 
 public interface Search {
-    public abstract List<TravelObject> execute(Data data,
+    public abstract List<? extends TravelObject> execute(Data data,
             EnumMap<? extends SearchFilter, String> preferences);
 }
