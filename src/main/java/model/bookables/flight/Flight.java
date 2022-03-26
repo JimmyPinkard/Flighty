@@ -5,8 +5,7 @@ import model.bookables.BookingLayout;
 import model.bookables.TravelObject;
 import search.filters.FlightFilter;
 import utils.TimeUtils;
-
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,14 +13,14 @@ import java.util.List;
  * @author Jack Hyatt
  */
 public class Flight extends TravelObject {
-    private LocalTime departureTime;
-    private LocalTime arrivalTime;
+    private LocalDateTime departureTime;
+    private LocalDateTime arrivalTime;
     private List<FlightFilter> filters;
 
     /**
      * Constructor for Bookables.Flight.Flight
      */
-    public Flight(LocalTime departureTime, LocalTime arrivalTime, BookingLayout layout) {
+    public Flight(LocalDateTime departureTime, LocalDateTime arrivalTime, BookingLayout layout) {
         super(layout);
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
@@ -30,15 +29,17 @@ public class Flight extends TravelObject {
     public Flight(DBObject object) {
         super(object);
         this.filters = new ArrayList<>();
-        this.departureTime = TimeUtils.generateTime(((String)object.get("time_depart")).substring(0, 5));
-        this.arrivalTime = TimeUtils.generateTime(((String)object.get("time_arrive")).substring(0, 5));
+        // this.departureTime =
+        // TimeUtils.generateTime(((String)object.get("time_depart")).substring(0, 5));
+        // this.arrivalTime =
+        // TimeUtils.generateTime(((String)object.get("time_arrive")).substring(0, 5));
     }
 
     /**
      * 
      * @return the departure time of the flight as a LocalDate data type
      */
-    public LocalTime getDepartureTime() {
+    public LocalDateTime getDepartureTime() {
         return this.departureTime;
     }
 
@@ -46,7 +47,7 @@ public class Flight extends TravelObject {
      * 
      * @return the arival time of the flight as a LocalDate data type
      */
-    public LocalTime getArrivalTime() {
+    public LocalDateTime getArrivalTime() {
         return this.arrivalTime;
     }
 

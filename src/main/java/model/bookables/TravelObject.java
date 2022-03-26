@@ -59,7 +59,9 @@ public abstract class TravelObject {
         return bookables.remove(booking);
     }
 
-
+    public double getCost() {
+        return cost;
+    }
 
     public List<SearchFilter> getFilters() {
         return filters;
