@@ -1,9 +1,10 @@
 package model.bookables.hotel;
 
 import com.mongodb.DBObject;
+import model.bookables.Bookable;
 import model.bookables.BookingLayout;
 import model.bookables.TravelObject;
-import org.json.JSONObject;
+import model.bookables.flight.Seat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +28,11 @@ public class Hotel extends TravelObject {
         this.numBeds = numBeds;
     }
 
-    public Hotel(DBObject json) {
-        super(json);
+    public Hotel(DBObject object) {
+        super(object);
         this.features = new ArrayList<>();
-        this.location = (String) json.get("location");
-        this.numBeds = 2;//Integer.parseInt((String) json.get("numBeds"));
+        this.location = (String) object.get("location");
+        this.bookables = (List<Bookable>) object.get("rooms");
     }
 
     /**

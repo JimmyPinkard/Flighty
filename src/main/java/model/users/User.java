@@ -47,8 +47,15 @@ public class User {
         bookingHistory = new ArrayList<TravelObject>();
     }
 
-    public User(DBObject json) {
-        fromJSON(json);
+    public User(DBObject object) {
+        this.username = (String) object.get("username");
+        this.password = (String) object.get("password");
+        this.person = (Person) object.get("person");
+        this.email = (String) object.get("email");
+        //this.preferences needs to be implemented
+        this.travelers = (List<Passport>) object.get("passports");
+        this.specialReq =  (List<String>) object.get("specialReq");
+        this.bookingHistory = (List<TravelObject>) object.get("bookedListings");
     }
 
     /**
@@ -228,18 +235,6 @@ public class User {
      */
     public List<TravelObject> getBookingHistory() {
         return bookingHistory;
-    }
-
-    /**
-     * Constructs object from JSON
-     * @param json
-     */
-    protected void fromJSON(final DBObject json) {
-        username = (String) json.get("username");
-        this.person = (Person) json.get("person");
-        preferences = new SearchPreferences();
-        specialReq = new ArrayList<String>();
-        bookingHistory = new ArrayList<TravelObject>();
     }
 
     @Override

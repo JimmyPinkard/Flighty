@@ -1,6 +1,7 @@
 package model.bookables;
 
 import com.mongodb.DBObject;
+import search.filters.FlightFilter;
 import search.filters.SearchFilter;
 
 import java.util.ArrayList;
@@ -34,12 +35,11 @@ public abstract class TravelObject {
 
     public TravelObject(DBObject object) {
         this.id = (String) object.get("id");
-        this.company = (String) object.get("Company");
-        this.cost = 0; //Double.parseDouble((String) object.get("cost"));
-        this.rating = 0; //Double.parseDouble((String) object.get("rating"));
-        this.bookables = new ArrayList<Bookable>();
-        this.features = new ArrayList<String>();
-        this.filters = new ArrayList<>();
+        this.company = (String) object.get("company");
+        //this.cost = (Double) object.get("cost");
+        this.rating = (Double) object.get("rating");
+        this.features = (List<String>) object.get("features");
+        this.filters = (List<SearchFilter>) object.get("filters");
         this.layout = null;
     }
 

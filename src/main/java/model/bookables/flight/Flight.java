@@ -1,9 +1,11 @@
 package model.bookables.flight;
 
 import com.mongodb.DBObject;
+import model.bookables.Bookable;
 import model.bookables.BookingLayout;
 import model.bookables.TravelObject;
 import search.filters.FlightFilter;
+import search.filters.SearchFilter;
 import utils.TimeUtils;
 
 import java.time.LocalTime;
@@ -29,9 +31,9 @@ public class Flight extends TravelObject {
 
     public Flight(DBObject object) {
         super(object);
-        this.filters = new ArrayList<>();
         this.departureTime = TimeUtils.generateTime(((String)object.get("time_depart")).substring(0, 5));
         this.arrivalTime = TimeUtils.generateTime(((String)object.get("time_arrive")).substring(0, 5));
+        this.bookables = (List<Bookable>) object.get("seats");
     }
 
     /**
