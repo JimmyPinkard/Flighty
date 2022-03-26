@@ -13,9 +13,8 @@ import java.util.List;
  */
 public class Hotel extends TravelObject {
 
-    private List<String> features;
-    private String location;
-    private int numBeds;
+    protected String location;
+    protected int numBeds;
 
     /**
      * Creates a new hotel object
