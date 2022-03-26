@@ -67,6 +67,14 @@ public class Flighty {
         return date.format(DateTimeFormatter.ofPattern("MM/DD/YY"));
     }
 
+    private String promptTable(String prompt, List<String> table) {
+        String header = table.get(0);
+        table.remove(0);
+
+        println("   " + header);
+        return menuNumbered(prompt, table);
+    }
+
     private List<String> passportsToStringTable(List<Passport> passports) {
         List<List<String>> table = new ArrayList<List<String>>();
 
@@ -365,11 +373,7 @@ public class Flighty {
         var passports = userManager.getCurrentUser().getTravelers();
 
         List<String> options = passportsToStringTable(passports);
-        String header = options.get(0);
-        options.remove(0);
-
-        println("   " + header);
-        String choice = menuNumbered("Choose a passport to remove", options);
+        String choice = promptTable("Choose a passport to remove", options);
 
         for (Passport passport : userManager.getCurrentUser().getTravelers()) {
             String currRow = String.join("", toRow(passport)).replace(" ", "");
