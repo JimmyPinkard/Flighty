@@ -1,6 +1,5 @@
 package model.bookables;
 
-import dev.morphia.annotations.*;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -8,15 +7,10 @@ import java.util.List;
 import java.util.UUID;
 
 public abstract class Bookable implements Comparable<Bookable> {
-    @Id
     protected String id;
-    @Property("row")
     protected int row;
-    @Property("col")
     protected String col;
-    @Property("price")
     protected double price;
-    @Property("amenities")
     protected List<String> amenities;
 
     /**
@@ -66,5 +60,16 @@ public abstract class Bookable implements Comparable<Bookable> {
         if(this.row!=other.getRow())
             return this.row-other.getRow();
         return this.col.compareTo(other.getCol());
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "id:'" + id + '\'' +
+                ", row:" + row +
+                ", col:'" + col + '\'' +
+                ", price:" + price +
+                ", amenities:" + amenities +
+                '}';
     }
 }

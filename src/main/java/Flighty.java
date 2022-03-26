@@ -1,5 +1,4 @@
 import database.Data;
-import model.users.SearchPreferences;
 import model.users.User;
 import model.users.info.Passport;
 import model.users.info.Person;

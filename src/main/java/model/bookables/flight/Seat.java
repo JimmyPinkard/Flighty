@@ -1,7 +1,5 @@
 package model.bookables.flight;
 
-import dev.morphia.annotations.Entity;
-import dev.morphia.annotations.Property;
 import model.bookables.Bookable;
 import org.json.JSONObject;
 
@@ -9,11 +7,8 @@ import org.json.JSONObject;
  * 
  * @author Jack Hyatt
  */
-@Entity("Seats")
 public class Seat extends Bookable {
-    @Property("class")
     private String whichClass;
-    @Property("isBooked")
     private boolean isBooked;
 
     /**

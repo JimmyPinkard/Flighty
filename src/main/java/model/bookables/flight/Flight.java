@@ -1,21 +1,22 @@
 package model.bookables.flight;
 
-import dev.morphia.annotations.Entity;
-import dev.morphia.annotations.Property;
+import com.mongodb.DBObject;
 import model.bookables.BookingLayout;
 import model.bookables.TravelObject;
+import search.filters.FlightFilter;
+import utils.GenDate;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Jack Hyatt
  */
-@Entity("Flights")
 public class Flight extends TravelObject {
-    @Property("departure")
     private LocalDate departureTime;
-    @Property("arrival")
     private LocalDate arrivalTime;
+    private List<FlightFilter> filters;
 
     /**
      * Constructor for Bookables.Flight.Flight
@@ -24,6 +25,13 @@ public class Flight extends TravelObject {
         super(layout);
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
+    }
+
+    public Flight(DBObject json) {
+        super(json);
+        this.filters = new ArrayList<>();
+        //this.departureTime = GenDate.generateDate((String)json.get("time_depart"));// LocalDate.parse();
+        //this.arrivalTime = GenDate.generateDate((String)json.get("time_arrive"));
     }
 
     /**
@@ -40,5 +48,13 @@ public class Flight extends TravelObject {
      */
     public LocalDate getArrivalTime() {
         return this.arrivalTime;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "departureTime:" + departureTime +
+                ", arrivalTime:" + arrivalTime +
+                "} " + super.toString();
     }
 }

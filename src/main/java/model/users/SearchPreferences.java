@@ -2,7 +2,6 @@ package model.users;
 
 import java.util.EnumMap;
 
-import dev.morphia.annotations.Entity;
 import search.filters.FlightFilter;
 import search.filters.HotelFilter;
 
@@ -10,7 +9,6 @@ import search.filters.HotelFilter;
  * Stores a user's prefrences
  * @author rengotap
  */
-@Entity("SearchPreferences")
 public class SearchPreferences {
 
     public EnumMap<FlightFilter, String> fpref;
@@ -77,5 +75,13 @@ public class SearchPreferences {
      */
     public EnumMap<HotelFilter, String> getHPref() {
         return hPref;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "fpref:" + fpref +
+                ", hPref:" + hPref +
+                '}';
     }
 }

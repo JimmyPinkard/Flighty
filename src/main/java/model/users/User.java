@@ -1,7 +1,6 @@
 package model.users;
 
-import dev.morphia.annotations.Entity;
-import dev.morphia.annotations.Property;
+import com.mongodb.DBObject;
 import model.bookables.TravelObject;
 import model.users.info.Passport;
 import model.users.info.Person;
@@ -19,24 +18,15 @@ import java.util.EnumMap;
  * Edit this, then write it to the file
  * @author rengotap
  */
-@Entity("Users")
 public class User {
-    @Property("username")
     private String username;
-    @Property("password")
     private String password;
-    @Property("email")
     private String email;
-    @Property("preferences")
     private SearchPreferences preferences;
 
-    @Property("requirements")
     private List<String>specialReq;
-    @Property("travelers")
     private List<Passport> travelers; // passport 0 should always be the user
-    @Property("bookingHistory")
     private List<TravelObject> bookingHistory;
-    @Property("person")
     private Person person;
 
     /**
@@ -57,7 +47,7 @@ public class User {
         bookingHistory = new ArrayList<TravelObject>();
     }
 
-    public User(JSONObject json) {
+    public User(DBObject json) {
         fromJSON(json);
     }
 
@@ -241,17 +231,28 @@ public class User {
     }
 
     /**
-     * Turns object into JSON
-     * @return
-     */
-    protected JSONObject toJSON() {
-        return null;
-    }
-
-    /**
      * Constructs object from JSON
      * @param json
      */
-    protected void fromJSON(final JSONObject json) {
+    protected void fromJSON(final DBObject json) {
+        username = (String) json.get("username");
+        this.person = (Person) json.get("person");
+        preferences = new SearchPreferences();
+        specialReq = new ArrayList<String>();
+        bookingHistory = new ArrayList<TravelObject>();
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "username:'" + username + '\'' +
+                ", password:'" + password + '\'' +
+                ", email:'" + email + '\'' +
+                ", preferences:" + preferences +
+                ", specialReq:" + specialReq +
+                ", travelers:" + travelers +
+                ", bookingHistory:" + bookingHistory +
+                ", person:" + person +
+                '}';
     }
 }
