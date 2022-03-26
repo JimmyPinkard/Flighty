@@ -670,7 +670,7 @@ public class Flighty {
         if (response.equals(OPTION_COMPANY)) {
             userManager.getCurrentUser().getHPref().put(HotelFilter.COMPANY, promptString("Enter a new company name:"));
         } else if (response.equals(OPTION_PETS_ALLOWED)) {
-            userManager.getCurrentUser().getHPref().put(HotelFilter.COMPANY, promptString("Enter a pet preference:"));
+            userManager.getCurrentUser().getHPref().put(HotelFilter.COMPANY, Boolean.toString(promptYN("Will you be traveling with pets?")));
         } else if (response.equals(OPTION_BACK)) {
             return;
         }
@@ -768,7 +768,7 @@ public class Flighty {
             }
         } else {
             company = promptString("What company would you like to book with?");
-            pets = promptYN("Will you be traveling with any pets?"); // TODO: make bool
+            pets = promptYN("Will you be traveling with any pets?");
         }
         
 
