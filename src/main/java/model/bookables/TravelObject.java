@@ -1,31 +1,20 @@
 package model.bookables;
 
-import dev.morphia.annotations.Entity;
-import dev.morphia.annotations.Id;
-import dev.morphia.annotations.Property;
+import com.mongodb.DBObject;
 import search.filters.SearchFilter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Entity("TravelObject")
 public abstract class TravelObject {
-    @Id
     protected String id;
-    @Property("bookables")
     protected List<Bookable> bookables;
-    @Property("company")
     protected String company;
-    @Property("cost")
     protected double cost;
-    @Property("rating")
     protected double rating;
-    @Property("layout")
     protected BookingLayout layout;
-    @Property("features")
     protected List<String> features;
-    @Property("filters")
     protected List<SearchFilter> filters;
 
 /**
@@ -40,6 +29,18 @@ public abstract class TravelObject {
         this.bookables = new ArrayList<Bookable>();
         this.features = new ArrayList<String>();
         this.layout = layout;
+        this.filters = new ArrayList<>();
+    }
+
+    public TravelObject(DBObject object) {
+        this.id = (String) object.get("id");
+        this.company = (String) object.get("Company");
+        this.cost = 0; //Double.parseDouble((String) object.get("cost"));
+        this.rating = 0; //Double.parseDouble((String) object.get("rating"));
+        this.bookables = new ArrayList<Bookable>();
+        this.features = new ArrayList<String>();
+        this.filters = new ArrayList<>();
+        this.layout = null;
     }
 
     /**
@@ -68,4 +69,17 @@ public abstract class TravelObject {
         //TODO: Implement
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                "id:'" + id + '\'' +
+                ", bookables:" + bookables +
+                ", company:'" + company + '\'' +
+                ", cost:" + cost +
+                ", rating:" + rating +
+                ", layout:" + layout +
+                ", features:" + features +
+                ", filters:" + filters +
+                '}';
+    }
 }

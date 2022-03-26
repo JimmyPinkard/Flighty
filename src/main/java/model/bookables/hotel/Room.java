@@ -1,8 +1,5 @@
 package model.bookables.hotel;
 
-import dev.morphia.annotations.Entity;
-import dev.morphia.annotations.Property;
-import dev.morphia.annotations.Reference;
 import model.bookables.Bookable;
 import org.json.JSONObject;
 
@@ -14,11 +11,8 @@ import java.util.List;
  * 
  * @author Jack Hyatt
  */
-@Entity("Rooms")
 public class Room extends Bookable {
-    @Property("info")
     private String info;
-    @Property("bookedDays")
     private List<LocalDate> bookedDays;
 
     /**

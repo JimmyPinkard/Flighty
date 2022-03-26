@@ -1,25 +1,20 @@
 package model.bookables.hotel;
 
-import dev.morphia.annotations.Entity;
-import dev.morphia.annotations.Property;
-import dev.morphia.annotations.Reference;
+import com.mongodb.DBObject;
 import model.bookables.BookingLayout;
 import model.bookables.TravelObject;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 /**
  * Bookables.Hotel.Hotel object
  * @author rengotap
  */
-@Entity("Hotels")
 public class Hotel extends TravelObject {
 
-    @Property("features")
     private List<String> features;
-    @Property("location")
     private String location;
-    @Property("numBeds")
     private int numBeds;
 
     /**
@@ -30,6 +25,13 @@ public class Hotel extends TravelObject {
         this.features = features;
         this.location = location;
         this.numBeds = numBeds;
+    }
+
+    public Hotel(DBObject json) {
+        super(json);
+        this.features = new ArrayList<>();
+        this.location = (String) json.get("location");
+        this.numBeds = 2;//Integer.parseInt((String) json.get("numBeds"));
     }
 
     /**
@@ -56,4 +58,12 @@ public class Hotel extends TravelObject {
         return numBeds;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                "features:" + features +
+                ", location:'" + location + '\'' +
+                ", numBeds:" + numBeds +
+                "} " + super.toString();
+    }
 }

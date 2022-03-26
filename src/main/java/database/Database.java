@@ -1,21 +1,33 @@
 package database;
 
-import com.mongodb.client.MongoClients;
-import dev.morphia.Datastore;
-import dev.morphia.Morphia;
-import dev.morphia.mapping.Mapper;
-import dev.morphia.query.experimental.filters.Filters;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
+import com.mongodb.util.JSON;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Database {
-    private final Datastore datastore;
     private static Database database;
+    private Map<String, DBCollection> collections;
 
     private Database() {
-        datastore = Morphia.createDatastore(MongoClients.create(), "Flighty");
-        mapPackages();
-        datastore.ensureIndexes();
+        this.collections = new HashMap<>();
+        try {
+            DB mongoDatabase = new MongoClient().getDB("Flighty");
+            collections.put("Flights", mongoDatabase.getCollection("Flights"));
+            collections.put("Hotels", mongoDatabase.getCollection("Hotels"));
+            collections.put("Users", mongoDatabase.getCollection("Users"));
+            collections.put("Bookings", mongoDatabase.getCollection("Bookings"));
+        }
+        catch (Exception e) {
+            System.err.println(e.getMessage());
+            System.exit(1);
+        }
     }
 
     public static Database getInstance() {
@@ -25,21 +37,13 @@ public class Database {
         return database;
     }
 
-    private void mapPackages() {
-        Mapper mapper = datastore.getMapper();
-        mapper.mapPackage("model");
-        mapper.mapPackage("model.users");
-        mapper.mapPackage("model.bookables.hotel");
-        mapper.mapPackage("model.bookables.flight");
+    public <T> void create(String collectionName, T object) {
+        collections.get(collectionName).insert((DBObject) JSON.parse(object.toString()));
     }
 
-    public <T> void create(T object) {
-        datastore.insert(object);
-    }
-
-    public Object get(String entityType, String field, String value) {
+    public Object get(String collectionName, String field, String value) {
         try {
-            return datastore.find(entityType).filter(Filters.eq(field, value)).first();
+            return collections.get(collectionName).findOne(JSON.parse("{" + field + ": " + value + "}"));
         }
         catch (Exception e) {
             System.err.println(e.getMessage());
@@ -48,9 +52,9 @@ public class Database {
         return null;
     }
 
-    public Object get(String entityType) {
+    public Object get(String collectionName) {
         try {
-            return datastore.find(entityType).toDocument();
+            return collections.get(collectionName).findOne();
         }
         catch (Exception e) {
             System.err.println(e.getMessage());
@@ -59,10 +63,10 @@ public class Database {
         return null;
     }
 
-    public List<Object> getAll(String entityType) {
-        List<Object> objs = null;
+    public List<DBObject> getAll(final String collectionName) {
+        List<DBObject> objs = new ArrayList<>();
         try {
-            objs = datastore.find(entityType).iterator().toList();
+            collections.get(collectionName).find().forEach(objs::add);
         }
         catch(Exception e) {
             System.err.println(e.getMessage());
@@ -71,12 +75,11 @@ public class Database {
         return objs;
     }
 
-    public <T> void update(T oldObj, T newObj) {
-        datastore.delete(oldObj);
-        datastore.insert(newObj);
+    public <T> void update(final String collectionName, T oldObj, T newObj) {
+        collections.get(collectionName).update((DBObject) JSON.parse(oldObj.toString()), (DBObject) JSON.parse(newObj.toString()));
     }
 
-    public <T> void delete(T obj) {
-        datastore.delete(obj);
+    public <T> void delete(final String collectionName, T obj) {
+        collections.get(collectionName).remove((DBObject) JSON.parse(obj.toString()));
     }
 }

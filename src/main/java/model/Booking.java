@@ -1,7 +1,6 @@
 package model;
 
-import dev.morphia.annotations.Entity;
-import dev.morphia.annotations.Property;
+import com.mongodb.DBObject;
 import model.bookables.Bookable;
 import model.users.User;
 import org.json.JSONObject;
@@ -9,11 +8,8 @@ import org.json.JSONObject;
 /**
  * Stores a user booking
  */
-@Entity("Bookings")
 public class Booking {
-    @Property("booked")
     private Bookable booked;
-    @Property("user")
     private User user;
 
     public Booking(final User user, final Bookable booked) {
@@ -21,7 +17,19 @@ public class Booking {
         this.booked = booked;
     }
 
+    public Booking(final DBObject object) {
+        //TODO
+    }
+
     public Booking(final JSONObject object) {
         //TODO
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "booked:" + booked +
+                ", user:" + user +
+                '}';
     }
 }

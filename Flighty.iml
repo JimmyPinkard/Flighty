@@ -13,16 +13,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.36" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-simple:1.7.36" level="project" />
+    <orderEntry type="library" name="Maven: org.mongodb:mongo-java-driver:3.12.10" level="project" />
     <orderEntry type="library" name="Maven: org.json:json:20211205" level="project" />
-    <orderEntry type="library" name="Maven: dev.morphia.morphia:morphia-core:2.2.3" level="project" />
-    <orderEntry type="library" name="Maven: org.mongodb:mongodb-driver-sync:4.2.2" level="project" />
-    <orderEntry type="library" name="Maven: org.mongodb:bson:4.2.2" level="project" />
-    <orderEntry type="library" name="Maven: org.mongodb:mongodb-driver-core:4.2.2" level="project" />
-    <orderEntry type="library" name="Maven: org.mongodb:mongodb-driver-legacy:4.2.2" level="project" />
-    <orderEntry type="library" name="Maven: io.github.classgraph:classgraph:4.8.78" level="project" />
-    <orderEntry type="library" name="Maven: net.bytebuddy:byte-buddy:1.11.3" level="project" />
-    <orderEntry type="library" name="Maven: org.jetbrains:annotations:13.0" level="project" />
-    <orderEntry type="library" name="Maven: com.github.spotbugs:spotbugs-annotations:3.1.9" level="project" />
-    <orderEntry type="library" name="Maven: com.google.code.findbugs:jsr305:3.0.2" level="project" />
   </component>
 </module>

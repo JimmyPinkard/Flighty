@@ -1,5 +1,6 @@
 package database;
 
+import com.mongodb.DBObject;
 import model.Booking;
 import model.bookables.TravelObject;
 import model.bookables.flight.Flight;
@@ -69,50 +70,50 @@ public class Data {
     }
 
     private void loadFlights() {
-        for(Object object : db.getAll("Flights")) {
-            travelObjects.add((Flight) object);
+        for(DBObject object : db.getAll("Flights")) {
+            travelObjects.add(new Flight(object));
         }
     }
 
     private void loadHotels() {
-        for(Object object : db.getAll("Hotels")) {
-            travelObjects.add((Hotel) object);
+        for(DBObject object : db.getAll("Hotels")) {
+            travelObjects.add(new Hotel(object));
         }
     }
 
     private void loadUsers() {
-        for(Object object : db.getAll("Users")) {
-            users.add((User) object);
+        for(DBObject object : db.getAll("Users")) {
+            users.add(new User(object));
         }
     }
 
     private void loadBookings() {
-        for(Object object : db.getAll("Bookings")) {
-            bookings.add((Booking) object);
+        for(DBObject object : db.getAll("Bookings")) {
+            bookings.add(new Booking(object));
         }
     }
 
     private void saveUsers() {
         for(User user : users) {
-            db.create(user);
+            db.create("Users", user);
         }
     }
 
     private void saveFlights() {
         for(Flight flight : getFlights()) {
-            db.create(flight);
+            db.create("Flights", flight);
         }
     }
 
     private void saveHotels() {
         for(Hotel hotel : getHotels()) {
-            db.create(hotel);
+            db.create("Hotels", hotel);
         }
     }
 
     private void saveBookings() {
         for(Booking booking : bookings) {
-            db.create(booking);
+            db.create("Bookings", booking);
         }
     }
 
