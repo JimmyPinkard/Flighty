@@ -105,7 +105,7 @@ public class Flighty {
      * @return converted string
      */
     private String toString(LocalDate date) {
-        return date.format(DateTimeFormatter.ofPattern("MM/DD/YY"));
+        return date.format(DateTimeFormatter.ofPattern("M/d/y"));
     }
 
     /**
@@ -670,7 +670,7 @@ public class Flighty {
         if (response.equals(OPTION_COMPANY)) {
             userManager.getCurrentUser().getHPref().put(HotelFilter.COMPANY, promptString("Enter a new company name:"));
         } else if (response.equals(OPTION_PETS_ALLOWED)) {
-            userManager.getCurrentUser().getHPref().put(HotelFilter.COMPANY, Boolean.toString(promptYN("Will you be traveling with pets?")));
+            userManager.getCurrentUser().getHPref().put(HotelFilter.PETS_ALLOWED, Boolean.toString(promptYN("Will you be traveling with pets?")));
         } else if (response.equals(OPTION_BACK)) {
             return;
         }
@@ -770,9 +770,61 @@ public class Flighty {
             company = promptString("What company would you like to book with?");
             pets = promptYN("Will you be traveling with any pets?");
         }
-        
 
-        //TODO: book flight
+        boolean confirmParam = false;
+        while(!confirmParam) {
+            println("Please confirm your search parameters");
+            final String OPT_DEST = "Destination: "+destination;
+            final String OPT_HOME = "Departing From:"+home;
+            final String OPT_START = "Start Date: "+toString(depart);
+            final String OPT_END = "End Date: "+toString(ret);
+            final String OPT_TIME_EARLY = "Earliest Time: "+timeEarly;
+            final String OPT_TIME_LATE = "Latest Time: " + timeLate;
+            final String OPT_LAYOVER = "Layovers: " +Boolean.toString(layover);
+            final String OPT_COMPANY = "Airline: "+company;
+            final String OPT_PETS = "Pets: "+Boolean.toString(pets);
+            final String OPT_CONFIRM = "Confirm & Search";
+
+            List<String> options = new ArrayList<String>();
+            options.add(OPT_DEST);
+            options.add(OPT_HOME);
+            options.add(OPT_START);
+            options.add(OPT_END);
+            options.add(OPT_TIME_EARLY);
+            options.add(OPT_TIME_LATE);
+            options.add(OPT_LAYOVER);
+            options.add(OPT_COMPANY);
+            options.add(OPT_PETS);
+            options.add(OPT_CONFIRM);
+
+            String response = menuNumbered("Enter a Number", options);
+
+            if(response.equals(OPT_CONFIRM)) {
+                confirmParam = true;
+            } else if (response.equals(OPT_DEST)) {
+                destination = promptString("Enter a new destination");
+            } else if (response.equals(OPT_HOME)) {
+                home = promptString("Enter a new departure location");
+            } else if (response.equals(OPT_START)) {
+                depart = promptDate("Enter a new departure date");
+            } else if (response.equals(OPT_END)) {
+                ret = promptDate("Enter a new return date");
+            } else if (response.equals(OPT_TIME_EARLY)) {
+                timeEarly = promptString("Enter the earliest time you would be willing to leave");
+            } else if (response.equals(OPT_TIME_LATE)) {
+                timeLate = promptString("Enter the latest time you would be willing to leave");
+            } else if (response.equals(OPT_LAYOVER)) {
+                layover = promptYN("Would you be willing to take a layover flight?");
+            } else if (response.equals(OPT_COMPANY)) {
+                company = promptString("Enter a new airline");
+            } else if (response.equals(OPT_PETS)) {
+                pets = promptYN("Are you traveling with pets?");
+            } else if (response.equals(OPT_CONFIRM)) {
+                confirmParam = true;
+            }
+        }
+        System.out.println("Searching for your perfect flight...");
+        //TODO: actually book flight
 
     }
 
@@ -786,7 +838,6 @@ public class Flighty {
         String location;
         LocalDate start;
         LocalDate end;
-        String price;
         String company;
         boolean pets;
 
@@ -818,8 +869,44 @@ public class Flighty {
             pets = promptYN("Will you be traveling with any pets?");
         }
 
-        println("Searching with for a hotel with the following parameters:"+'\n'+location+'\n'+start+'\n'
-            +end+'\n'+company+'\n'+pets);
+        boolean confirmParam = false;
+        while(!confirmParam) {
+            println("Please confirm your search parameters");
+            final String OPT_LOCATION = "Location: "+location;
+            final String OPT_START = "Start Date: "+toString(start);
+            final String OPT_END = "End Date: "+toString(end);
+            final String OPT_COMPANY = "Company: "+company;
+            final String OPT_PETS = "Pets: "+Boolean.toString(pets);
+            final String OPT_CONFIRM = "Confirm & Search";
+
+            List<String> options = new ArrayList<String>();
+            options.add(OPT_LOCATION);
+            options.add(OPT_START);
+            options.add(OPT_END);
+            options.add(OPT_COMPANY);
+            options.add(OPT_PETS);
+            options.add(OPT_CONFIRM);
+
+            String response = menuNumbered("Enter a Number", options);
+
+            if(response.equals(OPT_CONFIRM)) {
+                confirmParam = true;
+            } else if (response.equals(OPT_LOCATION)) {
+                location = promptString("Enter a new location");
+            } else if (response.equals(OPT_START)) {
+                start = promptDate("Enter a new start date");
+            } else if (response.equals(OPT_END)) {
+                end = promptDate("Enter a new end date");
+            } else if (response.equals(OPT_COMPANY)) {
+                company = promptString("Enter a new company");
+            } else if (response.equals(OPT_PETS)) {
+                pets = promptYN("Are you traveling with pets?");
+            }
+        }
+        System.out.println("Searching for your perfect hotel...");
+            //TODO: Actually book the hotel
+
+
     }
 
     /**
