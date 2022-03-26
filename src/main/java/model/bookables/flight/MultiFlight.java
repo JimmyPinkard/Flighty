@@ -19,6 +19,10 @@ public class MultiFlight {
         return total;
     }
 
+    public int getAmountTransfers() {
+        return flights.size() - 1;
+    }
+
     public Duration getTravelTime() {
         return Duration.between(getDepartureTime(), getArrivalTime());
     }

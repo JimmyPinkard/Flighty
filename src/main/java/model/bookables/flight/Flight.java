@@ -5,16 +5,15 @@ import model.bookables.Bookable;
 import model.bookables.BookingLayout;
 import model.bookables.TravelObject;
 import search.filters.FlightFilter;
-import search.filters.SearchFilter;
-import utils.TimeUtils;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Jack Hyatt
  */
 public class Flight extends TravelObject {
+    private String airportFrom;
+    private String airportTo;
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
     private List<FlightFilter> filters;
@@ -35,6 +34,15 @@ public class Flight extends TravelObject {
         // this.arrivalTime =
         // TimeUtils.generateTime(((String)object.get("time_arrive")).substring(0, 5));
         this.bookables = (List<Bookable>) object.get("seats");
+    }
+
+
+    public String getAirportFrom() {
+        return airportFrom;
+    }
+
+    public String getAirportTo() {
+        return airportTo;
     }
 
     /**
