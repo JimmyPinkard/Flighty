@@ -4,9 +4,9 @@ import com.mongodb.DBObject;
 import model.bookables.BookingLayout;
 import model.bookables.TravelObject;
 import search.filters.FlightFilter;
-import utils.GenDate;
+import utils.TimeUtils;
 
-import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,31 +14,31 @@ import java.util.List;
  * @author Jack Hyatt
  */
 public class Flight extends TravelObject {
-    private LocalDate departureTime;
-    private LocalDate arrivalTime;
+    private LocalTime departureTime;
+    private LocalTime arrivalTime;
     private List<FlightFilter> filters;
 
     /**
      * Constructor for Bookables.Flight.Flight
      */
-    public Flight(LocalDate departureTime, LocalDate arrivalTime, BookingLayout layout) {
+    public Flight(LocalTime departureTime, LocalTime arrivalTime, BookingLayout layout) {
         super(layout);
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
     }
 
-    public Flight(DBObject json) {
-        super(json);
+    public Flight(DBObject object) {
+        super(object);
         this.filters = new ArrayList<>();
-        //this.departureTime = GenDate.generateDate((String)json.get("time_depart"));// LocalDate.parse();
-        //this.arrivalTime = GenDate.generateDate((String)json.get("time_arrive"));
+        this.departureTime = TimeUtils.generateTime(((String)object.get("time_depart")).substring(0, 5));
+        this.arrivalTime = TimeUtils.generateTime(((String)object.get("time_arrive")).substring(0, 5));
     }
 
     /**
      * 
      * @return the departure time of the flight as a LocalDate data type
      */
-    public LocalDate getDepartureTime() {
+    public LocalTime getDepartureTime() {
         return this.departureTime;
     }
 
@@ -46,7 +46,7 @@ public class Flight extends TravelObject {
      * 
      * @return the arival time of the flight as a LocalDate data type
      */
-    public LocalDate getArrivalTime() {
+    public LocalTime getArrivalTime() {
         return this.arrivalTime;
     }
 

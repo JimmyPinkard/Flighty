@@ -1,9 +1,6 @@
 package database;
 
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.DBObject;
-import com.mongodb.MongoClient;
+import com.mongodb.*;
 import com.mongodb.util.JSON;
 
 import java.util.ArrayList;
@@ -38,12 +35,12 @@ public class Database {
     }
 
     public <T> void create(String collectionName, T object) {
-        collections.get(collectionName).insert((DBObject) JSON.parse(object.toString()));
+        collections.get(collectionName).insert(BasicDBObject.parse(object.toString()));
     }
 
     public Object get(String collectionName, String field, String value) {
         try {
-            return collections.get(collectionName).findOne(JSON.parse("{" + field + ": " + value + "}"));
+            return collections.get(collectionName).findOne(BasicDBObject.parse("{" + field + ": " + value + "}"));
         }
         catch (Exception e) {
             System.err.println(e.getMessage());
@@ -76,7 +73,7 @@ public class Database {
     }
 
     public <T> void update(final String collectionName, T oldObj, T newObj) {
-        collections.get(collectionName).update((DBObject) JSON.parse(oldObj.toString()), (DBObject) JSON.parse(newObj.toString()));
+        collections.get(collectionName).update(BasicDBObject.parse(oldObj.toString()), BasicDBObject.parse(newObj.toString()));
     }
 
     public <T> void delete(final String collectionName, T obj) {
