@@ -6,13 +6,13 @@ package search.filters;
  */
 public enum FlightFilter implements SearchFilter {
     FLIGHT,
-    AIRPORT,
+    AIRPORT_FROM, 
+    AIRPORT_TO,
     COMPANY,
     PRICE,
     DURATION,
-    TIME_START,
-    TIME_END,
+    TIME_DEPART, 
+    TIME_ARRIVE,
     PETS_ALLOWED,
     FLIGHTS_LAYOVER,
-
 }

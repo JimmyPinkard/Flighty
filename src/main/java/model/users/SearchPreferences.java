@@ -20,12 +20,13 @@ public class SearchPreferences {
     public SearchPreferences() {
         fpref = new EnumMap<>(FlightFilter.class);
         fpref.put(FlightFilter.FLIGHT, "");
-        fpref.put(FlightFilter.AIRPORT, "");
+        fpref.put(FlightFilter.AIRPORT_FROM, "");
+        fpref.put(FlightFilter.AIRPORT_TO, "");
         fpref.put(FlightFilter.COMPANY, "");
         fpref.put(FlightFilter.PRICE, "");
         fpref.put(FlightFilter.DURATION, "");
-        fpref.put(FlightFilter.TIME_START, "");
-        fpref.put(FlightFilter.TIME_END, "");
+        fpref.put(FlightFilter.TIME_DEPART, "");
+        fpref.put(FlightFilter.TIME_ARRIVE, "");
         fpref.put(FlightFilter.PETS_ALLOWED, "");
         fpref.put(FlightFilter.FLIGHTS_LAYOVER, "");
         
@@ -41,24 +42,7 @@ public class SearchPreferences {
      * Generates SearchPrefrences based on what was passed from the user profile
      */
     public SearchPreferences(String data) {  //TODO: import search prefrences from data
-        fpref = new EnumMap<>(FlightFilter.class);
-        fpref.put(FlightFilter.FLIGHT, "");
-        fpref.put(FlightFilter.AIRPORT, "");
-        fpref.put(FlightFilter.COMPANY, "");
-        fpref.put(FlightFilter.PRICE, "");
-        fpref.put(FlightFilter.DURATION, "");
-        fpref.put(FlightFilter.TIME_START, "");
-        fpref.put(FlightFilter.TIME_END, "");
-        fpref.put(FlightFilter.PETS_ALLOWED, "");
-        fpref.put(FlightFilter.FLIGHTS_LAYOVER, "");
-        
-        hPref = new EnumMap<>(HotelFilter.class);
-        hPref.put(HotelFilter.HOTEL, "");
-        hPref.put(HotelFilter.COMPANY, "");
-        hPref.put(HotelFilter.PRICE, "");
-        hPref.put(HotelFilter.TIME_START, "");
-        hPref.put(HotelFilter.TIME_END, "");
-        hPref.put(HotelFilter.PETS_ALLOWED, "");
+        this();
     }
 
     /**
