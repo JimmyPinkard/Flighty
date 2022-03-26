@@ -12,30 +12,51 @@ import java.util.Scanner;
 import search.filters.FlightFilter;
 import search.filters.HotelFilter;
 
+/**
+ * UI class
+ */
 public class Flighty {
     private Scanner input;
     private UserManager userManager;
     private Data data;
 
+    /**
+     * Main method for Flighty app
+     * @param args
+     */
     public static void main(final String[] args) {
         Flighty app = new Flighty();
         app.menuMain();
     }
 
+    /**
+     * Creates a new UI / Flighty instance
+     */
     public Flighty() {
         data = Data.getInstance();
         input = new Scanner(System.in);
         userManager = new UserManager(data);
     }
 
+    /**
+     * Loads all data from database
+     */
     public void start() {
         data.loadAll();
     }
 
+    /**
+     * Saves all data to database
+     */
     public void stop() {
         data.saveAll();
     }
 
+    /**
+     * Prompts the user for input
+     * @param prompt query
+     * @return user's string input
+     */
     private String promptString(String prompt) {
         print(prompt + "\n> ");
         String response = input.nextLine();
@@ -43,6 +64,11 @@ public class Flighty {
         return response;
     }
 
+    /**
+     * Prompts the user for input
+     * @param prompt query
+     * @return user's date input
+     */
     private LocalDate promptDate(String prompt) {
         println(prompt + " (MM/DD/YY)");
 
@@ -62,10 +88,21 @@ public class Flighty {
         }
     }
 
+    /**
+     * Converts a date into a string
+     * @param date input date
+     * @return converted string
+     */
     private String toString(LocalDate date) {
         return date.format(DateTimeFormatter.ofPattern("MM/DD/YY"));
     }
 
+    /**
+     * Prompts the user for a table??? TODO: figure out what this does
+     * @param prompt
+     * @param table
+     * @return
+     */
     private String promptTable(String prompt, List<String> table) {
         String header = table.get(0);
         table.remove(0);
@@ -74,6 +111,11 @@ public class Flighty {
         return menuNumbered(prompt, table);
     }
 
+    /**
+     * Converts passports into a table of strings
+     * @param passports
+     * @return table
+     */
     private List<String> passportsToStringTable(List<Passport> passports) {
         List<List<String>> table = new ArrayList<List<String>>();
 
@@ -93,6 +135,11 @@ public class Flighty {
         return toStringTable(table);
     }
 
+    /**
+     * Helper method for passportsToStringTable()
+     * @param passport
+     * @return
+     */
     private List<String> toRow(Passport passport) {
         List<String> row = new ArrayList<String>();
 
@@ -105,6 +152,11 @@ public class Flighty {
         return row;
     }
 
+    /**
+     * Turns a passport into a string
+     * @param passport passport to convert
+     * @return converted
+     */
     private String toString(Passport passport) {
         return String.format("""
                 NAME: %s %s
@@ -117,6 +169,11 @@ public class Flighty {
                 passport.getNumber());
     }
 
+    /**
+     * Turns the list of options into a string
+     * @param options list of options
+     * @return converted string
+     */
     private String toString(List<String> options) {
         String out = "";
         out += " [";
@@ -185,14 +242,27 @@ public class Flighty {
         }
     }
 
+    /**
+     * Prompts the user to input a number
+     * @param prompt Query
+     * @return user input
+     */
     private int promptNumber(String prompt) {
         return promptNumber(prompt, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
+    /**
+     * Prints a string
+     * @param string string to print
+     */
     private void print(String string) {
         System.out.print(string);
     }
 
+    /**
+     * Prints a line
+     * @param string line to print
+     */
     private void println(String string) {
         System.out.println(string);
     }
@@ -232,6 +302,9 @@ public class Flighty {
         return options.get(response - 1);
     }
 
+    /**
+     * Main menu
+     */
     private void menuMain() {
         while (true) {
             final String OPTION_FLIGHT = "Find a Flight";
@@ -268,6 +341,12 @@ public class Flighty {
 
             if (response == OPTION_EXIT) {
                 exit();
+            } else if (response == OPTION_FLIGHT) {
+                menuBookFlight();
+            } else if (response == OPTION_HOTEL) { 
+                menuBookHotel();
+            } else if (response == OPTION_BOOKINGS) {
+                menuEditBooking();
             } else if (response == OPTION_CREATE_USER) {
                 menuCreateUser();
             } else if (response == OPTION_LOGIN) {
@@ -280,6 +359,9 @@ public class Flighty {
         }
     }
 
+    /**
+     * Menu that deals with the current user
+     */
     private void menuManageCurrentUser() {
         while (true) {
             final String OPTION_CHANGE_EMAIL = "Change Email";
@@ -331,6 +413,9 @@ public class Flighty {
         }
     }
 
+    /**
+     * Menu that manages the user's passports
+     */
     private void menuManagePassports() {
         while (true) {
             var passports = userManager.getCurrentUser().getTravelers();
@@ -368,6 +453,9 @@ public class Flighty {
 
     }
 
+    /**
+     * Menu that removes a passport
+     */
     private void menuRemovePassport() {
         var passports = userManager.getCurrentUser().getTravelers();
 
@@ -385,6 +473,9 @@ public class Flighty {
         }
     }
 
+    /**
+     * Menu that helps a user add a passport
+     */
     private void menuAddPassport() {
         Person newPerson = promptCreatePerson();
         String gender = promptString("Enter a gender");
@@ -398,6 +489,9 @@ public class Flighty {
         println("Passport added");
     }
 
+    /**
+     * menu for logging in
+     */
     private void menuLoginUser() {
         String username = promptString("Enter a username");
         if (!userManager.userExists(username)) {
@@ -415,6 +509,10 @@ public class Flighty {
         println("Logged in");
     }
 
+    /**
+     * Menu for creating a new person
+     * @return created person
+     */
     private Person promptCreatePerson() {
         String firstName = promptString("Enter a first name");
         String lastName = promptString("Enter a last name");
@@ -422,6 +520,9 @@ public class Flighty {
         return new Person(firstName, lastName);
     }
 
+    /**
+     * Menu for creating a new user
+     */
     private void menuCreateUser() {
         Person newPerson = promptCreatePerson();
         String username;
@@ -537,6 +638,33 @@ public class Flighty {
         }
     }
 
+    /**
+     * UI for booking a flight
+     */
+    private void menuBookFlight() {
+        //TODO: book flight
+
+    }
+
+    /**
+     * UI for booking a hotel
+     */
+    private void menuBookHotel() {
+        //TODO: book hotel
+    }
+
+    /**
+     * UI for editing booking history
+     */
+    private void menuEditBooking() {
+        //TODO: edit bookings (may need to wait for IO?)
+    }
+
+    /**
+     * TODO: Figure out what this does
+     * @param table
+     * @return
+     */
     List<String> toStringTable(List<List<String>> table) {
         if (table.size() == 0)
             return new ArrayList<String>();
@@ -565,6 +693,9 @@ public class Flighty {
         return out;
     }
 
+    /**
+     * Safely exits the program
+     */
     public void exit() {
         println("Exiting...");
         System.exit(0);
