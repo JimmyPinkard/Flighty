@@ -642,15 +642,75 @@ public class Flighty {
      * UI for booking a flight
      */
     private void menuBookFlight() {
+        User curr = userManager.getCurrentUser();
+        String destination;
+        String home;
+        LocalDate depart;
+        LocalDate ret;
+        String company;
+        String pets;
+        destination = promptString("Please enter a destination");
+
+        if(curr.getFPref().get(FlightFilter.AIRPORT).equals("none")) {  // Check for user pref
+            home = promptString("What is your home airport?");
+        } else {
+            home = curr.getFPref().get(FlightFilter.AIRPORT);
+            userManager.getCurrentUser().getFPref().put(FlightFilter.AIRPORT, home);
+        }
+
+        depart = promptDate("Choose a departure date");
+        ret = promptDate("Chose a return date");
+
+        if(curr.getFPref().get(FlightFilter.COMPANY).equals("none")) {
+            company = promptString("What company would you like to book with?");
+        } else {
+            company = curr.getFPref().get(FlightFilter.COMPANY);
+        }
+
+        if(curr.getFPref().get(FlightFilter.PETS_ALLOWED).equals("none")) {
+            pets = promptString("What pet policy preference do you have?");
+        } else {
+            pets = curr.getFPref().get(FlightFilter.PETS_ALLOWED);
+        }
+
         //TODO: book flight
 
     }
 
     /**
      * UI for booking a hotel
+     * @author rengotap
      */
     private void menuBookHotel() {
-        //TODO: book hotel
+        //Check User prefrences
+        User curr = userManager.getCurrentUser();
+        String location;
+        LocalDate start;
+        LocalDate end;
+        String price;
+        String company;
+        String pets;
+
+        location = promptString("Where would you like to make a reservation?");
+        start = promptDate("When would you like to start your reservation?");
+        end = promptDate("When would you like to end your reservation?");
+
+        if(curr.getHPref().get(HotelFilter.COMPANY).equals("none")) {
+            company = promptString("What company would you like to book with?");
+        } else {
+            company = curr.getHPref().get(HotelFilter.COMPANY);
+        }
+
+        if(curr.getHPref().get(HotelFilter.PETS_ALLOWED).equals("none")) {
+            pets = promptString("What pet policy preference do you have?");
+        } else {
+            pets = curr.getHPref().get(HotelFilter.PETS_ALLOWED);
+        }
+
+        println("Searching with for a hotel with the following parameters:"+'\n'+location+'\n'+start+'\n'
+            +end+'\n'+company+'\n'+pets);
+
+
     }
 
     /**
