@@ -13,30 +13,39 @@ public class SearchPreferences {
 
     public EnumMap<FlightFilter, String> fpref;
     public EnumMap<HotelFilter, String> hPref;
+    public static final String EMPTY = "none";
 
     /**
      * Generates default SearchPrefrences with all set to 'none'
      */
     public SearchPreferences() {
         fpref = new EnumMap<>(FlightFilter.class);
-        fpref.put(FlightFilter.FLIGHT, "none");
-        fpref.put(FlightFilter.AIRPORT_FROM, "none");
-        fpref.put(FlightFilter.AIRPORT_TO, "none");
-        fpref.put(FlightFilter.COMPANY, "none");
-        fpref.put(FlightFilter.PRICE, "none");
-        fpref.put(FlightFilter.DURATION, "none");
-        fpref.put(FlightFilter.TIME_DEPART, "none");
-        fpref.put(FlightFilter.TIME_ARRIVE, "none");
-        fpref.put(FlightFilter.PETS_ALLOWED, "none");
-        fpref.put(FlightFilter.FLIGHTS_LAYOVER, "none");
+        fpref.put(FlightFilter.AIRPORT_FROM, EMPTY);
+        fpref.put(FlightFilter.AIRPORT_TO, EMPTY);
+        fpref.put(FlightFilter.COMPANY, EMPTY);
+        fpref.put(FlightFilter.PRICE, EMPTY);
+        fpref.put(FlightFilter.DURATION, EMPTY);
+        fpref.put(FlightFilter.TIME_DEPART, EMPTY);
+        fpref.put(FlightFilter.TIME_ARRIVE, EMPTY);
+        fpref.put(FlightFilter.PETS_ALLOWED, EMPTY);
+        fpref.put(FlightFilter.FLIGHTS_LAYOVER, EMPTY);
         
         hPref = new EnumMap<>(HotelFilter.class);
+<<<<<<< Updated upstream
         hPref.put(HotelFilter.HOTEL, "none");
         hPref.put(HotelFilter.COMPANY, "none");
         hPref.put(HotelFilter.PRICE, "none");
         hPref.put(HotelFilter.TIME_DEPART, "none");
         hPref.put(HotelFilter.TIME_END, "none");
         hPref.put(HotelFilter.PETS_ALLOWED, "none");
+=======
+        hPref.put(HotelFilter.HOTEL, EMPTY);
+        hPref.put(HotelFilter.COMPANY, EMPTY);
+        hPref.put(HotelFilter.PRICE, EMPTY);
+        hPref.put(HotelFilter.TIME_START, EMPTY);
+        hPref.put(HotelFilter.TIME_END, EMPTY);
+        hPref.put(HotelFilter.PETS_ALLOWED, EMPTY);
+>>>>>>> Stashed changes
     }
     /**
      * Generates SearchPrefrences based on what was passed from the user profile
