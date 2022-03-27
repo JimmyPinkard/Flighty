@@ -30,7 +30,14 @@ public class Hotel extends TravelObject {
         super(object);
         this.features = new ArrayList<>();
         this.location = (String) object.get("location");
-        this.bookables = (List<Bookable>) object.get("rooms");
+        this.bookables = new ArrayList<>();
+        var rooms = (List<DBObject>) object.get("rooms");
+        for(DBObject room : rooms) {
+            int row = Integer.parseInt(Integer.toString((int)room.get("roomNum")).substring(0, 1));
+            String column = Integer.toString((int)room.get("roomNum")).substring(1);
+            this.bookables.add(new Room(row, column, (DBObject) room));
+        }
+        //this.bookables.addAll(rooms);
     }
 
     /**

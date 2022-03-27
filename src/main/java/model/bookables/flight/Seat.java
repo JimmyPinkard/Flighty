@@ -20,10 +20,10 @@ public class Seat extends Bookable {
         isBooked = false;
     }
 
-    public Seat(DBObject object) {
-        super((Integer) object.get("row"), (String) object.get("column"));
-        this.whichClass = (String) object.get("whichClass");
-        this.isBooked = (Boolean) object.get("isBooked");
+    public Seat(int row, String column, DBObject object) {
+        super(row, column);
+        this.whichClass = (String) object.get("class");
+        this.isBooked = Boolean.parseBoolean((String)object.get("isBooked"));
     }
 
     
@@ -61,5 +61,14 @@ public class Seat extends Bookable {
      */
     public boolean getIsBooked() {
         return this.isBooked;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "whichClass:'" + whichClass + '\'' +
+                ", isBooked:" + isBooked +
+                ", bookable:" + super.toString() +
+                "}";
     }
 }

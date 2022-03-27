@@ -1,13 +1,13 @@
 package model.bookables.flight;
 
 import com.mongodb.DBObject;
-import model.bookables.Bookable;
 import model.bookables.BookingLayout;
 import model.bookables.TravelObject;
 import search.filters.FlightFilter;
 import utils.TimeUtils;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,7 +38,14 @@ public class Flight extends TravelObject {
                 object.get("date") + " " + ((String) object.get("time_arrive")).substring(0, 5));
         this.airportFrom = (String) object.get("airport_code_from");
         this.airportTo = (String) object.get("airport_code_to");
-        this.bookables = (List<Bookable>) object.get("seats");
+        this.bookables = new ArrayList<>();
+        var seats = (List<DBObject>) object.get("seats");
+        for(DBObject seat : seats) {
+            int row = (int)seat.get("row");
+            String column = Integer.toString((int)seat.get("column"));
+            this.bookables.add(new Seat(row, column, object));
+        }
+        //this.bookables.addAll(seats);
     }
 
 
@@ -68,8 +75,13 @@ public class Flight extends TravelObject {
 
     @Override
     public String toString() {
-        return "{departureTime:" + departureTime + ", arrivalTime:" + arrivalTime + "}" +
-                ", travelObject:" + super.toString() +
+        return "{" +
+                "airportFrom:'" + airportFrom + '\'' +
+                ", airportTo:'" + airportTo + '\'' +
+                ", departureTime:" + departureTime +
+                ", arrivalTime:" + arrivalTime +
+                ", filters:" + filters +
+                ", travelObject: " + super.toString() +
                 "}";
     }
 }

@@ -1,6 +1,8 @@
 package model.bookables;
 
 import com.mongodb.DBObject;
+import search.filters.FlightFilter;
+import search.filters.HotelFilter;
 import search.filters.SearchFilter;
 
 import java.util.ArrayList;
@@ -37,9 +39,29 @@ public abstract class TravelObject {
         this.company = (String) object.get("company");
         //this.cost = (Double) object.get("cost");
         this.rating = (Double) object.get("rating");
-        this.features = (List<String>) object.get("features");
-        this.filters = (List<SearchFilter>) object.get("filters");
+        this.features = new ArrayList<>();
+        var temp = (List<String>) object.get("features");
+        this.features.addAll(temp);
+        this.filters = new ArrayList<>();
+        var temp2 = (List<DBObject>) object.get("filters");
+        for(Object filter : temp2) {
+            this.filters.add(getFilter(filter));
+        }
         this.layout = null;
+    }
+
+    private SearchFilter getFilter(Object filter) {
+        for(SearchFilter flightFilter : FlightFilter.values()) {
+            if(filter.equals(flightFilter.toString())) {
+                return flightFilter;
+            }
+        }
+        for(SearchFilter hotelFilters : HotelFilter.values()) {
+            if(filter.equals(hotelFilters)) {
+                return hotelFilters;
+            }
+        }
+        return null;
     }
 
     /**
@@ -67,7 +89,7 @@ public abstract class TravelObject {
     }
 
     public void setFilters(final List<SearchFilter> filters) {
-        //TODO: Implement
+        this.filters = filters;
     }
 
     @Override
@@ -76,7 +98,7 @@ public abstract class TravelObject {
                 "id:'" + id + '\'' +
                 ", bookables:" + bookables +
                 ", company:'" + company + '\'' +
-                ", cost:" + cost +
+                //", cost:" + cost +
                 ", rating:" + rating +
                 ", layout:" + layout +
                 ", features:" + features +

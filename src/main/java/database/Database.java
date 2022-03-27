@@ -3,9 +3,7 @@ package database;
 import com.mongodb.*;
 import com.mongodb.util.JSON;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Database {
@@ -49,7 +47,7 @@ public class Database {
         return null;
     }
 
-    public Object get(String collectionName) {
+    public DBObject get(String collectionName) {
         try {
             return collections.get(collectionName).findOne();
         }
@@ -60,16 +58,16 @@ public class Database {
         return null;
     }
 
-    public List<DBObject> getAll(final String collectionName) {
-        List<DBObject> objs = new ArrayList<>();
+    public DBCursor getAll(final String collectionName) {
+        DBCursor cursor = null;
         try {
-            collections.get(collectionName).find().forEach(objs::add);
+            cursor = collections.get(collectionName).find();
         }
         catch(Exception e) {
             System.err.println(e.getMessage());
             System.exit(1);
         }
-        return objs;
+        return cursor;
     }
 
     public <T> void update(final String collectionName, T oldObj, T newObj) {

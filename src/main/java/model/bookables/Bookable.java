@@ -1,5 +1,8 @@
 package model.bookables;
 
+import com.mongodb.DBObject;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Bookable implements Comparable<Bookable> {
@@ -18,6 +21,16 @@ public abstract class Bookable implements Comparable<Bookable> {
     public Bookable(int row, String col) {
         this.row = row;
         this.col = col;
+    }
+
+    public Bookable(int row, String col, DBObject object) {
+        this.row = row;
+        this.col = col;
+        this.id = (String) object.get("id");
+        this.price = (int) object.get("price");
+        this.amenities = new ArrayList<>();
+        //var temp = (List<String>) object.get("amenities");
+        //this.amenities.addAll(temp);
     }
 
     /**

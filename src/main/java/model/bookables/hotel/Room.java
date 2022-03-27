@@ -1,5 +1,6 @@
 package model.bookables.hotel;
 
+import com.mongodb.DBObject;
 import model.bookables.Bookable;
 
 import java.time.LocalDate;
@@ -21,6 +22,13 @@ public class Room extends Bookable {
         super(floor, roomNum);
         info = "A Bookables.Hotel.Hotel.Room";
         bookedDays = new ArrayList<LocalDate>();
+    }
+
+    public Room(int floor, String roomNum, DBObject object) {
+        super(floor, roomNum, object);
+        info = (String) object.get("info");
+        bookedDays = new ArrayList<LocalDate>();
+        bookedDays.addAll((List<LocalDate>)object.get("bookings"));
     }
 
     

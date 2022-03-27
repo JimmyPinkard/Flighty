@@ -1,5 +1,6 @@
 package database;
 
+import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import model.Booking;
 import model.bookables.flight.Flight;
@@ -58,26 +59,38 @@ public class Data {
     }
 
     private void loadFlights() {
-        for(DBObject object : db.getAll("Flights")) {
-            flights.add(new Flight(object));
+        DBCursor cursor = db.getAll("Flights");
+        while(cursor.hasNext()) {
+            flights.add(new Flight(cursor.next()));
+            /*
+            System.out.println(cursor.curr());
+            System.out.println(flights.get(0));
+            System.exit(1);
+            */
         }
     }
 
     private void loadHotels() {
-        for(DBObject object : db.getAll("Hotels")) {
-            hotels.add(new Hotel(object));
+        DBCursor cursor = db.getAll("Hotels");
+        while(cursor.hasNext()) {
+            hotels.add(new Hotel(cursor.next()));
+            System.out.println(cursor.curr());
+            System.out.println(hotels.get(0));
+            System.exit(1);
         }
     }
 
     private void loadUsers() {
-        for(DBObject object : db.getAll("Users")) {
-            users.add(new User(object));
+        DBCursor cursor = db.getAll("Users");
+        while(cursor.hasNext()) {
+            users.add(new User(cursor.next()));
         }
     }
 
     private void loadBookings() {
-        for(DBObject object : db.getAll("Bookings")) {
-            bookings.add(new Booking(object));
+        DBCursor cursor = db.getAll("Bookings");
+        while(cursor.hasNext()) {
+            bookings.add(new Booking(cursor.next()));
         }
     }
 
