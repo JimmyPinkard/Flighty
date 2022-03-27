@@ -45,6 +45,14 @@ public abstract class Bookable implements Comparable<Bookable> {
     }
 
     /**
+     * Gets the price
+     * @return double for the price
+     */
+    public double getPrice () {
+        return this.price;
+    }
+
+    /**
      * Method to compare a bookable to another
      * @return 0 if the compared bookable is null or the same as this bookable
      * returns less than 0 if this bookable has a lower row, or a lower column if the rows are the same

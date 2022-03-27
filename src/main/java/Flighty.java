@@ -12,8 +12,10 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Scanner;
 import search.SearchFlights;
+import search.SearchHotels;
 import search.filters.FlightFilter;
 import search.filters.HotelFilter;
+import model.bookables.hotel.Hotel;
 
 /**
  * UI class
@@ -197,6 +199,51 @@ public class Flighty {
         out += "]\n";
 
         return out;
+    }
+
+    /**
+     * Returns a simply formated flight with only the most relevant information
+     * @param flight
+     * @return flight single line form
+     * @author rengotap
+     */
+    private String displayFlightSimple(Flight flight) {  //TODO: Make this display properly
+        String format = "";
+        return format;
+    }
+
+    /**
+     * Returns a nicely formated flight with all relevant information
+     * @param flight
+     * @return flight multi line form
+     * @author rengotap
+     */
+    private String displayFlightFull(Flight flight) {  // TODO: Make this display properly
+        String format = "";
+        return format;
+    }
+
+    /**
+     * Returns a simply formated hotel with only the most relevant information
+     * @param hotel
+     * @return Hotel single line: name, numbeds, price, stars
+     * @author rengotap
+     */
+    private String displayHotelSimple(Hotel hotel) { //TODO: Make this display properly
+        String format = hotel.getLocation() + " | number of beds: "
+            + hotel.getBeds() + " | price $" + hotel.getCost();
+        return format;
+    }
+
+    /**
+     * Returns a nicely formated hotel with all relevant information
+     * @param hotel
+     * @return Hotel string location, company, nl, price, stars, nl, beds
+     * @author rengotap
+     */
+    private String displayHotelFull(Hotel hotel) {  // TODO: make this display properly
+        String format = hotel.getLocation()+" | "+hotel.getCost()+'\n'+hotel.getBeds();
+        return format;
     }
 
     /**
@@ -613,9 +660,9 @@ public class Flighty {
                 + userManager.getCurrentUser().getFPref().get(FlightFilter.AIRPORT_FROM);
         final String OPTION_COMPANY = "Company: " + userManager.getCurrentUser().getFPref().get(FlightFilter.COMPANY);
         final String OPTION_TIME_DEPART = "Earliest Departure Time: "
-                + userManager.getCurrentUser().getFPref().get(FlightFilter.TIME_DEPART);
+                + userManager.getCurrentUser().getFPref().get(FlightFilter.TIME_EARLIEST);
         final String OPTION_TIME_ARRIVE = "Latest Departure Time: "
-                + userManager.getCurrentUser().getFPref().get(FlightFilter.TIME_ARRIVE);
+                + userManager.getCurrentUser().getFPref().get(FlightFilter.TIME_LATEST);
         final String OPTION_PETS = "Traveling with Pets: " + userManager.getCurrentUser().getFPref().get(FlightFilter.PETS_ALLOWED);
         final String OPTION_LAYOVER = "Layovers: " + userManager.getCurrentUser().getFPref().get(FlightFilter.FLIGHTS_LAYOVER);
         final String OPTION_BACK = "Back to User Menu";
@@ -636,10 +683,10 @@ public class Flighty {
         } else if(response.equals(OPTION_COMPANY)) {
             userManager.getCurrentUser().getFPref().put(FlightFilter.COMPANY, promptString("Enter a new Company: "));
         } else if (response.equals(OPTION_TIME_DEPART)) {
-            userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_DEPART,
+            userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_EARLIEST,
                     promptString("Enter your earliest time: "));
         } else if (response.equals(OPTION_TIME_ARRIVE)) {
-            userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_ARRIVE,
+            userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_LATEST,
                     promptString("Enter your latest time: "));
         } else if (response.equals(OPTION_PETS)) {
             userManager.getCurrentUser().getFPref().put(FlightFilter.PETS_ALLOWED, Boolean.toString(promptYN("Will you be traveling with pets?")));
@@ -705,23 +752,23 @@ public class Flighty {
                 }
             }
 
-            if (hasPref(curr.getFPref().get(FlightFilter.TIME_DEPART))) {
-                timeEarly = curr.getFPref().get(FlightFilter.TIME_DEPART);
+            if (hasPref(curr.getFPref().get(FlightFilter.TIME_EARLIEST))) {
+                timeEarly = curr.getFPref().get(FlightFilter.TIME_EARLIEST);
             } else {
                 timeEarly = promptString("What is the earliest time you would be willing to leave?");
                 if (promptYN("Would you like to save this as a default option?")) {
                     println("Setting as user default");
-                    userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_DEPART, timeEarly);
+                    userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_EARLIEST, timeEarly);
                 }
             }
 
-            if (hasPref(curr.getFPref().get(FlightFilter.TIME_ARRIVE))) {
-                timeLate = curr.getFPref().get(FlightFilter.TIME_ARRIVE);
+            if (hasPref(curr.getFPref().get(FlightFilter.TIME_LATEST))) {
+                timeLate = curr.getFPref().get(FlightFilter.TIME_LATEST);
             } else {
                 timeLate = promptString("What is the latest time you would be willing to leave?");
                 if (promptYN("Would you like to save this as a default option?")) {
                     println("Setting as user default");
-                    userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_ARRIVE, timeLate);
+                    userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_LATEST, timeLate);
                 }
             }
 
@@ -757,7 +804,7 @@ public class Flighty {
             }
     
             if (hasPref(curr.getFPref().get(FlightFilter.PETS_ALLOWED))) {
-                pets = Boolean.parseBoolean(curr.getFPref().get(FlightFilter.PETS_ALLOWED)); //TODO: make bool
+                pets = Boolean.parseBoolean(curr.getFPref().get(FlightFilter.PETS_ALLOWED));
             } else {
                 pets = promptYN("Will you be traveling with any pets?");
                 if (promptYN("Would you like to save this as a default option?")) {
@@ -776,8 +823,8 @@ public class Flighty {
             println("Please confirm your search parameters");
             final String OPT_DEST = "Destination: "+destination;
             final String OPT_HOME = "Departing From:"+home;
-            final String OPT_START = "Start Date: "+toString(depart);
-            final String OPT_END = "End Date: "+toString(ret);
+            final String OPT_START = "Departure Date: "+toString(depart);
+            final String OPT_END = "Return Date: "+toString(ret);
             final String OPT_TIME_EARLY = "Earliest Time: "+timeEarly;
             final String OPT_TIME_LATE = "Latest Time: " + timeLate;
             final String OPT_LAYOVER = "Layovers: " +Boolean.toString(layover);
@@ -825,6 +872,18 @@ public class Flighty {
         }
         System.out.println("Searching for your perfect flight...");
         //TODO: actually book flight
+        EnumMap<FlightFilter, String> query = new EnumMap<>(FlightFilter.class);
+        query.put(FlightFilter.AIRPORT_TO, destination);
+        query.put(FlightFilter.AIRPORT_FROM, home);
+        query.put(FlightFilter.DATE_DEPART, toString(depart));
+        query.put(FlightFilter.DATE_ARRIVE, toString(ret));
+        query.put(FlightFilter.TIME_EARLIEST, timeEarly);
+        query.put (FlightFilter.TIME_LATEST, timeLate);
+        query.put(FlightFilter.FLIGHTS_LAYOVER, Boolean.toString(layover));
+        query.put(FlightFilter.COMPANY, company);
+        query.put(FlightFilter.PETS_ALLOWED, Boolean.toString(pets));
+
+        //SearchFlights.execute(data, query);
 
     }
 
@@ -904,8 +963,66 @@ public class Flighty {
             }
         }
         System.out.println("Searching for your perfect hotel...");
-            //TODO: Actually book the hotel
+            EnumMap<HotelFilter, String> query = new EnumMap<>(HotelFilter.class);
+            query.put(HotelFilter.LOCATION, location);
+            query.put(HotelFilter.COMPANY, company);
+            query.put(HotelFilter.TIME_DEPART, toString(start));
+            query.put(HotelFilter.TIME_END,  toString(end));
+            query.put(HotelFilter.PETS_ALLOWED, Boolean.toString(pets));
 
+            //SearchHotels.execute(data, query);
+            hotelResult(query);
+    }
+
+    /**
+     * Displays search results and allows user to purchase tickets
+     * @param query search parameters
+     */
+    private void hotelResult(EnumMap<HotelFilter,String> query) {
+        List<Hotel> searchResults = SearchHotels.execute(data, query);
+        println("Here are the best results we could find: " +
+            '\n'+"Unsatisfied with your results? Try changing your search parameters!");
+        // Assuming that these are the top.. 3?
+        final String OPT_ONE = displayHotelSimple(searchResults.get(0));
+        final String OPT_TWO = displayHotelSimple(searchResults.get(1));
+        final String OPT_THREE = displayHotelSimple(searchResults.get(2));
+        final String OPT_EXIT = "Return to main menu";
+        List<String> options = new ArrayList<String>();
+        options.add(OPT_ONE);
+        options.add(OPT_TWO);
+        options.add(OPT_THREE);
+        options.add(OPT_EXIT);
+        boolean chosen = false;
+        while (!chosen) {
+            String response = menuNumbered("Enter a Number", options);
+            if (response.equals(OPT_EXIT)) {
+                chosen = true;
+                return;
+            } else if (response.equals(OPT_ONE)) {
+                if (investigateHotel(searchResults.get(0)))
+                    chosen = true;
+            } else if (response.equals(OPT_TWO)) {
+                if (investigateHotel(searchResults.get(1))) 
+                    chosen = true;
+            } else if (response.equals(OPT_THREE)) {
+                if (investigateHotel(searchResults.get(2)))
+                    chosen = true;
+            }
+        }
+    }
+
+    /**
+     * Provides more information about a hotel, and allows the user to book it
+     * @param hotel
+     * @return returns true if hotel was booked
+     */
+    private boolean investigateHotel(Hotel hotel) {
+        displayHotelFull(hotel);
+        if (promptYN("Book this hotel?")) {
+            //TODO: interface with booking agent
+            return true;
+        }
+        return false; // go back to results
 
     }
 

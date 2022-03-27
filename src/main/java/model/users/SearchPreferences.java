@@ -25,8 +25,8 @@ public class SearchPreferences {
         fpref.put(FlightFilter.COMPANY, "none");
         fpref.put(FlightFilter.PRICE, "none");
         fpref.put(FlightFilter.DURATION, "none");
-        fpref.put(FlightFilter.TIME_DEPART, "none");
-        fpref.put(FlightFilter.TIME_ARRIVE, "none");
+        fpref.put(FlightFilter.TIME_EARLIEST, "none");
+        fpref.put(FlightFilter.TIME_LATEST, "none");
         fpref.put(FlightFilter.PETS_ALLOWED, "none");
         fpref.put(FlightFilter.FLIGHTS_LAYOVER, "none");
         
