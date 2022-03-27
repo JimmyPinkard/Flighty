@@ -23,23 +23,29 @@ public class Flight extends TravelObject {
     /**
      * Constructor for Bookables.Flight.Flight
      */
-    public Flight(LocalDateTime departureTime, LocalDateTime arrivalTime, BookingLayout layout) {
+    public Flight(LocalDateTime departureTime, LocalDateTime arrivalTime, String airportFrom,
+            String airportTo, BookingLayout layout) {
         super(layout);
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
+        this.airportFrom = airportFrom;
+        this.airportTo = airportTo;
     }
 
     public Flight(DBObject object) {
         super(object);
         this.departureTime = TimeUtils.genDateTime(
-                object.get("date") + " " + ((String) object.get("time_depart")).substring(0, 5));
+                object.get("date_depart") + " "
+                        + ((String) object.get("time_depart")).substring(0, 5));
         this.arrivalTime = TimeUtils.genDateTime(
-                object.get("date") + " " + ((String) object.get("time_arrive")).substring(0, 5));
+                object.get("date_arrive") + " "
+                        + ((String) object.get("time_arrive")).substring(0, 5));
         this.airportFrom = (String) object.get("airport_code_from");
         this.airportTo = (String) object.get("airport_code_to");
         this.bookables = (List<Bookable>) object.get("seats");
+        this.airportFrom = (String) object.get("airport_code_from");
+        this.airportTo = (String) object.get("airport_code_to");
     }
-
 
     public String getAirportFrom() {
         return airportFrom;

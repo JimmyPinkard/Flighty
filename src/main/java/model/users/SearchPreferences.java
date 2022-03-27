@@ -27,8 +27,10 @@ public class SearchPreferences {
         fpref.put(FlightFilter.DURATION, EMPTY);
         fpref.put(FlightFilter.TIME_DEPART, EMPTY);
         fpref.put(FlightFilter.TIME_ARRIVE, EMPTY);
+        fpref.put(FlightFilter.DATE_DEPART, EMPTY);
+        fpref.put(FlightFilter.DATE_ARRIVE, EMPTY);
         fpref.put(FlightFilter.PETS_ALLOWED, EMPTY);
-        fpref.put(FlightFilter.FLIGHTS_LAYOVER, EMPTY);
+        fpref.put(FlightFilter.LAYOVERS, EMPTY);
         
         hPref = new EnumMap<>(HotelFilter.class);
         hPref.put(HotelFilter.HOTEL, EMPTY);
