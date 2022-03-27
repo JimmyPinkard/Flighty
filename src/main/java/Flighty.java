@@ -1089,10 +1089,33 @@ public class Flighty {
     }
 
     /**
-     * UI for editing booking history
+     * UI for editing (deleting really) booking history
      */
     private void menuEditBooking() {
-        //TODO: edit bookings (may need to wait for IO?)
+        if(userManager.isAnyoneLoggedIn() && 
+            !userManager.getCurrentUser().getBookingHistory().isEmpty()) {
+        
+            User curr = userManager.getCurrentUser();
+
+            List<String> options = new ArrayList<String>();
+            for (int i = 1; i < curr.getBookingHistory().size(); i++) { // should add every booking as an option
+                options.add(curr.getBookingHistory().get(i).toString());
+            }
+            final String OPTIONS_EXIT = "Return to main menu";
+            options.add(OPTIONS_EXIT);
+        
+            String response = menuNumbered("Enter a Number", options);
+            if (response.equals(options.get(options.size()-1))) {
+                return;
+            } else {
+                if (promptYN("Are you sure you want to delete this booking?")) {
+                    userManager.getCurrentUser().removeBooking(curr.getBookingHistory().get(Integer.parseInt(response)));
+                    println("Booking removed, your payment has been refunded.");
+                }
+            }
+        } else {
+            println("No bookings to modify.");
+        }
     }
 
     /**
