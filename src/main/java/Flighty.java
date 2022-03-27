@@ -1,10 +1,13 @@
 import database.Data;
 import model.bookables.flight.Flight;
+import model.users.SearchPreferences;
 import model.users.User;
 import model.users.info.Passport;
 import model.users.info.Person;
 import controller.UserManager;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -14,6 +17,7 @@ import java.util.Scanner;
 import search.SearchFlights;
 import search.filters.FlightFilter;
 import search.filters.HotelFilter;
+import utils.TimeUtils;
 
 /**
  * UI class
@@ -90,7 +94,7 @@ public class Flighty {
             print("> ");
             response = input.nextLine();
             try {
-                LocalDate date = LocalDate.parse(response, formatter);
+                LocalDate date = TimeUtils.generateDate(response);
                 return date;
             } catch (DateTimeParseException e) {
                 println("Invalid date");
@@ -617,7 +621,8 @@ public class Flighty {
         final String OPTION_TIME_ARRIVE = "Latest Departure Time: "
                 + userManager.getCurrentUser().getFPref().get(FlightFilter.TIME_ARRIVE);
         final String OPTION_PETS = "Traveling with Pets: " + userManager.getCurrentUser().getFPref().get(FlightFilter.PETS_ALLOWED);
-        final String OPTION_LAYOVER = "Layovers: " + userManager.getCurrentUser().getFPref().get(FlightFilter.FLIGHTS_LAYOVER);
+        final String OPTION_LAYOVER =
+                "Layovers: " + userManager.getCurrentUser().getFPref().get(FlightFilter.LAYOVERS);
         final String OPTION_BACK = "Back to User Menu";
         List<String> options = new ArrayList<String>();
 
@@ -644,7 +649,8 @@ public class Flighty {
         } else if (response.equals(OPTION_PETS)) {
             userManager.getCurrentUser().getFPref().put(FlightFilter.PETS_ALLOWED, Boolean.toString(promptYN("Will you be traveling with pets?")));
         } else if (response.equals(OPTION_LAYOVER)) {
-            userManager.getCurrentUser().getFPref().put(FlightFilter.FLIGHTS_LAYOVER, Boolean.toString(promptYN("Are you willing to take a layover?")));
+            userManager.getCurrentUser().getFPref().put(FlightFilter.LAYOVERS,
+                    Boolean.toString(promptYN("Are you willing to take a layover?")));
         } else if (response.equals(OPTION_BACK)) {
             return;
         }
@@ -725,13 +731,14 @@ public class Flighty {
                 }
             }
 
-            if (hasPref(curr.getFPref().get(FlightFilter.FLIGHTS_LAYOVER))) {
-                layover = Boolean.parseBoolean(curr.getFPref().get(FlightFilter.FLIGHTS_LAYOVER));
+            if (hasPref(curr.getFPref().get(FlightFilter.LAYOVERS))) {
+                layover = Boolean.parseBoolean(curr.getFPref().get(FlightFilter.LAYOVERS));
             } else {
                 layover = promptYN("Would you be willing to take a layover flight?");
                 if (promptYN("Would you like to save this as a default option?")) {
                     println("Setting as user default");
-                    userManager.getCurrentUser().getFPref().put(FlightFilter.FLIGHTS_LAYOVER, Boolean.toString(layover));
+                    userManager.getCurrentUser().getFPref().put(FlightFilter.LAYOVERS,
+                            Boolean.toString(layover));
                 }
             }
 
@@ -928,7 +935,9 @@ public class Flighty {
     }
 
     /**
-     * TODO: Figure out what this does
+     * Turns the rows of a 2d array of strings into one strings with each element padded with
+     * whitespace
+     * 
      * @param table
      * @return
      */
