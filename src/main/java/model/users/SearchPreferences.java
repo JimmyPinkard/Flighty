@@ -31,21 +31,12 @@ public class SearchPreferences {
         fpref.put(FlightFilter.FLIGHTS_LAYOVER, EMPTY);
         
         hPref = new EnumMap<>(HotelFilter.class);
-<<<<<<< Updated upstream
-        hPref.put(HotelFilter.HOTEL, "none");
-        hPref.put(HotelFilter.COMPANY, "none");
-        hPref.put(HotelFilter.PRICE, "none");
-        hPref.put(HotelFilter.TIME_DEPART, "none");
-        hPref.put(HotelFilter.TIME_END, "none");
-        hPref.put(HotelFilter.PETS_ALLOWED, "none");
-=======
         hPref.put(HotelFilter.HOTEL, EMPTY);
         hPref.put(HotelFilter.COMPANY, EMPTY);
         hPref.put(HotelFilter.PRICE, EMPTY);
         hPref.put(HotelFilter.TIME_START, EMPTY);
         hPref.put(HotelFilter.TIME_END, EMPTY);
         hPref.put(HotelFilter.PETS_ALLOWED, EMPTY);
->>>>>>> Stashed changes
     }
     /**
      * Generates SearchPrefrences based on what was passed from the user profile
