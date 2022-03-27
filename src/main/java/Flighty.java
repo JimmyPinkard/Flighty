@@ -884,6 +884,7 @@ public class Flighty {
         query.put(FlightFilter.PETS_ALLOWED, Boolean.toString(pets));
 
         flightResult(query);
+        println("                      Thank you for using...");
     }
 
     /**
@@ -895,33 +896,36 @@ public class Flighty {
         println("Here are the best results we could find: " +
             '\n'+"Unsatisfied with your results? Try changing your search parameters!");
         // Assuming that these are the top.. 3?
-        final String OPT_ONE = displayFlightSimple(searchResults.get(0));
-        final String OPT_TWO = displayFlightSimple(searchResults.get(1));
-        final String OPT_THREE = displayFlightSimple(searchResults.get(2));
-        final String OPT_EXIT = "Return to main menu";
-        List<String> options = new ArrayList<String>();
-        options.add(OPT_ONE);
-        options.add(OPT_TWO);
-        options.add(OPT_THREE);
-        options.add(OPT_EXIT);
-        boolean chosen = false;
-        while (!chosen) {
-            String response = menuNumbered("Enter a Number", options);
-            if (response.equals(OPT_EXIT)) {
-                chosen = true;
-                return;
-            } else if (response.equals(OPT_ONE)) {
-                if (investigateFlight(searchResults.get(0)))
+        if (!searchResults.isEmpty()) {
+            final String OPT_ONE = displayFlightSimple(searchResults.get(0));
+            final String OPT_TWO = displayFlightSimple(searchResults.get(1));
+            final String OPT_THREE = displayFlightSimple(searchResults.get(2));
+            final String OPT_EXIT = "Return to main menu";
+            List<String> options = new ArrayList<String>();
+            options.add(OPT_ONE);
+            options.add(OPT_TWO);
+            options.add(OPT_THREE);
+            options.add(OPT_EXIT);
+            boolean chosen = false;
+            while (!chosen) {
+                String response = menuNumbered("Enter a Number", options);
+                if (response.equals(OPT_EXIT)) {
                     chosen = true;
-            } else if (response.equals(OPT_TWO)) {
-                if (investigateFlight(searchResults.get(1))) 
-                    chosen = true;
-            } else if (response.equals(OPT_THREE)) {
-                if (investigateFlight(searchResults.get(2)))
-                    chosen = true;
+                    return;
+                } else if (response.equals(OPT_ONE)) {
+                    if (investigateFlight(searchResults.get(0)))
+                        chosen = true;
+                } else if (response.equals(OPT_TWO)) {
+                    if (investigateFlight(searchResults.get(1))) 
+                        chosen = true;
+                } else if (response.equals(OPT_THREE)) {
+                    if (investigateFlight(searchResults.get(2)))
+                        chosen = true;
+                }
             }
+        } else {
+            println("Unable to find any matching results.");
         }
-
     }
 
     /**
@@ -930,10 +934,22 @@ public class Flighty {
      * @return returns true if flight was booked
      */
     private boolean investigateFlight(Flight flight) {
+        boolean unbooked = true;
         displayFlightFull(flight);
-        if (promptYN("Book a seat on this flight?")) {
-            //TODO: interface with booking agent
-            return true;
+        while (unbooked) {
+            if (promptYN("Book seats on this flight?")) {
+                //TODO: interface with booking agent
+                int bookSeats = promptNumber("How many seats would you like to book?", 0, 999); // TODO: change this number to max available
+                int priceTotal = 0;
+                for(int i = 0; i < bookSeats; i++) {
+                    // Print available seats
+                    // Pick seat number
+                }
+                if (promptYN("Book " +bookSeats+" seats for $"+priceTotal+"?")) {
+                    // Book seats
+                    return true;
+                }
+            }
         }
         return false; // go back to results
     }
@@ -1023,6 +1039,7 @@ public class Flighty {
 
             //SearchHotels.execute(data, query);
             hotelResult(query);
+            println("                      Thank you for using...");
     }
 
     /**
@@ -1034,31 +1051,35 @@ public class Flighty {
         println("Here are the best results we could find: " +
             '\n'+"Unsatisfied with your results? Try changing your search parameters!");
         // Assuming that these are the top.. 3?
-        final String OPT_ONE = displayHotelSimple(searchResults.get(0));
-        final String OPT_TWO = displayHotelSimple(searchResults.get(1));
-        final String OPT_THREE = displayHotelSimple(searchResults.get(2));
-        final String OPT_EXIT = "Return to main menu";
-        List<String> options = new ArrayList<String>();
-        options.add(OPT_ONE);
-        options.add(OPT_TWO);
-        options.add(OPT_THREE);
-        options.add(OPT_EXIT);
-        boolean chosen = false;
-        while (!chosen) {
-            String response = menuNumbered("Enter a Number", options);
-            if (response.equals(OPT_EXIT)) {
-                chosen = true;
-                return;
-            } else if (response.equals(OPT_ONE)) {
-                if (investigateHotel(searchResults.get(0)))
+        if(!searchResults.isEmpty()) {
+            final String OPT_ONE = displayHotelSimple(searchResults.get(0));
+            final String OPT_TWO = displayHotelSimple(searchResults.get(1));
+            final String OPT_THREE = displayHotelSimple(searchResults.get(2));
+            final String OPT_EXIT = "Return to main menu";
+            List<String> options = new ArrayList<String>();
+            options.add(OPT_ONE);
+            options.add(OPT_TWO);
+            options.add(OPT_THREE);
+            options.add(OPT_EXIT);
+            boolean chosen = false;
+            while (!chosen) {
+                String response = menuNumbered("Enter a Number", options);
+                if (response.equals(OPT_EXIT)) {
                     chosen = true;
-            } else if (response.equals(OPT_TWO)) {
-                if (investigateHotel(searchResults.get(1))) 
-                    chosen = true;
-            } else if (response.equals(OPT_THREE)) {
-                if (investigateHotel(searchResults.get(2)))
-                    chosen = true;
+                    return;
+                } else if (response.equals(OPT_ONE)) {
+                    if (investigateHotel(searchResults.get(0)))
+                        chosen = true;
+                } else if (response.equals(OPT_TWO)) {
+                    if (investigateHotel(searchResults.get(1))) 
+                        chosen = true;
+                } else if (response.equals(OPT_THREE)) {
+                    if (investigateHotel(searchResults.get(2)))
+                        chosen = true;
+                }
             }
+        } else {
+            println("Unable to find any matching results.");
         }
     }
 
