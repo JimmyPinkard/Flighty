@@ -31,9 +31,10 @@ public class Flight extends TravelObject {
 
     public Flight(DBObject object) {
         super(object);
-        this.departureTime = TimeUtils.genDateTime(
+        final TimeUtils timeUtils = TimeUtils.getInstance();
+        this.departureTime = timeUtils.genDateTime(
                 object.get("date") + " " + ((String) object.get("time_depart")).substring(0, 5));
-        this.arrivalTime = TimeUtils.genDateTime(
+        this.arrivalTime = timeUtils.genDateTime(
                 object.get("date") + " " + ((String) object.get("time_arrive")).substring(0, 5));
         this.airportFrom = (String) object.get("airport_code_from");
         this.airportTo = (String) object.get("airport_code_to");

@@ -21,6 +21,14 @@ public class Booking {
         this.booked = (Bookable) object.get("booked");
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public Bookable getBooked() {
+        return booked;
+    }
+
     @Override
     public String toString() {
         return "{" +

@@ -1,6 +1,7 @@
 package model.users;
 
 import com.mongodb.DBObject;
+import model.bookables.Bookable;
 import model.bookables.TravelObject;
 import model.users.info.Passport;
 import model.users.info.Person;
@@ -25,7 +26,7 @@ public class User {
 
     private List<String>specialReq;
     private List<Passport> travelers; // passport 0 should always be the user
-    private List<TravelObject> bookingHistory;
+    private List<Bookable> bookingHistory;
     private Person person;
 
     /**
@@ -43,7 +44,7 @@ public class User {
         preferences = new SearchPreferences();  //TODO: Import Prefrences from data
         specialReq = new ArrayList<String>();
         travelers = new ArrayList<Passport>();
-        bookingHistory = new ArrayList<TravelObject>();
+        bookingHistory = new ArrayList<Bookable>();
     }
 
     public User(DBObject object) {
@@ -54,7 +55,7 @@ public class User {
         //this.preferences needs to be implemented
         this.travelers = (List<Passport>) object.get("passports");
         this.specialReq =  (List<String>) object.get("specialReq");
-        this.bookingHistory = (List<TravelObject>) object.get("bookedListings");
+        this.bookingHistory = (List<Bookable>) object.get("bookedListings");
     }
 
     /**
@@ -70,7 +71,7 @@ public class User {
         this.person = new Person("temp", "temp");
         preferences = new SearchPreferences();
         specialReq = new ArrayList<String>();
-        bookingHistory = new ArrayList<TravelObject>();
+        bookingHistory = new ArrayList<Bookable>();
     }
 
     // TODO: (James) not the user's job - should be moved to userManager
@@ -215,7 +216,7 @@ public class User {
      * For booking flights/reservations
      * @param toAdd
      */
-    public void addBooking(TravelObject toAdd) {
+    public void addBooking(Bookable toAdd) {
         bookingHistory.add(toAdd);
     }
 
@@ -224,7 +225,7 @@ public class User {
      * For canceling flights/reservations
      * @param toRemove
      */
-    public void removeBooking(TravelObject toRemove) {
+    public void removeBooking(Bookable toRemove) {
         bookingHistory.remove(toRemove);
     }
 
@@ -232,7 +233,7 @@ public class User {
      * Gets a list of the user's previous bookings
      * @return booking history
      */
-    public List<TravelObject> getBookingHistory() {
+    public List<Bookable> getBookingHistory() {
         return bookingHistory;
     }
 

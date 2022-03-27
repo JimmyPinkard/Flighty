@@ -1,7 +1,7 @@
 package controller;
 
 import model.Booking;
-import model.bookables.Listing;
+import model.bookables.Bookable;
 import database.Data;
 import model.users.User;
 
@@ -9,9 +9,20 @@ import model.users.User;
  * Handes booking
  */
 public class BookingAgent {
-    private Data data;
+    private final Data data;
 
-    public void bookListing(Listing listing, User user) {}
+    public BookingAgent() {
+        this.data = Data.getInstance();
+    }
 
-    public void unbookListing(Booking booking) {}
+    public void bookListing(Bookable bookable, User user) {
+        final Booking booking = new Booking(user, bookable);
+        data.getBookings().add(booking);
+        user.addBooking(bookable);
+    }
+
+    public void unbookListing(Booking booking) {
+        data.getBookings().remove(booking);
+        booking.getUser().removeBooking(booking.getBooked());
+    }
 }
