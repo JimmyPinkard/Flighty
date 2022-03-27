@@ -3,11 +3,14 @@ package model.bookables.flight;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
+import model.bookables.BookingLayout;
+import model.bookables.TravelObject;
 
-public class MultiFlight {
+public class FlightTrip extends TravelObject {
     private List<Flight> flights;
 
-    public MultiFlight(List<Flight> flights) {
+    public FlightTrip(List<Flight> flights) {
+        super();
         this.flights = flights;
     }
 

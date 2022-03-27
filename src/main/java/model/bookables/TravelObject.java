@@ -11,7 +11,6 @@ public abstract class TravelObject {
     protected String id;
     protected List<Bookable> bookables;
     protected String company;
-    protected double cost;
     protected double rating;
     protected BookingLayout layout;
     protected List<String> features;
@@ -24,7 +23,6 @@ public abstract class TravelObject {
     public TravelObject(BookingLayout layout) {
         this.id = UUID.randomUUID().toString();
         this.company = "";
-        this.cost = 0;
         this.rating = 0;
         this.bookables = new ArrayList<Bookable>();
         this.features = new ArrayList<String>();
@@ -35,11 +33,19 @@ public abstract class TravelObject {
     public TravelObject(DBObject object) {
         this.id = (String) object.get("id");
         this.company = (String) object.get("company");
-        //this.cost = (Double) object.get("cost");
         this.rating = (Double) object.get("rating");
         this.features = (List<String>) object.get("features");
         this.filters = (List<SearchFilter>) object.get("filters");
         this.layout = null;
+    }
+
+    protected TravelObject() {
+        this.id = UUID.randomUUID().toString();
+        this.company = "";
+        this.rating = 0;
+        this.bookables = new ArrayList<Bookable>();
+        this.features = new ArrayList<String>();
+        this.filters = new ArrayList<>();
     }
 
     /**
@@ -58,8 +64,19 @@ public abstract class TravelObject {
         return bookables.remove(booking);
     }
 
+    public String getCompany() {
+        return company;
+    }
+
     public double getCost() {
-        return cost;
+        double minPrice = Integer.MAX_VALUE;
+        for (Bookable bookable : bookables) {
+            if (bookable.price < minPrice) {
+                minPrice = bookable.price;
+            }
+        }
+
+        return minPrice;
     }
 
     public List<SearchFilter> getFilters() {
@@ -75,8 +92,8 @@ public abstract class TravelObject {
         return "{" +
                 "id:'" + id + '\'' +
                 ", bookables:" + bookables +
-                ", company:'" + company + '\'' +
-                ", cost:" + cost +
+                ", company:'" + company + '\''
+                +
                 ", rating:" + rating +
                 ", layout:" + layout +
                 ", features:" + features +
