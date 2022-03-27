@@ -9,7 +9,7 @@ import search.filters.HotelFilter;
  * Stores a user's prefrences
  * @author rengotap
  */
-public class SearchPreferences {
+public class SearchPreferences implements Cloneable {
 
     public EnumMap<FlightFilter, String> fpref;
     public EnumMap<HotelFilter, String> hPref;
@@ -61,6 +61,16 @@ public class SearchPreferences {
      */
     public EnumMap<HotelFilter, String> getHPref() {
         return hPref;
+    }
+
+    @Override
+    public SearchPreferences clone() {
+        SearchPreferences newSearchPreferences = new SearchPreferences();
+
+        newSearchPreferences.fpref = this.fpref.clone();
+        newSearchPreferences.hPref = this.hPref.clone();
+
+        return newSearchPreferences;
     }
 
     @Override
