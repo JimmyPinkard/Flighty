@@ -3,7 +3,6 @@ package model.bookables.flight;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
-import model.bookables.BookingLayout;
 import model.bookables.TravelObject;
 
 public class FlightTrip extends TravelObject {
@@ -20,6 +19,10 @@ public class FlightTrip extends TravelObject {
             total += flight.getCost();
         }
         return total;
+    }
+
+    public List<Flight> getFlights() {
+        return flights;
     }
 
     public int getAmountTransfers() {
