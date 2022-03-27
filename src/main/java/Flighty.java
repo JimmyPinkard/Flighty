@@ -48,6 +48,8 @@ public class Flighty {
         data = Data.getInstance();
         input = new Scanner(System.in);
         userManager = new UserManager(data);
+
+        checkData();  // Comment this out to run program with empty input data
     }
 
     /**
@@ -63,6 +65,22 @@ public class Flighty {
      */
     public void stop() {
         data.saveAll();
+    }
+
+    /**
+     * Checks to make sure data is all there, terminates if it isn't
+     * For debugging
+     * @author rengotap
+     */
+    public void checkData() {
+        if(data.getFlights().isEmpty() || data.getHotels().isEmpty()) {
+            println("FATAL: Input data is incomplete!");
+            if (data.getFlights().isEmpty())
+                println("DEBUG: Flight data is empty");
+            if (data.getHotels().isEmpty())
+                println("DEBUG: Hotel data is empty");
+            exit();
+        }
     }
 
     /**
@@ -111,7 +129,7 @@ public class Flighty {
     }
 
     /**
-     * Prompts the user for a table??? TODO: figure out what this does
+     * Prompts the user for a table
      * @param prompt
      * @param table
      * @return
@@ -1047,7 +1065,8 @@ public class Flighty {
      * @param query search parameters
      */
     private void hotelResult(EnumMap<HotelFilter,String> query) {
-        List<Hotel> searchResults = SearchHotels.execute(data, query);
+        //List<Hotel> searchResults = SearchHotels.execute(data, query); //  TODO: correct hotel search
+        List<Hotel> searchResults = data.getHotels();  // Temporary stand in
         println("Here are the best results we could find: " +
             '\n'+"Unsatisfied with your results? Try changing your search parameters!");
         // Assuming that these are the top.. 3?
@@ -1140,7 +1159,7 @@ public class Flighty {
     }
 
     /**
-     * TODO: Figure out what this does
+     * Turns a table into an ArrayList
      * @param table
      * @return
      */

@@ -12,10 +12,10 @@ import java.lang.reflect.*;
 public abstract class SearchHotels implements Search {
     public static List<Hotel> execute(Data data,EnumMap<? extends SearchFilter, String> preferences) {
         List<Hotel> out = new ArrayList<Hotel>();
-
+        System.out.println("Before loop");
         // Loop through all the hotels
         for(Hotel hotel : data.getHotels()) {
-
+            System.out.println("In loop");
             boolean match = true;
             // Loop through the filters in the hotel and see if they match the preferences
             for(String filter: preferences.values()) {
@@ -28,7 +28,8 @@ public abstract class SearchHotels implements Search {
                     try{
                     String attribute = field.get(hotel).toString();
                     // Compare attribute to preference
-                    if(filter.equalsIgnoreCase(attribute))
+                    System.out.println("Attribute: "+attribute + "Filter: "+filter); //TODO: remove this line
+                    if(filter.equalsIgnoreCase(attribute) || filter.equalsIgnoreCase("any"))
                         match = true;
                     }catch(IllegalAccessException e){}
                 }
