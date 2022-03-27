@@ -33,14 +33,17 @@ public class Flighty {
      */
     public static void main(final String[] args) {
         Flighty app = new Flighty();
-        app.start();
 
-        // EnumMap<FlightFilter, String> prefs = new EnumMap<FlightFilter,
-        // String>(FlightFilter.class);
-        // prefs.put(FlightFilter.AIRPORT_FROM, "arg1");
-        // prefs.put(FlightFilter.AIRPORT_TO, "arg1");
-        // List<Flight> f = SearchFlights.execute(app.data, prefs);
-        // app.println("");
+        EnumMap<FlightFilter, String> prefs = new EnumMap<FlightFilter, String>(FlightFilter.class);
+        prefs.put(FlightFilter.AIRPORT_FROM, SearchPreferences.EMPTY);
+        prefs.put(FlightFilter.AIRPORT_TO, SearchPreferences.EMPTY);
+        prefs.put(FlightFilter.COMPANY, SearchPreferences.EMPTY);
+        prefs.put(FlightFilter.TIME_DEPART, "10:00");
+        prefs.put(FlightFilter.TIME_ARRIVE, SearchPreferences.EMPTY);
+        prefs.put(FlightFilter.DATE_DEPART, "1/9/22");
+        prefs.put(FlightFilter.DATE_ARRIVE, SearchPreferences.EMPTY);
+        List<Flight> f = SearchFlights.execute(app.data, prefs);
+        app.println("");
     }
 
     /**
@@ -56,7 +59,6 @@ public class Flighty {
      * Loads all data from database
      */
     public void start() {
-        data.loadAll();
         menuMain();
     }
 
