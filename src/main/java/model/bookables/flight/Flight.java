@@ -35,6 +35,8 @@ public class Flight extends TravelObject {
                 object.get("date") + " " + ((String) object.get("time_depart")).substring(0, 5));
         this.arrivalTime = TimeUtils.genDateTime(
                 object.get("date") + " " + ((String) object.get("time_arrive")).substring(0, 5));
+        this.airportFrom = (String) object.get("airport_code_from");
+        this.airportTo = (String) object.get("airport_code_to");
         this.bookables = (List<Bookable>) object.get("seats");
     }
 
@@ -65,7 +67,8 @@ public class Flight extends TravelObject {
 
     @Override
     public String toString() {
-        return "{" + "departureTime:" + departureTime + ", arrivalTime:" + arrivalTime + "} "
-                + super.toString();
+        return "{departureTime:" + departureTime + ", arrivalTime:" + arrivalTime + "}" +
+                ", travelObject:" + super.toString() +
+                "}";
     }
 }

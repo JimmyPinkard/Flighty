@@ -63,6 +63,7 @@ public class Hotel extends TravelObject {
                 "features:" + features +
                 ", location:'" + location + '\'' +
                 ", numBeds:" + numBeds +
-                "} " + super.toString();
+                ", travelObject:" + super.toString() +
+                "}";
     }
 }
