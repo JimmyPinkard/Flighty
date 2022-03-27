@@ -204,11 +204,12 @@ public class Flighty {
     /**
      * Returns a simply formated flight with only the most relevant information
      * @param flight
-     * @return flight single line form
+     * @return flight price, departing at, arriving at
      * @author rengotap
      */
-    private String displayFlightSimple(Flight flight) {  //TODO: Make this display properly
-        String format = "";
+    private String displayFlightSimple(Flight flight) {  //TODO: Account for layovers
+        String format = "Price: $"+flight.getCost()+" | Departing at: "
+            +flight.getDepartureTime()+" | Arriving at: "+flight.getArrivalTime();
         return format;
     }
 
@@ -226,12 +227,11 @@ public class Flighty {
     /**
      * Returns a simply formated hotel with only the most relevant information
      * @param hotel
-     * @return Hotel single line: name, numbeds, price, stars
+     * @return Hotel single line: price, numbeds, stars
      * @author rengotap
      */
     private String displayHotelSimple(Hotel hotel) { //TODO: Make this display properly
-        String format = hotel.getLocation() + " | number of beds: "
-            + hotel.getBeds() + " | price $" + hotel.getCost();
+        String format = "Price: $"+hotel.getCost()+" | beds: "+hotel.getBeds();
         return format;
     }
 
@@ -242,7 +242,7 @@ public class Flighty {
      * @author rengotap
      */
     private String displayHotelFull(Hotel hotel) {  // TODO: make this display properly
-        String format = hotel.getLocation()+" | "+hotel.getCost()+'\n'+hotel.getBeds();
+        String format = "Price: $"+hotel.getCost()+" | beds: "+hotel.getBeds();
         return format;
     }
 
@@ -883,8 +883,59 @@ public class Flighty {
         query.put(FlightFilter.COMPANY, company);
         query.put(FlightFilter.PETS_ALLOWED, Boolean.toString(pets));
 
-        //SearchFlights.execute(data, query);
+        flightResult(query);
+    }
 
+    /**
+     * Displays search results and allows user to purchase tickets
+     * @param query search parameters
+     */
+    private void flightResult(EnumMap<FlightFilter, String> query) {
+        List<Flight> searchResults = SearchFlights.execute(data, query);
+        println("Here are the best results we could find: " +
+            '\n'+"Unsatisfied with your results? Try changing your search parameters!");
+        // Assuming that these are the top.. 3?
+        final String OPT_ONE = displayFlightSimple(searchResults.get(0));
+        final String OPT_TWO = displayFlightSimple(searchResults.get(1));
+        final String OPT_THREE = displayFlightSimple(searchResults.get(2));
+        final String OPT_EXIT = "Return to main menu";
+        List<String> options = new ArrayList<String>();
+        options.add(OPT_ONE);
+        options.add(OPT_TWO);
+        options.add(OPT_THREE);
+        options.add(OPT_EXIT);
+        boolean chosen = false;
+        while (!chosen) {
+            String response = menuNumbered("Enter a Number", options);
+            if (response.equals(OPT_EXIT)) {
+                chosen = true;
+                return;
+            } else if (response.equals(OPT_ONE)) {
+                if (investigateFlight(searchResults.get(0)))
+                    chosen = true;
+            } else if (response.equals(OPT_TWO)) {
+                if (investigateFlight(searchResults.get(1))) 
+                    chosen = true;
+            } else if (response.equals(OPT_THREE)) {
+                if (investigateFlight(searchResults.get(2)))
+                    chosen = true;
+            }
+        }
+
+    }
+
+    /**
+     * Provides more information about a Flight, and allows the user to book it
+     * @param flight
+     * @return returns true if flight was booked
+     */
+    private boolean investigateFlight(Flight flight) {
+        displayFlightFull(flight);
+        if (promptYN("Book a seat on this flight?")) {
+            //TODO: interface with booking agent
+            return true;
+        }
+        return false; // go back to results
     }
 
     /**
