@@ -153,6 +153,11 @@ def create_flight_entry():
 
     a_from, a_to = random.sample(airports, 2)
 
+    f["from_x"] = float(a_from["x"])
+    f["from_y"] = float(a_from["y"])
+    f["to_x"] = float(a_to["x"])
+    f["to_y"] = float(a_to["y"])
+
     f["airport_code_from"] = a_from["code"]
     f["airport_code_to"] = a_to["code"]
 

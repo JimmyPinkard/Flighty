@@ -1,6 +1,7 @@
 package model.bookables.flight;
 
 import com.mongodb.DBObject;
+import org.bson.BsonInt32;
 import model.bookables.Bookable;
 import model.bookables.BookingLayout;
 import model.bookables.TravelObject;
@@ -19,6 +20,10 @@ public class Flight extends TravelObject {
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
     private List<FlightFilter> filters;
+    private double startX;
+    private double startY;
+    private double stopX;
+    private double stopY;
 
     /**
      * Constructor for Bookables.Flight.Flight
@@ -40,11 +45,20 @@ public class Flight extends TravelObject {
         this.arrivalTime = TimeUtils.genDateTime(
                 object.get("date_arrive") + " "
                         + ((String) object.get("time_arrive")).substring(0, 5));
-        this.airportFrom = (String) object.get("airport_code_from");
-        this.airportTo = (String) object.get("airport_code_to");
+        this.startX = (double) object.get("from_x");
+        this.startY = (double) object.get("from_y");
+        this.stopX = (double) object.get("to_x");
+        this.stopY = (double) object.get("to_y");
         this.bookables = (List<Bookable>) object.get("seats");
         this.airportFrom = (String) object.get("airport_code_from");
         this.airportTo = (String) object.get("airport_code_to");
+    }
+
+    public double distanceToDestination(Flight flight) {
+        double a2 = Math.pow(this.startX - flight.startX, 2);
+        double b2 = Math.pow(this.stopX - flight.stopX, 2);
+
+        return Math.sqrt(a2 + b2);
     }
 
     public String getAirportFrom() {
