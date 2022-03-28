@@ -45,10 +45,8 @@ public class Room extends Bookable {
         row = 1;
         col = "A";
         price = 999;
-        amenities = new ArrayList<>();
-        amenities.add("Amenity A");
-        amenities.add("Amenity B");
-        numBeds = 2;
+        info = "Two queen beds";
+    
     }
 
     

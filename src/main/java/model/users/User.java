@@ -227,6 +227,11 @@ public class User {
         bookingHistory.remove(toRemove);
     }
 
+    public void removeBooking(int index) {
+        bookingHistory.remove(index);
+    }
+
+
     /**
      * Gets a list of the user's previous bookings
      * @return booking history

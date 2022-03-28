@@ -105,6 +105,10 @@ public abstract class TravelObject {
         return minPrice;
     }
 
+    public double getRating() {
+        return rating;
+    }
+
     public List<SearchFilter> getFilters() {
         return filters;
     }

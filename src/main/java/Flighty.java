@@ -37,6 +37,8 @@ public class Flighty {
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_WHITE_BG = "\u001B[47m";
 
 
     /**
@@ -60,7 +62,7 @@ public class Flighty {
         input = new Scanner(System.in);
         userManager = new UserManager(data);
         // TODO: uncomment this when data is ready
-        //genBogusData();
+        genBogusData();
         checkData();  // Comment this out to run program with empty input data
     }
 
@@ -88,6 +90,9 @@ public class Flighty {
      * @author rengotap
      */
     private void genBogusData() {
+
+        println(displayRoom(new Room()));
+
         int numToGenerate = 5;
 
         List<User> users = new ArrayList<User>();
@@ -265,10 +270,27 @@ public class Flighty {
     }
 
     /**
+     * Turns features into a nice block
+     * @param input data of the block
+     * @param width width of the block
+     * @return nice block
+     * @author rengotap
+     */
+    private String toBlock(List<String> input, int width) {
+        String ret = "";
+        for (int i = 1; i < input.size()+1; i++) {
+            ret = ret + input.get(i-1) + ", ";
+            if (i % width == 0)
+                ret = ret + '\n';
+        }
+        return ret.trim().substring(0, ret.length() - 1);
+    }
+
+    /**
      * Displays a bookable as a single line
      * @return
      */
-    private String toString(Bookable b) {
+    private String toString(Bookable b) {  // TODO: Make this display properly
         return "$" + String.valueOf(b.getPrice()) + " " +b.getRow() + b.getCol();
     }
 
@@ -293,7 +315,8 @@ public class Flighty {
      * @author rengotap
      */
     private String displayFlightFull(Flight flight) { // TODO: Make this display properly
-        String format = "";
+        String format = "Price: $" + flight.getCost() + " | Departing at: "
+                + flight.getDepartureTime() + " | Arriving at: " + flight.getArrivalTime();
         return format;
     }
 
@@ -301,12 +324,14 @@ public class Flighty {
      * Returns a simply formated hotel with only the most relevant information
      * 
      * @param hotel
-     * @return Hotel single line: price, numbeds, stars
+     * @return Hotel single line: PRICE, BEDS, COMPANY, STARS
      * @author rengotap
      */
     private String displayHotelSimple(Hotel hotel) { // TODO: Make this display properly
-        String format = "Price: $" + hotel.getCost() + " | beds: "
-                + ((Room) hotel.getOptions().get(0)).getBeds();
+        String format = "Price: " + ANSI_CYAN + "$" + hotel.getCost() 
+            + ANSI_RESET + " | Beds: " + ANSI_CYAN +"BEDS GO HERE" 
+            + ANSI_RESET + " | Company: " + ANSI_CYAN + hotel.getCompany()  
+            + ANSI_RESET + " | Rating: " + toStars(hotel.getRating());
         return format;
     }
 
@@ -318,9 +343,40 @@ public class Flighty {
      * @author rengotap
      */
     private String displayHotelFull(Hotel hotel) { // TODO: make this display properly
-        String format = "Price: $" + hotel.getCost() + " | beds: "
-                + ((Room) hotel.getOptions().get(0)).getBeds();
+        String format = '\n' + ANSI_WHITE_BG + ANSI_BLACK + hotel.getCompany().toUpperCase() 
+             + " at " + hotel.getLocation().toUpperCase() + ANSI_RESET + '\n' + "Price: "
+             + ANSI_CYAN + "$" + hotel.getCost() + ANSI_RESET + '\n' + "Rating: " 
+             + toStars(hotel.getRating()) + ANSI_CYAN + " (" + hotel.getRating() 
+             + ")" + ANSI_RESET + '\n' + "Available Rooms: " + ANSI_CYAN + "ROOMS GO HERE" 
+             + ANSI_RESET + '\n' + "Amenities:" + '\n' + ANSI_CYAN 
+             + toBlock(hotel.getFeatures(), 3) + ANSI_RESET + '\n';
         return format;
+    }
+
+    /**
+     * Displays a room
+     * @param room
+     * @return
+     * @author rengotap
+     */
+    private String displayRoom(Room room) {
+        String format = "Room: " + ANSI_CYAN + room.getRoomNum() 
+        + ANSI_RESET + " | Price: " + ANSI_CYAN + "$" + room.getPrice() 
+        + ANSI_RESET + " | Beds: " + ANSI_CYAN + room.getInfo() + ANSI_RESET;
+        return format;
+    }
+
+    /**
+     * Turns a double rating into a string of stars
+     * @param rating
+     * @return stars
+     * @author rengotap
+     */
+    private String toStars(Double rating) {
+        String stars = "";
+        for(int i = 0; i < Math.round(rating); i++)
+            stars = stars+"⭐";
+        return stars;
     }
 
     /**
@@ -467,6 +523,31 @@ public class Flighty {
 
         int response = promptNumber(prompt, 1, options.size());
         return options.get(response - 1);
+    }
+
+    /**
+     * Special version of menuNumbered that returns an array with both 
+     * the string and its position in options.
+     * 
+     * 
+     * Meant for menus of unknown length
+     * @param prompt
+     * @param options
+     * @return Array with String at 0 and int at 1
+     * @author rengotap
+     */
+    private String[] menuLong(String prompt, List<String> options) {
+        String[] ret = new String[2];
+        for (int i = 0; i < options.size(); i++) {
+            println(String.format("%d. %s", i + 1, options.get(i)));
+        }
+
+        println("");
+
+        int response = promptNumber(prompt, 1, options.size());
+        ret[0] = options.get(response - 1);
+        ret[1] = Integer.toString(response - 1);  // slight spaghetti
+        return ret;
     }
 
     /**
@@ -1072,34 +1153,31 @@ public class Flighty {
      * @author rengotap
      */
     private void flightResult(SearchPreferences query) {
-        List<Flight> searchResults = new ArrayList<>();
+        //List<Flight> results = SearchFlights.execute(data, query); // TODO: correct flight search
+        List<Flight> results = data.getFlights();
         println("Here are the best results we could find: " + '\n'
-                + "Unsatisfied with your results? Try changing your search parameters!");
-        // Assuming that these are the top.. 3?
-        if (!searchResults.isEmpty()) {
-            final String OPT_ONE = displayFlightSimple(searchResults.get(0));
-            final String OPT_TWO = displayFlightSimple(searchResults.get(1));
-            final String OPT_THREE = displayFlightSimple(searchResults.get(2));
-            final String OPT_EXIT = "Return to main menu";
+                + "Unsatisfied with your results? Try changing your search parameters!" + '\n');
+        if (!results.isEmpty()) {
             List<String> options = new ArrayList<String>();
-            options.add(OPT_ONE);
-            options.add(OPT_TWO);
-            options.add(OPT_THREE);
-            options.add(OPT_EXIT);
+            int numDisplay = 4; // will show up to 4 results
+            if(results.size() < 4)
+                numDisplay = results.size();
+
+            for (int i = 0; i < numDisplay; i++) {
+                options.add(displayFlightSimple(results.get(i)));
+            }
+            final String OPT_BACK = "Return to main menu";
+            options.add(OPT_BACK);
+
             boolean chosen = false;
             while (!chosen) {
-                String response = menuNumbered("Enter a Number", options);
-                if (response.equals(OPT_EXIT)) {
+                println("Select a hotel for more information");
+                String[] response = menuLong("Enter a Number", options);
+                if(response[0].equals(OPT_BACK)) {
                     chosen = true;
                     return;
-                } else if (response.equals(OPT_ONE)) {
-                    if (investigateFlight(searchResults.get(0)))
-                        chosen = true;
-                } else if (response.equals(OPT_TWO)) {
-                    if (investigateFlight(searchResults.get(1)))
-                        chosen = true;
-                } else if (response.equals(OPT_THREE)) {
-                    if (investigateFlight(searchResults.get(2)))
+                } else {
+                    if (investigateFlight(results.get(Integer.parseInt(response[1]))))
                         chosen = true;
                 }
             }
@@ -1117,7 +1195,7 @@ public class Flighty {
      */
     private boolean investigateFlight(Flight flight) {
         boolean unbooked = true;
-        displayFlightFull(flight);
+        println(displayFlightFull(flight));
         while (unbooked) {
             if (promptYN("Book seats on this flight?")) {
                 // TODO: interface with booking agent
@@ -1234,37 +1312,29 @@ public class Flighty {
      * @author rengotap
      */
     private void hotelResult(EnumMap<HotelFilter, String> query) {
-        // List<Hotel> searchResults = SearchHotels.execute(data, query); // TODO: correct hotel
-        // search
-        List<Hotel> searchResults = data.getHotels(); // Temporary stand in
+        // List<Hotel> results = SearchHotels.execute(data, query); // TODO: take from hotel search
+        List<Hotel> results = data.getHotels(); // Temporary stand in
         println("Here are the best results we could find: " + '\n'
-                + "Unsatisfied with your results? Try changing your search parameters!");
+                + "Unsatisfied with your results? Try changing your search parameters!" + '\n');
         // Assuming that these are the top.. 3?
-        if (!searchResults.isEmpty()) {
-            final String OPT_ONE = displayHotelSimple(searchResults.get(0));
-            final String OPT_TWO = displayHotelSimple(searchResults.get(1));
-            final String OPT_THREE = displayHotelSimple(searchResults.get(2));
-            final String OPT_EXIT = "Return to main menu";
+        if (!results.isEmpty()) {
             List<String> options = new ArrayList<String>();
-            options.add(OPT_ONE);
-            options.add(OPT_TWO);
-            options.add(OPT_THREE);
-            options.add(OPT_EXIT);
-            boolean chosen = false;
-            while (!chosen) {
-                String response = menuNumbered("Enter a Number", options);
-                if (response.equals(OPT_EXIT)) {
-                    chosen = true;
+            int numDisplay = 4; // will show up to 4 results
+            if(results.size() < 4)
+                numDisplay = results.size();
+
+            for (int i = 0; i < numDisplay; i++) {
+                options.add(displayHotelSimple(results.get(i)));
+            }
+            final String OPT_BACK = "Return to main menu";
+            options.add(OPT_BACK);
+            while (true) {
+                String[] response = menuLong("Enter a Number", options);
+                if(response[0].equals(OPT_BACK)) {
                     return;
-                } else if (response.equals(OPT_ONE)) {
-                    if (investigateHotel(searchResults.get(0)))
-                        chosen = true;
-                } else if (response.equals(OPT_TWO)) {
-                    if (investigateHotel(searchResults.get(1)))
-                        chosen = true;
-                } else if (response.equals(OPT_THREE)) {
-                    if (investigateHotel(searchResults.get(2)))
-                        chosen = true;
+                } else {
+                    if (investigateHotel(results.get(Integer.parseInt(response[1]))))
+                        return;
                 }
             }
         } else {
@@ -1280,13 +1350,46 @@ public class Flighty {
      * @author rengotap
      */
     private boolean investigateHotel(Hotel hotel) {
-        displayHotelFull(hotel);
+        println(displayHotelFull(hotel));
         if (promptYN("Book this hotel?")) {
-            // TODO: interface with booking agent
-            return true;
+            if (menuPickRoom(hotel))
+                return true;
         }
         return false; // go back to results
+    }
 
+    /**
+     * Menu for picking a hotel room
+     * @param hotel
+     * @return if a room was booked
+     * @author rengotap
+     */
+    private boolean menuPickRoom(Hotel hotel) {
+        //List<Bookable> rooms = hotel.
+        List<Room> rooms = new ArrayList<Room>();  // TODO: extract rooms from hotel
+        rooms.add(new Room());
+        rooms.add(new Room());
+        rooms.add(new Room());
+
+
+        List<String> options = new ArrayList<String>();
+        for (int i = 0; i < rooms.size(); i++) {
+            options.add(displayRoom(rooms.get(i)));
+        }
+        final String OPT_BACK = "Go back";
+        options.add(OPT_BACK);
+
+        while (true) {
+            String[] response = menuLong("Enter a Number", options);
+            if(response[0].equals(OPT_BACK)) {
+                return false;
+            } else {
+                if (promptYN("Book this room?")) {
+                    return true;
+                    //TODO: use booking manager to book the room HERE
+                }
+            }
+        }
     }
 
     /**
@@ -1341,24 +1444,24 @@ public class Flighty {
     }
 
     /**
-     * Cancels bookings  // TODO: Test Canceling a Booking
+     * Cancels bookings
      * @author rengotap
      */
     private void MenuCancelBooking() {
         List<Bookable> bookings = userManager.getCurrentUser().getBookingHistory();
         List<String> options = new ArrayList<String>();
-        for (int i = 1; i < bookings.size(); i++) { // should add every booking as an option
+        for (int i = 0; i < bookings.size(); i++) { // should add every booking as an option
             options.add(toString(bookings.get(i)));
         }
         final String OPTIONS_BACK = "Return to main menu";
         options.add(OPTIONS_BACK); // at position size+1
 
-        String response = menuNumbered("Choose a booking to cancel, or enter " + bookings.size() + " to go back", options);
-        if(response.equals(OPTIONS_BACK)) {
+        String[] response = menuLong("Choose a booking to cancel, or enter " + options.size() + " to go back", options);
+        if(response[0].equals(OPTIONS_BACK)) {
             return;
         } else if (promptYN("Are you sure you want to cancel this booking?")) {
-            userManager.getCurrentUser().removeBooking(userManager.getCurrentUser().getBookingHistory().get(Integer.parseInt(response)));
-            println("Booking canceled, your payment has been refunded.");
+            userManager.getCurrentUser().removeBooking(Integer.parseInt(response[1]));
+            println(ANSI_RED + "Booking canceled." + ANSI_RESET + '\n' +"Your payment has been refunded."+ '\n');
         }
 
     }
@@ -1372,17 +1475,17 @@ public class Flighty {
     private void MenuPrintBooking() {
         List<Bookable> bookings = userManager.getCurrentUser().getBookingHistory();
         List<String> options = new ArrayList<String>();
-        for (int i = 1; i < bookings.size(); i++) { // should add every booking as an option
+        for (int i = 0; i < bookings.size(); i++) { // should add every booking as an option
             options.add(toString(bookings.get(i)));
         }
         final String OPTIONS_BACK = "Return to main menu";
         options.add(OPTIONS_BACK); // at position size+1
 
-        String response = menuNumbered("Choose a booking to export, or enter " + bookings.size() + " to go back", options);
-        if(response.equals(OPTIONS_BACK)) {
+        String[] response = menuLong("Choose a booking to export, or enter " + options.size() + " to go back", options);
+        if(response[0].equals(OPTIONS_BACK)) {
             return;
         } else {
-            userManager.getCurrentUser().getBookingHistory().get(Integer.parseInt(response));
+            userManager.getCurrentUser().getBookingHistory().get(Integer.parseInt(response[1]));
             println(ANSI_YELLOW + "ERROR: Exporting to file not yet supported" + ANSI_RESET);  // TODO: Export Bookable as text file
         }
     }
