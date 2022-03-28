@@ -1,7 +1,6 @@
 package database;
 
 import com.mongodb.DBCursor;
-import com.mongodb.DBObject;
 import model.Booking;
 import model.bookables.flight.Flight;
 import model.bookables.hotel.Hotel;

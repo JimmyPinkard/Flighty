@@ -33,6 +33,7 @@ public abstract class TravelObject {
         this.filters = new ArrayList<>();
     }
 
+    @SuppressWarnings("unchecked")
     public TravelObject(DBObject object) {
         this.id = (String) object.get("id");
         this.company = (String) object.get("company");

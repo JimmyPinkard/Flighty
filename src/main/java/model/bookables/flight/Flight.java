@@ -1,7 +1,6 @@
 package model.bookables.flight;
 
 import com.mongodb.DBObject;
-import org.bson.BsonInt32;
 import model.bookables.Bookable;
 import model.bookables.BookingLayout;
 import model.bookables.TravelObject;
@@ -9,7 +8,6 @@ import search.filters.FlightFilter;
 import utils.TimeUtils;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,6 +36,7 @@ public class Flight extends TravelObject {
         this.airportTo = airportTo;
     }
 
+    @SuppressWarnings("unchecked")
     public Flight(DBObject object) {
         super(object);
         TimeUtils timeUtils = new TimeUtils();
@@ -55,8 +54,8 @@ public class Flight extends TravelObject {
     }
 
     public double distanceToDestination(Flight flight) {
-        double a2 = Math.pow(this.startX - flight.startX, 2);
-        double b2 = Math.pow(this.stopX - flight.stopX, 2);
+        double a2 = Math.pow(this.startX - flight.stopX, 2);
+        double b2 = Math.pow(this.startY - flight.stopY, 2);
 
         return Math.sqrt(a2 + b2);
     }

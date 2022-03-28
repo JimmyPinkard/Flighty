@@ -41,12 +41,6 @@ public class SearchPreferences implements Cloneable {
         hPref.put(HotelFilter.TIME_END, EMPTY);
         hPref.put(HotelFilter.PETS_ALLOWED, EMPTY);
     }
-    /**
-     * Generates SearchPrefrences based on what was passed from the user profile
-     */
-    public SearchPreferences(String data) {  //TODO: import search prefrences from data
-        this();
-    }
 
     public SearchPreferences(DBObject object) {
         this();

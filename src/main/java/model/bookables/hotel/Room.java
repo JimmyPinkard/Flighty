@@ -26,6 +26,7 @@ public class Room extends Bookable {
         this.numBeds = numBeds;
     }
 
+    @SuppressWarnings("unchecked")
     public Room(DBObject object) {
         super((int)object.get("floor"), (String) object.get("num"), object);
         info = (String) object.get("bedInfo");
