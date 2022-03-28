@@ -8,8 +8,6 @@ import model.users.info.Passport;
 import model.users.info.Person;
 import controller.UserManager;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -147,7 +145,7 @@ public class Flighty {
      * @author jbytes1027
      */
     private String toString(LocalDate date) {
-        return date.format(DateTimeFormatter.ofPattern("M/d/y"));
+        return TimeUtils.getInstance().toString(date);
     }
 
     /**
@@ -203,31 +201,12 @@ public class Flighty {
         List<String> row = new ArrayList<String>();
 
         row.add(passport.getPerson().getFirstName() + " " + passport.getPerson().getLastName());
-        row.add(toString(passport.getDOB()));
+        row.add(TimeUtils.getInstance().toString(passport.getDOB()));
         row.add(passport.getGender());
-        row.add(toString(passport.getExpDate()));
+        row.add(TimeUtils.getInstance().toString(passport.getExpDate()));
         row.add(passport.getNumber());
 
         return row;
-    }
-
-    /**
-     * Turns a passport into a string
-     * 
-     * @param passport passport to convert
-     * @return converted
-     * @author jbytes1027
-     */
-    private String toString(Passport passport) {
-        return String.format("""
-                NAME: %s %s
-                GENDER: %s
-                DOB: %s
-                EXPIRATION: %s
-                NUMBER: %s
-                """, passport.getPerson().getFirstName(), passport.getPerson().getLastName(),
-                passport.getGender(), toString(passport.getDOB()), toString(passport.getExpDate()),
-                passport.getNumber());
     }
 
     /**
