@@ -7,7 +7,6 @@ import database.Data;
 import model.bookables.hotel.Hotel;
 import search.filters.HotelFilter;
 import search.filters.SearchFilter;
-import java.lang.reflect.*;
 
 public abstract class SearchHotels implements Search {
     public static List<Hotel> execute(Data data,EnumMap<? extends SearchFilter, String> preferences) {
@@ -15,33 +14,21 @@ public abstract class SearchHotels implements Search {
         System.out.println("Before loop");
         // Loop through all the hotels
         for(Hotel hotel : data.getHotels()) {
-            System.out.println("In loop");
-            boolean match = true;
-            // Loop through the filters in the hotel and see if they match the preferences
-            for(String filter: preferences.values()) {
-                // Grab all the attributes for the hotel class
-                Field[] fields = Hotel.class.getDeclaredFields();
-                match = false;
-                // Loop throuh all the attributes and compare them to the preferences
-                for(Field field : fields) {
-                    // Get the attribute value
-                    try{
-                    String attribute = field.get(hotel).toString();
-                    // Compare attribute to preference
-                    System.out.println("Attribute: "+attribute + "Filter: "+filter); //TODO: remove this line
-                    if(filter.equalsIgnoreCase(attribute) || filter.equalsIgnoreCase("any"))
-                        match = true;
-                    }catch(IllegalAccessException e){}
-                }
-                // If a single filter didn't match any of the attributes, break and dont add to the list
-                if(!match)
-                    break;
-            }
-            // If every filter matched to an attribute, add the hotel to the list
-            if(match)
+            // Check if the hotel matches the preferences
+            if(matchesFilters(hotel, preferences))
                 out.add(hotel);
         }
-
         return out;
+    }
+
+    private static boolean matchesFilters(Hotel hotel,EnumMap<? extends SearchFilter, String> preferences) {
+        
+        boolean correctCompany = hotel.getCompany().equalsIgnoreCase(preferences.get(HotelFilter.COMPANY)) 
+        || preferences.get(HotelFilter.COMPANY).equalsIgnoreCase("any");
+
+        boolean correctLocation = hotel.getLocation().equalsIgnoreCase(preferences.get(HotelFilter.LOCATION)) 
+        || preferences.get(HotelFilter.LOCATION).equalsIgnoreCase("any");
+        
+        return correctLocation&&correctCompany;
     }
 }
