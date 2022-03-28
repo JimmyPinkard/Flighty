@@ -136,11 +136,12 @@ def create_hotel_entry():
     h["filters"] = ["HOTEL"]
 
     h["rooms"] = []
-    room_num = 0
+    room_num = 10
+    floor_num = 1
     for i in range(random.randrange(3, 20)):
         room_num += 1
         room_id = str(uuid4())
-        room_dict = create_room_dict(room_id, room_num)
+        room_dict = create_room_dict(room_id, floor_num, room_num)
         h["rooms"].append(room_dict)
 
     return h
@@ -180,7 +181,7 @@ def create_flight_entry():
     f["seats"] = []
     for i in range(1, random.randint(3, 20)):
         uuid = str(uuid4())
-        price = random.randint(100, 1000)
+        price = round(random.uniform(100, 1000), 1)
         seat = create_seat_dict(
             uuid, 1, i, price, random.choice(POSSIBLE_PLANE_CLASSES)
         )
@@ -210,19 +211,20 @@ def write_room(room_dict):
         f.write(json.dumps([room_dict]))
 
 
-def create_room_dict(uuid, number):
+def create_room_dict(uuid, floor_num, room_num):
     r = {}
 
     r["id"] = str(uuid)
     r["bedInfo"] = random.choice(list(POSSIBLE_ROOM_BED_INFO.keys()))
-    r["sleepingCapacity"] = POSSIBLE_ROOM_BED_INFO[r["bedInfo"]]
-    r["price"] = random.randrange(50, 300)
-    r["roomNum"] = number
+    r["bedCount"] = POSSIBLE_ROOM_BED_INFO[r["bedInfo"]]
+    r["price"] = round(random.uniform(50, 300), 1)
+    r["floor"] = floor_num
+    r["num"] = str(room_num)
 
-    r["bookings"] = []
+    r["bookedDates"] = []
     for day in POSSIBLE_DATES:
         if random.randint(1, 100) < 20:
-            r["bookings"].append(day)
+            r["bookedDates"].append(day)
 
     return r
 
@@ -233,7 +235,7 @@ def create_seat_dict(uuid, row, col, price, class_type):
     s["id"] = str(uuid)
     s["price"] = price
     s["row"] = row
-    s["column"] = col
+    s["column"] = str(col)
     s["isBooked"] = random.randint(1, 100) < 20
     s["class"] = class_type
 

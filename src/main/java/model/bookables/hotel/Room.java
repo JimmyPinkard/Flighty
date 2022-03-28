@@ -14,21 +14,24 @@ import java.util.List;
 public class Room extends Bookable {
     private String info;
     private List<LocalDate> bookedDays;
+    protected int numBeds;
 
     /**
      * Constructor for room
      */
-    public Room(int floor, String roomNum) {
+    public Room(int floor, String roomNum, int numBeds) {
         super(floor, roomNum);
         info = "A Bookables.Hotel.Hotel.Room";
         bookedDays = new ArrayList<LocalDate>();
+        this.numBeds = numBeds;
     }
 
     public Room(int floor, String roomNum, DBObject object) {
         super(floor, roomNum, object);
-        info = (String) object.get("info");
-        bookedDays = new ArrayList<LocalDate>();
-        bookedDays.addAll((List<LocalDate>)object.get("bookings"));
+        info = (String) object.get("bedInfo");
+        this.numBeds = (int)object.get("bedCount");
+        bookedDays = new ArrayList<>();
+        bookedDays.addAll((List<LocalDate>)object.get("bookedDates"));
     }
 
     
@@ -67,5 +70,21 @@ public class Room extends Bookable {
         return this.bookedDays;
     }
 
-    
+    /**
+     * Gets the number of available beds
+     * @return numBeds
+     */
+    public int getBeds() {
+        return numBeds;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "bookable:" + super.toString() +
+                "info:'" + info + '\'' +
+                ", numBeds:" + numBeds +
+                ", bookedDays:" + bookedDays +
+                "}";
+    }
 }

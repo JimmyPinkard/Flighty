@@ -1,7 +1,6 @@
 package model.bookables.hotel;
 
 import com.mongodb.DBObject;
-import model.bookables.Bookable;
 import model.bookables.BookingLayout;
 import model.bookables.TravelObject;
 
@@ -14,7 +13,6 @@ import java.util.List;
 public class Hotel extends TravelObject {
 
     protected String location;
-    protected int numBeds;
 
     /**
      * Creates a new hotel object
@@ -23,7 +21,7 @@ public class Hotel extends TravelObject {
         super(layout);
         this.features = features;
         this.location = location;
-        this.numBeds = numBeds;
+
     }
 
     public Hotel(DBObject object) {
@@ -33,11 +31,10 @@ public class Hotel extends TravelObject {
         this.bookables = new ArrayList<>();
         var rooms = (List<DBObject>) object.get("rooms");
         for(DBObject room : rooms) {
-            int row = Integer.parseInt(Integer.toString((int)room.get("roomNum")).substring(0, 1));
-            String column = Integer.toString((int)room.get("roomNum")).substring(1);
-            this.bookables.add(new Room(row, column, (DBObject) room));
+            int row = (int)room.get("floor");
+            String column = (String) room.get("num");
+            this.bookables.add(new Room(row, column, room));
         }
-        //this.bookables.addAll(rooms);
     }
 
     /**
@@ -56,20 +53,11 @@ public class Hotel extends TravelObject {
         return location;
     }
 
-    /**
-     * Gets the number of available beds
-     * @return numBeds
-     */
-    public int getBeds() {
-        return numBeds;
-    }
-
     @Override
     public String toString() {
         return "{" +
                 "features:" + features +
                 ", location:'" + location + '\'' +
-                ", numBeds:" + numBeds +
                 ", travelObject:" + super.toString() +
                 "}";
     }

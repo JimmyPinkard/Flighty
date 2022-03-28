@@ -42,10 +42,9 @@ public class Flight extends TravelObject {
         var seats = (List<DBObject>) object.get("seats");
         for(DBObject seat : seats) {
             int row = (int)seat.get("row");
-            String column = Integer.toString((int)seat.get("column"));
-            this.bookables.add(new Seat(row, column, object));
+            String column = (String) seat.get("column");
+            this.bookables.add(new Seat(row, column, seat));
         }
-        //this.bookables.addAll(seats);
     }
 
 
@@ -76,12 +75,12 @@ public class Flight extends TravelObject {
     @Override
     public String toString() {
         return "{" +
-                "airportFrom:'" + airportFrom + '\'' +
+                "travelObject: " + super.toString() +
+                ", airportFrom:'" + airportFrom + '\'' +
                 ", airportTo:'" + airportTo + '\'' +
-                ", departureTime:" + departureTime +
-                ", arrivalTime:" + arrivalTime +
+                ", departureTime:" + departureTime + "UTC" +
+                ", arrivalTime:" + arrivalTime + "UTC" +
                 ", filters:" + filters +
-                ", travelObject: " + super.toString() +
                 "}";
     }
 }

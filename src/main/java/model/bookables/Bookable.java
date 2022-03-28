@@ -27,10 +27,15 @@ public abstract class Bookable implements Comparable<Bookable> {
         this.row = row;
         this.col = col;
         this.id = (String) object.get("id");
-        this.price = (int) object.get("price");
+        this.price = (double) object.get("price");
         this.amenities = new ArrayList<>();
-        //var temp = (List<String>) object.get("amenities");
-        //this.amenities.addAll(temp);
+        /*
+        var temp = (List<DBObject>) object.get("amenities");
+        System.out.println(object.keySet());
+        for(DBObject obj : temp) {
+            this.amenities.add((String) obj.get("amenities"));
+        }
+        */
     }
 
     /**

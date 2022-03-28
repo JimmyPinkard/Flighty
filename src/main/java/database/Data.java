@@ -74,9 +74,11 @@ public class Data {
         DBCursor cursor = db.getAll("Hotels");
         while(cursor.hasNext()) {
             hotels.add(new Hotel(cursor.next()));
+            /*
             System.out.println(cursor.curr());
             System.out.println(hotels.get(0));
             System.exit(1);
+            */
         }
     }
 
