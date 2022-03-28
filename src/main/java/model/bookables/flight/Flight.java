@@ -53,7 +53,6 @@ public class Flight extends TravelObject {
         this.airportTo = (String) object.get("airport_code_to");
     }
 
-<<<<<<< HEAD
     /**
      * Bogus constructor for flight.
      * for testing purposes only
@@ -65,14 +64,12 @@ public class Flight extends TravelObject {
         airportTo = "LAX";
     }
 
-=======
     public double distanceToDestination(Flight flight) {
         double a2 = Math.pow(this.startX - flight.stopX, 2);
         double b2 = Math.pow(this.startY - flight.stopY, 2);
 
         return Math.sqrt(a2 + b2);
     }
->>>>>>> ed31b654bc67eed8348873793e598eefcb7c6e47
 
     public String getAirportFrom() {
         return airportFrom;

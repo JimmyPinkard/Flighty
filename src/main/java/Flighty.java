@@ -62,11 +62,8 @@ public class Flighty {
         input = new Scanner(System.in);
         userManager = new UserManager(data);
         // TODO: uncomment this when data is ready
-<<<<<<< HEAD
+        //genBogusData();
         checkData();  // Comment this out to run program with empty input data
-=======
-        // checkData(); // Comment this out to run program with empty input data
->>>>>>> ed31b654bc67eed8348873793e598eefcb7c6e47
     }
 
     /**
@@ -88,7 +85,6 @@ public class Flighty {
     }
 
     /**
-<<<<<<< HEAD
      * Generates bogus testing data
      * for testing purposes only
      * @author rengotap
@@ -110,6 +106,8 @@ public class Flighty {
         userManager.registerUser(newUser);
         userManager.logoutCurrent();
         userManager.login("temp","p");
+        for (int i = 0; i < numToGenerate; i++ )
+            userManager.getCurrentUser().addBooking(bookings.get(i).getBooked());
         users.add(newUser);
 
 
@@ -120,10 +118,6 @@ public class Flighty {
     /**
      * Checks to make sure data is all there, terminates if it isn't
      * For debugging
-=======
-     * Checks to make sure data is all there, terminates if it isn't For debugging
-     * 
->>>>>>> ed31b654bc67eed8348873793e598eefcb7c6e47
      * @author rengotap
      */
     public void checkData() {
@@ -289,6 +283,14 @@ public class Flighty {
         out += "]\n";
 
         return out;
+    }
+
+    /**
+     * Displays a bookable as a single line
+     * @return
+     */
+    private String toString(Bookable b) {
+        return "$" + String.valueOf(b.getPrice()) + " " +b.getRow() + b.getCol();
     }
 
     /**
@@ -913,11 +915,7 @@ public class Flighty {
 
     /**
      * UI for booking a flight
-<<<<<<< HEAD
      * // TODO: Enable one way flights
-=======
-     * 
->>>>>>> ed31b654bc67eed8348873793e598eefcb7c6e47
      * @author rengotap
      */
     private void menuBookFlight() {
@@ -1143,13 +1141,7 @@ public class Flighty {
         while (unbooked) {
             if (promptYN("Book seats on this flight?")) {
                 // TODO: interface with booking agent
-                int bookSeats = promptNumber("How many seats would you like to book?", 0, 999); // TODO:
-                                                                                                // change
-                                                                                                // this
-                                                                                                // number
-                                                                                                // to
-                                                                                                // max
-                                                                                                // available
+                int bookSeats = promptNumber("How many seats would you like to book?", 0, 999); // TODO: change this number to max available
                 int priceTotal = 0;
                 for (int i = 0; i < bookSeats; i++) {
                     // Print available seats
@@ -1251,6 +1243,7 @@ public class Flighty {
 
         // SearchHotels.execute(data, query);
         hotelResult(query);
+        // This is intentional
         println("                      Thank you for using...");
     }
 
@@ -1335,7 +1328,6 @@ public class Flighty {
      * @author rengotap
      */
     private void menuEditBooking() {
-<<<<<<< HEAD
         while (true) {
 
             final String OPT_PRINT = "Print Booking";
@@ -1347,7 +1339,7 @@ public class Flighty {
             if(userManager.isAnyoneLoggedIn() && !userManager.getCurrentUser().getBookingHistory().isEmpty()) {
                 List<Bookable> bookings = userManager.getCurrentUser().getBookingHistory();
                 for (int i = 0; i < bookings.size(); i++) {
-                    println(bookings.get(i).toString());  // TODO: Make a single line toString() for booking
+                    println(toString(bookings.get(i)));  // TODO: Make a single line toString() for booking
                 }
                 options.add(OPT_PRINT);
                 options.add(OPT_CANCEL);
@@ -1364,30 +1356,6 @@ public class Flighty {
                 MenuCancelBooking();
             } else if (response.equals(OPT_BACK)) {
                 return;
-=======
-        if (userManager.isAnyoneLoggedIn()
-                && !userManager.getCurrentUser().getBookingHistory().isEmpty()) {
-
-            User curr = userManager.getCurrentUser();
-
-            List<String> options = new ArrayList<String>();
-            for (int i = 1; i < curr.getBookingHistory().size(); i++) { // should add every booking
-                                                                        // as an option
-                options.add(curr.getBookingHistory().get(i).toString());
-            }
-            final String OPTIONS_EXIT = "Return to main menu";
-            options.add(OPTIONS_EXIT);
-
-            String response = menuNumbered("Enter a Number", options);
-            if (response.equals(options.get(options.size() - 1))) {
-                return;
-            } else {
-                if (promptYN("Are you sure you want to delete this booking?")) {
-                    userManager.getCurrentUser().removeBooking(
-                            curr.getBookingHistory().get(Integer.parseInt(response)));
-                    println("Booking removed, your payment has been refunded.");
-                }
->>>>>>> ed31b654bc67eed8348873793e598eefcb7c6e47
             }
         }
     }
@@ -1400,12 +1368,12 @@ public class Flighty {
         List<Bookable> bookings = userManager.getCurrentUser().getBookingHistory();
         List<String> options = new ArrayList<String>();
         for (int i = 1; i < bookings.size(); i++) { // should add every booking as an option
-            options.add(bookings.get(i).toString());
+            options.add(toString(bookings.get(i)));
         }
         final String OPTIONS_BACK = "Return to main menu";
         options.add(OPTIONS_BACK); // at position size+1
 
-        String response = menuNumbered("Choose a booking to cancel, or enter " + bookings.size()+1 +" to go back", options);
+        String response = menuNumbered("Choose a booking to cancel, or enter " + bookings.size() + " to go back", options);
         if(response.equals(OPTIONS_BACK)) {
             return;
         } else if (promptYN("Are you sure you want to cancel this booking?")) {
@@ -1425,12 +1393,12 @@ public class Flighty {
         List<Bookable> bookings = userManager.getCurrentUser().getBookingHistory();
         List<String> options = new ArrayList<String>();
         for (int i = 1; i < bookings.size(); i++) { // should add every booking as an option
-            options.add(bookings.get(i).toString());
+            options.add(toString(bookings.get(i)));
         }
         final String OPTIONS_BACK = "Return to main menu";
         options.add(OPTIONS_BACK); // at position size+1
 
-        String response = menuNumbered("Choose a booking to export, or enter " + bookings.size()+1 +" to go back", options);
+        String response = menuNumbered("Choose a booking to export, or enter " + bookings.size() + " to go back", options);
         if(response.equals(OPTIONS_BACK)) {
             return;
         } else {
