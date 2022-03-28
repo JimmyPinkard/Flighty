@@ -130,7 +130,7 @@ public class Data {
         }
     }
 
-    public void loadAll() {
+    private void loadAll() {
         loadFlights();
         loadHotels();
         loadUsers();

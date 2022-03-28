@@ -12,13 +12,13 @@ public class TimeUtils {
     private final DateTimeFormatter dateTimeFormat;
 
     public TimeUtils() {
-        dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        dateFormat = DateTimeFormatter.ofPattern("M/d/y");
         timeFormat = DateTimeFormatter.ofPattern("HH:mm");
-        dateTimeFormat = DateTimeFormatter.ofPattern("MM/dd/yy HH:mm");
+        dateTimeFormat = DateTimeFormatter.ofPattern("M/d/y HH:mm");
     }
 
     public static TimeUtils getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new TimeUtils();
         }
         return instance;
@@ -34,5 +34,17 @@ public class TimeUtils {
 
     public LocalDateTime genDateTime(String date) {
         return LocalDateTime.parse(date, dateTimeFormat);
+    }
+
+    public String toString(LocalDate date) {
+        return date.format(dateFormat);
+    }
+
+    public String toString(LocalTime date) {
+        return date.format(timeFormat);
+    }
+
+    public String toString(LocalDateTime date) {
+        return date.format(timeFormat);
     }
 }
