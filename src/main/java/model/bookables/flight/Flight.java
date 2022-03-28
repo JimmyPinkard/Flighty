@@ -53,6 +53,17 @@ public class Flight extends TravelObject {
         this.airportTo = (String) object.get("airport_code_to");
     }
 
+    /**
+     * Bogus constructor for flight.
+     * for testing purposes only
+     * @author rengotap
+     */
+    public Flight() {
+        super(new FlightLayout("test"));
+        airportFrom = "ATL";
+        airportTo = "LAX";
+    }
+
     public double distanceToDestination(Flight flight) {
         double a2 = Math.pow(this.startX - flight.stopX, 2);
         double b2 = Math.pow(this.startY - flight.stopY, 2);
