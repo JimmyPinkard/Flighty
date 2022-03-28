@@ -25,7 +25,7 @@ public class SearchPreferences implements Cloneable {
         fpref.put(FlightFilter.AIRPORT_TO, EMPTY);
         fpref.put(FlightFilter.COMPANY, EMPTY);
         fpref.put(FlightFilter.PRICE, EMPTY);
-        fpref.put(FlightFilter.DURATION, EMPTY);
+        fpref.put(FlightFilter.PEOPLE, EMPTY);
         fpref.put(FlightFilter.TIME_DEPART_EARLIEST, EMPTY);
         fpref.put(FlightFilter.TIME_ARRIVE_LATEST, EMPTY);
         fpref.put(FlightFilter.DATE_DEPART_EARLIEST, EMPTY);
@@ -34,11 +34,11 @@ public class SearchPreferences implements Cloneable {
         fpref.put(FlightFilter.LAYOVERS, EMPTY);
         
         hPref = new EnumMap<>(HotelFilter.class);
-        hPref.put(HotelFilter.HOTEL, EMPTY);
         hPref.put(HotelFilter.COMPANY, EMPTY);
         hPref.put(HotelFilter.PRICE, EMPTY);
-        hPref.put(HotelFilter.TIME_START, EMPTY);
-        hPref.put(HotelFilter.TIME_END, EMPTY);
+        hPref.put(HotelFilter.PEOPLE, EMPTY);
+        hPref.put(HotelFilter.DATE_START, EMPTY);
+        hPref.put(HotelFilter.DATE_END, EMPTY);
         hPref.put(HotelFilter.PETS_ALLOWED, EMPTY);
     }
 
