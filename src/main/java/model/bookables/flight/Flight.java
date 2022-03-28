@@ -51,7 +51,7 @@ public class Flight extends TravelObject {
         this.stopY = (double) object.get("to_y");
         this.bookables = new ArrayList<Bookable>();
         for (DBObject obj : (List<DBObject>) object.get("seats"))
-            bookables.add(new Seat(obj));
+            bookables.add(new Seat(obj, this));
         this.airportFrom = (String) object.get("airport_code_from");
         this.airportTo = (String) object.get("airport_code_to");
         this.cityFrom = (String) object.get("city_from");

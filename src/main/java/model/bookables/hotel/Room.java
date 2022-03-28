@@ -2,6 +2,7 @@ package model.bookables.hotel;
 
 import com.mongodb.DBObject;
 import model.bookables.Bookable;
+import model.bookables.TravelObject;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,16 +20,16 @@ public class Room extends Bookable {
     /**
      * Constructor for room
      */
-    public Room(int floor, String roomNum, int sleepingCapacity) {
-        super(floor, roomNum);
+    public Room(int floor, String roomNum, int sleepingCapacity, TravelObject travelObject) {
+        super(floor, roomNum, travelObject);
         info = "A Bookables.Hotel.Hotel.Room";
         bookedDays = new ArrayList<LocalDate>();
         this.sleepingCapacity = sleepingCapacity;
     }
 
     @SuppressWarnings("unchecked")
-    public Room(DBObject object) {
-        super((int) object.get("num"), (String) object.get("floor"), object);
+    public Room(DBObject object, TravelObject travelObject) {
+        super((int) object.get("num"), (String) object.get("floor"), object, travelObject);
         info = (String) object.get("bedInfo");
         this.sleepingCapacity = (int) object.get("bedCount");
         bookedDays = new ArrayList<>();
@@ -41,12 +42,26 @@ public class Room extends Bookable {
      * @author rengotap
      */
     public Room() {
+        this.travelObject = travelObject;
         id = "Test case";
         row = 1;
         col = "A";
         price = 999;
         info = "Two queen beds";
-    
+    }
+
+    /**
+     * Bogus constructor for Room.
+     * for testing purposes only
+     * @author rengotap
+     */
+    public Room(TravelObject travelObject) {
+        this.travelObject = travelObject;
+        id = "Test case";
+        row = 1;
+        col = "A";
+        price = 999;
+        info = "Two queen beds";
     }
 
     

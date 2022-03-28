@@ -90,6 +90,10 @@ public abstract class TravelObject {
         return bookables.remove(booking);
     }
 
+    public String getId() {
+        return id;
+    }
+
     public String getCompany() {
         return company;
     }

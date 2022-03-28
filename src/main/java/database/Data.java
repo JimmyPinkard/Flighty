@@ -120,25 +120,25 @@ public class Data {
 
     private void saveUsers() {
         for(User user : users) {
-            db.create("Users", user);
+            db.update("Users", user.getId(), user);
         }
     }
 
     private void saveFlights() {
         for(Flight flight : getFlights()) {
-            db.create("Flights", flight);
+            db.update("Flights", flight.getId(), flight);
         }
     }
 
     private void saveHotels() {
         for(Hotel hotel : getHotels()) {
-            db.create("Hotels", hotel);
+            db.update("Hotels", hotel.getId(), hotel);
         }
     }
 
     private void saveBookings() {
         for(Booking booking : bookings) {
-            db.create("Bookings", booking);
+            db.update("Bookings", booking.getId(), booking);
         }
     }
 
@@ -150,9 +150,9 @@ public class Data {
     }
 
     public void saveAll() {
-        saveUsers();
         saveFlights();
         saveHotels();
+        saveUsers();
         saveBookings();
     }
 }
