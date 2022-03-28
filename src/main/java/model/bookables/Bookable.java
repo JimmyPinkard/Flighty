@@ -10,12 +10,11 @@ public abstract class Bookable implements Comparable<Bookable> {
     protected int row;
     protected String col;
     protected double price;
-    protected List<String> amenities;
 
     /**
      * Constructor for a bookable, with a row and a col
      * @param row: int for the row it is in (would be plane row or hotel floor)
-     * @param col: string for the colum (would be the plane column or hotel roomnumber without the floor)
+     * @param col: string for the colum (would be the plane column or hotel room number without the floor)
      * column is a string so that the plane can have seats have letters
      */
     public Bookable(int row, String col) {
@@ -28,15 +27,6 @@ public abstract class Bookable implements Comparable<Bookable> {
         this.col = col;
         this.id = (String) object.get("id");
         this.price = (double) object.get("price");
-        this.amenities = new ArrayList<>();
-        this.amenities.add("LAETR");
-        /*
-        var temp = (List<DBObject>) object.get("amenities");
-        System.out.println(object.keySet());
-        for(DBObject obj : temp) {
-            this.amenities.add((String) obj.get("amenities"));
-        }
-        */
     }
 
     /**
@@ -49,9 +39,6 @@ public abstract class Bookable implements Comparable<Bookable> {
         row = 1;
         col = "A";
         price = 999;
-        amenities = new ArrayList<>();
-        amenities.add("Amenity A");
-        amenities.add("Amenity B");
     }
 
     /**
@@ -107,7 +94,6 @@ public abstract class Bookable implements Comparable<Bookable> {
                 ", row:" + row +
                 ", col:'" + col + '\'' +
                 ", price:" + price +
-                ", amenities:" + amenities +
                 '}';
     }
 }

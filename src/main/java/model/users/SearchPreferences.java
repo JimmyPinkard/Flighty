@@ -47,7 +47,21 @@ public class SearchPreferences implements Cloneable {
         for(FlightFilter key : fpref.keySet()) {
             String value = (String) object.get(String.valueOf(key));
             if(value != null) {
+                if(value.equals(EMPTY)) {
+                    fpref.remove(key);
+                    continue;
+                }
                 fpref.put(key, value);
+            }
+        }
+        for(HotelFilter key : hPref.keySet()) {
+            String value = (String) object.get(String.valueOf(key));
+            if(value != null) {
+                if(value.equals(EMPTY)) {
+                    hPref.remove(key);
+                    continue;
+                }
+                hPref.put(key, value);
             }
         }
     }

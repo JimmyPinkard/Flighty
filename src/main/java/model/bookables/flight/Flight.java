@@ -4,7 +4,6 @@ import com.mongodb.DBObject;
 import model.bookables.Bookable;
 import model.bookables.BookingLayout;
 import model.bookables.TravelObject;
-import search.filters.FlightFilter;
 import utils.TimeUtils;
 
 import java.time.LocalDateTime;
@@ -14,11 +13,13 @@ import java.util.List;
  * @author Jack Hyatt
  */
 public class Flight extends TravelObject {
+    private static final TimeUtils timeUtils = TimeUtils.getInstance();
     private String airportFrom;
     private String airportTo;
+    private String cityFrom;
+    private String cityTo;
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
-    private List<FlightFilter> filters;
     private double startX;
     private double startY;
     private double stopX;
@@ -39,7 +40,6 @@ public class Flight extends TravelObject {
     @SuppressWarnings("unchecked")
     public Flight(DBObject object) {
         super(object);
-        TimeUtils timeUtils = new TimeUtils();
         this.departureTime = timeUtils.genDateTime(object.get("date_depart") + " "
                 + ((String) object.get("time_depart")).substring(0, 5));
         this.arrivalTime = timeUtils.genDateTime(object.get("date_arrive") + " "
@@ -51,6 +51,8 @@ public class Flight extends TravelObject {
         this.bookables = (List<Bookable>) object.get("seats");
         this.airportFrom = (String) object.get("airport_code_from");
         this.airportTo = (String) object.get("airport_code_to");
+        this.cityFrom = (String) object.get("city_from");
+        this.cityTo = (String) object.get("city_to");
     }
 
     /**
@@ -105,8 +107,18 @@ public class Flight extends TravelObject {
 
     @Override
     public String toString() {
-        return "{" + "travelObject: " + super.toString() + ", airportFrom:'" + airportFrom + '\''
-                + ", airportTo:'" + airportTo + '\'' + ", departureTime:" + departureTime + "UTC"
-                + ", arrivalTime:" + arrivalTime + "UTC" + ", filters:" + filters + "}";
+        return ("{" +
+                "airportFrom='" + airportFrom + '\'' +
+                ", airportTo='" + airportTo + '\'' +
+                ", cityFrom='" + cityFrom + '\'' +
+                ", cityTo='" + cityTo + '\'' +
+                ", departureTime=" + departureTime +
+                ", arrivalTime=" + arrivalTime +
+                ", startX=" + startX +
+                ", startY=" + startY +
+                ", stopX=" + stopX +
+                ", stopY=" + stopY +
+                ", travelObject" + super.toString() +
+                "}").replace('=', ':').replace('\'', '"');
     }
 }

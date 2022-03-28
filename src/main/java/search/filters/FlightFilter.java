@@ -5,6 +5,7 @@ package search.filters;
  * @author Rengotap
  */
 public enum FlightFilter implements SearchFilter {
+    FLIGHT,
     AIRPORT_FROM, 
     AIRPORT_TO,
     COMPANY,
