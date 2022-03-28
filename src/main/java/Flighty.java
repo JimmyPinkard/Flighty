@@ -768,13 +768,13 @@ public class Flighty {
     private void menuChangeFPref() {
         while (true) {
             println("Your current flight preferences:");
-            final String OPTION_HOMEPORT = "Home Airport:"
+            final String OPTION_HOMEPORT = "Home Airport Code:"
                     + userManager.getCurrentUser().getFPref().get(FlightFilter.AIRPORT_FROM);
             final String OPTION_COMPANY =
                     "Company: " + userManager.getCurrentUser().getFPref().get(FlightFilter.COMPANY);
-            final String OPTION_TIME_DEPART = "Earliest Departure Time: " + userManager
+            final String OPTION_TIME_DEPART = "Earliest Departure Time (HH:MM): " + userManager
                     .getCurrentUser().getFPref().get(FlightFilter.TIME_DEPART_EARLIEST);
-            final String OPTION_TIME_ARRIVE = "Latest Arrival Time: "
+            final String OPTION_TIME_ARRIVE = "Latest Arrival Time (HH:MM): "
                     + userManager.getCurrentUser().getFPref().get(FlightFilter.TIME_ARRIVE_LATEST);
             final String OPTION_PETS = "Traveling with Pets: "
                     + userManager.getCurrentUser().getFPref().get(FlightFilter.PETS_ALLOWED);
@@ -794,16 +794,16 @@ public class Flighty {
             String response = menuNumbered("Enter a Number", options);
             if (response.equals(OPTION_HOMEPORT)) {
                 userManager.getCurrentUser().getFPref().put(FlightFilter.AIRPORT_FROM,
-                        promptString("Enter a new Home Airport: "));
+                        promptString("Enter a new Home Airport Code: "));
             } else if (response.equals(OPTION_COMPANY)) {
                 userManager.getCurrentUser().getFPref().put(FlightFilter.COMPANY,
                         promptString("Enter a new Company: "));
             } else if (response.equals(OPTION_TIME_DEPART)) {
                 userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_DEPART_EARLIEST,
-                        promptString("Enter your earliest time: "));
+                        promptString("Enter your earliest time (HH:MM)"));
             } else if (response.equals(OPTION_TIME_ARRIVE)) {
                 userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_ARRIVE_LATEST,
-                        promptString("Enter your latest time: "));
+                        promptString("Enter your latest time (HH:MM): "));
             } else if (response.equals(OPTION_PETS)) {
                 userManager.getCurrentUser().getFPref().put(FlightFilter.PETS_ALLOWED,
                         Boolean.toString(promptYN("Will you be traveling with pets?")));
