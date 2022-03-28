@@ -86,6 +86,8 @@ public class User {
      */
     public User() {
         username = "temp";
+        password = "p";
+        email = "email@email.com";
         this.person = new Person("temp", "temp");
         preferences = new SearchPreferences();
         specialReq = new ArrayList<String>();

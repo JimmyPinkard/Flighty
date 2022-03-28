@@ -36,6 +36,19 @@ public class Hotel extends TravelObject {
     }
 
     /**
+     * Bogus constructor for Hotel.
+     * for testing purposes only
+     * @author rengotap
+     */
+    public Hotel() {
+        super(new HotelLayout("temp"));
+        location = "Fiji";
+        this.features = new ArrayList<>();
+        this.features.add("Feature A");
+        this.features.add("Feature B");
+    }
+
+    /**
      * Gets the hotel's features
      * @return List of features
      */

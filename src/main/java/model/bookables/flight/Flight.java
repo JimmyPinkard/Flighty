@@ -45,6 +45,17 @@ public class Flight extends TravelObject {
         }
     }
 
+    /**
+     * Bogus constructor for flight.
+     * for testing purposes only
+     * @author rengotap
+     */
+    public Flight() {
+        super(new FlightLayout("test"));
+        airportFrom = "ATL";
+        airportTo = "LAX";
+    }
+
 
     public String getAirportFrom() {
         return airportFrom;

@@ -31,6 +31,19 @@ public class Data {
     }
 
     /**
+     * Bogus constructor for Data.
+     * for testing purposes only
+     * @author rengotap
+     */
+    public Data(List<User> users, List<Flight> flights, List<Hotel> hotels, List<Booking> bookings) {
+        this.db = null;
+        this.users = users;
+        this.flights = flights;
+        this.hotels = hotels;
+        this.bookings = bookings;
+    }
+
+    /**
      * Singleton
      * @author Jimmy
      * @return

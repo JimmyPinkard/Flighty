@@ -1,4 +1,5 @@
 import database.Data;
+import model.bookables.Bookable;
 import model.bookables.flight.Flight;
 import model.bookables.hotel.Room;
 import model.users.User;
@@ -17,6 +18,7 @@ import search.SearchHotels;
 import search.filters.FlightFilter;
 import search.filters.HotelFilter;
 import model.bookables.hotel.Hotel;
+import model.Booking;
 
 /**
  * UI class
@@ -59,7 +61,7 @@ public class Flighty {
         input = new Scanner(System.in);
         userManager = new UserManager(data);
         // TODO: uncomment this when data is ready
-        //checkData();  // Comment this out to run program with empty input data
+        checkData();  // Comment this out to run program with empty input data
     }
 
     /**
@@ -77,6 +79,35 @@ public class Flighty {
      */
     public void stop() {
         data.saveAll();
+    }
+
+    /**
+     * Generates bogus testing data
+     * for testing purposes only
+     * @author rengotap
+     */
+    private void genBogusData() {
+        int numToGenerate = 5;
+
+        List<User> users = new ArrayList<User>();
+        List<Flight> flights = new ArrayList<Flight>();
+        List<Hotel> hotels = new ArrayList<Hotel>();
+        List<Booking> bookings = new ArrayList<Booking>();
+
+        for (int i = 0; i < numToGenerate; i++) {
+            flights.add(new Flight());
+            hotels.add(new Hotel());
+            bookings.add(new Booking());
+        }
+        User newUser = new User();
+        userManager.registerUser(newUser);
+        userManager.logoutCurrent();
+        userManager.login("temp","p");
+        users.add(newUser);
+
+
+        data = new Data(users, flights, hotels, bookings);
+
     }
 
     /**
@@ -510,6 +541,7 @@ public class Flighty {
             options.add(OPTION_BACK);
 
             User currUser = userManager.getCurrentUser();
+            println("");
             println(String.format("""
                     Username: %s
                     Name: %s %s
@@ -829,6 +861,7 @@ public class Flighty {
 
     /**
      * UI for booking a flight
+     * // TODO: Enable one way flights
      * @author rengotap
      */
     private void menuBookFlight() {
@@ -1224,29 +1257,82 @@ public class Flighty {
      * @author rengotap
      */
     private void menuEditBooking() {
-        if(userManager.isAnyoneLoggedIn() && 
-            !userManager.getCurrentUser().getBookingHistory().isEmpty()) {
-        
-            User curr = userManager.getCurrentUser();
+        while (true) {
+
+            final String OPT_PRINT = "Print Booking";
+            final String OPT_CANCEL = "Cancel Booking";
+            final String OPT_BACK = "Back";
 
             List<String> options = new ArrayList<String>();
-            for (int i = 1; i < curr.getBookingHistory().size(); i++) { // should add every booking as an option
-                options.add(curr.getBookingHistory().get(i).toString());
-            }
-            final String OPTIONS_EXIT = "Return to main menu";
-            options.add(OPTIONS_EXIT);
-        
-            String response = menuNumbered("Enter a Number", options);
-            if (response.equals(options.get(options.size()-1))) {
-                return;
-            } else {
-                if (promptYN("Are you sure you want to delete this booking?")) {
-                    userManager.getCurrentUser().removeBooking(curr.getBookingHistory().get(Integer.parseInt(response)));
-                    println("Booking removed, your payment has been refunded.");
+
+            if(userManager.isAnyoneLoggedIn() && !userManager.getCurrentUser().getBookingHistory().isEmpty()) {
+                List<Bookable> bookings = userManager.getCurrentUser().getBookingHistory();
+                for (int i = 0; i < bookings.size(); i++) {
+                    println(bookings.get(i).toString());  // TODO: Make a single line toString() for booking
                 }
+                options.add(OPT_PRINT);
+                options.add(OPT_CANCEL);
+            } else {
+                println(ANSI_RED + "No bookings on file" + ANSI_RESET + '\n');                
             }
+            options.add(OPT_BACK);
+
+            String response = menuNumbered("Enter a Number", options);
+
+            if (response.equals(OPT_PRINT)) {
+                MenuPrintBooking();
+            } else if (response.equals(OPT_CANCEL)) {
+                MenuCancelBooking();
+            } else if (response.equals(OPT_BACK)) {
+                return;
+            }
+        }
+    }
+
+    /**
+     * Cancels bookings  // TODO: Test Canceling a Booking
+     * @author rengotap
+     */
+    private void MenuCancelBooking() {
+        List<Bookable> bookings = userManager.getCurrentUser().getBookingHistory();
+        List<String> options = new ArrayList<String>();
+        for (int i = 1; i < bookings.size(); i++) { // should add every booking as an option
+            options.add(bookings.get(i).toString());
+        }
+        final String OPTIONS_BACK = "Return to main menu";
+        options.add(OPTIONS_BACK); // at position size+1
+
+        String response = menuNumbered("Choose a booking to cancel, or enter " + bookings.size()+1 +" to go back", options);
+        if(response.equals(OPTIONS_BACK)) {
+            return;
+        } else if (promptYN("Are you sure you want to cancel this booking?")) {
+            userManager.getCurrentUser().removeBooking(userManager.getCurrentUser().getBookingHistory().get(Integer.parseInt(response)));
+            println("Booking canceled, your payment has been refunded.");
+        }
+
+    }
+
+    /**
+     * The user now prints their itinerary for both of their flights, 
+     * and the details for their hotel reservation.
+     * Printing means creating a beautifully formatted text file.
+     * @author rengotap
+     */
+    private void MenuPrintBooking() {
+        List<Bookable> bookings = userManager.getCurrentUser().getBookingHistory();
+        List<String> options = new ArrayList<String>();
+        for (int i = 1; i < bookings.size(); i++) { // should add every booking as an option
+            options.add(bookings.get(i).toString());
+        }
+        final String OPTIONS_BACK = "Return to main menu";
+        options.add(OPTIONS_BACK); // at position size+1
+
+        String response = menuNumbered("Choose a booking to export, or enter " + bookings.size()+1 +" to go back", options);
+        if(response.equals(OPTIONS_BACK)) {
+            return;
         } else {
-            println("No bookings to modify.");
+            userManager.getCurrentUser().getBookingHistory().get(Integer.parseInt(response));
+            println(ANSI_YELLOW + "ERROR: Exporting to file not yet supported" + ANSI_RESET);  // TODO: Export Bookable as text file
         }
     }
 

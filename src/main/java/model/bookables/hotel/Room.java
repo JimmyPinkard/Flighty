@@ -34,6 +34,22 @@ public class Room extends Bookable {
         bookedDays.addAll((List<LocalDate>)object.get("bookedDates"));
     }
 
+    /**
+     * Bogus constructor for Room.
+     * for testing purposes only
+     * @author rengotap
+     */
+    public Room() {
+        id = "Test case";
+        row = 1;
+        col = "A";
+        price = 999;
+        amenities = new ArrayList<>();
+        amenities.add("Amenity A");
+        amenities.add("Amenity B");
+        numBeds = 2;
+    }
+
     
 
     /**

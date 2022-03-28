@@ -22,6 +22,15 @@ public abstract class BookingLayout {
     }
 
     /**
+     * Bogus constructor for BookingLayout.
+     * for testing purposes only
+     * @author rengotap
+     */
+    public BookingLayout() {
+
+    }
+
+    /**
      * Static method 
      * @return
      */
