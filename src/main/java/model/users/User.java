@@ -2,8 +2,6 @@ package model.users;
 
 import com.mongodb.DBObject;
 import model.bookables.Bookable;
-import model.bookables.flight.Seat;
-import model.bookables.hotel.Room;
 import model.users.info.Passport;
 import model.users.info.Person;
 import search.filters.FlightFilter;
@@ -11,7 +9,6 @@ import search.filters.HotelFilter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.io.File;
 import java.util.EnumMap;
 
 /**
@@ -42,18 +39,19 @@ public class User {
         this.username = username;
         this.password = password;
 
-        preferences = new SearchPreferences();  //TODO: Import Prefrences from data
+        preferences = new SearchPreferences();
         specialReq = new ArrayList<String>();
         travelers = new ArrayList<Passport>();
         bookingHistory = new ArrayList<Bookable>();
     }
 
+    @SuppressWarnings("unchecked")
     public User(DBObject object) {
         this.username = (String) object.get("username");
         this.password = (String) object.get("password");
         this.person = (Person) object.get("person");
         this.email = (String) object.get("email");
-        this.preferences = new SearchPreferences(object);
+        this.preferences = new SearchPreferences(object); // TODO import preferences from data
         this.specialReq = new ArrayList<>();
         this.specialReq.addAll((List<String>) object.get("specialReq"));
         this.travelers = new ArrayList<>();
@@ -92,26 +90,6 @@ public class User {
         preferences = new SearchPreferences();
         specialReq = new ArrayList<String>();
         bookingHistory = new ArrayList<Bookable>();
-    }
-
-    // TODO: (James) not the user's job - should be moved to userManager
-    /**
-     * Takes temporary guest data and saves it as a registered user for later
-     * @param username new username
-     * @param password new password
-     * @return True if operation was successful
-     */
-    public boolean registerUser(String username, String password) {
-        File saveData = new File("./database/userdata" + username + ".json");
-        if (saveData.exists()) {
-            System.out.println("This username is already taken.");
-            return false;
-        } else {  // Changes the guest credentials effectively transfering it to the new user
-            this.username = username;
-            this.password = password;
-            // TODO: set LoggedIn in UserManager to be the current user, (may be taken care of???)
-            return true;
-        }
     }
 
     /**

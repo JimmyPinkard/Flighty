@@ -1,8 +1,6 @@
 package model.users.info;
 
 import com.mongodb.DBObject;
-import org.bson.Document;
-
 import java.time.LocalDate;
 import java.util.UUID;
 

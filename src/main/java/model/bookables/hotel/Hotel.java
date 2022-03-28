@@ -24,6 +24,7 @@ public class Hotel extends TravelObject {
 
     }
 
+    @SuppressWarnings("unchecked")
     public Hotel(DBObject object) {
         super(object);
         this.features = new ArrayList<>();

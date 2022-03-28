@@ -154,6 +154,11 @@ def create_flight_entry():
 
     a_from, a_to = random.sample(airports, 2)
 
+    f["from_x"] = float(a_from["x"])
+    f["from_y"] = float(a_from["y"])
+    f["to_x"] = float(a_to["x"])
+    f["to_y"] = float(a_to["y"])
+
     f["airport_code_from"] = a_from["code"]
     f["airport_code_to"] = a_to["code"]
 
@@ -163,10 +168,11 @@ def create_flight_entry():
     day = int(random.uniform(1, 10))
     hour = int(random.uniform(1, 23))
     date = datetime.datetime(2022, 1, day, hour)
-    f["date"] = date.strftime("%m/%d/%y")
+    f["date_depart"] = date.strftime("%m/%d/%y")
     f["time_depart"] = date.strftime("%H:%M UTC")
     dist = dist_between(a_from["x"], a_from["y"], a_to["x"], a_to["y"])
     date = date + datetime.timedelta(minutes=dist_to_min(dist))
+    f["date_arrive"] = date.strftime("%m/%d/%y")
     f["time_arrive"] = date.strftime("%H:%M UTC")
 
     f["rating"] = round(random.uniform(0, 5), 1)
