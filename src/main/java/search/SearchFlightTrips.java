@@ -20,10 +20,17 @@ import utils.TimeUtils;
 public class SearchFlightTrips implements Search {
 
     public static List<FlightTrip> execute(SearchPreferences preferences) {
+        preferences = preferences.clone();
         List<FlightTrip> out = new ArrayList<FlightTrip>();
 
-        var flights = findRoute(preferences);
-        out.add(new FlightTrip(flights));
+        // layovers from Scenario 2
+        for (String amountLayovers : new String[] {"0", "1", "1", "2"}) {
+            preferences.fpref.put(FlightFilter.LAYOVERS, amountLayovers);
+
+            List<Flight> route = findRoute(preferences, out);
+            if (!route.isEmpty())
+                out.add(new FlightTrip(route));
+        }
 
         return out;
     }
@@ -92,21 +99,15 @@ public class SearchFlightTrips implements Search {
         return out;
     }
 
-    private static List<Flight> getLeavingFrom(String airport) {
-        EnumMap<FlightFilter, String> prefs = new SearchPreferences().fpref;
-        prefs.put(FlightFilter.AIRPORT_FROM, airport);
-        prefs.put(FlightFilter.AIRPORT_TO, SearchPreferences.EMPTY);
-
-        return getValidFlights(prefs);
-    }
-
     public static class FlightPriorityElement implements Comparable<FlightPriorityElement> {
         public Flight flight;
+        public int stepsFromStart;
         private double cost;
 
-        FlightPriorityElement(Flight flight, double cost) {
+        FlightPriorityElement(Flight flight, double cost, int stepsFromStart) {
             this.cost = cost;
             this.flight = flight;
+            this.stepsFromStart = stepsFromStart;
         }
 
         @Override
@@ -115,7 +116,8 @@ public class SearchFlightTrips implements Search {
         }
     }
 
-    private static List<Flight> findRoute(SearchPreferences preferences) {
+    private static List<Flight> findRoute(SearchPreferences preferences,
+            List<FlightTrip> excludingTrips) {
         Map<Flight, Flight> prevInPath = new HashMap<>();
         Map<Flight, Double> costToReachFromStart = new HashMap<>();
         PriorityQueue<FlightPriorityElement> toExplore = new PriorityQueue<>();
@@ -125,11 +127,19 @@ public class SearchFlightTrips implements Search {
         for (Flight start : getValidFlights(startPrefs)) {
             prevInPath.put(start, null);
             costToReachFromStart.put(start, 0.0);
-            toExplore.add(new FlightPriorityElement(start, 0.0));
+            toExplore.add(new FlightPriorityElement(start, 0.0, 0));
         }
 
         while (!toExplore.isEmpty()) {
-            Flight currentlyExploring = toExplore.poll().flight;
+            var currElement = toExplore.poll();
+            Flight currentlyExploring = currElement.flight;
+            int currentStepsFromStart = currElement.stepsFromStart;
+
+            if (!preferences.getFPref().get(FlightFilter.LAYOVERS)
+                    .equalsIgnoreCase(SearchPreferences.EMPTY)
+                    && Integer.parseInt(preferences.getFPref()
+                            .get(FlightFilter.LAYOVERS)) < currentStepsFromStart)
+                continue;
 
             String airportTo = preferences.getFPref().get(FlightFilter.AIRPORT_TO);
             if (currentlyExploring.getAirportTo().equalsIgnoreCase(airportTo)) {
@@ -143,6 +153,13 @@ public class SearchFlightTrips implements Search {
                     path.add(0, currentFlight);
                     currentFlight = prevInPath.get(currentFlight);
                 }
+
+                boolean skipPath = false;
+                for (var trip : excludingTrips)
+                    if (path.equals(trip.getFlights()))
+                        skipPath = true;
+                if (skipPath)
+                    continue;
 
                 return path;
             }
@@ -163,7 +180,7 @@ public class SearchFlightTrips implements Search {
                         || costToReachFromStart.get(next) > currentNextCost) {
                     costToReachFromStart.put(next, currentNextCost);
 
-                    toExplore.add(new FlightPriorityElement(next, 0.0));
+                    toExplore.add(new FlightPriorityElement(next, 0.0, currentStepsFromStart + 1));
                     prevInPath.put(next, currentlyExploring);
                 }
             }
