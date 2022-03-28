@@ -11,7 +11,7 @@ public abstract class BookingLayout {
     /**
      * All possible bookable objects that may or may not be avalable
      */
-    protected List<Bookable> options;
+    protected List<? extends Bookable> options;
 
     /**
      * Constructor for the booking layout
@@ -60,7 +60,7 @@ public abstract class BookingLayout {
         return "";
     }
     */
-    public List<Bookable> getOptions() {
+    public List<? extends Bookable> getOptions() {
         return new ArrayList<Bookable>();
     }
 }

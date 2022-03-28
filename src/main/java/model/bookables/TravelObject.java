@@ -77,7 +77,7 @@ public abstract class TravelObject {
      * 
      * @return the List of bookables options
      */
-    public List<Bookable> getOptions() {
+    public List<? extends Bookable> getOptions() {
         return bookables;
     }
 

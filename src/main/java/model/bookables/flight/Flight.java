@@ -7,6 +7,7 @@ import model.bookables.TravelObject;
 import utils.TimeUtils;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -85,8 +86,12 @@ public class Flight extends TravelObject {
         return bookables.size();
     }
 
-    public List<Bookable> getSeats() {
-        return bookables;
+    public List<Seat> getOptions() {
+        List<Seat> seats = new ArrayList<>();
+        for (Bookable bookable : seats)
+            seats.add((Seat) bookable);
+
+        return seats;
     }
 
     /**

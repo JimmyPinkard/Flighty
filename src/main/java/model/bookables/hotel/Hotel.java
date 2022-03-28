@@ -78,8 +78,12 @@ public class Hotel extends TravelObject {
         return bookables.size();
     }
 
-    public List<Bookable> getRooms() {
-        return bookables;
+    public List<Room> getOptions() {
+        List<Room> rooms = new ArrayList<>();
+        for (Bookable bookable : rooms)
+            rooms.add((Room) bookable);
+
+        return rooms;
     }
 
     /**
