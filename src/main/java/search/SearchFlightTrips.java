@@ -38,16 +38,18 @@ public class SearchFlightTrips implements Search {
         String company = preferences.get(FlightFilter.COMPANY);
 
         if (!airportFrom.equalsIgnoreCase(SearchPreferences.EMPTY)
-                && !airportFrom.equalsIgnoreCase(flight.getAirportFrom())) {
+                && !airportFrom.equalsIgnoreCase(flight.getAirportFrom()))
             return false;
-        } else if (!airportTo.equalsIgnoreCase(SearchPreferences.EMPTY)
-                && !airportTo.equalsIgnoreCase(flight.getAirportTo())) {
+
+        if (!airportTo.equalsIgnoreCase(SearchPreferences.EMPTY)
+                && !airportTo.equalsIgnoreCase(flight.getAirportTo()))
             return false;
-        } else if (!company.equalsIgnoreCase(SearchPreferences.EMPTY)
-                && !company.equalsIgnoreCase(flight.getCompany())) {
+
+        if (!company.equalsIgnoreCase(SearchPreferences.EMPTY)
+                && !company.equalsIgnoreCase(flight.getCompany()))
             return false;
-        } else if (!preferences.get(FlightFilter.TIME_DEPART)
-                .equalsIgnoreCase(SearchPreferences.EMPTY)) {
+
+        if (!preferences.get(FlightFilter.DATE_DEPART).equalsIgnoreCase(SearchPreferences.EMPTY)) {
             LocalDate dateDepartAfter = preferences.get(FlightFilter.DATE_DEPART)
                     .equalsIgnoreCase(SearchPreferences.EMPTY) ? LocalDate.ofEpochDay(0L)
                             : TimeUtils.generateDate(preferences.get(FlightFilter.DATE_DEPART));
@@ -57,25 +59,28 @@ public class SearchFlightTrips implements Search {
                             : TimeUtils.generateTime(preferences.get(FlightFilter.TIME_DEPART));
 
             LocalDateTime departAfter = LocalDateTime.of(dateDepartAfter, timeDepartAfter);
-            // TimeUtils.generateTime(preferences.get(FlightFilter.TIME_DEPART));
-            // TODO: change flight arival to travel time
-            if (departAfter.compareTo(flight.getDepartureTime()) > 0) {
+            if (departAfter.compareTo(flight.getDepartureTime()) > 0)
                 return false;
-            }
+        }
+
+        if (!preferences.get(FlightFilter.DATE_ARRIVE).equalsIgnoreCase(SearchPreferences.EMPTY)) {
+            LocalDate dateArriveBefore = preferences.get(FlightFilter.DATE_ARRIVE)
+                    .equalsIgnoreCase(SearchPreferences.EMPTY) ? LocalDate.ofEpochDay(0L)
+                            : TimeUtils.generateDate(preferences.get(FlightFilter.DATE_ARRIVE));
+
+            LocalTime timeArriveBefore = preferences.get(FlightFilter.TIME_ARRIVE)
+                    .equalsIgnoreCase(SearchPreferences.EMPTY) ? LocalTime.ofSecondOfDay(86399)
+                            : TimeUtils.generateTime(preferences.get(FlightFilter.TIME_ARRIVE));
+
+            LocalDateTime arriveBefore = LocalDateTime.of(dateArriveBefore, timeArriveBefore);
+            if (arriveBefore.compareTo(flight.getArrivalTime()) < 0)
+                return false;
         }
 
         return true;
-        // } else if (preferences.get(FlightFiltr.TIME_ARRIVE)
-        // .equalsIgnoreCase(SearchPreferences.EMPTY)) {
-        // LocalTime timeArriveLaterThan =
-        // TimeUtils.generateTime(preferences.get(FlightFilter.TIME_ARRIVE));
-        // if (timeArriveLaterThan.compareTo(flight.getArrivalTime().toLocalTime()) < 0) {
-        // continue;
-        // }
-        // }
     }
 
-    private static List<Flight> getValidFlights(
+    public static List<Flight> getValidFlights(
             EnumMap<? extends SearchFilter, String> preferences) {
         List<Flight> out = new ArrayList<Flight>();
 
