@@ -9,8 +9,6 @@ import model.users.info.Passport;
 import model.users.info.Person;
 import controller.UserManager;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -181,7 +179,7 @@ public class Flighty {
      * @author jbytes1027
      */
     private String toString(LocalDate date) {
-        return date.format(DateTimeFormatter.ofPattern("M/d/y"));
+        return TimeUtils.getInstance().toString(date);
     }
 
     /**
@@ -237,31 +235,12 @@ public class Flighty {
         List<String> row = new ArrayList<String>();
 
         row.add(passport.getPerson().getFirstName() + " " + passport.getPerson().getLastName());
-        row.add(toString(passport.getDOB()));
+        row.add(TimeUtils.getInstance().toString(passport.getDOB()));
         row.add(passport.getGender());
-        row.add(toString(passport.getExpDate()));
+        row.add(TimeUtils.getInstance().toString(passport.getExpDate()));
         row.add(passport.getNumber());
 
         return row;
-    }
-
-    /**
-     * Turns a passport into a string
-     * 
-     * @param passport passport to convert
-     * @return converted
-     * @author jbytes1027
-     */
-    private String toString(Passport passport) {
-        return String.format("""
-                NAME: %s %s
-                GENDER: %s
-                DOB: %s
-                EXPIRATION: %s
-                NUMBER: %s
-                """, passport.getPerson().getFirstName(), passport.getPerson().getLastName(),
-                passport.getGender(), toString(passport.getDOB()), toString(passport.getExpDate()),
-                passport.getNumber());
     }
 
     /**
@@ -836,10 +815,10 @@ public class Flighty {
                     + userManager.getCurrentUser().getFPref().get(FlightFilter.AIRPORT_FROM);
             final String OPTION_COMPANY =
                     "Company: " + userManager.getCurrentUser().getFPref().get(FlightFilter.COMPANY);
-            final String OPTION_TIME_DEPART = "Earliest Departure Time: "
-                    + userManager.getCurrentUser().getFPref().get(FlightFilter.TIME_EARLIEST);
-            final String OPTION_TIME_ARRIVE = "Latest Departure Time: "
-                    + userManager.getCurrentUser().getFPref().get(FlightFilter.TIME_LATEST);
+            final String OPTION_TIME_DEPART = "Earliest Departure Time: " + userManager
+                    .getCurrentUser().getFPref().get(FlightFilter.TIME_DEPART_EARLIEST);
+            final String OPTION_TIME_ARRIVE = "Latest Arrival Time: "
+                    + userManager.getCurrentUser().getFPref().get(FlightFilter.TIME_ARRIVE_LATEST);
             final String OPTION_PETS = "Traveling with Pets: "
                     + userManager.getCurrentUser().getFPref().get(FlightFilter.PETS_ALLOWED);
             final String OPTION_LAYOVER = "Layovers: "
@@ -863,10 +842,10 @@ public class Flighty {
                 userManager.getCurrentUser().getFPref().put(FlightFilter.COMPANY,
                         promptString("Enter a new Company: "));
             } else if (response.equals(OPTION_TIME_DEPART)) {
-                userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_EARLIEST,
+                userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_DEPART_EARLIEST,
                         promptString("Enter your earliest time: "));
             } else if (response.equals(OPTION_TIME_ARRIVE)) {
-                userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_LATEST,
+                userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_ARRIVE_LATEST,
                         promptString("Enter your latest time: "));
             } else if (response.equals(OPTION_PETS)) {
                 userManager.getCurrentUser().getFPref().put(FlightFilter.PETS_ALLOWED,
@@ -943,25 +922,26 @@ public class Flighty {
                 }
             }
 
-            if (hasPref(curr.getFPref().get(FlightFilter.TIME_EARLIEST))) {
-                timeEarly = curr.getFPref().get(FlightFilter.TIME_EARLIEST);
+            if (hasPref(curr.getFPref().get(FlightFilter.TIME_DEPART_EARLIEST))) {
+                timeEarly = curr.getFPref().get(FlightFilter.TIME_DEPART_EARLIEST);
             } else {
                 timeEarly =
                         promptString("What is the earliest time you would be willing to leave?");
                 if (promptYN("Would you like to save this as a default option?")) {
                     println("Setting as user default");
-                    userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_EARLIEST,
+                    userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_DEPART_EARLIEST,
                             timeEarly);
                 }
             }
 
-            if (hasPref(curr.getFPref().get(FlightFilter.TIME_LATEST))) {
-                timeLate = curr.getFPref().get(FlightFilter.TIME_LATEST);
+            if (hasPref(curr.getFPref().get(FlightFilter.TIME_ARRIVE_LATEST))) {
+                timeLate = curr.getFPref().get(FlightFilter.TIME_ARRIVE_LATEST);
             } else {
-                timeLate = promptString("What is the latest time you would be willing to leave?");
+                timeLate = promptString("What is the latest time you would be willing to arrive?");
                 if (promptYN("Would you like to save this as a default option?")) {
                     println("Setting as user default");
-                    userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_LATEST, timeLate);
+                    userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_ARRIVE_LATEST,
+                            timeLate);
                 }
             }
 
@@ -1072,10 +1052,10 @@ public class Flighty {
         var queryFlightPrefs = queryPrefs.getFPref();
         queryFlightPrefs.put(FlightFilter.AIRPORT_TO, destination);
         queryFlightPrefs.put(FlightFilter.AIRPORT_FROM, home);
-        queryFlightPrefs.put(FlightFilter.DATE_DEPART, toString(depart));
-        queryFlightPrefs.put(FlightFilter.DATE_ARRIVE, toString(ret));
-        queryFlightPrefs.put(FlightFilter.TIME_EARLIEST, timeEarly);
-        queryFlightPrefs.put(FlightFilter.TIME_LATEST, timeLate);
+        queryFlightPrefs.put(FlightFilter.DATE_DEPART_EARLIEST, toString(depart));
+        queryFlightPrefs.put(FlightFilter.DATE_ARRIVE_LATEST, toString(ret));
+        queryFlightPrefs.put(FlightFilter.TIME_DEPART_EARLIEST, timeEarly);
+        queryFlightPrefs.put(FlightFilter.TIME_ARRIVE_LATEST, timeLate);
         queryFlightPrefs.put(FlightFilter.LAYOVERS, Boolean.toString(layover));
         queryFlightPrefs.put(FlightFilter.COMPANY, company);
         queryFlightPrefs.put(FlightFilter.PETS_ALLOWED, Boolean.toString(pets));

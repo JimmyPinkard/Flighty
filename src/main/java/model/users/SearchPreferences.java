@@ -26,10 +26,10 @@ public class SearchPreferences implements Cloneable {
         fpref.put(FlightFilter.COMPANY, EMPTY);
         fpref.put(FlightFilter.PRICE, EMPTY);
         fpref.put(FlightFilter.DURATION, EMPTY);
-        fpref.put(FlightFilter.TIME_DEPART, EMPTY);
-        fpref.put(FlightFilter.TIME_ARRIVE, EMPTY);
-        fpref.put(FlightFilter.DATE_DEPART, EMPTY);
-        fpref.put(FlightFilter.DATE_ARRIVE, EMPTY);
+        fpref.put(FlightFilter.TIME_DEPART_EARLIEST, EMPTY);
+        fpref.put(FlightFilter.TIME_ARRIVE_LATEST, EMPTY);
+        fpref.put(FlightFilter.DATE_DEPART_EARLIEST, EMPTY);
+        fpref.put(FlightFilter.DATE_ARRIVE_LATEST, EMPTY);
         fpref.put(FlightFilter.PETS_ALLOWED, EMPTY);
         fpref.put(FlightFilter.LAYOVERS, EMPTY);
         
