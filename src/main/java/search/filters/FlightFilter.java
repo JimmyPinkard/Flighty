@@ -10,7 +10,7 @@ public enum FlightFilter implements SearchFilter {
     AIRPORT_TO,
     COMPANY,
     PRICE,
-    DURATION,
+    PEOPLE,
     TIME_DEPART_EARLIEST,
     DATE_DEPART_EARLIEST, 
     TIME_ARRIVE_LATEST, 
