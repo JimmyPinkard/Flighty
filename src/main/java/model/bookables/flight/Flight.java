@@ -69,6 +69,11 @@ public class Flight extends TravelObject {
         airportTo = "LAX";
         this.company = "Delta";
         this.rating = 4.7;
+        bookables.add(new Seat(4,"A"));
+        bookables.add(new Seat(9,"B"));
+        bookables.add(new Seat(12,"F"));
+        bookables.add(new Seat(2,"B"));
+        bookables.add(new Seat(20,"E"));
         
     }
 

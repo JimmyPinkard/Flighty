@@ -43,13 +43,11 @@ public class Room extends Bookable {
     public Room() {
         id = "Test case";
         row = 1;
-        col = "A";
         price = 999;
         info = "Two queen beds";
     
     }
 
-    
 
     /**
      * Method to add days that are booked for a room

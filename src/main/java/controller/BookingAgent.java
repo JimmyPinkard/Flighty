@@ -15,6 +15,16 @@ public class BookingAgent {
         this.data = Data.getInstance();
     }
 
+    /**
+     * Bogus Testing constructor.
+     * for testing purposes only
+     * @param data
+     * @author rengotap
+     */
+    public BookingAgent(Data data) {
+        this.data = data;
+    }
+
     public void bookListing(Bookable bookable, User user) {
         final Booking booking = new Booking(user, bookable);
         data.getBookings().add(booking);

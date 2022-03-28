@@ -3,6 +3,7 @@ package model;
 import com.mongodb.DBObject;
 import model.bookables.Bookable;
 import model.bookables.hotel.Room;
+import model.bookables.flight.Seat;
 import model.users.User;
 
 /**
@@ -27,8 +28,11 @@ public class Booking {
      * for testing purposes only
      * @author rengotap 
      */
-    public Booking() {
-        booked = new Room();
+    public Booking(String type) {
+        if (type.equals("r"))
+            booked = new Room();
+        if (type.equals("s"))
+            booked = new Seat(4,"A");
     }
 
     public User getUser() {

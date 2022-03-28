@@ -10,6 +10,8 @@ import model.users.info.Passport;
 import model.users.info.Person;
 import controller.BookingAgent;
 import controller.UserManager;
+
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -65,9 +67,9 @@ public class Flighty {
         input = new Scanner(System.in);
         userManager = new UserManager(data);
         bookingAgent = new BookingAgent();
-        // TODO: uncomment this when data is ready
-        //genBogusData();
-        //checkData();  // Comment this out to run program with empty input data
+        // TODO: Priority Z - uncomment this when data is ready
+        genBogusData();
+        checkData();  // Comment this out to run program with empty input data
     }
 
     /**
@@ -105,7 +107,8 @@ public class Flighty {
         for (int i = 0; i < numToGenerate; i++) {
             flights.add(new Flight());
             hotels.add(new Hotel());
-            bookings.add(new Booking());
+            bookings.add(new Booking("r"));
+            bookings.add(new Booking("s"));
         }
         User newUser = new User();
         userManager.registerUser(newUser);
@@ -117,10 +120,16 @@ public class Flighty {
 
         //List<Bookable> seats = new ArrayList<Bookable>();
         data = new Data(users, flights, hotels, bookings);
-        println(displayFlightFull(new Flight()));
+        bookingAgent = new BookingAgent(data);
+
+
         println(displayFlightSimple(new Flight()));
+        println(displayFlightFull(new Flight()));
+        println(flightMap(new Flight()));
         println(displayHotelSimple(new Hotel()));
-        //println(flightMap(new Flight()));
+        println(displayHotelFull(new Hotel()));
+        println(toString(new Seat(4, "A")));
+        println(toString(new Room()));
 
     }
 
@@ -289,7 +298,7 @@ public class Flighty {
             if (i % width == 0)
                 ret = ret + '\n';
         }
-        return ret.trim().substring(0, ret.length() - 1);
+        return ret.replaceAll(", $", "");
     }
 
     /**
@@ -297,9 +306,21 @@ public class Flighty {
      * TYPE, COST, DESTINATION/LOCATION, COMPANY, ROOM NUM/SEAT NUM
      * @return
      */
-    private String toString(Bookable b) {  // TODO: Make this display properly
-        String type = b.getClass().getSimpleName();
-        return type + " | $" + String.valueOf(b.getPrice()) + " | " + "LOCATION" + " | " + "COMPANY" + " | " + b.getRow() + b.getCol();
+    private String toString(Bookable b) {  // TODO: Priority C - Make this display properly
+        //Note to self: I'm going to need to figure out how to get the travel object that a booking is a part of
+        final String type = b.getClass().getSimpleName();
+        String line = "Type: " + ANSI_CYAN + type + ANSI_RESET 
+                    + " | Price: " + ANSI_CYAN + "$" + String.valueOf(b.getPrice()) + ANSI_RESET;
+        if(type.equals("Seat")) {
+            line = line + " | Destination: " + ANSI_CYAN +"PLACEHOLDER" + ANSI_RESET 
+                        + " | Airline: " +ANSI_CYAN + "PLACEHOLDER" + ANSI_RESET 
+                        + " | Seat Number: " + ANSI_CYAN + b.getCol()+ b.getRow() + ANSI_RESET;
+        } else if (type.equals("Room")) {
+            line = line + " | Location: " + ANSI_CYAN +"PLACEHOLDER" + ANSI_RESET
+                        + " | Company: " +ANSI_CYAN + "PLACEHOLDER" + ANSI_RESET
+                        + " | Room Number: "+ANSI_CYAN + b.getRow() + ANSI_RESET;
+        }
+        return line;
     }
 
     /**
@@ -315,13 +336,6 @@ public class Flighty {
             + " | Seats Available: " + ANSI_CYAN + flight.getNumSeats() + ANSI_RESET
             +" | Company: " + ANSI_CYAN + flight.getCompany() + ANSI_RESET 
             + " | Rating: " + toStars(flight.getRating());
-        /*
-        String format = "Price: " + ANSI_CYAN + "$" + hotel.getCost() 
-            + ANSI_RESET + " | Rooms Available: " + ANSI_CYAN + hotel.getNumRooms() 
-            + ANSI_RESET + " | Company: " + ANSI_CYAN + hotel.getCompany()  
-            + ANSI_RESET + " | Rating: " + toStars(hotel.getRating());
-        return format;
-        */
         return format;
     }
 
@@ -343,20 +357,14 @@ public class Flighty {
             + "Arrival Time: " + ANSI_CYAN + flight.getArrivalTime() +ANSI_RESET+'\n'
             + "Layover: " + ANSI_CYAN + flight.hasLayover() +ANSI_RESET + '\n';
         if(flight.hasLayover()) {
-            // TODO: SHOW LAYOVERS
+            // TODO: Priority C - SHOW LAYOVERS
         }
         format = format + "Total flight time: " + ANSI_CYAN + "PLACEHOLDER TIME" + ANSI_RESET + '\n'
         + "Seats Available: " + ANSI_CYAN + flight.getNumSeats() +ANSI_RESET+'\n';
 
         ArrayList<String> openSeats = new ArrayList<String>();
-        for(int i = 0; i < flight.getNumSeats(); i++)
+        for(int i = 0; i < flight.getNumAvalableSeats(); i++)
             openSeats.add(flight.getOptions().get(i).getCol()+flight.getOptions().get(i).getRow());
-
-        // TODO: Remove these testing highlights
-        openSeats.add("C5");
-        openSeats.add("F12");
-        openSeats.add("A9");
-        openSeats.add("D8");
 
         format = format + ANSI_GREEN+toBlock(openSeats, 3)+ANSI_RESET;
         // Do flights have features???
@@ -369,16 +377,25 @@ public class Flighty {
      * @return
      */
     private String flightMap(Flight flight) {
-        String ret='\n'+ANSI_BLACK+ANSI_WHITE_BG+"CLASS: ECONOMY      PRICE: $"+flight.getCost()+ANSI_RESET+'\n';
+        //TODO: Priority B - get a flight's Economy, Business, and First class prices
+        final double pEconomy = 100;
+        final double pBusiness = 263;
+        final double pFirst = 369;
+
+        String ret = '\n' + ANSI_BLACK+ANSI_WHITE_BG + "CLASS: ECONOMY      PRICE: $" 
+                + pEconomy + ANSI_RESET + '\n';
         String[][] map = flightMapMaker(flight);
         String[] rows = flightMapFlattener(map, flight);
         for (int i = 0; i < rows.length; i++) {
             ret = ret+rows[i]+'\n';
-
             if (i == 8)
-                ret = ret+ANSI_BLACK+ANSI_WHITE_BG+"CLASS: BUSINESS     PRICE: $"+flight.getCost()+ANSI_RESET+'\n';
+                ret = ret + ANSI_BLACK + ANSI_WHITE_BG 
+                    + "CLASS: BUSINESS     PRICE: $" 
+                    + pBusiness + ANSI_RESET + '\n';
             else if (i == 17)
-                ret = ret+ANSI_BLACK+ANSI_WHITE_BG+"CLASS: FIRST CLASS     PRICE: $"+flight.getCost()+ANSI_RESET+'\n';
+                ret = ret + ANSI_BLACK + ANSI_WHITE_BG 
+                    + "CLASS: FIRST CLASS     PRICE: $" 
+                    + pFirst + ANSI_RESET + '\n';
         }
         return ret;
     }
@@ -412,11 +429,6 @@ public class Flighty {
         ArrayList<String> openSeats = new ArrayList<String>();
         for(int i = 0; i < flight.getNumSeats(); i++)
             openSeats.add(flight.getOptions().get(i).getCol()+flight.getOptions().get(i).getRow());
-
-        // TODO: Remove these testing highlights
-        openSeats.add("C5");
-        openSeats.add("F12");
-        openSeats.add("A9");
 
         for(int j = 0; j < map[0].length; j++) {
             String temp = "";
@@ -994,7 +1006,7 @@ public class Flighty {
         userManager.login(username, password);
         userManager.getCurrentUser().setEmail(promptString("Enter an email address"));
 
-        println("Created " + username);
+        println('\n' + ANSI_GREEN + "Successfully created user " + username + ANSI_RESET + '\n');
     }
 
     /**
@@ -1115,7 +1127,6 @@ public class Flighty {
 
     /**
      * UI for booking a flight
-     * // TODO: Enable one way flights
      * @author rengotap
      */
     private void menuBookFlight() {
@@ -1123,12 +1134,13 @@ public class Flighty {
         String destination;
         String home;
         LocalDate depart;
-        LocalDate ret;
+        LocalDate arrive;
         String timeEarly;
         String timeLate;
         boolean layover;
         String company;
         boolean pets;
+
 
         destination = promptString("Please enter a destination");
 
@@ -1147,7 +1159,7 @@ public class Flighty {
                 timeEarly = curr.getFPref().get(FlightFilter.TIME_DEPART_EARLIEST);
             } else {
                 timeEarly =
-                        promptString("What is the earliest time you would be willing to leave?");
+                        promptString("What is the earliest time you would be willing to leave? (Enter 'Any' for no preference)");
                 if (promptYN("Would you like to save this as a default option?")) {
                     println("Setting as user default");
                     userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_DEPART_EARLIEST,
@@ -1158,7 +1170,7 @@ public class Flighty {
             if (hasPref(curr.getFPref().get(FlightFilter.TIME_ARRIVE_LATEST))) {
                 timeLate = curr.getFPref().get(FlightFilter.TIME_ARRIVE_LATEST);
             } else {
-                timeLate = promptString("What is the latest time you would be willing to arrive?");
+                timeLate = promptString("What is the latest time you would be willing to arrive? (Enter 'Any' for no preference)");
                 if (promptYN("Would you like to save this as a default option?")) {
                     println("Setting as user default");
                     userManager.getCurrentUser().getFPref().put(FlightFilter.TIME_ARRIVE_LATEST,
@@ -1185,13 +1197,13 @@ public class Flighty {
         }
 
         depart = promptDate("Choose a departure date");
-        ret = promptDate("Chose a return date");
+        arrive = promptDate("Chose a date you would like to arrive by");
 
         if (userManager.isAnyoneLoggedIn()) {
             if (hasPref(curr.getFPref().get(FlightFilter.COMPANY))) {
                 company = curr.getFPref().get(FlightFilter.COMPANY);
             } else {
-                company = promptString("What company would you like to book with?");
+                company = promptString("What company would you like to book with? (Enter 'Any' for no preference)");
                 if (promptYN("Would you like to save this as a default option?")) {
                     println("Setting as user default");
                     userManager.getCurrentUser().getFPref().put(FlightFilter.COMPANY, company);
@@ -1210,7 +1222,7 @@ public class Flighty {
 
             }
         } else {
-            company = promptString("What company would you like to book with?");
+            company = promptString("What company would you like to book with? (Enter 'Any' for no preference)");
             pets = promptYN("Will you be traveling with any pets?");
         }
 
@@ -1220,11 +1232,10 @@ public class Flighty {
             final String OPT_DEST = "Destination: " + ANSI_CYAN + destination + ANSI_RESET;
             final String OPT_HOME = "Departing From:" + ANSI_CYAN + home + ANSI_RESET;
             final String OPT_START = "Departure Date: " + ANSI_CYAN + toString(depart) + ANSI_RESET;
-            final String OPT_END = "Return Date: " + ANSI_CYAN + toString(ret) + ANSI_RESET;
+            final String OPT_END = "Arrive By: " + ANSI_CYAN + toString(arrive) + ANSI_RESET;
             final String OPT_TIME_EARLY = "Earliest Time: " + ANSI_CYAN + timeEarly + ANSI_RESET;
             final String OPT_TIME_LATE = "Latest Time: " + ANSI_CYAN + timeLate + ANSI_RESET;
-            final String OPT_LAYOVER =
-                    "Layovers: " + ANSI_CYAN + Boolean.toString(layover) + ANSI_RESET;
+            final String OPT_LAYOVER = "Layovers: " + ANSI_CYAN + Boolean.toString(layover) + ANSI_RESET;
             final String OPT_COMPANY = "Airline: " + ANSI_CYAN + company + ANSI_RESET;
             final String OPT_PETS = "Pets: " + ANSI_CYAN + Boolean.toString(pets) + ANSI_RESET;
             final String OPT_CONFIRM = ANSI_GREEN + "Confirm & Search" + ANSI_RESET;
@@ -1252,11 +1263,11 @@ public class Flighty {
             } else if (response.equals(OPT_START)) {
                 depart = promptDate("Enter a new departure date");
             } else if (response.equals(OPT_END)) {
-                ret = promptDate("Enter a new return date");  // TODO: change to arrive by date
+                arrive = promptDate("Enter a new arrival date");
             } else if (response.equals(OPT_TIME_EARLY)) {
                 timeEarly = promptString("Enter the earliest time you would be willing to leave");
             } else if (response.equals(OPT_TIME_LATE)) {
-                timeLate = promptString("Enter the latest time you would be willing to leave"); // TODO: change to latest time
+                timeLate = promptString("Enter the latest time you would be willing to arrive");
             } else if (response.equals(OPT_LAYOVER)) {
                 layover = promptYN("Would you be willing to take a layover flight?");
             } else if (response.equals(OPT_COMPANY)) {
@@ -1273,16 +1284,15 @@ public class Flighty {
         queryFlightPrefs.put(FlightFilter.AIRPORT_TO, destination);
         queryFlightPrefs.put(FlightFilter.AIRPORT_FROM, home);
         queryFlightPrefs.put(FlightFilter.DATE_DEPART_EARLIEST, toString(depart));
-        queryFlightPrefs.put(FlightFilter.DATE_ARRIVE_LATEST, toString(ret));
+        queryFlightPrefs.put(FlightFilter.DATE_ARRIVE_LATEST, toString(arrive));
         queryFlightPrefs.put(FlightFilter.TIME_DEPART_EARLIEST, timeEarly);
         queryFlightPrefs.put(FlightFilter.TIME_ARRIVE_LATEST, timeLate);
         queryFlightPrefs.put(FlightFilter.LAYOVERS, Boolean.toString(layover));
         queryFlightPrefs.put(FlightFilter.COMPANY, company);
         queryFlightPrefs.put(FlightFilter.PETS_ALLOWED, Boolean.toString(pets));
 
-        List<FlightTrip> searchResults = SearchFlightTrips.execute(queryPrefs);
         flightResult(queryPrefs);
-        println("                      Thank you for using...");
+        println("                        Thank you for using");
     }
 
     /**
@@ -1292,7 +1302,7 @@ public class Flighty {
      * @author rengotap
      */
     private void flightResult(SearchPreferences query) {
-        //List<Flight> results = SearchFlights.execute(data, query); // TODO: correct flight search
+        //List<Flight> results = SearchFlights.execute(data, query); // TODO: Priority B -correct flight search
         List<Flight> results = data.getFlights();
         println("Here are the best results we could find: " + '\n'
                 + "Unsatisfied with your results? Try changing your search parameters!" + '\n');
@@ -1371,7 +1381,7 @@ public class Flighty {
             if(response[0].equals(OPT_BACK)) {
                 return;
             } else {
-                //TODO: Book chosen seat
+                //TODO: Priority A - Book chosen seat
                 println("Seat "+ANSI_CYAN+"SEAT GOES HERE"+ANSI_RESET+" booked.");
                 return;
             }
@@ -1401,7 +1411,7 @@ public class Flighty {
             if (hasPref(curr.getHPref().get(HotelFilter.COMPANY))) {
                 company = curr.getHPref().get(HotelFilter.COMPANY);
             } else {
-                company = promptString("What company would you like to book with?");
+                company = promptString("What company would you like to book with? (Enter 'Any' for no preference)");
                 if (promptYN("Would you like to save this as a default option?")) {
                     println("Setting as user default");
                     userManager.getCurrentUser().getHPref().put(HotelFilter.COMPANY, company);
@@ -1418,7 +1428,7 @@ public class Flighty {
                 }
             }
         } else {
-            company = promptString("What company would you like to book with?");
+            company = promptString("What company would you like to book with? (Enter 'Any' for no preference)");
             pets = promptYN("Will you be traveling with any pets?");
         }
 
@@ -1467,7 +1477,7 @@ public class Flighty {
         // SearchHotels.execute(data, query);
         hotelResult(query);
         // This is intentional
-        println("                      Thank you for using...");
+        println("                        Thank you for using");
     }
 
     /**
@@ -1477,7 +1487,7 @@ public class Flighty {
      * @author rengotap
      */
     private void hotelResult(EnumMap<HotelFilter, String> query) {
-        // List<Hotel> results = SearchHotels.execute(data, query); // TODO: take from hotel search
+        // List<Hotel> results = SearchHotels.execute(data, query); // TODO: Priority B - take from hotel search
         List<Hotel> results = data.getHotels(); // Temporary stand in
         println("Here are the best results we could find: " + '\n'
                 + "Unsatisfied with your results? Try changing your search parameters!" + '\n');
@@ -1531,13 +1541,7 @@ public class Flighty {
      * @author rengotap
      */
     private boolean menuPickRoom(Hotel hotel) {
-        //List<Bookable> rooms = hotel.
-        //List<Room> rooms = hotel.getRooms();
-        List<Room> rooms = new ArrayList<Room>();  // TODO: extract rooms from hotel
-        rooms.add(new Room());
-        rooms.add(new Room());
-        rooms.add(new Room());
-
+        List<Room> rooms = hotel.getOptions();
 
         List<String> options = new ArrayList<String>();
         for (int i = 0; i < rooms.size(); i++) {
@@ -1552,12 +1556,46 @@ public class Flighty {
             if(response[0].equals(OPT_BACK)) {
                 return false;
             } else {
-                if (promptYN("Book this room?")) {
-                    // bookingAgent.bookListing(room, userManager.getCurrentUser()); // LET ME BOOK DAMN YOU
-                    //TODO: use booking manager to book the room HERE
+                if (promptYN(displayRoom(rooms.get(Integer.parseInt(response[1])))+'\n'+"Book this room?")) {
+                    menuBookRoom(hotel, Integer.parseInt(response[1]));              
                     return true;
                 }
             }
+        }
+    }
+
+    /**
+     * Menu for booking a room
+     * @param hotel
+     * @param room
+     * @author rengotap
+     */
+    private void menuBookRoom(Hotel hotel, int room) {
+        if (!userManager.isAnyoneLoggedIn()) {
+            println("You don't appear to have a user account." 
+                +" You'll need to create one to save your booking"+'\n');
+            final String OPT_CREATE = "Create an account";
+            final String OPT_LOGIN = "I already have an account";
+            List<String> options = new ArrayList<String>();
+            options.add(OPT_CREATE);
+            options.add(OPT_LOGIN);
+            String response = menuNumbered("Enter a Number", options);
+            if(response.equals(OPT_CREATE)) {
+                menuCreateUser();
+            } else if(response.equals(OPT_LOGIN)) {
+                menuLoginUser();
+            }
+        }
+
+        try {
+            bookingAgent.bookListing(hotel.getOptions().get(room), userManager.getCurrentUser());
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            println('\n'+ANSI_WHITE_BG+ANSI_BLACK+timestamp+"   ROOM BOOKED SUCCESSFULLY   "+ANSI_RESET+'\n');
+
+            println("The details of your booking have been emailed to: "+ANSI_CYAN+userManager.getCurrentUser().getEmail()+ANSI_RESET
+                +'\n'+"You can also view your new booking in the 'Manage Bookings' menu");
+        } catch(Exception e) {
+            println(ANSI_YELLOW + "WARN: Failed to book bookable" + ANSI_RESET);
         }
     }
 
@@ -1656,7 +1694,8 @@ public class Flighty {
             return;
         } else {
             userManager.getCurrentUser().getBookingHistory().get(Integer.parseInt(response[1]));
-            println(ANSI_YELLOW + "ERROR: Exporting to file not yet supported" + ANSI_RESET);  // TODO: Export Bookable as text file
+            println(ANSI_YELLOW + "ERROR: Exporting to file not yet supported" + ANSI_RESET);  // TODO: Priority D - Export Bookable as text file
+            // TODO: Priority B - get travel object from bookable 
         }
     }
 

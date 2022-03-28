@@ -16,7 +16,8 @@ public class Seat extends Bookable {
      */
     public Seat(int seatRow, String seatCol) {
         super(seatRow, seatCol);
-        whichClass = "First CLass";
+        whichClass = "First Class";
+        price = 123;
         isBooked = false;
     }
 
