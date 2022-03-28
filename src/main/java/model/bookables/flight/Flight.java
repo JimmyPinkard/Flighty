@@ -62,6 +62,19 @@ public class Flight extends TravelObject {
         super(new FlightLayout("test"));
         airportFrom = "ATL";
         airportTo = "LAX";
+        this.company = "Delta";
+        this.rating = 4.7;
+        
+    }
+
+    /**
+     * Returns true if flight has a second starting point
+     * // TODO: actually make this method
+     * @return
+     * @author rengotap
+     */
+    public boolean hasLayover() {
+        return false;
     }
 
     public double distanceToDestination(Flight flight) {
