@@ -1,5 +1,6 @@
 import database.Data;
 import model.bookables.flight.Flight;
+import model.bookables.hotel.Room;
 import model.users.User;
 import model.users.info.Passport;
 import model.users.info.Person;
@@ -249,7 +250,7 @@ public class Flighty {
      * @author rengotap
      */
     private String displayHotelSimple(Hotel hotel) { //TODO: Make this display properly
-        String format = "Price: $"+hotel.getCost()+" | beds: "+hotel.getBeds();
+        String format = "Price: $"+hotel.getCost()+" | beds: "+((Room)hotel.getOptions().get(0)).getBeds();
         return format;
     }
 
@@ -260,7 +261,7 @@ public class Flighty {
      * @author rengotap
      */
     private String displayHotelFull(Hotel hotel) {  // TODO: make this display properly
-        String format = "Price: $"+hotel.getCost()+" | beds: "+hotel.getBeds();
+        String format = "Price: $"+hotel.getCost()+" | beds: "+((Room)hotel.getOptions().get(0)).getBeds();
         return format;
     }
 
