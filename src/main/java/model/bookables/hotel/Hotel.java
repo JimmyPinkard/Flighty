@@ -17,7 +17,7 @@ public class Hotel extends TravelObject {
     /**
      * Creates a new hotel object
      */
-    public Hotel(List<String> features, String location, int numBeds, BookingLayout layout) {
+    public Hotel(List<String> features, String location, BookingLayout layout) {
         super(layout);
         this.features = features;
         this.location = location;
@@ -31,9 +31,7 @@ public class Hotel extends TravelObject {
         this.bookables = new ArrayList<>();
         var rooms = (List<DBObject>) object.get("rooms");
         for(DBObject room : rooms) {
-            int row = (int)room.get("floor");
-            String column = (String) room.get("num");
-            this.bookables.add(new Room(row, column, room));
+            this.bookables.add(new Room(room));
         }
     }
 

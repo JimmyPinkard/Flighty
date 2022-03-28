@@ -2,6 +2,7 @@ package model.users;
 
 import java.util.EnumMap;
 
+import com.mongodb.DBObject;
 import search.filters.FlightFilter;
 import search.filters.HotelFilter;
 
@@ -43,6 +44,16 @@ public class SearchPreferences {
      */
     public SearchPreferences(String data) {  //TODO: import search prefrences from data
         this();
+    }
+
+    public SearchPreferences(DBObject object) {
+        this();
+        for(FlightFilter key : fpref.keySet()) {
+            String value = (String) object.get(String.valueOf(key));
+            if(value != null) {
+                fpref.put(key, value);
+            }
+        }
     }
 
     /**

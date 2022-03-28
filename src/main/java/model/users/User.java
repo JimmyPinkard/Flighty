@@ -2,7 +2,8 @@ package model.users;
 
 import com.mongodb.DBObject;
 import model.bookables.Bookable;
-import model.bookables.TravelObject;
+import model.bookables.flight.Seat;
+import model.bookables.hotel.Room;
 import model.users.info.Passport;
 import model.users.info.Person;
 import search.filters.FlightFilter;
@@ -52,10 +53,27 @@ public class User {
         this.password = (String) object.get("password");
         this.person = (Person) object.get("person");
         this.email = (String) object.get("email");
-        //this.preferences needs to be implemented
-        this.travelers = (List<Passport>) object.get("passports");
-        this.specialReq =  (List<String>) object.get("specialReq");
-        this.bookingHistory = (List<Bookable>) object.get("bookedListings");
+        this.preferences = new SearchPreferences(object);
+        this.specialReq = new ArrayList<>();
+        this.specialReq.addAll((List<String>) object.get("specialReq"));
+        this.travelers = new ArrayList<>();
+        /*
+        System.out.println(object.get("passports"));
+        for(DBObject passport : (List<DBObject>) object.get("passports")) {
+            this.travelers.add(new Passport(passport));
+        }
+        */
+        this.bookingHistory = new ArrayList<>();
+        /*
+        for(DBObject bookable : (List<DBObject>) object.get("bookedListings")) {
+            if(bookable.keySet().contains("bedCount")) {
+                this.bookingHistory.add(new Room(bookable));
+            }
+            else {
+                this.bookingHistory.add(new Seat(bookable));
+            }
+        }
+        */
     }
 
     /**

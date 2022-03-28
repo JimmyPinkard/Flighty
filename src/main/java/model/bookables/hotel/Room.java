@@ -26,8 +26,8 @@ public class Room extends Bookable {
         this.numBeds = numBeds;
     }
 
-    public Room(int floor, String roomNum, DBObject object) {
-        super(floor, roomNum, object);
+    public Room(DBObject object) {
+        super((int)object.get("floor"), (String) object.get("num"), object);
         info = (String) object.get("bedInfo");
         this.numBeds = (int)object.get("bedCount");
         bookedDays = new ArrayList<>();

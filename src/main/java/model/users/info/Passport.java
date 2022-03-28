@@ -1,5 +1,6 @@
 package model.users.info;
 
+import com.mongodb.DBObject;
 import org.bson.Document;
 
 import java.time.LocalDate;
@@ -31,13 +32,13 @@ public class Passport {
         this.gender = gender;
     }
 
-    public Passport(final Document document) {
-        this.id = (String) document.get("id");
-        this.person = new Person(document);
-        this.dateOfBirth = (LocalDate) document.get("dateOfBirth");
-        this.expirationDate = (LocalDate) document.get("expirationDate");
-        this.number = (String) document.get("number");
-        this.gender = (String) document.get("gender");
+    public Passport(final DBObject object) {
+        this.id = (String) object.get("id");
+        this.person = new Person(object);
+        this.dateOfBirth = (LocalDate) object.get("dateOfBirth");
+        this.expirationDate = (LocalDate) object.get("expirationDate");
+        this.number = (String) object.get("number");
+        this.gender = (String) object.get("gender");
     }
 
     /**

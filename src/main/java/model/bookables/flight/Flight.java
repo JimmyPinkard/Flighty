@@ -41,9 +41,7 @@ public class Flight extends TravelObject {
         this.bookables = new ArrayList<>();
         var seats = (List<DBObject>) object.get("seats");
         for(DBObject seat : seats) {
-            int row = (int)seat.get("row");
-            String column = (String) seat.get("column");
-            this.bookables.add(new Seat(row, column, seat));
+            this.bookables.add(new Seat(seat));
         }
     }
 

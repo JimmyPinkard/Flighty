@@ -1,6 +1,6 @@
 package model.users.info;
 
-import org.bson.Document;
+import com.mongodb.DBObject;
 
 /**
  * Holds a Person's first and last name
@@ -20,9 +20,9 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public Person(Document document) {
-        this.firstName = (String)document.get("firstName");
-        this.lastName = (String)document.get("lastName");
+    public Person(DBObject object) {
+        this.firstName = (String)object.get("firstName");
+        this.lastName = (String)object.get("lastName");
     }
 
     /**

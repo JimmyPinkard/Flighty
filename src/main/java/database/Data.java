@@ -86,6 +86,11 @@ public class Data {
         DBCursor cursor = db.getAll("Users");
         while(cursor.hasNext()) {
             users.add(new User(cursor.next()));
+            /*
+            System.out.println(cursor.curr());
+            System.out.println(users.get(0));
+            System.exit(1);
+            */
         }
     }
 
@@ -93,6 +98,11 @@ public class Data {
         DBCursor cursor = db.getAll("Bookings");
         while(cursor.hasNext()) {
             bookings.add(new Booking(cursor.next()));
+            /*
+            System.out.println(cursor.curr());
+            System.out.println(users.get(0));
+            System.exit(1);
+            */
         }
     }
 

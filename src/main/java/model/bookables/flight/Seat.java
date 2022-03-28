@@ -20,8 +20,8 @@ public class Seat extends Bookable {
         isBooked = false;
     }
 
-    public Seat(int row, String column, DBObject object) {
-        super(row, column, object);
+    public Seat(DBObject object) {
+        super((int)object.get("row"), (String) object.get("column"), object);
         this.whichClass = (String) object.get("class");
         this.isBooked = (boolean) object.get("isBooked");
     }
