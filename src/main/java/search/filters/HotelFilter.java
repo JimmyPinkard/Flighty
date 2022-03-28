@@ -9,7 +9,7 @@ public enum HotelFilter implements SearchFilter {
     HOTEL,
     COMPANY,
     PRICE,
-    TIME_DEPART,
+    TIME_START,
     TIME_END,
     PETS_ALLOWED,
 }

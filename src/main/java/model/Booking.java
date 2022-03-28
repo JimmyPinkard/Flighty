@@ -2,6 +2,7 @@ package model;
 
 import com.mongodb.DBObject;
 import model.bookables.Bookable;
+import model.bookables.hotel.Room;
 import model.users.User;
 
 /**
@@ -19,6 +20,15 @@ public class Booking {
     public Booking(final DBObject object) {
         this.user = new User(object);
         this.booked = (Bookable) object.get("booked");
+    }
+
+    /**
+     * Bogus constructor for Booking.
+     * for testing purposes only
+     * @author rengotap 
+     */
+    public Booking() {
+        booked = new Room();
     }
 
     public User getUser() {

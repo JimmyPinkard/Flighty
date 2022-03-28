@@ -13,6 +13,7 @@ public class Database {
     private Database() {
         this.collections = new HashMap<>();
         try {
+            @SuppressWarnings("deprecation")
             DB mongoDatabase = new MongoClient().getDB("Flighty");
             collections.put("Flights", mongoDatabase.getCollection("Flights"));
             collections.put("Hotels", mongoDatabase.getCollection("Hotels"));
@@ -74,6 +75,7 @@ public class Database {
         collections.get(collectionName).update(BasicDBObject.parse(oldObj.toString()), BasicDBObject.parse(newObj.toString()));
     }
 
+    @SuppressWarnings("deprecation")
     public <T> void delete(final String collectionName, T obj) {
         collections.get(collectionName).remove((DBObject) JSON.parse(obj.toString()));
     }

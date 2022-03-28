@@ -13,20 +13,19 @@ public abstract class TravelObject {
     protected String id;
     protected List<Bookable> bookables;
     protected String company;
-    protected double cost;
     protected double rating;
     protected BookingLayout layout;
     protected List<String> features;
     protected List<SearchFilter> filters;
 
-/**
- * Constructor for Bookables.TravelObject
- * @param layout the layout of either hotel or flight
- */
+    /**
+     * Constructor for Bookables.TravelObject
+     * 
+     * @param layout the layout of either hotel or flight
+     */
     public TravelObject(BookingLayout layout) {
         this.id = UUID.randomUUID().toString();
         this.company = "";
-        this.cost = 0;
         this.rating = 0;
         this.bookables = new ArrayList<Bookable>();
         this.features = new ArrayList<String>();
@@ -34,54 +33,80 @@ public abstract class TravelObject {
         this.filters = new ArrayList<>();
     }
 
+    @SuppressWarnings("unchecked")
     public TravelObject(DBObject object) {
         this.id = (String) object.get("id");
         this.company = (String) object.get("company");
-        //this.cost = (Double) object.get("cost");
         this.rating = (Double) object.get("rating");
         this.features = new ArrayList<>();
         var temp = (List<String>) object.get("features");
         this.features.addAll(temp);
         this.filters = new ArrayList<>();
         var temp2 = (List<DBObject>) object.get("filters");
-        for(Object filter : temp2) {
+        for (Object filter : temp2) {
             this.filters.add(getFilter(filter));
         }
         this.layout = null;
     }
 
     private SearchFilter getFilter(Object filter) {
-        for(SearchFilter flightFilter : FlightFilter.values()) {
-            if(filter.equals(flightFilter.toString())) {
+        for (SearchFilter flightFilter : FlightFilter.values()) {
+            if (filter.equals(flightFilter.toString())) {
                 return flightFilter;
             }
         }
-        for(SearchFilter hotelFilters : HotelFilter.values()) {
-            if(filter.equals(hotelFilters)) {
+        for (SearchFilter hotelFilters : HotelFilter.values()) {
+            if (filter.equals(hotelFilters)) {
                 return hotelFilters;
             }
         }
         return null;
     }
 
+    protected TravelObject() {
+        this.id = UUID.randomUUID().toString();
+        this.company = "";
+        this.rating = 0;
+        this.bookables = new ArrayList<Bookable>();
+        this.features = new ArrayList<String>();
+        this.filters = new ArrayList<>();
+    }
+
     /**
      * Method to get the bookables
+     * 
      * @return the List of bookables options
      */
-    public List<Bookable> getOptions(){
+    public List<Bookable> getOptions() {
         return bookables;
     }
 
     /**
      * Books a bookable by removing it from lists of bookables.
+     * 
      * @return true if booking was successful, false if it wasnt
      */
-    public boolean book(Bookable booking){
+    public boolean book(Bookable booking) {
         return bookables.remove(booking);
     }
 
+    public String getCompany() {
+        return company;
+    }
+
     public double getCost() {
-        return cost;
+        double minPrice = Integer.MAX_VALUE;
+        for (Bookable bookable : bookables) {
+            if (bookable.price < minPrice) {
+                minPrice = bookable.price;
+            }
+        }
+
+        return minPrice;
+    }
+
+    public double getRating() {
+        return rating;
     }
 
     public List<SearchFilter> getFilters() {
@@ -98,7 +123,6 @@ public abstract class TravelObject {
                 "id:'" + id + '\'' +
                 ", bookables:" + bookables +
                 ", company:'" + company + '\'' +
-                //", cost:" + cost +
                 ", rating:" + rating +
                 ", layout:" + layout +
                 ", features:" + features +

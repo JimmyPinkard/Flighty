@@ -1,7 +1,6 @@
 package database;
 
 import com.mongodb.DBCursor;
-import com.mongodb.DBObject;
 import model.Booking;
 import model.bookables.flight.Flight;
 import model.bookables.hotel.Hotel;
@@ -28,6 +27,19 @@ public class Data {
         this.hotels = new ArrayList<>();
         this.bookings = new ArrayList<>();
         loadAll();
+    }
+
+    /**
+     * Bogus constructor for Data.
+     * for testing purposes only
+     * @author rengotap
+     */
+    public Data(List<User> users, List<Flight> flights, List<Hotel> hotels, List<Booking> bookings) {
+        this.db = null;
+        this.users = users;
+        this.flights = flights;
+        this.hotels = hotels;
+        this.bookings = bookings;
     }
 
     /**
@@ -130,7 +142,7 @@ public class Data {
         }
     }
 
-    public void loadAll() {
+    private void loadAll() {
         loadFlights();
         loadHotels();
         loadUsers();

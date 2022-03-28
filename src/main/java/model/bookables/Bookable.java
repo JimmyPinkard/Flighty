@@ -40,6 +40,21 @@ public abstract class Bookable implements Comparable<Bookable> {
     }
 
     /**
+     * Bogus constructor for a bookable.
+     * for testing purposes only
+     * @author rengotap
+     */
+    public Bookable() {
+        id = "Test case";
+        row = 1;
+        col = "A";
+        price = 999;
+        amenities = new ArrayList<>();
+        amenities.add("Amenity A");
+        amenities.add("Amenity B");
+    }
+
+    /**
      * Gets bookable's ID
      * @return UUID
      */

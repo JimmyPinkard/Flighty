@@ -1,6 +1,8 @@
 package model.bookables.hotel;
 
 import com.mongodb.DBObject;
+
+import model.bookables.Bookable;
 import model.bookables.BookingLayout;
 import model.bookables.TravelObject;
 
@@ -24,6 +26,7 @@ public class Hotel extends TravelObject {
 
     }
 
+    @SuppressWarnings("unchecked")
     public Hotel(DBObject object) {
         super(object);
         this.features = new ArrayList<>();
@@ -36,11 +39,47 @@ public class Hotel extends TravelObject {
     }
 
     /**
+     * Bogus constructor for Hotel.
+     * for testing purposes only
+     * @author rengotap
+     */
+    public Hotel() {
+        super(new HotelLayout("temp"));
+        location = "Fiji";
+        this.company = "Hilton";
+        this.rating = 3.5;
+        this.features = new ArrayList<>();
+        this.features.add("Feature A");
+        this.features.add("Feature B");
+        this.features.add("Feature C");
+        this.features.add("Feature D");
+        this.features.add("Feature E");
+        this.features.add("Feature F");
+        this.features.add("Feature G");
+        this.features.add("Feature H");
+        bookables.add(new Room());
+        bookables.add(new Room());
+        bookables.add(new Room());
+    }
+
+    /**
      * Gets the hotel's features
      * @return List of features
      */
     public List<String> getFeatures() {
         return features;
+    }
+
+    /**
+     * Gets the number of available rooms
+     * @return
+     */
+    public int getNumRooms() {
+        return bookables.size();
+    }
+
+    public List<Bookable> getRooms() {
+        return bookables;
     }
 
     /**

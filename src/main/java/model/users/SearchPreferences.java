@@ -10,40 +10,36 @@ import search.filters.HotelFilter;
  * Stores a user's prefrences
  * @author rengotap
  */
-public class SearchPreferences {
+public class SearchPreferences implements Cloneable {
 
     public EnumMap<FlightFilter, String> fpref;
     public EnumMap<HotelFilter, String> hPref;
+    public static final String EMPTY = "none";
 
     /**
      * Generates default SearchPrefrences with all set to 'none'
      */
     public SearchPreferences() {
         fpref = new EnumMap<>(FlightFilter.class);
-        fpref.put(FlightFilter.FLIGHT, "none");
-        fpref.put(FlightFilter.AIRPORT_FROM, "none");
-        fpref.put(FlightFilter.AIRPORT_TO, "none");
-        fpref.put(FlightFilter.COMPANY, "none");
-        fpref.put(FlightFilter.PRICE, "none");
-        fpref.put(FlightFilter.DURATION, "none");
-        fpref.put(FlightFilter.TIME_EARLIEST, "none");
-        fpref.put(FlightFilter.TIME_LATEST, "none");
-        fpref.put(FlightFilter.PETS_ALLOWED, "none");
-        fpref.put(FlightFilter.FLIGHTS_LAYOVER, "none");
+        fpref.put(FlightFilter.AIRPORT_FROM, EMPTY);
+        fpref.put(FlightFilter.AIRPORT_TO, EMPTY);
+        fpref.put(FlightFilter.COMPANY, EMPTY);
+        fpref.put(FlightFilter.PRICE, EMPTY);
+        fpref.put(FlightFilter.DURATION, EMPTY);
+        fpref.put(FlightFilter.TIME_DEPART_EARLIEST, EMPTY);
+        fpref.put(FlightFilter.TIME_ARRIVE_LATEST, EMPTY);
+        fpref.put(FlightFilter.DATE_DEPART_EARLIEST, EMPTY);
+        fpref.put(FlightFilter.DATE_ARRIVE_LATEST, EMPTY);
+        fpref.put(FlightFilter.PETS_ALLOWED, EMPTY);
+        fpref.put(FlightFilter.LAYOVERS, EMPTY);
         
         hPref = new EnumMap<>(HotelFilter.class);
-        hPref.put(HotelFilter.HOTEL, "none");
-        hPref.put(HotelFilter.COMPANY, "none");
-        hPref.put(HotelFilter.PRICE, "none");
-        hPref.put(HotelFilter.TIME_DEPART, "none");
-        hPref.put(HotelFilter.TIME_END, "none");
-        hPref.put(HotelFilter.PETS_ALLOWED, "none");
-    }
-    /**
-     * Generates SearchPrefrences based on what was passed from the user profile
-     */
-    public SearchPreferences(String data) {  //TODO: import search prefrences from data
-        this();
+        hPref.put(HotelFilter.HOTEL, EMPTY);
+        hPref.put(HotelFilter.COMPANY, EMPTY);
+        hPref.put(HotelFilter.PRICE, EMPTY);
+        hPref.put(HotelFilter.TIME_START, EMPTY);
+        hPref.put(HotelFilter.TIME_END, EMPTY);
+        hPref.put(HotelFilter.PETS_ALLOWED, EMPTY);
     }
 
     public SearchPreferences(DBObject object) {
@@ -70,6 +66,16 @@ public class SearchPreferences {
      */
     public EnumMap<HotelFilter, String> getHPref() {
         return hPref;
+    }
+
+    @Override
+    public SearchPreferences clone() {
+        SearchPreferences newSearchPreferences = new SearchPreferences();
+
+        newSearchPreferences.fpref = this.fpref.clone();
+        newSearchPreferences.hPref = this.hPref.clone();
+
+        return newSearchPreferences;
     }
 
     @Override

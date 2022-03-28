@@ -26,12 +26,27 @@ public class Room extends Bookable {
         this.numBeds = numBeds;
     }
 
+    @SuppressWarnings("unchecked")
     public Room(DBObject object) {
         super((int)object.get("floor"), (String) object.get("num"), object);
         info = (String) object.get("bedInfo");
         this.numBeds = (int)object.get("bedCount");
         bookedDays = new ArrayList<>();
         bookedDays.addAll((List<LocalDate>)object.get("bookedDates"));
+    }
+
+    /**
+     * Bogus constructor for Room.
+     * for testing purposes only
+     * @author rengotap
+     */
+    public Room() {
+        id = "Test case";
+        row = 1;
+        col = "A";
+        price = 999;
+        info = "Two queen beds";
+    
     }
 
     
