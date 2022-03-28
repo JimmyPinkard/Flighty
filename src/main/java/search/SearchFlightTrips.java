@@ -55,32 +55,35 @@ public class SearchFlightTrips implements Search {
                 && !company.equalsIgnoreCase(flight.getCompany()))
             return false;
 
-        if (!preferences.get(FlightFilter.DATE_DEPART).equalsIgnoreCase(SearchPreferences.EMPTY)) {
-            LocalDate dateDepartAfter = preferences.get(FlightFilter.DATE_DEPART)
+        if (!preferences.get(FlightFilter.DATE_DEPART_EARLIEST)
+                .equalsIgnoreCase(SearchPreferences.EMPTY)) {
+            LocalDate dateDepartAfter = preferences.get(FlightFilter.DATE_DEPART_EARLIEST)
                     .equalsIgnoreCase(SearchPreferences.EMPTY) ? LocalDate.ofEpochDay(0L)
-                            : TimeUtils.getInstance()
-                                    .generateDate(preferences.get(FlightFilter.DATE_DEPART));
+                            : TimeUtils.getInstance().generateDate(
+                                    preferences.get(FlightFilter.DATE_DEPART_EARLIEST));
 
-            LocalTime timeDepartAfter = preferences.get(FlightFilter.TIME_DEPART)
+            LocalTime timeDepartAfter = preferences.get(FlightFilter.TIME_DEPART_EARLIEST)
                     .equalsIgnoreCase(SearchPreferences.EMPTY) ? LocalTime.ofSecondOfDay(0)
                             : TimeUtils.getInstance()
-                                    .generateTime(preferences.get(FlightFilter.TIME_DEPART));
+                                    .generateTime(
+                                            preferences.get(FlightFilter.TIME_DEPART_EARLIEST));
 
             LocalDateTime departAfter = LocalDateTime.of(dateDepartAfter, timeDepartAfter);
             if (departAfter.compareTo(flight.getDepartureTime()) > 0)
                 return false;
         }
 
-        if (!preferences.get(FlightFilter.DATE_ARRIVE).equalsIgnoreCase(SearchPreferences.EMPTY)) {
-            LocalDate dateArriveBefore = preferences.get(FlightFilter.DATE_ARRIVE)
+        if (!preferences.get(FlightFilter.DATE_ARRIVE_LATEST)
+                .equalsIgnoreCase(SearchPreferences.EMPTY)) {
+            LocalDate dateArriveBefore = preferences.get(FlightFilter.DATE_ARRIVE_LATEST)
                     .equalsIgnoreCase(SearchPreferences.EMPTY) ? LocalDate.ofEpochDay(0L)
                             : TimeUtils.getInstance()
-                                    .generateDate(preferences.get(FlightFilter.DATE_ARRIVE));
+                                    .generateDate(preferences.get(FlightFilter.DATE_ARRIVE_LATEST));
 
-            LocalTime timeArriveBefore = preferences.get(FlightFilter.TIME_ARRIVE)
+            LocalTime timeArriveBefore = preferences.get(FlightFilter.TIME_ARRIVE_LATEST)
                     .equalsIgnoreCase(SearchPreferences.EMPTY) ? LocalTime.ofSecondOfDay(86399)
                             : TimeUtils.getInstance()
-                                    .generateTime(preferences.get(FlightFilter.TIME_ARRIVE));
+                                    .generateTime(preferences.get(FlightFilter.TIME_ARRIVE_LATEST));
 
             LocalDateTime arriveBefore = LocalDateTime.of(dateArriveBefore, timeArriveBefore);
             if (arriveBefore.compareTo(flight.getArrivalTime()) < 0)
@@ -171,12 +174,10 @@ public class SearchFlightTrips implements Search {
             var prefs = preferences.clone().getFPref();
             prefs.put(FlightFilter.AIRPORT_FROM, currentlyExploring.getAirportTo());
             prefs.put(FlightFilter.AIRPORT_TO, SearchPreferences.EMPTY);
-            prefs.put(FlightFilter.DATE_DEPART,
-                    TimeUtils.getInstance()
-                            .toString(currentlyExploring.getArrivalTime().toLocalDate()));
-            prefs.put(FlightFilter.TIME_DEPART,
-                    TimeUtils.getInstance()
-                            .toString(currentlyExploring.getArrivalTime().toLocalTime()));
+            prefs.put(FlightFilter.DATE_DEPART_EARLIEST, TimeUtils.getInstance()
+                    .toString(currentlyExploring.getArrivalTime().toLocalDate()));
+            prefs.put(FlightFilter.TIME_DEPART_EARLIEST, TimeUtils.getInstance()
+                    .toString(currentlyExploring.getArrivalTime().toLocalTime()));
 
             for (Flight next : getValidFlights(prefs)) {
                 double currentNextCost = costToReachFromStart.get(currentlyExploring)
