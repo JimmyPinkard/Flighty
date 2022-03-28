@@ -88,6 +88,7 @@ public class User {
         email = "email@email.com";
         this.person = new Person("temp", "temp");
         preferences = new SearchPreferences();
+        travelers = new ArrayList<Passport>();
         specialReq = new ArrayList<String>();
         bookingHistory = new ArrayList<Bookable>();
     }
