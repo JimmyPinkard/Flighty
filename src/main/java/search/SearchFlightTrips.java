@@ -19,18 +19,17 @@ import utils.TimeUtils;
 
 public class SearchFlightTrips implements Search {
 
-    public static List<FlightTrip> execute(EnumMap<? extends SearchFilter, String> preferences) {
+    public static List<FlightTrip> execute(SearchPreferences preferences) {
         List<FlightTrip> out = new ArrayList<FlightTrip>();
 
-        String airportFrom = preferences.get(FlightFilter.AIRPORT_FROM);
-        String airportTo = preferences.get(FlightFilter.AIRPORT_TO);
-        var flights = findRoute(airportFrom, airportTo);
+        var flights = findRoute(preferences);
         out.add(new FlightTrip(flights));
 
         return out;
     }
 
 
+    // TODO other filters
     private static boolean isValidOption(Flight flight,
             EnumMap<? extends SearchFilter, String> preferences) {
         String airportFrom = preferences.get(FlightFilter.AIRPORT_FROM);
@@ -101,14 +100,6 @@ public class SearchFlightTrips implements Search {
         return getValidFlights(prefs);
     }
 
-    private static List<Flight> getFromDestAirport(Flight flight) {
-        EnumMap<FlightFilter, String> prefs = new EnumMap<FlightFilter, String>(FlightFilter.class);
-        prefs.put(FlightFilter.AIRPORT_FROM, SearchPreferences.EMPTY);
-        prefs.put(FlightFilter.AIRPORT_TO, SearchPreferences.EMPTY);
-
-        return getValidFlights(prefs);
-    }
-
     public static class FlightPriorityElement implements Comparable<FlightPriorityElement> {
         public Flight flight;
         private double cost;
@@ -124,14 +115,14 @@ public class SearchFlightTrips implements Search {
         }
     }
 
-    private static List<Flight> findRoute(String airportFrom, String airportTo) {
-
-
+    private static List<Flight> findRoute(SearchPreferences preferences) {
         Map<Flight, Flight> prevInPath = new HashMap<>();
         Map<Flight, Double> costToReachFromStart = new HashMap<>();
         PriorityQueue<FlightPriorityElement> toExplore = new PriorityQueue<>();
 
-        for (Flight start : getLeavingFrom(airportFrom)) {
+        var startPrefs = preferences.clone().getFPref();
+        startPrefs.put(FlightFilter.AIRPORT_TO, SearchPreferences.EMPTY);
+        for (Flight start : getValidFlights(startPrefs)) {
             prevInPath.put(start, null);
             costToReachFromStart.put(start, 0.0);
             toExplore.add(new FlightPriorityElement(start, 0.0));
@@ -140,6 +131,7 @@ public class SearchFlightTrips implements Search {
         while (!toExplore.isEmpty()) {
             Flight currentlyExploring = toExplore.poll().flight;
 
+            String airportTo = preferences.getFPref().get(FlightFilter.AIRPORT_TO);
             if (currentlyExploring.getAirportTo().equalsIgnoreCase(airportTo)) {
                 // flight found so reconstruct path by walking backwards through prevInPath
                 // starting
@@ -155,7 +147,15 @@ public class SearchFlightTrips implements Search {
                 return path;
             }
 
-            for (Flight next : getLeavingFrom(currentlyExploring.getAirportTo())) {
+            var prefs = preferences.clone().getFPref();
+            prefs.put(FlightFilter.AIRPORT_FROM, currentlyExploring.getAirportTo());
+            prefs.put(FlightFilter.AIRPORT_TO, SearchPreferences.EMPTY);
+            prefs.put(FlightFilter.DATE_DEPART,
+                    TimeUtils.toString(currentlyExploring.getArrivalTime().toLocalDate()));
+            prefs.put(FlightFilter.TIME_DEPART,
+                    TimeUtils.toString(currentlyExploring.getArrivalTime().toLocalTime()));
+
+            for (Flight next : getValidFlights(prefs)) {
                 double currentNextCost = costToReachFromStart.get(currentlyExploring)
                         + currentlyExploring.distanceToDestination(next);
 
@@ -172,47 +172,4 @@ public class SearchFlightTrips implements Search {
         return new ArrayList<Flight>();
     }
 
-    public List<Flight> findRoute(Flight from, Flight to) {
-        Map<Flight, Flight> prevInPath = new HashMap<>();
-        Map<Flight, Double> costToReachFromStart = new HashMap<>();
-        PriorityQueue<Flight> toExplore = new PriorityQueue<>();
-
-        prevInPath.put(from, null);
-        costToReachFromStart.put(from, 0.0);
-        toExplore.add(from);
-
-        while (!toExplore.isEmpty()) {
-            Flight currentlyExploring = toExplore.poll();
-
-            if (currentlyExploring.equals(to)) {
-                // flight found so reconstruct path by walking backwards through prevInPath
-                // starting
-                // from the end
-                List<Flight> path = new ArrayList<Flight>();
-
-                Flight currentFlight = to;
-                while (currentFlight != from) {
-                    path.add(currentFlight);
-                    currentFlight = prevInPath.get(currentFlight);
-                }
-
-                return path;
-            }
-
-            for (Flight next : getFromDestAirport(currentlyExploring)) {
-                double currentNextCost = costToReachFromStart.get(currentlyExploring)
-                        + currentlyExploring.distanceToDestination(next);
-
-                if (!costToReachFromStart.containsKey(next)
-                        || costToReachFromStart.get(next) > currentNextCost) {
-                    costToReachFromStart.put(next, currentNextCost);
-
-                    toExplore.add(next);
-                    prevInPath.put(next, currentlyExploring);
-                }
-            }
-        }
-
-        return new ArrayList<Flight>();
-    }
 }
