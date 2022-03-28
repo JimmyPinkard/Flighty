@@ -6,10 +6,6 @@ package search.filters;
  */
 public enum HotelFilter implements SearchFilter {
     LOCATION,
-    HOTEL,
     COMPANY,
-    PRICE,
-    TIME_START,
-    TIME_END,
-    PETS_ALLOWED,
+    RATING
 }

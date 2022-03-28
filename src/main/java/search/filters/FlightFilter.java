@@ -5,11 +5,12 @@ package search.filters;
  * @author Rengotap
  */
 public enum FlightFilter implements SearchFilter {
+    FLIGHT,
     AIRPORT_FROM, 
     AIRPORT_TO,
     COMPANY,
     PRICE,
-    DURATION,
+    PEOPLE,
     TIME_DEPART_EARLIEST,
     DATE_DEPART_EARLIEST, 
     TIME_ARRIVE_LATEST, 

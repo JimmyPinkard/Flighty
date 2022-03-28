@@ -26,8 +26,6 @@ public class Seat extends Bookable {
         this.isBooked = (boolean) object.get("isBooked");
     }
 
-    
-
     /**
      * Method to set the booking of the seat
      * @return true if it booked, false if already booked

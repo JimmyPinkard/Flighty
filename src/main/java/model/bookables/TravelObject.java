@@ -27,8 +27,8 @@ public abstract class TravelObject {
         this.id = UUID.randomUUID().toString();
         this.company = "";
         this.rating = 0;
-        this.bookables = new ArrayList<Bookable>();
-        this.features = new ArrayList<String>();
+        this.bookables = new ArrayList<>();
+        this.features = new ArrayList<>();
         this.layout = layout;
         this.filters = new ArrayList<>();
     }
@@ -77,7 +77,7 @@ public abstract class TravelObject {
      * 
      * @return the List of bookables options
      */
-    public List<Bookable> getOptions() {
+    public List<? extends Bookable> getOptions() {
         return bookables;
     }
 

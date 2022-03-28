@@ -45,6 +45,6 @@ public class TimeUtils {
     }
 
     public String toString(LocalDateTime date) {
-        return date.format(timeFormat);
+        return date.format(timeFormat) + " UTC";
     }
 }

@@ -21,6 +21,12 @@ public class SearchFlightTrips implements Search {
 
     public static List<FlightTrip> execute(SearchPreferences preferences) {
         preferences = preferences.clone();
+        for (var pref : preferences.fpref.keySet()) {
+            if (preferences.fpref.get(pref).equalsIgnoreCase(SearchPreferences.ANY)) {
+                preferences.fpref.put(pref, SearchPreferences.EMPTY);
+            }
+        }
+
         List<FlightTrip> out = new ArrayList<FlightTrip>();
 
         // layovers from Scenario 2
@@ -36,6 +42,7 @@ public class SearchFlightTrips implements Search {
     }
 
 
+    // TODO account for "any"
     // TODO other filters
     private static boolean isValidOption(Flight flight,
             EnumMap<? extends SearchFilter, String> preferences) {
@@ -53,6 +60,11 @@ public class SearchFlightTrips implements Search {
 
         if (!company.equalsIgnoreCase(SearchPreferences.EMPTY)
                 && !company.equalsIgnoreCase(flight.getCompany()))
+            return false;
+
+        if (!preferences.get(FlightFilter.PEOPLE).equalsIgnoreCase(SearchPreferences.EMPTY)
+                && Integer.parseInt(preferences.get(FlightFilter.PEOPLE)) > flight
+                        .getNumAvalableSeats())
             return false;
 
         if (!preferences.get(FlightFilter.DATE_DEPART_EARLIEST)

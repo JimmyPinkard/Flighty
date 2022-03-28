@@ -14,23 +14,23 @@ import java.util.List;
 public class Room extends Bookable {
     private String info;
     private List<LocalDate> bookedDays;
-    protected int numBeds;
+    protected int sleepingCapacity;
 
     /**
      * Constructor for room
      */
-    public Room(int floor, String roomNum, int numBeds) {
+    public Room(int floor, String roomNum, int sleepingCapacity) {
         super(floor, roomNum);
         info = "A Bookables.Hotel.Hotel.Room";
         bookedDays = new ArrayList<LocalDate>();
-        this.numBeds = numBeds;
+        this.sleepingCapacity = sleepingCapacity;
     }
 
     @SuppressWarnings("unchecked")
     public Room(DBObject object) {
-        super((int)object.get("floor"), (String) object.get("num"), object);
+        super((int) object.get("num"), (String) object.get("floor"), object);
         info = (String) object.get("bedInfo");
-        this.numBeds = (int)object.get("bedCount");
+        this.sleepingCapacity = (int) object.get("bedCount");
         bookedDays = new ArrayList<>();
         bookedDays.addAll((List<LocalDate>)object.get("bookedDates"));
     }
@@ -85,12 +85,8 @@ public class Room extends Bookable {
         return this.bookedDays;
     }
 
-    /**
-     * Gets the number of available beds
-     * @return numBeds
-     */
-    public int getBeds() {
-        return numBeds;
+    public int getSleepingCapacity() {
+        return sleepingCapacity;
     }
 
     @Override
@@ -98,7 +94,7 @@ public class Room extends Bookable {
         return "{" +
                 "bookable:" + super.toString() +
                 "info:'" + info + '\'' +
-                ", numBeds:" + numBeds +
+                ", numBeds:" + sleepingCapacity +
                 ", bookedDays:" + bookedDays +
                 "}";
     }
