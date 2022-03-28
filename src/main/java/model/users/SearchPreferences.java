@@ -74,9 +74,9 @@ public class SearchPreferences {
 
     @Override
     public String toString() {
-        return "{" +
+        return ("{" +
                 "fpref:" + fpref +
                 ", hPref:" + hPref +
-                '}';
+                '}').replace('=', ':');
     }
 }
