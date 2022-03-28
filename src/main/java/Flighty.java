@@ -7,6 +7,7 @@ import model.users.SearchPreferences;
 import model.users.User;
 import model.users.info.Passport;
 import model.users.info.Person;
+import controller.BookingAgent;
 import controller.UserManager;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -31,6 +32,7 @@ import model.Booking;
 public class Flighty {
     private Scanner input;
     private UserManager userManager;
+    private BookingAgent bookingAgent;
     private Data data;
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -61,6 +63,7 @@ public class Flighty {
         data = Data.getInstance();
         input = new Scanner(System.in);
         userManager = new UserManager(data);
+        bookingAgent = new BookingAgent();
         // TODO: uncomment this when data is ready
         //genBogusData();
         //checkData();  // Comment this out to run program with empty input data
@@ -1128,7 +1131,6 @@ public class Flighty {
             }
         }
         System.out.println("Searching for your perfect flight...");
-        // TODO: actually book flight
         SearchPreferences queryPrefs = new SearchPreferences();
         var queryFlightPrefs = queryPrefs.getFPref();
         queryFlightPrefs.put(FlightFilter.AIRPORT_TO, destination);
@@ -1196,10 +1198,10 @@ public class Flighty {
         while (unbooked) {
             if (promptYN("Book seats on this flight?")) {
                 // TODO: interface with booking agent
-                int bookSeats = promptNumber("How many seats would you like to book?", 0, 999); // TODO: change this number to max available
+                int bookSeats = promptNumber("How many seats would you like to book?", 0, flight.getNumSeats());
                 int priceTotal = 0;
                 for (int i = 0; i < bookSeats; i++) {
-                    // Print available seats
+                    // Print available seats (maybe some sort of grid?)
                     // Pick seat number
                 }
                 if (promptYN("Book " + bookSeats + " seats for $" + priceTotal + "?")) {
@@ -1384,8 +1386,9 @@ public class Flighty {
                 return false;
             } else {
                 if (promptYN("Book this room?")) {
-                    return true;
+                    // bookingAgent.bookListing(room, userManager.getCurrentUser()); // LET ME BOOK DAMN YOU
                     //TODO: use booking manager to book the room HERE
+                    return true;
                 }
             }
         }
@@ -1422,7 +1425,7 @@ public class Flighty {
                 List<Bookable> bookings = userManager.getCurrentUser().getBookingHistory();
                 println('\n' + ANSI_WHITE_BG + ANSI_BLACK + "Your Bookings:" + ANSI_RESET);
                 for (int i = 0; i < bookings.size(); i++) {
-                    println(toString(bookings.get(i)));  // TODO: Make a single line toString() for booking
+                    println(toString(bookings.get(i)));
                 }
                 options.add(OPT_PRINT);
                 options.add(OPT_CANCEL);

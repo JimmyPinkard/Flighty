@@ -79,6 +79,14 @@ public class Flight extends TravelObject {
         return airportTo;
     }
 
+    public int getNumSeats() {
+        return bookables.size();
+    }
+
+    public List<Bookable> getSeats() {
+        return bookables;
+    }
+
     /**
      * 
      * @return the departure time of the flight as a LocalDate data type
