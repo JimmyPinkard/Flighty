@@ -15,6 +15,7 @@ public class SearchPreferences implements Cloneable {
     public EnumMap<FlightFilter, String> fpref;
     public EnumMap<HotelFilter, String> hPref;
     public static final String EMPTY = "none";
+    public static final String ANY = "any";
 
     /**
      * Generates default SearchPrefrences with all set to 'none'

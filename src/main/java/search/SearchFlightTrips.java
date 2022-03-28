@@ -21,6 +21,12 @@ public class SearchFlightTrips implements Search {
 
     public static List<FlightTrip> execute(SearchPreferences preferences) {
         preferences = preferences.clone();
+        for (var pref : preferences.fpref.keySet()) {
+            if (preferences.fpref.get(pref).equalsIgnoreCase(SearchPreferences.ANY)) {
+                preferences.fpref.put(pref, SearchPreferences.EMPTY);
+            }
+        }
+
         List<FlightTrip> out = new ArrayList<FlightTrip>();
 
         // layovers from Scenario 2
