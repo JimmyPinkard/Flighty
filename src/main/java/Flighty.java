@@ -350,7 +350,7 @@ public class Flighty {
 
         ArrayList<String> openSeats = new ArrayList<String>();
         for(int i = 0; i < flight.getNumSeats(); i++)
-            openSeats.add(flight.getSeats().get(i).getCol()+flight.getSeats().get(i).getRow());
+            openSeats.add(flight.getOptions().get(i).getCol()+flight.getOptions().get(i).getRow());
 
         // TODO: Remove these testing highlights
         openSeats.add("C5");
@@ -411,7 +411,7 @@ public class Flighty {
 
         ArrayList<String> openSeats = new ArrayList<String>();
         for(int i = 0; i < flight.getNumSeats(); i++)
-            openSeats.add(flight.getSeats().get(i).getCol()+flight.getSeats().get(i).getRow());
+            openSeats.add(flight.getOptions().get(i).getCol()+flight.getOptions().get(i).getRow());
 
         // TODO: Remove these testing highlights
         openSeats.add("C5");

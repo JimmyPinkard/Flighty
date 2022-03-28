@@ -36,8 +36,6 @@ public class SearchPreferences implements Cloneable {
         
         hPref = new EnumMap<>(HotelFilter.class);
         hPref.put(HotelFilter.COMPANY, EMPTY);
-        hPref.put(HotelFilter.PRICE, EMPTY);
-        hPref.put(HotelFilter.PEOPLE, EMPTY);
         hPref.put(HotelFilter.DATE_START, EMPTY);
         hPref.put(HotelFilter.DATE_END, EMPTY);
         hPref.put(HotelFilter.PETS_ALLOWED, EMPTY);
