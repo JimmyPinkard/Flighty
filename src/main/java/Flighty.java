@@ -1294,8 +1294,8 @@ public class Flighty {
         EnumMap<HotelFilter, String> query = new EnumMap<>(HotelFilter.class);
         query.put(HotelFilter.LOCATION, location);
         query.put(HotelFilter.COMPANY, company);
-        query.put(HotelFilter.TIME_START, toString(start));
-        query.put(HotelFilter.TIME_END, toString(end));
+        query.put(HotelFilter.DATE_START, toString(start));
+        query.put(HotelFilter.DATE_END, toString(end));
         query.put(HotelFilter.PETS_ALLOWED, Boolean.toString(pets));
 
         // SearchHotels.execute(data, query);

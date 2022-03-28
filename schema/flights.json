@@ -2,6 +2,10 @@
     {
         "id": "3c2ec15b-123a-4af1-8245-7c814a6f1a5c",
         "company": "Delta",
+        "from_x": 31.80719948,
+        "from_y": -106.3779984,
+        "to_x": 31.35770034790039,
+        "to_y": -100.49600219726562,
         "airport_code_from": "FJS",
         "airport_code_to": "JTW",
         "city_from": "Houston",
@@ -12,6 +16,12 @@
         "date_depart": "02/22/22",
         "date_arrive": "02/22/22",
         "rating": 4.0,
+        "features": [
+            "Movies",
+            "Outlets",
+            "Snacks",
+            "Free Wifi"
+        ],
         "seats":
         [
             {
@@ -19,23 +29,16 @@
                 "class": "first",
                 "price": 123.56,
                 "row": 1,
-                "column": 1,
-                "isBooked": false,
-                "amenities": [
-                    "peanuts"
-                ]
+                "column": "A",
+                "isBooked": false
             },
             {
                 "id": "7ce9ffe5-e973-404d-a505-efe963f33308",
                 "class": "first",
                 "price": 130.00,
                 "row": 1,
-                "column": 2,
-                "isBooked": true,
-                "amenities": [
-                    "peanuts",
-                    "movie"
-                ]
+                "column": "B",
+                "isBooked": true
             }
         ],
         "filters":

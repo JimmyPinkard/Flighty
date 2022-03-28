@@ -29,7 +29,7 @@ public class Hotel extends TravelObject {
     @SuppressWarnings("unchecked")
     public Hotel(DBObject object) {
         super(object);
-        this.features = new ArrayList<>();
+        this.features = (ArrayList<String>) object.get("features");
         this.location = (String) object.get("location");
         this.bookables = new ArrayList<>();
         var rooms = (List<DBObject>) object.get("rooms");
@@ -80,7 +80,7 @@ public class Hotel extends TravelObject {
 
     public List<Room> getOptions() {
         List<Room> rooms = new ArrayList<>();
-        for (Bookable bookable : rooms)
+        for (Bookable bookable : bookables)
             rooms.add((Room) bookable);
 
         return rooms;

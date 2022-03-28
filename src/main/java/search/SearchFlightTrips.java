@@ -36,6 +36,7 @@ public class SearchFlightTrips implements Search {
     }
 
 
+    // TODO account for "any"
     // TODO other filters
     private static boolean isValidOption(Flight flight,
             EnumMap<? extends SearchFilter, String> preferences) {
@@ -53,6 +54,11 @@ public class SearchFlightTrips implements Search {
 
         if (!company.equalsIgnoreCase(SearchPreferences.EMPTY)
                 && !company.equalsIgnoreCase(flight.getCompany()))
+            return false;
+
+        if (!preferences.get(FlightFilter.PEOPLE).equalsIgnoreCase(SearchPreferences.EMPTY)
+                && Integer.parseInt(preferences.get(FlightFilter.PEOPLE)) > flight
+                        .getNumAvalableSeats())
             return false;
 
         if (!preferences.get(FlightFilter.DATE_DEPART_EARLIEST)
