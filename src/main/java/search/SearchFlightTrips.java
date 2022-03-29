@@ -64,7 +64,7 @@ public class SearchFlightTrips implements Search {
 
         if (!preferences.get(FlightFilter.PEOPLE).equalsIgnoreCase(SearchPreferences.EMPTY)
                 && Integer.parseInt(preferences.get(FlightFilter.PEOPLE)) > flight
-                        .getNumAvalableSeats())
+                        .getNumAvailableSeats())
             return false;
 
         if (!preferences.get(FlightFilter.DATE_DEPART_EARLIEST)

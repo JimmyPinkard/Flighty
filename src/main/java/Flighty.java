@@ -9,6 +9,7 @@ import model.users.User;
 import model.users.info.Passport;
 import model.users.info.Person;
 import controller.BookingAgent;
+import controller.Printer;
 import controller.UserManager;
 
 import java.sql.Timestamp;
@@ -37,6 +38,9 @@ public class Flighty {
     private UserManager userManager;
     private BookingAgent bookingAgent;
     private Data data;
+    private Printer printer;
+
+    // ANSI COLORS
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_GREEN = "\u001B[32m";
@@ -67,6 +71,7 @@ public class Flighty {
         input = new Scanner(System.in);
         userManager = new UserManager(data);
         bookingAgent = new BookingAgent();
+        printer = Printer.getInstance();
         //genBogusData();
         //checkData();
     }
@@ -1682,8 +1687,7 @@ public class Flighty {
      */
     private void menuEditBooking() {
         while (true) {
-
-            final String OPT_PRINT = "Print Booking";
+            final String OPT_PRINT = "Export Bookings";
             final String OPT_CANCEL = "Cancel Booking";
             final String OPT_BACK = "Back";
 
@@ -1705,9 +1709,9 @@ public class Flighty {
             String response = menuNumbered("Enter a Number", options);
 
             if (response.equals(OPT_PRINT)) {
-                MenuPrintBooking();
+                menuPrintBooking();
             } else if (response.equals(OPT_CANCEL)) {
-                MenuCancelBooking();
+                menuCancelBooking();
             } else if (response.equals(OPT_BACK)) {
                 return;
             }
@@ -1718,7 +1722,7 @@ public class Flighty {
      * Cancels bookings
      * @author rengotap
      */
-    private void MenuCancelBooking() {
+    private void menuCancelBooking() {
         List<Bookable> bookings = userManager.getCurrentUser().getBookingHistory();
         List<String> options = new ArrayList<String>();
         for (int i = 0; i < bookings.size(); i++) { // should add every booking as an option
@@ -1734,31 +1738,71 @@ public class Flighty {
             userManager.getCurrentUser().removeBooking(Integer.parseInt(response[1]));
             println(ANSI_RED + "Booking canceled." + ANSI_RESET + '\n' +"Your payment has been refunded.");
         }
-
     }
-
+    
     /**
      * The user now prints their itinerary for both of their flights, 
      * and the details for their hotel reservation.
      * Printing means creating a beautifully formatted text file.
      * @author rengotap
      */
-    private void MenuPrintBooking() {
-        List<Bookable> bookings = userManager.getCurrentUser().getBookingHistory();
-        List<String> options = new ArrayList<String>();
-        for (int i = 0; i < bookings.size(); i++) { // should add every booking as an option
-            options.add(toString(bookings.get(i)));
+    private void menuPrintBooking() {
+        final String OPT_EXP = "Export print queue to text file";
+        final String OPT_ENQ = "Add bookings to print queue";
+        final String OPT_DEQ = "Remove bookings from print queue";
+        final String OPT_BACK = "Back";
+        while (true) {
+            List<String> options = new ArrayList<String>();
+            ArrayList<Bookable> pq = printer.getPrintQueue();
+            println('\n' + ANSI_WHITE_BG + ANSI_BLACK + "CURRENT PRINT QUEUE" + ANSI_RESET+'\n');
+            if(!pq.isEmpty()) {
+                options.add(OPT_EXP);
+                options.add(OPT_ENQ);
+                options.add(OPT_DEQ);
+                for (int i = 0; i < pq.size(); i++)
+                    println(toString(pq.get(i)));
+            } else
+                println(ANSI_RED+"Queue is empty!"+ANSI_RESET);
+                options.add(OPT_ENQ);
+            options.add(OPT_BACK);
+            String response = menuNumbered("Enter a Number", options);
+            if (response.equals(OPT_BACK)) {
+                return;
+            } else if (response.equals(OPT_EXP)) {
+                println(ANSI_YELLOW + "ERROR: Exporting to file not yet supported" + ANSI_RESET);
+            } else if (response.equals(OPT_ENQ)) {
+                menuEnqueuePrint();
+            } else if (response.equals(OPT_DEQ)) {
+                menuDequeuePrint();
+            }
         }
-        final String OPTIONS_BACK = "Return to main menu";
-        options.add(OPTIONS_BACK); // at position size+1
+    }
 
-        String[] response = menuLong("Choose a booking to export, or enter " + options.size() + " to go back", options);
-        if(response[0].equals(OPTIONS_BACK)) {
-            return;
-        } else {
-            userManager.getCurrentUser().getBookingHistory().get(Integer.parseInt(response[1]));
-            println(ANSI_YELLOW + "ERROR: Exporting to file not yet supported" + ANSI_RESET);  // TODO: Priority D - Export Bookable as text file
+    /**
+     * Select bookables to add to the print queue
+     * @author rengotap
+     */
+    private void menuEnqueuePrint() {
+        List<Bookable> bookings = userManager.getCurrentUser().getBookingHistory();
+        while(true) {
+            List<String> options = new ArrayList<String>();
+            for (int i = 0; i < bookings.size(); i++) // should add every booking as an option
+                options.add(toString(bookings.get(i)));
+
+            final String OPTIONS_BACK = "Back";
+            options.add(OPTIONS_BACK);
+
+            String[] response = menuLong("Choose a booking to enqueue, or enter " + options.size() + " to go back", options);
+            if(response[0].equals(OPTIONS_BACK)) {
+                return;
+            } else {
+                printer.enqueue(userManager.getCurrentUser().getBookingHistory().get(Integer.parseInt(response[1])));
+            }
         }
+    }
+
+    private void menuDequeuePrint() {
+
     }
 
     /**

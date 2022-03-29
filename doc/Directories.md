@@ -18,6 +18,7 @@
 ### src/controller
 * Managers
 * Booking
+* Printing
 
 ### src/database
 * Class for handling database interactions
