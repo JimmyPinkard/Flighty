@@ -211,6 +211,14 @@ public class User {
     }
 
     /**
+     * Gets the user's last name for display
+     * @return last name
+     */
+    public String getLastName() {
+        return person.getLastName();
+    }
+
+    /**
      * Changes the user's Email
      * @param email new email to set
      */
