@@ -17,7 +17,6 @@ public class Room extends Bookable {
     private String info;
     private List<LocalDate> bookedDays;
     protected int sleepingCapacity;
-    private Hotel hotel;
 
     /**
      * Constructor for room
@@ -48,7 +47,7 @@ public class Room extends Bookable {
      */
     public Room(int row, String col, Hotel obj) {
         super(row, col, obj);
-        this.hotel = obj;
+        travelObject = obj;
         id = "Test case";
         price = 999;
         info = "Two queen beds";
@@ -66,7 +65,7 @@ public class Room extends Bookable {
     }
 
     public Hotel getHotel() {
-        return hotel;
+        return (Hotel)travelObject;
     }
 
     /**

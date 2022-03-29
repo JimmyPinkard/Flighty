@@ -45,6 +45,17 @@ public class TimeUtils {
     }
 
     public String toString(LocalDateTime date) {
-        return date.format(timeFormat) + " UTC";
+        return date.format(dateTimeFormat);
     }
+
+    /**
+     * Splits a LocalDateTime into a separarate date and time
+     * @param date LocalDateTime to split
+     * @return String[] with date at 0 and time at 1
+     * @author rengotap
+     */
+    public String[] splitTime(LocalDateTime date) {
+        return toString(date).split(" ");
+    }
+    
 }
