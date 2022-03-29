@@ -1402,9 +1402,12 @@ public class Flighty {
             println('\n' + ANSI_BLACK + ANSI_WHITE_BG + "Select a seat to book" + ANSI_RESET);
             String[] response = menuLong("Enter a Number", options);
             int index = Integer.parseInt(response[1]);
-            if (promptYN(displaySeat(seats.get(index))+'\n'+"Book this seat?")) {  //TODO: Priority A - Booked seats still show up as available
+            if (promptYN(displaySeat(seats.get(index))+'\n'+"Book this seat?")) {
                 try {
-                    bookingAgent.bookListing(flight.getAvailableOptions().get(index), userManager.getCurrentUser());
+                    Passport ticketHolder = forcePassport();
+                    bookingAgent.bookListing(flight.getAvailableOptions().get(index), userManager.getCurrentUser(),ticketHolder);
+                    println("Ticket assigned to " + ANSI_CYAN + ticketHolder.getPerson().getFirstName()
+                    + " " + ticketHolder.getPerson().getLastName() + ANSI_RESET);
                     Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                     println('\n'+ANSI_WHITE_BG+ANSI_BLACK+timestamp+"   SEAT BOOKED SUCCESSFULLY   "+ANSI_RESET+'\n');
             
@@ -1645,6 +1648,31 @@ public class Flighty {
             } else if(response.equals(OPT_LOGIN)) {
                 menuLoginUser();
             }
+    }
+
+    /**
+     * Forces the user to either pick or make a passport for their ticket
+     * @return
+     */
+    private Passport forcePassport() {
+        if(userManager.getCurrentUser().getTravelers().isEmpty()) {  // No passport?
+            println(ANSI_RED + "No passports on file" + ANSI_RESET + '\n'
+                +"You need to create a passport before continuing"+'\n');
+            menuAddPassport();
+        }
+
+        var passports = userManager.getCurrentUser().getTravelers();
+
+        List<String> options = passportsToStringTable(passports);
+        String choice = promptTable("Choose a passport to assign to this ticket", options);
+        for (Passport passport : userManager.getCurrentUser().getTravelers()) {
+            String currRow = String.join("", toRow(passport)).replace(" ", "");
+            String choiceRow = choice.replace(" ", "");
+            if (currRow.equals(choiceRow)) {
+                return passport;
+            }
+        }
+        return null;
     }
 
     /**

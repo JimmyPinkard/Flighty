@@ -3,6 +3,7 @@ package model.bookables.flight;
 import com.mongodb.DBObject;
 import model.bookables.Bookable;
 import model.bookables.TravelObject;
+import model.users.info.Passport;
 
 /**
  * 
@@ -11,6 +12,7 @@ import model.bookables.TravelObject;
 public class Seat extends Bookable {
     private String whichClass;
     private Flight flight;
+    private Passport owner;
 
     /**
      * Constructor for seat
@@ -47,6 +49,14 @@ public class Seat extends Bookable {
      */
     public String getSeatClass() {
         return this.whichClass;
+    }
+
+    public void setOwner(Passport owner) {
+        this.owner = owner;
+    }
+
+    public Passport getOwner() {
+        return owner;
     }
 
     @Override

@@ -2,8 +2,10 @@ package controller;
 
 import model.Booking;
 import model.bookables.Bookable;
+import model.bookables.flight.Seat;
 import database.Data;
 import model.users.User;
+import model.users.info.Passport;
 
 /**
  * Handes booking
@@ -29,6 +31,17 @@ public class BookingAgent {
 
     public void bookListing(Bookable bookable, User user) {
         if(bookable.book()) {
+            final Booking booking = new Booking(user, bookable);
+            data.getBookings().add(booking);
+            user.addBooking(bookable);
+        } else {
+            System.out.println(ANSI_YELLOW+"WARN: Bookable already booked."+ANSI_RESET);
+        }
+    }
+
+    public void bookListing(Seat bookable, User user, Passport owner) {
+        if(bookable.book()) {
+            bookable.setOwner(owner);
             final Booking booking = new Booking(user, bookable);
             data.getBookings().add(booking);
             user.addBooking(bookable);
