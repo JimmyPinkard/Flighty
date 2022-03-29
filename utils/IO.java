@@ -1,14 +1,19 @@
+import java.util.*;
+import java.io.*;
+
 public class IO {
     public void writeFile(String path, String contents) {
         try {
-            PrintWriter writer = new PrintWriter(new File(path));
+            File file = new File(path);
+            file.createNewFile();
+            FileWriter writer = new FileWriter(file);
             writer.write(contents);
+            writer.close();
         }
         catch (Exception e) {
-            fatal(e.getMessage());
+            GenToString.fatal(e.getMessage());
         }
     }
-
     public String readFile(String path) {
         String contents = "";
         try {
@@ -19,7 +24,7 @@ public class IO {
             }
         }
         catch (Exception e) {
-            fatal(e.getMessage());
+            GenToString.fatal(e.getMessage());
         }
         return contents;
     }
@@ -42,7 +47,7 @@ public class IO {
             }
         }
         catch (Exception e) {
-            fatal(e.getMessage());
+            GenToString.fatal(e.getMessage());
         }
         return contents;
     }

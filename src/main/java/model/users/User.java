@@ -259,15 +259,14 @@ public class User {
 
     @Override
     public String toString() {
-        return ("{" +
-                "username:'" + username + '\'' +
-                ", password:'" + password + '\'' +
-                ", email:'" + email + '\'' +
-                ", preferences:" + preferences +
-                ", specialReq:" + specialReq +
-                ", travelers:" + travelers +
-                ", bookingHistory:" + bookingHistory +
-                ", person:" + person +
-                '}').replace('\'', '"');
+        return "{" + "\"id\": " + id + ", "
+                + "\"username\": " + username + ", "
+                + "\"password\": " + password + ", "
+                + "\"email\": " + email + ", "
+                + "\"preferences\": " + preferences + ", "
+                + "\"specialReq\": " + specialReq + ", "
+                + "\"travelers\": " + travelers + ", "
+                + "\"bookingHistory\": " + bookingHistory + ", "
+                + "\"person\": " + person + "}";
     }
 }

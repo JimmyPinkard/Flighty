@@ -49,7 +49,7 @@ public class Flight extends TravelObject {
         this.startY = (double) object.get("from_y");
         this.stopX = (double) object.get("to_x");
         this.stopY = (double) object.get("to_y");
-        this.bookables = new ArrayList<Bookable>();
+        this.bookables = new ArrayList<>();
         for (DBObject obj : (List<DBObject>) object.get("seats"))
             bookables.add(new Seat(obj, this));
         this.airportFrom = (String) object.get("airport_code_from");
@@ -155,18 +155,30 @@ public class Flight extends TravelObject {
 
     @Override
     public String toString() {
-        return ("{" +
-                "airportFrom='" + airportFrom + '\'' +
-                ", airportTo='" + airportTo + '\'' +
-                ", cityFrom='" + cityFrom + '\'' +
-                ", cityTo='" + cityTo + '\'' +
-                ", departureTime=" + departureTime +
-                ", arrivalTime=" + arrivalTime +
-                ", startX=" + startX +
-                ", startY=" + startY +
-                ", stopX=" + stopX +
-                ", stopY=" + stopY +
-                ", travelObject" + super.toString() +
-                "}").replace('=', ':').replace('\'', '"');
+        return "{" + "\"airportFrom\": \"" + airportFrom + "\", "
+                + "\"airportTo\": \"" + airportTo + "\", "
+                + "\"cityFrom\": \"" + cityFrom + "\", "
+                + "\"cityTo\": \"" + cityTo + "\", "
+                + "\"departureTime\": \"" + departureTime.toString() + "\", "
+                + "\"arrivalTime\": \"" + arrivalTime.toString() + "\", "
+                + "\"startX\": " + startX + ", "
+                + "\"startY\": " + startY + ", "
+                + "\"stopX\": " + stopX + ", "
+                + "\"stopY\": " + stopY + ", "
+                + "\"id\": \"" + id + "\", "
+                + "\"bookables\": " + bookables + ", "
+                + "\"company\": \"" + company + "\", "
+                + "\"rating\": " + rating + ", "
+                + "\"features\": " + stringArray(features.toArray()) + ", "
+                + "\"filters\": " + stringArray(filters.toArray()) + "}";
+    }
+
+    public String stringArray(Object[] arr) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("[");
+        for(Object object : arr) {
+            builder.append("\"").append(object.toString()).append("\", ");
+        }
+        return builder.delete(builder.length() - 2, builder.length()).append("]").toString();
     }
 }

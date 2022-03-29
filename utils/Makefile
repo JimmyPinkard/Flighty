@@ -1,9 +1,10 @@
 toString : *.java
-	javac *.java
+	javac GenToString.java Variable.java IO.java
 
 run :
+	make clean
 	make toString
-	java GenToString
+	java GenToString -d ../src/main/java/model
 
 clean :
-	rm *.class
+	rm *.class Test.java
