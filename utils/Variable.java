@@ -17,15 +17,15 @@ public class Variable {
     }
 
     public String genJSON() {
-        StringBuilder builder = new StringBuilder("\"{");
+        StringBuilder builder = new StringBuilder("\"{\" + ");
         for(String attribute : attributes) {
-            builder.append("\" + \"\\\"").append(attribute).append("\\\": \" + ").append(attribute).append(" + \",\n\t\t\"");
+            builder.append("\"\\\"").append(attribute).append("\\\": \" + ").append(attribute).append(" + \", \"\n\t\t + ");
         }
-        return builder.delete(builder.length() - 5, builder.length()).append("}\"").toString();
+        return builder.delete(builder.length() - 9, builder.length()).append("}\";").toString();
     }
 
     public String genToString() {
-        return "@Override\npublic String toString() {\n\t return " + genJSON() + "\n}";
+        return "@Override\n\tpublic String toString() {\n\t\t return " + genJSON() + "\n\t}";
     }
 
     public String genClass() {
