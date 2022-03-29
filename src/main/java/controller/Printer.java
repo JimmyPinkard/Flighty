@@ -20,7 +20,7 @@ import model.users.info.Passport;
 public class Printer {
     private static Printer instance;
     private ArrayList<Bookable> printQueue;
-    final private String writeDir = "./database/userdata/";
+    final private String writeDir = "./";
     final private String writeName = "itinerary";
 
      // ANSI COLORS

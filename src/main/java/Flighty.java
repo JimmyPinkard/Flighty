@@ -131,14 +131,16 @@ public class Flighty {
                 bookings.add(new Booking("s"));
             }
         }
+
         if (superUser) {
             User newUser = new User();
             // SUPER TIME SAVER
-            newUser.getFPref().replaceAll((key,old) -> "all");
-            newUser.getHPref().replaceAll((key,old) -> "all");
+            newUser.getFPref().replaceAll((key,old) -> "any");
+            newUser.getHPref().replaceAll((key,old) -> "any");
             userManager.registerUser(newUser);
             userManager.logoutCurrent();
             userManager.login("temp","p");
+
             if(bodgeData) {
                 for (int i = 0; i < numToGenerate; i++ )
                     userManager.getCurrentUser().addBooking(bookings.get(i).getBooked());
@@ -366,6 +368,15 @@ public class Flighty {
             +" | Company: " + ANSI_CYAN + flight.getCompany() + ANSI_RESET 
             + " | Rating: " + toStars(flight.getRating());
     }
+
+    /*
+    private String displayFlightsSimple(FlightTrip flight) {
+        return "Price: " + ANSI_CYAN + "$" + flight.getCost() + ANSI_RESET
+            +  " | Travel Time: " + ANSI_CYAN+"PLACEHOLDER" + ANSI_RESET
+            + " | Seats Available: " + ANSI_CYAN + flight.getNumAvailableSeats() + ANSI_RESET
+            +" | Company: " + ANSI_CYAN + flight.getCompany() + ANSI_RESET 
+            + " | Rating: " + toStars(flight.getRating());
+    }*/
 
     /**
      * Returns a nicely formated flight with all relevant information
@@ -1337,7 +1348,7 @@ public class Flighty {
      * @author rengotap
      */
     private void flightResult(SearchPreferences query) {
-        //List<Flight> results = SearchFlights.execute(data, query); // TODO: Priority B -correct flight search
+        //List<FlightTrip> results = SearchFlightTrips.execute(query); // TODO: Priority B -correct flight search
         List<Flight> results = data.getFlights();
         println("Here are the best results we could find: " + '\n'
                 + "Unsatisfied with your results? Try changing your search parameters!" + '\n');
@@ -1523,7 +1534,6 @@ public class Flighty {
         query.put(HotelFilter.DATE_END, toString(end));
         query.put(HotelFilter.PETS_ALLOWED, Boolean.toString(pets));
 
-        // SearchHotels.execute(data, query);
         hotelResult(query);
         // This is intentional
         println("                        Thank you for using");
@@ -1536,8 +1546,8 @@ public class Flighty {
      * @author rengotap
      */
     private void hotelResult(EnumMap<HotelFilter, String> query) {
-        // List<Hotel> results = SearchHotels.execute(data, query); // TODO: Priority B - take from hotel search
-        List<Hotel> results = data.getHotels(); // Temporary stand in
+        List<Hotel> results = SearchHotels.execute(query); // TODO: Priority B - take from hotel search
+        //List<Hotel> results = data.getHotels(); // Temporary stand in
         println("Here are the best results we could find: " + '\n'
                 + "Unsatisfied with your results? Try changing your search parameters!" + '\n');
         // Assuming that these are the top.. 3?
@@ -1678,10 +1688,10 @@ public class Flighty {
             println(ANSI_RED + "No passports on file" + ANSI_RESET + '\n'
                 +"You need to create a passport before continuing"+'\n');
             menuAddPassport();
-        }
+        } else if (!promptYN("Use existing passport?"))  // Bandaid fix
+            menuAddPassport();
 
         var passports = userManager.getCurrentUser().getTravelers();
-
         List<String> options = passportsToStringTable(passports);
         String choice = promptTable("Choose a passport to assign to this ticket", options);
         for (Passport passport : userManager.getCurrentUser().getTravelers()) {
@@ -1691,6 +1701,7 @@ public class Flighty {
                 return passport;
             }
         }
+
         return null;
     }
 
