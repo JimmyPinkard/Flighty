@@ -1,6 +1,9 @@
 package controller;
 
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import model.bookables.Bookable;
 import model.bookables.flight.Seat;
@@ -13,7 +16,14 @@ import model.bookables.hotel.Room;
 public class Printer {
     private static Printer instance;
     private ArrayList<Bookable> printQueue;
-    final protected String saveTo = ""; 
+    final private String writeDir = "./database/userdata/";
+    final private String writeName = "itinerary";
+
+     // ANSI COLORS
+     public static final String ANSI_RESET = "\u001B[0m";
+     public static final String ANSI_RED = "\u001B[31m";
+     public static final String ANSI_YELLOW = "\u001B[33m";
+     public static final String ANSI_CYAN = "\u001B[36m";
 
     /**
      * Constructor
@@ -37,13 +47,21 @@ public class Printer {
 
     /**
      * Prints the printQueue to a file
-     * @return save location
      * @author rengotap
      */
-    public String print() {
-        String[] formatted = formatAll();
-        //TODO: IO STUFF HERE
-        return "Saved itinerary to " + saveTo;
+    public void print() {
+        if (verifyLocation()) {
+            String[] formatted = formatAll();
+            try {
+                FileWriter w = new FileWriter(writeDir+writeName+".txt");
+                for(int i = 0; i < formatted.length; i++)
+                    w.write(formatted[i]+'\n');
+                w.close();
+            } catch (IOException e) {
+                System.out.println(ANSI_RED + "ERROR: Unable to write to file" + ANSI_RESET);
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -81,6 +99,29 @@ public class Printer {
     }
 
     /**
+     * Verifies that the save location exists.
+     * If it doesn't, it will attempt to create it.
+     * @author rengotap
+     */
+    private boolean verifyLocation() {
+        try {
+            File writeIn = new File(writeDir+writeName+".txt");
+            if(writeIn.exists()) {
+                return true;
+            } else {
+                writeIn.createNewFile();
+                System.out.println(ANSI_CYAN+"INFO: Created file"+ANSI_RESET);
+                return true;
+            }
+        } catch (IOException e) {
+            System.out.println(ANSI_RED
+            + "ERROR: Unable to verify printer's write location" + ANSI_RESET);
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
      * Formats all items in printQueue into a String array
      * @return printable string array
      * @author rengotap
@@ -98,8 +139,15 @@ public class Printer {
      * @return formatted string
      * @author rengotap
      */
-    private String format(Bookable bookable) {
-        return "";
+    private String format(Bookable b) {
+        final String type = b.getClass().getSimpleName();
+        if(type.equals("Seat"))
+            return format((Seat)b);
+        if(type.equals("Room"))
+            return format((Room)b);
+        System.out.println(ANSI_YELLOW
+            + "WARN: Unknown format passed" + ANSI_RESET);
+        return "ERROR";
     }
 
     /**
@@ -108,8 +156,8 @@ public class Printer {
      * @return formatted seat
      * @author rengotap
      */
-    private String format(Seat seat) {
-        return "";
+    private String format(Seat s) {  // TODO: Seat Formating
+        return "Destination: " + s.getFlight().getAirportTo();
     }
 
     /**
@@ -118,8 +166,7 @@ public class Printer {
      * @return formatted seat
      * @author rengotap
      */
-    private String format(Room room) {
-        return "";
+    private String format(Room r) {  // TODO: Room Formating
+        return "Location: " + r.getHotel().getLocation();
     }
-    
 }

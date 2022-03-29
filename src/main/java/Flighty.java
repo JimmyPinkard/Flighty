@@ -1773,8 +1773,7 @@ public class Flighty {
             if (response.equals(OPT_BACK)) {
                 return;
             } else if (response.equals(OPT_EXP)) {
-                println(ANSI_YELLOW + "ERROR: Exporting to file not yet supported" + ANSI_RESET);
-                println(printer.print());
+                printer.print();
             } else if (response.equals(OPT_ENQ)) {
                 menuEnqueuePrint();
             } else if (response.equals(OPT_DEQ)) {
