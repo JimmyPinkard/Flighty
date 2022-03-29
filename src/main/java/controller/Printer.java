@@ -42,7 +42,7 @@ public class Printer {
      */
     public String print() {
         String[] formatted = formatAll();
-        //IO STUFF HERE
+        //TODO: IO STUFF HERE
         return "Saved itinerary to " + saveTo;
     }
 
@@ -73,12 +73,23 @@ public class Printer {
     }
 
     /**
+     * Clears the printQueue
+     * @author rengotap
+     */
+    public void wipe() {
+        printQueue.clear();   
+    }
+
+    /**
      * Formats all items in printQueue into a String array
      * @return printable string array
      * @author rengotap
      */
     private String[] formatAll() {
-        return new String[printQueue.size()];
+        String[] formatted = new String[printQueue.size()];
+        for(int i = 0; i < printQueue.size(); i++)
+            formatted[i] = format(printQueue.get(i));
+        return formatted;
     }
 
     /**

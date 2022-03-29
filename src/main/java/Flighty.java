@@ -72,7 +72,7 @@ public class Flighty {
         userManager = new UserManager(data);
         bookingAgent = new BookingAgent();
         printer = Printer.getInstance();
-        //genBogusData();
+        genBogusData();
         //checkData();
     }
 
@@ -1695,7 +1695,7 @@ public class Flighty {
 
             if(userManager.isAnyoneLoggedIn() && !userManager.getCurrentUser().getBookingHistory().isEmpty()) {
                 List<Bookable> bookings = userManager.getCurrentUser().getBookingHistory();
-                println('\n' + ANSI_WHITE_BG + ANSI_BLACK + "Your Bookings:" + ANSI_RESET);
+                println('\n' + ANSI_WHITE_BG + ANSI_BLACK + "YOUR BOOKINGS:" + ANSI_RESET + '\n');
                 for (int i = 0; i < bookings.size(); i++) {
                     println(toString(bookings.get(i)));
                 }
@@ -1747,33 +1747,41 @@ public class Flighty {
      * @author rengotap
      */
     private void menuPrintBooking() {
-        final String OPT_EXP = "Export print queue to text file";
-        final String OPT_ENQ = "Add bookings to print queue";
-        final String OPT_DEQ = "Remove bookings from print queue";
+        final String OPT_EXP = "Export Print Queue";
+        final String OPT_ENQ = "Add Bookings";
+        final String OPT_DEQ = "Remove Bookings";
+        final String OPT_WIPE = "Empty Print Queue";
         final String OPT_BACK = "Back";
         while (true) {
             List<String> options = new ArrayList<String>();
             ArrayList<Bookable> pq = printer.getPrintQueue();
-            println('\n' + ANSI_WHITE_BG + ANSI_BLACK + "CURRENT PRINT QUEUE" + ANSI_RESET+'\n');
+            println('\n' + ANSI_WHITE_BG + ANSI_BLACK + "CURRENT PRINT QUEUE:" + ANSI_RESET+'\n');
             if(!pq.isEmpty()) {
                 options.add(OPT_EXP);
                 options.add(OPT_ENQ);
                 options.add(OPT_DEQ);
+                options.add(OPT_WIPE);
                 for (int i = 0; i < pq.size(); i++)
                     println(toString(pq.get(i)));
-            } else
-                println(ANSI_RED+"Queue is empty!"+ANSI_RESET);
+                println("");
+            } else {
+                println(ANSI_RED+"Queue is empty!"+ANSI_RESET+'\n');
                 options.add(OPT_ENQ);
+            }
             options.add(OPT_BACK);
             String response = menuNumbered("Enter a Number", options);
             if (response.equals(OPT_BACK)) {
                 return;
             } else if (response.equals(OPT_EXP)) {
                 println(ANSI_YELLOW + "ERROR: Exporting to file not yet supported" + ANSI_RESET);
+                println(printer.print());
             } else if (response.equals(OPT_ENQ)) {
                 menuEnqueuePrint();
             } else if (response.equals(OPT_DEQ)) {
                 menuDequeuePrint();
+            } else if (response.equals(OPT_WIPE)) {
+                if (promptYN("Are you sure you want to empty the print queue?"))
+                    printer.wipe();
             }
         }
     }
@@ -1786,22 +1794,49 @@ public class Flighty {
         List<Bookable> bookings = userManager.getCurrentUser().getBookingHistory();
         while(true) {
             List<String> options = new ArrayList<String>();
+            println('\n' + ANSI_WHITE_BG + ANSI_BLACK + "YOUR BOOKINGS:" + ANSI_RESET + '\n');
             for (int i = 0; i < bookings.size(); i++) // should add every booking as an option
                 options.add(toString(bookings.get(i)));
 
-            final String OPTIONS_BACK = "Back";
-            options.add(OPTIONS_BACK);
+            final String OPT_BACK = "Back";
+            options.add(OPT_BACK);
 
-            String[] response = menuLong("Choose a booking to enqueue, or enter " + options.size() + " to go back", options);
-            if(response[0].equals(OPTIONS_BACK)) {
+            String[] response = menuLong("Choose a booking to "+ANSI_GREEN+"enqueue"
+                +ANSI_RESET+", or enter " + options.size() + " to go back", options);
+            if(response[0].equals(OPT_BACK)) {
                 return;
             } else {
-                printer.enqueue(userManager.getCurrentUser().getBookingHistory().get(Integer.parseInt(response[1])));
+                Bookable b = userManager.getCurrentUser().getBookingHistory().get(Integer.parseInt(response[1]));
+                println(ANSI_GREEN+"Added the following booking to the print queue:"
+                    +ANSI_RESET+'\n'+toString(b));
+                printer.enqueue(b);
             }
         }
     }
 
     private void menuDequeuePrint() {
+        final String OPT_BACK = "Back";
+        while (true) {
+            ArrayList<Bookable> pq = printer.getPrintQueue();
+            if(pq.isEmpty())  // if all items deleted
+                return;
+            List<String> options = new ArrayList<String>();
+            println('\n' + ANSI_WHITE_BG + ANSI_BLACK + "CURRENT PRINT QUEUE:" 
+                + ANSI_RESET+'\n');
+            for (int i = 0; i < pq.size(); i++)
+                options.add(toString(pq.get(i)));
+            options.add(OPT_BACK);
+            String[] response = menuLong("Choose a booking to "+ANSI_RED+"dequeue"
+                +ANSI_RESET+", or enter " + options.size() + " to go back", options);
+            if(response[0].equals(OPT_BACK)) {
+                return;
+            } else {
+                println(ANSI_RED+"Removed the following booking from the print queue:"
+                    + ANSI_RESET+'\n'+toString(pq.get(Integer.parseInt(response[1]))));
+                printer.dequeue(Integer.parseInt(response[1]));
+            } 
+        }
+
 
     }
 
