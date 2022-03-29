@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -30,12 +31,12 @@ public class Printer {
 
      // ASCII
      private static final String H0 = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
-     private static final String H1 = "━━━━━━━━━━━━━━━━━━▲━━━━━━━━━━━━━━━━━━";
-     private static final String H2 = "━━━━━━━━━━━━━━━━━━▼━━━━━━━━━━━━━━━━━━";
-     private static final String H3 = "▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰";
+     private static final String H1 = "▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰";
+     private static final String H2 = "━━━━━━━━━━━━━━━━━━▲━━━━━━━━━━━━━━━━━━";
+     private static final String H3 = "━━━━━━━━━━━━━━━━━━▼━━━━━━━━━━━━━━━━━━";
 
     /**
-     * Constructor
+     * Printer Constructor
      * @author rengotap
      */
     private Printer() {
@@ -48,7 +49,7 @@ public class Printer {
      * @author rengotap
      */
     public static Printer getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new Printer();
         }
         return instance;
@@ -64,9 +65,10 @@ public class Printer {
             try {
                 FileWriter w = new FileWriter(writeDir+writeName+".txt");
                 w.write(getFHeader());
-                for(int i = 0; i < formatted.length; i++)
-                    w.write(formatted[i]+'\n');
+                for (int i = 0; i < formatted.length; i++)
+                    w.write(formatted[i] + '\n' + '\n' + '\n');
                 w.close();
+                System.out.println(ANSI_CYAN + "INFO: Successfully wrote to file" + ANSI_RESET);
             } catch (IOException e) {
                 System.out.println(ANSI_RED + "ERROR: Unable to write to file" + ANSI_RESET);
                 e.printStackTrace();
@@ -75,8 +77,20 @@ public class Printer {
     }
 
     /**
+     * Returns a single formated bookable as a string
+     * Used for printing to the console in UI
+     * @param b
+     * @return formatted bookable
+     * @author rengotap
+     */
+    public String print(Bookable b) {
+        return format(b);
+    }
+
+    /**
      * Returns the printQueue
      * @return all objects to be printed
+     * @author rengotap
      */
     public ArrayList<Bookable> getPrintQueue() {
         return printQueue;
@@ -105,27 +119,29 @@ public class Printer {
      * @author rengotap
      */
     public void wipe() {
-        printQueue.clear();   
+        printQueue.clear();
     }
 
     /**
-     * Verifies that the save location exists.
-     * If it doesn't, it will attempt to create it.
+     * Verifies that the save location exists
+     * If it doesn't, it will attempt to create it
+     * @return true if location is found or created
      * @author rengotap
      */
     private boolean verifyLocation() {
         try {
-            File writeIn = new File(writeDir+writeName+".txt");
-            if(writeIn.exists()) {
+            File writeIn = new File(writeDir + writeName + ".txt");
+            if (writeIn.exists()) {
+                System.out.println(ANSI_CYAN + "INFO: Save location verified" + ANSI_RESET);
                 return true;
             } else {
                 writeIn.createNewFile();
-                System.out.println(ANSI_CYAN+"INFO: Created file"+ANSI_RESET);
+                System.out.println(ANSI_CYAN + "INFO: Created file" + ANSI_RESET);
                 return true;
             }
         } catch (IOException e) {
-            System.out.println(ANSI_RED
-            + "ERROR: Unable to verify printer's write location" + ANSI_RESET);
+            System.out.println(ANSI_RED + "ERROR: Unable to verify printer's save location"
+                + ANSI_RESET);
             e.printStackTrace();
             return false;
         }
@@ -138,7 +154,7 @@ public class Printer {
      */
     private String[] formatAll() {
         String[] formatted = new String[printQueue.size()];
-        for(int i = 0; i < printQueue.size(); i++)
+        for (int i = 0; i < printQueue.size(); i++)
             formatted[i] = format(printQueue.get(i));
         return formatted;
     }
@@ -157,7 +173,7 @@ public class Printer {
             return format((Room)b);
         System.out.println(ANSI_YELLOW
             + "WARN: Unknown format passed" + ANSI_RESET);
-        return "ERROR";
+        return "FORMAT ERROR";
     }
 
     /**
@@ -170,20 +186,22 @@ public class Printer {
         Passport p = s.getOwner();
         Flight f = s.getFlight();
         return p.getPerson().getFirstName() + " " + p.getPerson().getLastName()
-            + "'s Flight Information" + '\n' + H3 + " ✈" + '\n'  // Header Line A
+            + "'s Flight Information" + '\n' + H1 + " ✈" + '\n'  // Header Line A
             + "Passport Number: " + p.getNumber() + '\n'
-            + "Flight ID: " + f.getId() + '\n'
+            + "Booking ID: " + f.getId() + '\n'
+            + "Price Paid: $" + s.getPrice() + '\n'
             + "Service: " + f.getCompany() + " Airlines" + '\n'
+            + '\n' + "SEAT INFORMATION" +'\n' + H0 + " ✈" + '\n'  // Header Line B
             + "Seat: " + s.getRow() + s.getCol() + '\n'
             + "Class: " + s.getSeatClass() + '\n'
-            + '\n' + "DEPARTURE INFORMATION" +'\n' + H0 + " ✈" + '\n'  // Header Line B
-            + "Date:" + '\n'
-            + "Time: " + f.getDepartureTime() + '\n'
+            + '\n' + "DEPARTURE INFORMATION" +'\n' + H0 + " ✈" + '\n'  // Header Line C
             + "Location: " + f.getAirportFrom() + '\n'
-            + '\n' + "ARRIVAL INFORMATION" +'\n' + H0 + " ✈" + '\n'  // Header Line C
-            + "Date:" + '\n'
-            + "Time: " + f.getArrivalTime() + '\n'
-            + "Location: " + f.getAirportTo() + '\n';
+            + "Date:" + f.getDepartureTime() + '\n'  // TODO: Separate time and date
+            + "Time: " + f.getDepartureTime() + '\n'
+            + '\n' + "ARRIVAL INFORMATION" +'\n' + H0 + " ✈" + '\n'  // Header Line D
+            + "Location: " + f.getAirportTo() + '\n'
+            + "Date:" + f.getArrivalTime() + '\n'
+            + "Time: " + f.getArrivalTime();
 
     }
 
@@ -195,15 +213,36 @@ public class Printer {
      */
     private String format(Room r) {  // TODO: Finish filling out Room Formating
         Hotel h = r.getHotel();
-        return "Hotel Reservation Info" + '\n' + H3 + " ⌂" + '\n'  // Header Line A
+        return "Hotel Reservation Info" + '\n' + H1 + " ⌂" + '\n'  // Header Line A
             + "Booking ID: " + h.getId() + '\n'
+            + "Reservation Start: " + "PLACEHOLDER" + '\n'
+            + "Reservation End: " + "PLACEHOLDER" + '\n'
+            + "Price Paid: $" +r.getPrice() + '\n'
             + "Company Name: " + h.getCompany() + '\n'
+            + '\n' + "ROOM INFORMATION" +'\n' + H0 + " ⌂" + '\n'  // Header Line B
             + "Room Number: " + r.getRoomNum() + '\n'
             + "Beds: " + r.getInfo() + '\n'
+            + '\n' + "HOTEL INFORMATION" +'\n' + H0 + " ⌂" + '\n'  // Header Line C
             + "Location: " + h.getLocation() + '\n'
-            + "Reservation Start: " + '\n'
-            + "Reservation End: " + '\n'
-            + "Features: " + '\n';
+            + "Amenities:" 
+            + '\n' + toBlock(h.getFeatures(), 3);
+    }
+
+    /**
+     * Turns a list into a nice block
+     * @param input data of the block
+     * @param width width of the block
+     * @return nice block
+     * @author rengotap
+     */
+    private String toBlock(List<String> input, int width) {
+        String ret = "";
+        for (int i = 1; i < input.size() + 1; i++) {
+            ret = ret + input.get(i - 1) + ", ";
+            if (i % width == 0)
+                ret = ret + '\n';
+        }
+        return ret.replaceAll(", $", "");
     }
 
     /**
