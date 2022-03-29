@@ -72,7 +72,7 @@ public class Flighty {
         userManager = new UserManager(data);
         bookingAgent = new BookingAgent();
         printer = Printer.getInstance();
-        genBogusData();
+        //genBogusData();
         //checkData();
     }
 
