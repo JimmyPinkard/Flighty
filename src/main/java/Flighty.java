@@ -60,8 +60,20 @@ public class Flighty {
      */
     public static void main(final String[] args) {
         Flighty app = new Flighty();
-        app.start();
+        //app.start();
+        Data data = Data.getInstance();
+        //System.out.println(data.getHotels());
+        SearchPreferences pref = new SearchPreferences();
+        pref.hPref.put(HotelFilter.LOCATION, "ATL");
+        pref.hPref.put(HotelFilter.COMPANY, "HYATT");
+        pref.hPref.put(HotelFilter.DATE_START, "1/1/21");
+        pref.hPref.put(HotelFilter.DATE_END, "1/1/21");
+        pref.hPref.put(HotelFilter.PETS_ALLOWED, "Y");
+        List<Hotel> l = SearchHotels.execute(pref);
+        System.out.println(l);
     }
+
+
 
     /**
      * Creates a new UI / Flighty instance
@@ -74,7 +86,7 @@ public class Flighty {
         userManager = new UserManager(data);
         bookingAgent = new BookingAgent();
         printer = Printer.getInstance();
-        genBogusData();
+        //genBogusData();
         //checkData();
     }
 
