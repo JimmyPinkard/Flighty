@@ -14,24 +14,8 @@ public abstract class TravelObject {
     protected List<Bookable> bookables;
     protected String company;
     protected double rating;
-    protected BookingLayout layout;
     protected List<String> features;
     protected List<SearchFilter> filters;
-
-    /**
-     * Constructor for Bookables.TravelObject
-     * 
-     * @param layout the layout of either hotel or flight
-     */
-    public TravelObject(BookingLayout layout) {
-        this.id = UUID.randomUUID().toString();
-        this.company = "";
-        this.rating = 0;
-        this.bookables = new ArrayList<>();
-        this.features = new ArrayList<>();
-        this.layout = layout;
-        this.filters = new ArrayList<>();
-    }
 
     @SuppressWarnings("unchecked")
     public TravelObject(DBObject object) {
@@ -46,7 +30,6 @@ public abstract class TravelObject {
         for (Object filter : temp2) {
             this.filters.add(getFilter(filter));
         }
-        this.layout = null;
     }
 
     private SearchFilter getFilter(Object filter) {
@@ -147,7 +130,6 @@ public abstract class TravelObject {
                 ", bookables:" + bookables +
                 ", company:'" + company + '\'' +
                 ", rating:" + rating +
-                ", layout:" + layout +
                 ", features:" + features +
                 ", filters:" + filters +
                 '}';

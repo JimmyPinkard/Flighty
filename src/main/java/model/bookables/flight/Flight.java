@@ -2,7 +2,6 @@ package model.bookables.flight;
 
 import com.mongodb.DBObject;
 import model.bookables.Bookable;
-import model.bookables.BookingLayout;
 import model.bookables.TravelObject;
 import utils.TimeUtils;
 
@@ -30,8 +29,8 @@ public class Flight extends TravelObject {
      * Constructor for Bookables.Flight.Flight
      */
     public Flight(LocalDateTime departureTime, LocalDateTime arrivalTime, String airportFrom,
-            String airportTo, BookingLayout layout) {
-        super(layout);
+            String airportTo) {
+        super();
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
         this.airportFrom = airportFrom;
@@ -64,7 +63,7 @@ public class Flight extends TravelObject {
      * @author rengotap
      */
     public Flight() {
-        super(new FlightLayout("test"));
+        super();
         airportFrom = "ATL";
         airportTo = "LAX";
         this.company = "Delta";

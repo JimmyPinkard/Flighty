@@ -3,7 +3,6 @@ package model.bookables.hotel;
 import com.mongodb.DBObject;
 
 import model.bookables.Bookable;
-import model.bookables.BookingLayout;
 import model.bookables.TravelObject;
 
 import java.util.ArrayList;
@@ -19,8 +18,8 @@ public class Hotel extends TravelObject {
     /**
      * Creates a new hotel object
      */
-    public Hotel(List<String> features, String location, BookingLayout layout) {
-        super(layout);
+    public Hotel(List<String> features, String location) {
+        super();
         this.features = features;
         this.location = location;
 
@@ -44,7 +43,7 @@ public class Hotel extends TravelObject {
      * @author rengotap
      */
     public Hotel() {
-        super(new HotelLayout("temp"));
+        super();
         location = "Fiji";
         this.company = "Hilton";
         this.rating = 3.5;
