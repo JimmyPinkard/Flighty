@@ -48,6 +48,8 @@ public class Flighty {
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_WHITE_BG = "\u001B[47m";
+    public static final String ANSI_BOLD = "\u001b[1m";
+    public static final String ANSI_UNDERLINE = "\u001b[4m";
 
 
     /**
@@ -72,7 +74,7 @@ public class Flighty {
         userManager = new UserManager(data);
         bookingAgent = new BookingAgent();
         printer = Printer.getInstance();
-        //genBogusData();
+        genBogusData();
         //checkData();
     }
 
@@ -1813,6 +1815,10 @@ public class Flighty {
         }
     }
 
+    /**
+     * Select bookables to remove from the print queue
+     * @author rengotap
+     */
     private void menuDequeuePrint() {
         final String OPT_BACK = "Back";
         while (true) {
