@@ -14,7 +14,6 @@ import controller.UserManager;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -76,8 +75,8 @@ public class Flighty {
         bookingAgent = new BookingAgent();
         printer = Printer.getInstance();
         timeUtils = TimeUtils.getInstance();
-        genBogusData();
-        checkData();
+        //genBogusData();
+        //checkData();
     }
 
     /**
@@ -198,7 +197,6 @@ public class Flighty {
     private LocalDate promptDate(String prompt) {
         println(prompt + " (MM/DD/YY)");
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/y");
         String response;
 
         while (true) {

@@ -3,6 +3,7 @@ package model.bookables.hotel;
 import com.mongodb.DBObject;
 import model.bookables.Bookable;
 import model.bookables.TravelObject;
+import utils.TimeUtils;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -30,10 +31,13 @@ public class Room extends Bookable {
     @SuppressWarnings("unchecked")
     public Room(DBObject object, TravelObject travelObject) {
         super((int) object.get("num"), (String) object.get("floor"), object, travelObject);
+        TimeUtils timeUtils = TimeUtils.getInstance();
         info = (String) object.get("bedInfo");
         this.sleepingCapacity = (int) object.get("bedCount");
         bookedDays = new ArrayList<>();
-        bookedDays.addAll((List<LocalDate>)object.get("bookedDates"));
+        for(String day : (List<String>)object.get("bookedDates")) {
+            bookedDays.add(timeUtils.generateDate(day));
+        }
     }
 
     /**
