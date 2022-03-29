@@ -21,6 +21,17 @@ public class FlightTrip extends TravelObject {
         return total;
     }
 
+    /**
+     * Returns true if flightTrip contains layover
+     * @return
+     * @author rengotap
+     */
+    public boolean hasLayover() {
+        if(flights.size() > 1)
+            return true;
+        return false;
+    }
+
     public List<Flight> getFlights() {
         return flights;
     }

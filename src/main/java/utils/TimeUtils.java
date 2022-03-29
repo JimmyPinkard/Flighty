@@ -1,5 +1,6 @@
 package utils;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -46,6 +47,18 @@ public class TimeUtils {
 
     public String toString(LocalDateTime date) {
         return date.format(dateTimeFormat);
+    }
+    
+    /**
+     * Converts a Duration into a string
+     * A major pain in the @ss
+     * @param d duraion
+     * @return HH:mm
+     * @author rengotap
+     */
+    public String toString(Duration d) {
+        long s = d.getSeconds();
+        return String.format("%02d:%02d", s / 3600, (s % 3600) / 60);
     }
 
     /**

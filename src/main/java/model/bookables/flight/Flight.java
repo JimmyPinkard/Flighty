@@ -5,6 +5,7 @@ import model.bookables.Bookable;
 import model.bookables.TravelObject;
 import utils.TimeUtils;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -146,6 +147,10 @@ public class Flight extends TravelObject {
      */
     public LocalDateTime getArrivalTime() {
         return this.arrivalTime;
+    }
+
+    public Duration getTravelTime() {
+        return Duration.between(getDepartureTime(), getArrivalTime());
     }
 
     @Override

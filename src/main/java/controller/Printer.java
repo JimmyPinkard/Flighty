@@ -5,8 +5,7 @@ import java.util.List;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.text.DecimalFormat;
 
 import model.bookables.Bookable;
 import model.bookables.flight.Flight;
@@ -24,8 +23,9 @@ public class Printer {
     private static Printer instance;
     private static TimeUtils tUtil;
     private ArrayList<Bookable> printQueue;
-    final private String writeDir = "./";
-    final private String writeName = "itinerary";
+    private static final String writeDir = "./";
+    private static final String writeName = "itinerary";
+    private static final DecimalFormat df = new DecimalFormat("0.00");
 
      // ANSI COLORS
      public static final String ANSI_RESET = "\u001B[0m";
@@ -194,8 +194,9 @@ public class Printer {
             + "'s Flight Information" + '\n' + H1 + " ✈" + '\n'  // Header Line A
             + "Passport Number: " + p.getNumber() + '\n'
             + "Booking ID: " + f.getId() + '\n'
-            + "Price Paid: $" + s.getPrice() + '\n'
+            + "Price Paid: $" + df.format(s.getPrice()) + '\n'
             + "Service: " + f.getCompany() + '\n'
+            + "Duration: " + tUtil.toString(f.getTravelTime())
             + '\n' + "SEAT INFORMATION" +'\n' + H0 + " ✈" + '\n'  // Header Line B
             + "Seat: " + s.getRow() + s.getCol() + '\n'
             + "Class: " + s.getSeatClass() + '\n'
@@ -222,7 +223,7 @@ public class Printer {
             + "Booking ID: " + h.getId() + '\n'
             + "Reservation Start: " + "PLACEHOLDER" + '\n'
             + "Reservation End: " + "PLACEHOLDER" + '\n'
-            + "Price Paid: $" +r.getPrice() + '\n'
+            + "Price Paid: $" + df.format(r.getPrice()) + '\n'
             + "Company Name: " + h.getCompany() + '\n'
             + '\n' + "ROOM INFORMATION" +'\n' + H0 + " ⌂" + '\n'  // Header Line B
             + "Room Number: " + r.getRoomNum() + '\n'
@@ -244,7 +245,7 @@ public class Printer {
         String ret = "";
         for (int i = 1; i < input.size() + 1; i++) {
             ret = ret + input.get(i - 1) + ", ";
-            if (i % width == 0)
+            if (i % width == 0 && i != input.size())
                 ret = ret + '\n';
         }
         return ret.replaceAll(", $", "");

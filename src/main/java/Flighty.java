@@ -13,6 +13,7 @@ import controller.Printer;
 import controller.UserManager;
 
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -39,6 +40,8 @@ public class Flighty {
     private Data data;
     private Printer printer;
     private TimeUtils timeUtils;
+
+    private static final DecimalFormat df = new DecimalFormat("0.00");
 
     // ANSI COLORS
     public static final String ANSI_RESET = "\u001B[0m";
@@ -75,7 +78,7 @@ public class Flighty {
         bookingAgent = new BookingAgent();
         printer = Printer.getInstance();
         timeUtils = TimeUtils.getInstance();
-        //genBogusData();
+        genBogusData();
         //checkData();
     }
 
@@ -314,9 +317,9 @@ public class Flighty {
      */
     private String toBlock(List<String> input, int width) {
         String ret = "";
-        for (int i = 1; i < input.size()+1; i++) {
-            ret = ret + input.get(i-1) + ", ";
-            if (i % width == 0)
+        for (int i = 1; i < input.size() + 1; i++) {
+            ret = ret + input.get(i - 1) + ", ";
+            if (i % width == 0 && i != input.size())
                 ret = ret + '\n';
         }
         return ret.replaceAll(", $", "");
@@ -326,16 +329,17 @@ public class Flighty {
      * Displays a bookable as a single line
      * TYPE, COST, DESTINATION/LOCATION, COMPANY, ROOM NUM/SEAT NUM
      * @return
+     * @author rengotap
      */
     private String toString(Bookable b) {
         final String type = b.getClass().getSimpleName();
         String line = "Type: " + ANSI_CYAN + type + ANSI_RESET 
-                    + " | Price: " + ANSI_CYAN + "$" + String.valueOf(b.getPrice()) + ANSI_RESET;
+                    + " | Price: " + ANSI_CYAN + "$" + String.valueOf(df.format(b.getPrice())) + ANSI_RESET;
         if(type.equals("Seat")) {
             Seat s = (Seat) b;
             line = line + " | Destination: " + ANSI_CYAN + s.getFlight().getAirportTo() + ANSI_RESET 
                         + " | Airline: " +ANSI_CYAN + s.getTravelObject().getCompany() + ANSI_RESET 
-                        + " | Seat Number: " + ANSI_CYAN + s.getCol()+ s.getRow() + ANSI_RESET;
+                        + " | Seat Number: " + ANSI_CYAN + s.getRow()+ s.getCol() + ANSI_RESET;
         } else if (type.equals("Room")) {
             Room r = (Room) b;
             line = line + " | Location: " + ANSI_CYAN +r.getHotel().getLocation() + ANSI_RESET
@@ -347,16 +351,17 @@ public class Flighty {
 
     /**
      * Returns a simply formated flight with only the most relevant information
-     * PRICE, TRAVEL TIME, SEATS, COMPANY, RATING
+     * PRICE, TRIP, SEATS AVAILABLE, COMPANY, RATING
      * @param flight
      * @return simple flight string
      * @author rengotap
      */
     private String displayFlightSimple(Flight flight) { //TODO: Priority B - Travel Time place holder
-        return "Price: " + ANSI_CYAN + "$" + flight.getCost() + ANSI_RESET
-            +  " | Travel Time: " + ANSI_CYAN+"PLACEHOLDER" + ANSI_RESET
+        return "Price: " + ANSI_CYAN + "$" + df.format(flight.getCost()) + ANSI_RESET
+            + " | " + ANSI_CYAN + flight.getAirportFrom() + ANSI_RESET + " ➡  " + ANSI_CYAN + flight.getAirportTo() + ANSI_RESET
+            + " | Travel Time: " + ANSI_CYAN + timeUtils.toString(flight.getTravelTime()) + ANSI_RESET
             + " | Seats Available: " + ANSI_CYAN + flight.getNumAvailableSeats() + ANSI_RESET
-            +" | Company: " + ANSI_CYAN + flight.getCompany() + ANSI_RESET 
+            + " | Company: " + ANSI_CYAN + flight.getCompany() + ANSI_RESET 
             + " | Rating: " + toStars(flight.getRating());
     }
 
@@ -376,27 +381,26 @@ public class Flighty {
      * @return flight multi line form
      * @author rengotap
      */
-    private String displayFlightFull(Flight flight) { //TODO: Priority B: replace date and time placeholders
-        String format = '\n' + ANSI_WHITE_BG+ANSI_BLACK+" "+flight.getCompany().toUpperCase()+" AIRLINES " 
-            + flight.getAirportFrom() +" TO " + flight.getAirportTo()+ANSI_RESET + '\n' 
-            + "Price: " + ANSI_CYAN + "$" + flight.getCost() + ANSI_RESET+'\n'
+    private String displayFlightFull(Flight flight) {
+        String[] tD = timeUtils.splitTime(flight.getDepartureTime());
+        String[] tA = timeUtils.splitTime(flight.getArrivalTime());
+        String format = '\n' + ANSI_WHITE_BG+ANSI_BLACK+" "+flight.getCompany().toUpperCase() + " "
+            + flight.getAirportFrom() +" ➡  " + flight.getAirportTo()+ANSI_RESET + '\n' 
+            + "Price: " + ANSI_CYAN + "$" + df.format(flight.getCost()) + ANSI_RESET+'\n'
             + "Rating: " + toStars(flight.getRating()) + ANSI_CYAN + " (" + flight.getRating() + ")" 
             + ANSI_RESET + '\n'
-            + "Departure Date: " + ANSI_CYAN + "PLACEHOLDER DATE" + ANSI_RESET + '\n'
-            + "Departure Time: " + ANSI_CYAN + flight.getDepartureTime() +ANSI_RESET+'\n'
-            + "Arrival Time: " + ANSI_CYAN + flight.getArrivalTime() +ANSI_RESET+'\n'
-            + "Layover: " + ANSI_CYAN + flight.hasLayover() +ANSI_RESET + '\n';
-        if(flight.hasLayover()) {
-            // TODO: Priority C - SHOW LAYOVERS
-        }
-        format = format + "Total flight time: " + ANSI_CYAN + "PLACEHOLDER TIME" + ANSI_RESET + '\n'
-        + "Seats Available: " + ANSI_CYAN + flight.getNumAvailableSeats() +ANSI_RESET+'\n';
+            + "Travel Time: " + ANSI_CYAN + timeUtils.toString(flight.getTravelTime()) + ANSI_RESET + '\n'
+            + "Departure Date: " + ANSI_CYAN + tD[0] + ANSI_RESET + '\n'
+            + "Departure Time: " + ANSI_CYAN + tD[1] + " UTC" +ANSI_RESET+'\n'
+            + "Arrival Date: " + ANSI_CYAN + tA[0] + ANSI_RESET+'\n'
+            + "Arrival Time: " + ANSI_CYAN + tA[1] + " UTC" +ANSI_RESET + '\n'
+            + "Seats Available: " + ANSI_CYAN + flight.getNumAvailableSeats() +ANSI_RESET+'\n';
 
         ArrayList<String> openSeats = new ArrayList<String>();
         for(int i = 0; i < flight.getNumAvailableSeats(); i++)
-            openSeats.add(flight.getAvailableOptions().get(i).getCol()+flight.getAvailableOptions().get(i).getRow());
+            openSeats.add(flight.getAvailableOptions().get(i).getRow()+flight.getAvailableOptions().get(i).getCol());
 
-        format = format + ANSI_GREEN+toBlock(openSeats, 3)+ANSI_RESET;
+        format = format + ANSI_GREEN+toBlock(openSeats, 5)+ANSI_RESET;
         // Do flights have features???
         return format;
     }
@@ -407,11 +411,11 @@ public class Flighty {
      * @return
      */
     private String flightMap(Flight flight) {
-        final double pEconomy = flight.getCost();
-        final double pBusiness = flight.getAvgCost();
-        final double pFirst = flight.getMaxCost();
+        final String pEconomy = df.format(flight.getCost());
+        final String pBusiness = df.format(flight.getAvgCost());
+        final String pFirst = df.format(flight.getMaxCost());
 
-        String ret = '\n' + ANSI_BLACK+ANSI_WHITE_BG + " CLASS: ECONOMY      PRICE: ~$" 
+        String ret = '\n' + ANSI_BLACK+ANSI_WHITE_BG + " CLASS: ECONOMY      PRICE: $" 
                 + pEconomy +" "+ ANSI_RESET + '\n';
         String[][] map = flightMapMaker(flight);
         String[] rows = flightMapFlattener(map, flight);
@@ -419,11 +423,11 @@ public class Flighty {
             ret = ret+rows[i]+'\n';
             if (i == 8)
                 ret = ret + ANSI_BLACK + ANSI_WHITE_BG 
-                    + " CLASS: BUSINESS     PRICE: ~$" 
+                    + " CLASS: BUSINESS     PRICE: $" 
                     + pBusiness +" "+ ANSI_RESET + '\n';
             else if (i == 17)
                 ret = ret + ANSI_BLACK + ANSI_WHITE_BG 
-                    + "CLASS: FIRST CLASS  PRICE: ~$" 
+                    + "CLASS: FIRST CLASS  PRICE: $" 
                     + pFirst +" "+ ANSI_RESET + '\n';
         }
         return ret;
@@ -440,7 +444,7 @@ public class Flighty {
         String[][]ret = new String[6][27];  // ABC   DEF
         for(int i = 0; i < 6; i++) {
             for(int j = 0; j < 27; j++) {
-                ret[i][j] = numToLet(i)+j;
+                ret[i][j] = j+numToLet(i);
             }
         }
         return ret;
@@ -457,7 +461,7 @@ public class Flighty {
 
         ArrayList<String> openSeats = new ArrayList<String>();
         for(int i = 0; i < flight.getNumAvailableSeats(); i++)
-            openSeats.add(flight.getAvailableOptions().get(i).getCol()+flight.getAvailableOptions().get(i).getRow());
+            openSeats.add(flight.getAvailableOptions().get(i).getRow()+flight.getAvailableOptions().get(i).getCol());
 
         for(int j = 0; j < map[0].length; j++) {
             String temp = "";
@@ -510,7 +514,7 @@ public class Flighty {
      * @author rengotap
      */
     private String displayHotelSimple(Hotel hotel) {
-        return "Price: " + ANSI_CYAN + "$" + hotel.getCost() 
+        return "Price: " + ANSI_CYAN + "$" + df.format(hotel.getCost()) 
             + ANSI_RESET + " | Rooms Available: " + ANSI_CYAN + hotel.getNumAvailableRooms() 
             + ANSI_RESET + " | Company: " + ANSI_CYAN + hotel.getCompany()  
             + ANSI_RESET + " | Rating: " + toStars(hotel.getRating());
@@ -526,7 +530,7 @@ public class Flighty {
     private String displayHotelFull(Hotel hotel) {
         return '\n' + ANSI_WHITE_BG + ANSI_BLACK + " "+hotel.getCompany().toUpperCase() 
              + " at " + hotel.getLocation().toUpperCase() +" "+ ANSI_RESET + '\n' + "Price: "
-             + ANSI_CYAN + "$" + hotel.getCost() + ANSI_RESET + '\n' + "Rating: " 
+             + ANSI_CYAN + "$" + df.format(hotel.getCost()) + ANSI_RESET + '\n' + "Rating: " 
              + toStars(hotel.getRating()) + ANSI_CYAN + " (" + hotel.getRating() 
              + ")" + ANSI_RESET + '\n' + "Available Rooms: " + ANSI_CYAN + hotel.getNumAvailableRooms() 
              + ANSI_RESET + '\n' + "Amenities:" + '\n' + ANSI_CYAN 
@@ -540,8 +544,8 @@ public class Flighty {
      * @author rengotap
      */
     private String displaySeat(Seat seat) {
-        return "Seat: " + ANSI_CYAN + seat.getCol() + seat.getRow() 
-        + ANSI_RESET + " | Price: " + ANSI_CYAN + "$" + seat.getPrice() 
+        return "Seat: " + ANSI_CYAN + seat.getRow() + seat.getCol() 
+        + ANSI_RESET + " | Price: " + ANSI_CYAN + "$" + df.format(seat.getPrice()) 
         + ANSI_RESET + " | Class: " + ANSI_CYAN + seat.getSeatClass() + ANSI_RESET;
     }
 
@@ -553,7 +557,7 @@ public class Flighty {
      */
     private String displayRoom(Room room) {
         return "Room: " + ANSI_CYAN + room.getRoomNum() 
-        + ANSI_RESET + " | Price: " + ANSI_CYAN + "$" + room.getPrice() 
+        + ANSI_RESET + " | Price: " + ANSI_CYAN + "$" + df.format(room.getPrice())
         + ANSI_RESET + " | Beds: " + ANSI_CYAN + room.getInfo() + ANSI_RESET;
     }
 
@@ -730,7 +734,10 @@ public class Flighty {
     private String[] menuLong(String prompt, List<String> options) {
         String[] ret = new String[2];
         for (int i = 0; i < options.size(); i++) {
-            println(String.format("%d. %s", i + 1, options.get(i)));
+            String format = "%d. %s";
+            if(i < 9)
+                format = "%d.  %s";
+            println(String.format(format, i + 1, options.get(i)));
         }
 
         println("");
