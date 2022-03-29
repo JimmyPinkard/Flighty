@@ -1,5 +1,4 @@
 import java.util.*;
-import java.io.*;
 
 public class GenToString {
     private static IO io;
@@ -9,6 +8,7 @@ public class GenToString {
             System.exit(1);
         }
         io = new IO();
+        String output = "";
         if(args[0].equals("-f")) {
             String contents = io.readFile(args[1]);
             System.out.println(getVariables(contents).toString());
@@ -16,9 +16,20 @@ public class GenToString {
         else if(args[0].equals("-d")) {
             try {
                 Map<String, String> files = io.readDir(args[1]);
+                List<Variable> vars = new ArrayList<>();
                 for(Map.Entry<String, String> file : files.entrySet()) {
-                    System.out.printf("%s: %s\n", file.getKey(), getVariables(file.getValue()).toString());
+                    vars.add(getVariables(file.getValue()));
                 }
+                for(Variable variable : vars) {
+                    for(Variable sub : vars) {
+                        if(variable.parent.equals(sub.name)) {
+                            variable.addParent(sub);
+                            break;
+                        }
+                    }
+                    output += variable.genClass() + "\n\n";
+                }
+                io.writeFile("Test.java", output);
             }
             catch (Exception e) {
                 fatal(e.getMessage());
@@ -26,15 +37,15 @@ public class GenToString {
         }
     }
 
-    private static List<String> getVariables(String contents) {
+    private static Variable getVariables(String contents) {
         int braces = 0, start = 0;
         List<String> variables = new ArrayList<>();
         boolean dontSkip = true;
-        String parent = "";
+        String firstLine = "";
         for(int i = 0; i < contents.length(); ++i) {
             char c = contents.charAt(i);
             if(braces == 0) {
-                parent += c;
+                firstLine += c;
             }
             if(c == '{') {
                 ++braces;
@@ -57,15 +68,20 @@ public class GenToString {
             }
         }
         //Contains
-        start = parent.indexOf("extends");
+        start = firstLine.indexOf(" ", firstLine.indexOf("class")) + 1;
+        String name = firstLine.substring(start, firstLine.indexOf(" ", start)), parent;
+        start = firstLine.indexOf("extends", start);
         if(start != -1) {
-            start = parent.indexOf(" ", start) + 1;
-            parent = parent.substring(start, parent.indexOf(" ", start));
+            start = firstLine.indexOf(" ", start) + 1;
+            parent = firstLine.substring(start, firstLine.indexOf(" ", start));
         }
-        return variables;
+        else {
+            parent = "";
+        }
+        return new Variable(name, parent, variables);
     }
 
-    private static void fatal(final String message) {
+    public static void fatal(final String message) {
         System.err.println(message);
         System.exit(1);
     }

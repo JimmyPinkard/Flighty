@@ -25,7 +25,7 @@ public class Room extends Bookable {
     public Room(int floor, String roomNum, int sleepingCapacity, TravelObject travelObject) {
         super(floor, roomNum, travelObject);
         info = "A Bookables.Hotel.Hotel.Room";
-        bookedDays = new ArrayList<LocalDate>();
+        bookedDays = new ArrayList<>();
         this.sleepingCapacity = sleepingCapacity;
     }
 
