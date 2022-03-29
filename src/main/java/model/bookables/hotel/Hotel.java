@@ -78,6 +78,16 @@ public class Hotel extends TravelObject {
         return bookables.size();
     }
 
+    public int getNumAvailableRooms() {
+        int num = 0;
+
+        for (Room room : getOptions())
+            if (!room.getIsBooked())
+                num++;
+
+        return num;
+    }
+
     public List<Room> getOptions() {
         List<Room> rooms = new ArrayList<>();
         for (Bookable bookable : bookables)
@@ -85,6 +95,16 @@ public class Hotel extends TravelObject {
 
         return rooms;
     }
+
+    public List<Room> getAvailableOptions() {
+        List<Room> rooms = new ArrayList<>();
+        for (Room room : getOptions())
+            if (!room.getIsBooked())
+            rooms.add(room);
+
+        return rooms;
+    }
+    
 
     /**
      * Gets the hotel's location

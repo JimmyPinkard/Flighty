@@ -10,7 +10,6 @@ import model.bookables.TravelObject;
  */
 public class Seat extends Bookable {
     private String whichClass;
-    private boolean isBooked;
     private Flight flight;
 
     /**
@@ -35,17 +34,6 @@ public class Seat extends Bookable {
     }
 
     /**
-     * Method to set the booking of the seat
-     * @return true if it booked, false if already booked
-     */
-    public boolean book() {
-        if(isBooked)
-            return false;
-        isBooked = true;
-        return true;
-    }
-
-    /**
      * Method to get the seat number
      * @return seat number as an integer
      */
@@ -59,14 +47,6 @@ public class Seat extends Bookable {
      */
     public String getSeatClass() {
         return this.whichClass;
-    }
-
-    /**
-     * Method to get if the seat is booked
-     * @return the boolean of if the seat is booked
-     */
-    public boolean getIsBooked() {
-        return this.isBooked;
     }
 
     @Override

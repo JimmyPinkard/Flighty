@@ -54,6 +54,17 @@ public class Data {
         return instance;
     }
 
+    /**
+     * Replaces instance and database with bogus data
+     * for testing purposes only
+     * @return
+     * @author rengotap
+     */
+    public static Data bodge(List<User> users, List<Flight> flights, List<Hotel> hotels, List<Booking> bookings) {
+        instance = new Data(users, flights, hotels, bookings);
+        return instance;
+    }
+
     public List<Flight> getFlights() {
         return flights;
     }

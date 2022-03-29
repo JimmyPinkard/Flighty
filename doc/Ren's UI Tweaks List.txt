@@ -1,0 +1,43 @@
+REN'S LIST OF UI TWEAKS
+BUG LIST --------------------------------------------------
+
+- Data won't load
+FIXED - Removing a user doesn't log them out
+FIXED - Editing a flight preference sends you all the way back to the user preferences menu after changing
+FIXED - Not a bug, but manage Booking menu sucks really hard, make it better
+FIXED - Manage bookings crashes if no user is logged in
+FIXED - Full users crash on deletion
+FIXED - Can't book without being logged in due to the way bookingAgent works
+FIXED - Can book the same seat multiple times
+- hasLayover() doesn't actually do anything
+- travel time still a place holder
+FIXED - select seat not showing letter
+FIXED - B4 just showed up as booked ?????   B4 ISNT EVEN AN OPTION
+FIXED - opening the booking manager causes B4 to book itself
+
+FUNCTIONAL TWEAKS -----------------------------------------
+
+DONE - Check Data before starting program
+DONE - Force user to confirm y/n on deleting account
+DONE- Force user to insert current password before changing password
+DONE - Hide password on user pref screen
+DONE - Force user to add email on account creation
+DONE - Force user to confrirm password on account creation & Password change
+CONSIDERING - Wait like 2 seconds before showing the main menu on a failed search (?)
+- Force a standardized time format for earliest and latest time
+DONE - Confirm y/n before logout
+DONE - Password protect change email
+DONE - Password protect delete user(?)
+DONE - Make a single line toString() for bookable
+- Show layover information in DisplayFlightFull
+
+VISUAL TWEAKS ---------------------------------------------
+
+INPROG - Add ANSI colors
+DONE - Colored Logo
+DONE - Highlight name on main menu (?)
+- Center passport menu header
+DONE - Change Welcome "" to Welcome Guest when nobody is logged in
+DONE - Consider using Unicode star ★ instead of asterisk for ratings
+IGNORED - Ask username and password before name, then finally email
+- Make the UI code LOOK nice / refactor (lowest priority rn)

@@ -106,7 +106,7 @@ public class Flight extends TravelObject {
         return bookables.size();
     }
 
-    public int getNumAvalableSeats() {
+    public int getNumAvailableSeats() {
         int num = 0;
 
         for (Seat seat : getOptions())

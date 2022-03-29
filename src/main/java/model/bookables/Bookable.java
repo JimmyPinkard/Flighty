@@ -11,6 +11,7 @@ public abstract class Bookable implements Comparable<Bookable> {
     protected String col;
     protected double price;
     protected TravelObject travelObject;
+    protected boolean isBooked;
 
     /**
      * Constructor for a bookable, with a row and a col
@@ -43,6 +44,36 @@ public abstract class Bookable implements Comparable<Bookable> {
         row = 1;
         col = "A";
         price = 999;
+    }
+
+    /**
+     * Method to set the booking of the seat
+     * @return true if it booked, false if already booked
+     */
+    public boolean book() {
+        if(isBooked)
+            return false;
+        isBooked = true;
+        return true;
+    }
+
+    /**
+     * Method to unbook the seat
+     * @return false if unable to unbook
+     */
+    public boolean unbook() {
+        if(!isBooked)
+            return false;
+        isBooked = false;
+        return true;
+    }
+
+    /**
+     * Method to get if the bookable is booked
+     * @return the boolean of if the bookable is booked
+     */
+    public boolean getIsBooked() {
+        return this.isBooked;
     }
 
     /**

@@ -10,6 +10,8 @@ import model.users.User;
  */
 public class BookingAgent {
     private final Data data;
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
 
     public BookingAgent() {
         this.data = Data.getInstance();
@@ -26,13 +28,21 @@ public class BookingAgent {
     }
 
     public void bookListing(Bookable bookable, User user) {
-        final Booking booking = new Booking(user, bookable);
-        data.getBookings().add(booking);
-        user.addBooking(bookable);
+        if(bookable.book()) {
+            final Booking booking = new Booking(user, bookable);
+            data.getBookings().add(booking);
+            user.addBooking(bookable);
+        } else {
+            System.out.println(ANSI_YELLOW+"WARN: Bookable already booked."+ANSI_RESET);
+        }
     }
 
     public void unbookListing(Booking booking) {
-        data.getBookings().remove(booking);
-        booking.getUser().removeBooking(booking.getBooked());
+        if(booking.getBooked().unbook()) {
+            data.getBookings().remove(booking);
+            booking.getUser().removeBooking(booking.getBooked());
+        } else {
+            System.out.println(ANSI_YELLOW+"WARN: Bookable already unbooked."+ANSI_RESET);
+        }
     }
 }
