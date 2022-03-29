@@ -24,7 +24,7 @@ public class User {
     private String email;
     private SearchPreferences preferences;
 
-    private List<String>specialReq;
+    private List<String> specialReq;
     private List<Passport> travelers; // passport 0 should always be the user
     private List<Bookable> bookingHistory;
     private Person person;
