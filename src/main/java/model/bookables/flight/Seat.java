@@ -11,7 +11,6 @@ import model.users.info.Passport;
  */
 public class Seat extends Bookable {
     private String whichClass;
-    private Flight flight;
     private Passport owner;
 
     /**
@@ -19,7 +18,6 @@ public class Seat extends Bookable {
      */
     public Seat(int seatRow, String seatCol, Flight travelObject) {
         super(seatRow, seatCol, travelObject);
-        flight = travelObject;
         whichClass = "First Class";
         price = 124;
         isBooked = false;
@@ -32,7 +30,7 @@ public class Seat extends Bookable {
     }
     
     public Flight getFlight() {
-        return flight;
+        return (Flight)travelObject;
     }
 
     /**

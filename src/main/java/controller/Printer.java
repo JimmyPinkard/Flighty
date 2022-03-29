@@ -5,6 +5,8 @@ import java.util.List;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import model.bookables.Bookable;
 import model.bookables.flight.Flight;
@@ -12,6 +14,7 @@ import model.bookables.flight.Seat;
 import model.bookables.hotel.Hotel;
 import model.bookables.hotel.Room;
 import model.users.info.Passport;
+import utils.TimeUtils;
 
 /**
  * Printing means creating a beautifully formatted text file.
@@ -19,6 +22,7 @@ import model.users.info.Passport;
  */
 public class Printer {
     private static Printer instance;
+    private static TimeUtils tUtil;
     private ArrayList<Bookable> printQueue;
     final private String writeDir = "./";
     final private String writeName = "itinerary";
@@ -32,8 +36,6 @@ public class Printer {
      // ASCII
      private static final String H0 = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
      private static final String H1 = "▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰";
-     private static final String H2 = "━━━━━━━━━━━━━━━━━━▲━━━━━━━━━━━━━━━━━━";
-     private static final String H3 = "━━━━━━━━━━━━━━━━━━▼━━━━━━━━━━━━━━━━━━";
 
     /**
      * Printer Constructor
@@ -41,6 +43,7 @@ public class Printer {
      */
     private Printer() {
         printQueue = new ArrayList<Bookable>();
+        tUtil = TimeUtils.getInstance();
     }
 
     /**
@@ -64,7 +67,7 @@ public class Printer {
             String[] formatted = formatAll();
             try {
                 FileWriter w = new FileWriter(writeDir+writeName+".txt");
-                w.write(getFHeader());
+                w.write(getFileHeader());
                 for (int i = 0; i < formatted.length; i++)
                     w.write(formatted[i] + '\n' + '\n' + '\n');
                 w.close();
@@ -185,23 +188,25 @@ public class Printer {
     private String format(Seat s) {  // TODO: Finish filling out Seat Formating
         Passport p = s.getOwner();
         Flight f = s.getFlight();
+        String[] tD = tUtil.splitTime(f.getDepartureTime());
+        String[] tA = tUtil.splitTime(f.getArrivalTime());
         return p.getPerson().getFirstName() + " " + p.getPerson().getLastName()
             + "'s Flight Information" + '\n' + H1 + " ✈" + '\n'  // Header Line A
             + "Passport Number: " + p.getNumber() + '\n'
             + "Booking ID: " + f.getId() + '\n'
             + "Price Paid: $" + s.getPrice() + '\n'
-            + "Service: " + f.getCompany() + " Airlines" + '\n'
+            + "Service: " + f.getCompany() + '\n'
             + '\n' + "SEAT INFORMATION" +'\n' + H0 + " ✈" + '\n'  // Header Line B
             + "Seat: " + s.getRow() + s.getCol() + '\n'
             + "Class: " + s.getSeatClass() + '\n'
             + '\n' + "DEPARTURE INFORMATION" +'\n' + H0 + " ✈" + '\n'  // Header Line C
             + "Location: " + f.getAirportFrom() + '\n'
-            + "Date:" + f.getDepartureTime() + '\n'  // TODO: Separate time and date
-            + "Time: " + f.getDepartureTime() + '\n'
+            + "Date: " + tD[0] +'\n'
+            + "Time: " + tD[1] + "UTC" + '\n'
             + '\n' + "ARRIVAL INFORMATION" +'\n' + H0 + " ✈" + '\n'  // Header Line D
             + "Location: " + f.getAirportTo() + '\n'
-            + "Date:" + f.getArrivalTime() + '\n'
-            + "Time: " + f.getArrivalTime();
+            + "Date: " + tA[0] + '\n'
+            + "Time: " + tA[1] + "UTC";
 
     }
 
@@ -250,7 +255,7 @@ public class Printer {
      * @return
      * @author rengotap
      */
-    private String getFHeader() {
+    private String getFileHeader() {
         return '\n' + "88888888888  88  88               88" + '\n' + "88           88  "
                 + "''" + "               88            ,d" + '\n'
                 + "88           88                   88            88" + '\n'
