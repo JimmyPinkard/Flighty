@@ -2,14 +2,15 @@ package model.bookables;
 
 import com.mongodb.DBObject;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.UUID;
+
 
 public abstract class Bookable implements Comparable<Bookable> {
     protected String id;
     protected int row;
     protected String col;
     protected double price;
+    protected TravelObject travelObject;
 
     /**
      * Constructor for a bookable, with a row and a col
@@ -17,16 +18,19 @@ public abstract class Bookable implements Comparable<Bookable> {
      * @param col: string for the colum (would be the plane column or hotel room number without the floor)
      * column is a string so that the plane can have seats have letters
      */
-    public Bookable(int row, String col) {
+    public Bookable(int row, String col, TravelObject travelObject) {
         this.row = row;
         this.col = col;
+        this.id = UUID.randomUUID().toString();
+        this.travelObject = travelObject;
     }
 
-    public Bookable(int row, String col, DBObject object) {
+    public Bookable(int row, String col, DBObject object, TravelObject travelObject) {
         this.row = row;
         this.col = col;
         this.id = (String) object.get("id");
-        this.price = (double) Double.parseDouble(object.get("price").toString());
+        this.price = Double.parseDouble(object.get("price").toString());
+        this.travelObject = travelObject;
     }
 
     /**
@@ -95,5 +99,13 @@ public abstract class Bookable implements Comparable<Bookable> {
                 ", col:'" + col + '\'' +
                 ", price:" + price +
                 '}';
+    }
+
+    /**
+     * Utility function to get parent travel object
+     * @return
+     */
+    public TravelObject getTravelObject() {
+        return travelObject;
     }
 }

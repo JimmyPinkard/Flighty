@@ -90,6 +90,10 @@ public abstract class TravelObject {
         return bookables.remove(booking);
     }
 
+    public String getId() {
+        return id;
+    }
+
     public String getCompany() {
         return company;
     }
@@ -103,6 +107,25 @@ public abstract class TravelObject {
         }
 
         return minPrice;
+    }
+
+    public double getMaxCost() {
+        double maxPrice = 0;
+        for (Bookable bookable : bookables) {
+            if (bookable.price > maxPrice) {
+                maxPrice = bookable.price;
+            }
+        }
+        return maxPrice;
+    }
+
+    public double getAvgCost() {
+        double avgPrice = 0;
+        for (Bookable bookable : bookables) {
+                avgPrice = avgPrice + bookable.price;
+        }
+
+        return avgPrice/((double)bookables.size());
     }
 
     public double getRating() {

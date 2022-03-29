@@ -2,6 +2,7 @@ package model.bookables.hotel;
 
 import com.mongodb.DBObject;
 import model.bookables.Bookable;
+import model.bookables.TravelObject;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,20 +16,21 @@ public class Room extends Bookable {
     private String info;
     private List<LocalDate> bookedDays;
     protected int sleepingCapacity;
+    private Hotel hotel;
 
     /**
      * Constructor for room
      */
-    public Room(int floor, String roomNum, int sleepingCapacity) {
-        super(floor, roomNum);
+    public Room(int floor, String roomNum, int sleepingCapacity, TravelObject travelObject) {
+        super(floor, roomNum, travelObject);
         info = "A Bookables.Hotel.Hotel.Room";
         bookedDays = new ArrayList<LocalDate>();
         this.sleepingCapacity = sleepingCapacity;
     }
 
     @SuppressWarnings("unchecked")
-    public Room(DBObject object) {
-        super((int) object.get("num"), (String) object.get("floor"), object);
+    public Room(DBObject object, TravelObject travelObject) {
+        super((int) object.get("num"), (String) object.get("floor"), object, travelObject);
         info = (String) object.get("bedInfo");
         this.sleepingCapacity = (int) object.get("bedCount");
         bookedDays = new ArrayList<>();
@@ -40,12 +42,12 @@ public class Room extends Bookable {
      * for testing purposes only
      * @author rengotap
      */
-    public Room() {
+    public Room(int row, String col, Hotel obj) {
+        super(row, col, obj);
+        this.hotel = obj;
         id = "Test case";
-        row = 1;
         price = 999;
         info = "Two queen beds";
-    
     }
 
 
@@ -57,6 +59,10 @@ public class Room extends Bookable {
      */
     public boolean setBookedDays(LocalDate start, LocalDate end) {
       return true;  
+    }
+
+    public Hotel getHotel() {
+        return hotel;
     }
 
     /**

@@ -2,6 +2,7 @@ package model.bookables.flight;
 
 import com.mongodb.DBObject;
 import model.bookables.Bookable;
+import model.bookables.TravelObject;
 
 /**
  * 
@@ -10,21 +11,27 @@ import model.bookables.Bookable;
 public class Seat extends Bookable {
     private String whichClass;
     private boolean isBooked;
+    private Flight flight;
 
     /**
      * Constructor for seat
      */
-    public Seat(int seatRow, String seatCol) {
-        super(seatRow, seatCol);
+    public Seat(int seatRow, String seatCol, Flight travelObject) {
+        super(seatRow, seatCol, travelObject);
+        flight = travelObject;
         whichClass = "First Class";
-        price = 123;
+        price = 124;
         isBooked = false;
     }
 
-    public Seat(DBObject object) {
-        super((int)object.get("row"), (String) object.get("column"), object);
+    public Seat(DBObject object, TravelObject travelObject) {
+        super((int)object.get("row"), (String) object.get("column"), object, travelObject);
         this.whichClass = (String) object.get("class");
         this.isBooked = (boolean) object.get("isBooked");
+    }
+    
+    public Flight getFlight() {
+        return flight;
     }
 
     /**

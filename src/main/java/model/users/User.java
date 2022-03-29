@@ -10,6 +10,7 @@ import search.filters.HotelFilter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.EnumMap;
+import java.util.UUID;
 
 /**
  * All user related data
@@ -17,6 +18,7 @@ import java.util.EnumMap;
  * @author rengotap
  */
 public class User {
+    private String id;
     private String username;
     private String password;
     private String email;
@@ -47,6 +49,7 @@ public class User {
 
     @SuppressWarnings("unchecked")
     public User(DBObject object) {
+        this.id = (String) object.get("id");
         this.username = (String) object.get("username");
         this.password = (String) object.get("password");
         this.person = (Person) object.get("person");
@@ -83,6 +86,7 @@ public class User {
      *  if the user desires using registerUser() method
      */
     public User() {
+        this.id = UUID.randomUUID().toString();
         username = "temp";
         password = "p";
         email = "email@email.com";
@@ -91,6 +95,10 @@ public class User {
         travelers = new ArrayList<Passport>();
         specialReq = new ArrayList<String>();
         bookingHistory = new ArrayList<Bookable>();
+    }
+
+    public String getId() {
+        return id;
     }
 
     /**
@@ -243,7 +251,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "{" +
+        return ("{" +
                 "username:'" + username + '\'' +
                 ", password:'" + password + '\'' +
                 ", email:'" + email + '\'' +
@@ -252,6 +260,6 @@ public class User {
                 ", travelers:" + travelers +
                 ", bookingHistory:" + bookingHistory +
                 ", person:" + person +
-                '}';
+                '}').replace('\'', '"');
     }
 }

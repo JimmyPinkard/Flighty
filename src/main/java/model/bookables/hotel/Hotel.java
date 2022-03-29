@@ -34,7 +34,7 @@ public class Hotel extends TravelObject {
         this.bookables = new ArrayList<>();
         var rooms = (List<DBObject>) object.get("rooms");
         for(DBObject room : rooms) {
-            this.bookables.add(new Room(room));
+            this.bookables.add(new Room(room, this));
         }
     }
 
@@ -57,9 +57,9 @@ public class Hotel extends TravelObject {
         this.features.add("Feature F");
         this.features.add("Feature G");
         this.features.add("Feature H");
-        bookables.add(new Room());
-        bookables.add(new Room());
-        bookables.add(new Room());
+        bookables.add(new Room(4,"",this));
+        bookables.add(new Room(9,"",this));
+        bookables.add(new Room(12,"",this));
     }
 
     /**

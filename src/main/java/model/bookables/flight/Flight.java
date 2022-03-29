@@ -51,7 +51,7 @@ public class Flight extends TravelObject {
         this.stopY = (double) object.get("to_y");
         this.bookables = new ArrayList<Bookable>();
         for (DBObject obj : (List<DBObject>) object.get("seats"))
-            bookables.add(new Seat(obj));
+            bookables.add(new Seat(obj, this));
         this.airportFrom = (String) object.get("airport_code_from");
         this.airportTo = (String) object.get("airport_code_to");
         this.cityFrom = (String) object.get("city_from");
@@ -69,11 +69,11 @@ public class Flight extends TravelObject {
         airportTo = "LAX";
         this.company = "Delta";
         this.rating = 4.7;
-        bookables.add(new Seat(4,"A"));
-        bookables.add(new Seat(9,"B"));
-        bookables.add(new Seat(12,"F"));
-        bookables.add(new Seat(2,"B"));
-        bookables.add(new Seat(20,"E"));
+        bookables.add(new Seat(4,"A",Flight.this));
+        bookables.add(new Seat(9,"B",Flight.this));
+        bookables.add(new Seat(12,"F",Flight.this));
+        bookables.add(new Seat(2,"B",Flight.this));
+        bookables.add(new Seat(20,"E",Flight.this));
         
     }
 
@@ -114,6 +114,15 @@ public class Flight extends TravelObject {
                 num++;
 
         return num;
+    }
+
+    public List<Seat> getAvailableOptions() {
+        List<Seat> seats = new ArrayList<>();
+        for (Seat seat : getOptions())
+            if (!seat.getIsBooked())
+            seats.add(seat);
+
+        return seats;
     }
 
     public List<Seat> getOptions() {

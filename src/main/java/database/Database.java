@@ -71,8 +71,13 @@ public class Database {
         return cursor;
     }
 
-    public <T> void update(final String collectionName, T oldObj, T newObj) {
-        collections.get(collectionName).update(BasicDBObject.parse(oldObj.toString()), BasicDBObject.parse(newObj.toString()));
+    public <T> void update(final String collectionName, String id, T newObj) {
+        DBObject old = collections.get(collectionName).findOne(BasicDBObject.parse("{id: \"" + id + "\"}"));
+        if(old == null) {
+            System.err.println("Doesn't exist");
+            return;
+        }
+        collections.get(collectionName).update(old, BasicDBObject.parse(newObj.toString()));
     }
 
     @SuppressWarnings("deprecation")
