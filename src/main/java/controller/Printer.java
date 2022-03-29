@@ -6,8 +6,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import model.bookables.Bookable;
+import model.bookables.flight.Flight;
 import model.bookables.flight.Seat;
+import model.bookables.hotel.Hotel;
 import model.bookables.hotel.Room;
+import model.users.info.Passport;
 
 /**
  * Printing means creating a beautifully formatted text file.
@@ -24,6 +27,12 @@ public class Printer {
      public static final String ANSI_RED = "\u001B[31m";
      public static final String ANSI_YELLOW = "\u001B[33m";
      public static final String ANSI_CYAN = "\u001B[36m";
+
+     // ASCII
+     private static final String H0 = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
+     private static final String H1 = "━━━━━━━━━━━━━━━━━━▲━━━━━━━━━━━━━━━━━━";
+     private static final String H2 = "━━━━━━━━━━━━━━━━━━▼━━━━━━━━━━━━━━━━━━";
+     private static final String H3 = "▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰";
 
     /**
      * Constructor
@@ -54,6 +63,7 @@ public class Printer {
             String[] formatted = formatAll();
             try {
                 FileWriter w = new FileWriter(writeDir+writeName+".txt");
+                w.write(getFHeader());
                 for(int i = 0; i < formatted.length; i++)
                     w.write(formatted[i]+'\n');
                 w.close();
@@ -156,8 +166,25 @@ public class Printer {
      * @return formatted seat
      * @author rengotap
      */
-    private String format(Seat s) {  // TODO: Seat Formating
-        return "Destination: " + s.getFlight().getAirportTo();
+    private String format(Seat s) {  // TODO: Finish filling out Seat Formating
+        Passport p = s.getOwner();
+        Flight f = s.getFlight();
+        return p.getPerson().getFirstName() + " " + p.getPerson().getLastName()
+            + "'s Flight Information" + '\n' + H3 + " ✈" + '\n'  // Header Line A
+            + "Passport Number: " + p.getNumber() + '\n'
+            + "Flight ID: " + f.getId() + '\n'
+            + "Service: " + f.getCompany() + " Airlines" + '\n'
+            + "Seat: " + s.getRow() + s.getCol() + '\n'
+            + "Class: " + s.getSeatClass() + '\n'
+            + '\n' + "DEPARTURE INFORMATION" +'\n' + H0 + " ✈" + '\n'  // Header Line B
+            + "Date:" + '\n'
+            + "Time: " + f.getDepartureTime() + '\n'
+            + "Location: " + f.getAirportFrom() + '\n'
+            + '\n' + "ARRIVAL INFORMATION" +'\n' + H0 + " ✈" + '\n'  // Header Line C
+            + "Date:" + '\n'
+            + "Time: " + f.getArrivalTime() + '\n'
+            + "Location: " + f.getAirportTo() + '\n';
+
     }
 
     /**
@@ -166,7 +193,35 @@ public class Printer {
      * @return formatted seat
      * @author rengotap
      */
-    private String format(Room r) {  // TODO: Room Formating
-        return "Location: " + r.getHotel().getLocation();
+    private String format(Room r) {  // TODO: Finish filling out Room Formating
+        Hotel h = r.getHotel();
+        return "Hotel Reservation Info" + '\n' + H3 + " ⌂" + '\n'  // Header Line A
+            + "Booking ID: " + h.getId() + '\n'
+            + "Company Name: " + h.getCompany() + '\n'
+            + "Room Number: " + r.getRoomNum() + '\n'
+            + "Beds: " + r.getInfo() + '\n'
+            + "Location: " + h.getLocation() + '\n'
+            + "Reservation Start: " + '\n'
+            + "Reservation End: " + '\n'
+            + "Features: " + '\n';
+    }
+
+    /**
+     * Stores the file header/logo
+     * @return
+     * @author rengotap
+     */
+    private String getFHeader() {
+        return '\n' + "88888888888  88  88               88" + '\n' + "88           88  "
+                + "''" + "               88            ,d" + '\n'
+                + "88           88                   88            88" + '\n'
+                + "88aaaaa      88  88   ,adPPYb,d8  88,dPPYba,  MM88MMM  8b       d8" + '\n'
+                + "88'''''      88  88  a8'    `Y88  88P'    '8a   88     `8b     d8'" + '\n'
+                + "88           88  88  8b       88  88       88   88      `8b   d8'" + '\n'
+                + "88           88  88  '8a,   ,d88  88       88   88,      `8b,d8'" + '\n'
+                + "88           88  88   `'YbbdP'Y8  88       88   'Y888      Y88'" + '\n'
+                + "                      aa,    ,88                           d8'" + '\n'
+                + "                       'Y8bbdP'                           d8'"
+                + '\n' + "                  Flight & Hotel Booking Program" + '\n' + '\n';
     }
 }
