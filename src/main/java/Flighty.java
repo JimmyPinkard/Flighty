@@ -67,8 +67,8 @@ public class Flighty {
         input = new Scanner(System.in);
         userManager = new UserManager(data);
         bookingAgent = new BookingAgent();
-        genBogusData();
-        checkData();
+        //genBogusData();
+        //checkData();
     }
 
     /**
