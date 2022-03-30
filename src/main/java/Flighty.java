@@ -78,6 +78,7 @@ public class Flighty {
         userManager = new UserManager(data);
         bookingAgent = new BookingAgent();
         printer = Printer.getInstance();
+        this.timeUtils = timeUtils.getInstance();
         // genBogusData();
         // checkData();
     }
@@ -357,22 +358,24 @@ public class Flighty {
                 + timeUtils.toString(flight.getTravelTime()) + ANSI_RESET + " | Seats Available: "
                 + ANSI_CYAN + flight.getNumAvailableSeats() + ANSI_RESET + " | Company: "
                 + ANSI_CYAN + flight.getCompany() + ANSI_RESET + " | Rating: "
-                + toStars(flight.getRating());
+                + toStars(flight.getRating()) + ANSI_RESET;
     }
 
 
     private String displayFlightTripSimple(FlightTrip trip) {
-        return "Lowest Price: " + ANSI_CYAN + "$" + trip.getCost() + ANSI_RESET + " | Travel Time: "
-                + ANSI_RESET + " | Transfers: " + ANSI_CYAN + trip.getAmountTransfers() + ANSI_RESET
-                + " | Company: " + ANSI_CYAN + trip.getCompany() + ANSI_RESET + " | Avg Rating: "
-                + toStars(trip.getRating());
+        return "Lowest Price: " + ANSI_CYAN + "$" + trip.getCost() + ANSI_RESET + " | Departure: "
+                + ANSI_CYAN + TimeUtils.getInstance().toString(trip.getDepartureTime()) + ANSI_RESET
+                + " | Arrival: " + ANSI_CYAN
+                + TimeUtils.getInstance().toString(trip.getArrivalTime()) + ANSI_RESET
+                + " | Transfers: " + ANSI_CYAN + trip.getAmountTransfers() + ANSI_RESET;
     }
 
     private String displayFlightTripFull(FlightTrip trip) {
-        return "Lowest Price: " + ANSI_CYAN + "$" + trip.getCost() + ANSI_RESET + " | Travel Time: "
-                + ANSI_RESET + " | Transfers: " + ANSI_CYAN + trip.getAmountTransfers() + ANSI_RESET
-                + " | Company: " + ANSI_CYAN + trip.getCompany() + ANSI_RESET + " | Avg Rating: "
-                + toStars(trip.getRating());
+        String out = "";
+        for (Flight flight : trip.getFlights()) {
+            out += displayFlightFull(flight);
+        }
+        return out;
     }
 
     /**
@@ -1313,6 +1316,55 @@ public class Flighty {
                 + "Unsatisfied with your results? Try changing your search parameters!" + '\n');
 
 
+        List<String> options = new ArrayList<String>();
+        int numDisplay = 4; // will show up to 4 results
+        if (results.size() < 4)
+            numDisplay = results.size();
+
+        for (int i = 0; i < numDisplay; i++) {
+            options.add(displayFlightTripSimple(results.get(i)));
+        }
+        final String OPT_BACK = "Return to main menu";
+        options.add(OPT_BACK);
+        while (true) {
+            println(ANSI_BLACK + ANSI_WHITE_BG + " Select a trip for more information "
+                    + ANSI_RESET);
+            String[] response = menuLong("Enter a Number", options);
+            if (response[0].equals(OPT_BACK)) {
+                return;
+            } else {
+                if (investigateTrip(results.get(Integer.parseInt(response[1]))))
+                    return;
+            }
+        }
+    }
+
+    private boolean investigateTrip(FlightTrip trip) {
+        final String OPT_BOOK = "Book This Trip";
+        final String OPT_BACK = "Back";
+        List<String> options = new ArrayList<String>();
+        options.add(OPT_BOOK);
+        options.add(OPT_BACK);
+        println('\n' + displayFlightTripFull(trip));
+        while (true) {
+            String response = menuNumbered("Enter a Number", options);
+            if (response.equals(OPT_BOOK)) {
+                int bookSeats = promptNumber("How many people would you like to book for?", 0, 10);
+
+                for (Flight flight : trip.getFlights())
+                    for (int i = 0; i < bookSeats; i++)
+                        menuBookSeat(flight);
+
+
+                println('\n' + "The details of your booking have been emailed to: " + ANSI_CYAN
+                        + userManager.getCurrentUser().getEmail() + ANSI_RESET + '\n'
+                        + "You can also view your new booking in the 'Manage Bookings' menu");
+                return true;
+            } else if (response.equals(OPT_BACK)) {
+                return false;
+            }
+        }
+
     }
 
     /**
@@ -1323,14 +1375,10 @@ public class Flighty {
      */
     private void flightResult(List<Flight> flights) {
         List<String> options = new ArrayList<String>();
-        int numDisplay = 4; // will show up to 4 results
-        if (flights.size() < 4)
-            numDisplay = flights.size();
-
-        for (int i = 0; i < numDisplay; i++) {
-            options.add(displayFlightSimple(flights.get(i)));
+        for (Flight flight : flights) {
+            options.add(displayFlightSimple(flight));
         }
-        final String OPT_BACK = "Return to main menu";
+        final String OPT_BACK = "back";
         options.add(OPT_BACK);
         while (true) {
             println(ANSI_BLACK + ANSI_WHITE_BG + " Select a flight for more information "
@@ -1400,6 +1448,9 @@ public class Flighty {
             for (int i = 0; i < seats.size(); i++) {
                 options.add(displaySeat(seats.get(i)));
             }
+
+            println(flightMap(flight));
+
             println('\n' + ANSI_BLACK + ANSI_WHITE_BG + " Select a seat to book " + ANSI_RESET);
             String[] response = menuLong("Enter a Number", options);
             int index = Integer.parseInt(response[1]);
