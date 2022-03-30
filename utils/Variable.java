@@ -19,7 +19,7 @@ public class Variable {
     public String genJSON() {
         StringBuilder builder = new StringBuilder("\"{\" + ");
         for(String attribute : attributes) {
-            builder.append("\"\\\"").append(attribute).append("\\\": \" + ").append(attribute).append(" + \", \"\n\t\t + ");
+            builder.append("\"\\\"").append(attribute).append("\\\": \\\"\" + ").append(attribute).append(" + \"\\\", \"\n\t\t + ");
         }
         return builder.delete(builder.length() - 9, builder.length()).append("}\";").toString();
     }

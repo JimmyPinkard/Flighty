@@ -7,6 +7,8 @@ import model.bookables.flight.Seat;
 import model.bookables.hotel.Hotel;
 import model.bookables.hotel.Room;
 import model.users.User;
+import utils.TimeUtils;
+
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -14,6 +16,7 @@ import java.util.UUID;
  * Stores a user booking
  */
 public class Booking {
+    private static final TimeUtils timeUtils = TimeUtils.getInstance();
     private String id;
     private Bookable booked;
     private User user;
@@ -43,10 +46,11 @@ public class Booking {
     }
 
     public Booking(final DBObject object) {
-        // TODO update to account for from and to date
         this.id = (String) object.get("id");
         this.user = new User(object);
         this.booked = (Bookable) object.get("booked");
+        this.to = timeUtils.generateDate((String) object.get("to"));
+        this.from = timeUtils.generateDate((String) object.get("from"));
     }
 
     public String getId() {
@@ -64,6 +68,10 @@ public class Booking {
     // TODO update to account for from and to date
     @Override
     public String toString() {
-        return "{" + "booked:" + booked + ", user:" + user + '}';
+        return "{" + "\"id\": \"" + id + "\", "
+                + "\"booked\": " + booked + ", "
+                + "\"user\": " + user + ", "
+                + "\"from\": " + from + ", "
+                + "\"to\": " + to + "}";
     }
 }
