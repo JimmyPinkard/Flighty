@@ -13,23 +13,12 @@ public class FlightTrip extends TravelObject {
         this.flights = flights;
     }
 
-    public double getCost() {
+    public double getMinCost() {
         double total = 0;
         for (Flight flight : flights) {
-            total += flight.getCost();
+            total += flight.getMinCost();
         }
         return total;
-    }
-
-    /**
-     * Returns true if flightTrip contains layover
-     * @return
-     * @author rengotap
-     */
-    public boolean hasLayover() {
-        if(flights.size() > 1)
-            return true;
-        return false;
     }
 
     public List<Flight> getFlights() {

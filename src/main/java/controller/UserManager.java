@@ -4,7 +4,6 @@ import database.Data;
 import model.users.User;
 
 import java.util.List;
-import java.io.File;
 
 /**
  * List that handles user related tasks
@@ -98,20 +97,6 @@ public class UserManager {
                 return i;
         }
         return -1;
-    }
-
-    /**
-     * Checks to see if the user exists in the database
-     * @param username the name of the file
-     * @return a file for user data exists(T/F)
-     */
-    public boolean saveDataExists(String username) {
-        File saveData = new File("./database/userdata" + username + ".json");
-        if (saveData.exists()) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     /**

@@ -14,7 +14,7 @@ import search.filters.HotelFilter;
 import search.filters.SearchFilter;
 import utils.TimeUtils;
 
-public abstract class SearchHotels implements Search {
+public class SearchHotels implements Search {
     public static List<Hotel> execute(SearchPreferences preferences) {
         Data data = Data.getInstance();
         List<Hotel> out = new ArrayList<Hotel>();
@@ -22,18 +22,6 @@ public abstract class SearchHotels implements Search {
         for(Hotel hotel : data.getHotels()) {
             // Check if the hotel matches the preferences
             if(matchesFilters(hotel, preferences.hPref))
-                out.add(hotel);
-        }
-        return out;
-    }
-
-    public static List<Hotel> execute(EnumMap<? extends SearchFilter,String> preferences) {
-        Data data = Data.getInstance();
-        List<Hotel> out = new ArrayList<Hotel>();
-        // Loop through all the hotels
-        for(Hotel hotel : data.getHotels()) {
-            // Check if the hotel matches the preferences
-            if(matchesFilters(hotel, preferences))
                 out.add(hotel);
         }
         return out;

@@ -14,8 +14,6 @@ import model.users.info.Passport;
  */
 public class BookingAgent {
     private final Data data;
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_YELLOW = "\u001B[33m";
 
     public BookingAgent() {
         this.data = Data.getInstance();

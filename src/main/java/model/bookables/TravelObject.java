@@ -64,15 +64,6 @@ public abstract class TravelObject {
         return bookables;
     }
 
-    /**
-     * Books a bookable by removing it from lists of bookables.
-     * 
-     * @return true if booking was successful, false if it wasnt
-     */
-    public boolean book(Bookable booking) {
-        return bookables.remove(booking);
-    }
-
     public String getId() {
         return id;
     }
@@ -81,7 +72,7 @@ public abstract class TravelObject {
         return company;
     }
 
-    public double getCost() {
+    public double getMinCost() {
         double minPrice = Integer.MAX_VALUE;
         for (Bookable bookable : bookables) {
             if (bookable.price < minPrice) {

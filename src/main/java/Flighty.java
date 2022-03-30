@@ -352,7 +352,8 @@ public class Flighty {
      * @author rengotap
      */
     private String displayFlightSimple(Flight flight) {
-        return "Lowest Price: " + ANSI_CYAN + "$" + df.format(flight.getCost()) + ANSI_RESET + " | "
+        return "Lowest Price: " + ANSI_CYAN + "$" + df.format(flight.getMinCost()) + ANSI_RESET
+                + " | "
                 + ANSI_CYAN + flight.getAirportFrom() + ANSI_RESET + " ➡  " + ANSI_CYAN
                 + flight.getAirportTo() + ANSI_RESET + " | Travel Time: " + ANSI_CYAN
                 + timeUtils.toString(flight.getTravelTime()) + ANSI_RESET + " | Seats Available: "
@@ -363,7 +364,8 @@ public class Flighty {
 
 
     private String displayFlightTripSimple(FlightTrip trip) {
-        return "Lowest Price: " + ANSI_CYAN + "$" + trip.getCost() + ANSI_RESET + " | Departure: "
+        return "Lowest Price: " + ANSI_CYAN + "$" + trip.getMinCost() + ANSI_RESET
+                + " | Departure: "
                 + ANSI_CYAN + TimeUtils.getInstance().toString(trip.getDepartureTime()) + ANSI_RESET
                 + " | Arrival: " + ANSI_CYAN
                 + TimeUtils.getInstance().toString(trip.getArrivalTime()) + ANSI_RESET
@@ -390,7 +392,7 @@ public class Flighty {
         String[] tA = timeUtils.splitTime(flight.getArrivalTime());
         String format = '\n' + ANSI_WHITE_BG + ANSI_BLACK + " " + flight.getCompany().toUpperCase()
                 + " " + flight.getAirportFrom() + " ➡  " + flight.getAirportTo() + ANSI_RESET + '\n'
-                + "Price: " + ANSI_CYAN + "$" + df.format(flight.getCost()) + ANSI_RESET + '\n'
+                + "Price: " + ANSI_CYAN + "$" + df.format(flight.getMinCost()) + ANSI_RESET + '\n'
                 + "Rating: " + toStars(flight.getRating()) + ANSI_CYAN + " (" + flight.getRating()
                 + ")" + ANSI_RESET + '\n' + "Travel Time: " + ANSI_CYAN
                 + timeUtils.toString(flight.getTravelTime()) + ANSI_RESET + '\n'
@@ -416,7 +418,7 @@ public class Flighty {
      * @return
      */
     private String flightMap(Flight flight) {
-        final String pEconomy = df.format(flight.getCost());
+        final String pEconomy = df.format(flight.getMinCost());
         final String pBusiness = df.format(flight.getAvgCost());
         final String pFirst = df.format(flight.getMaxCost());
 
@@ -521,7 +523,7 @@ public class Flighty {
      * @author rengotap
      */
     private String displayHotelSimple(Hotel hotel, LocalDate from, LocalDate to) {
-        return "Price: " + ANSI_CYAN + "$" + df.format(hotel.getCost()) + ANSI_RESET
+        return "Price: " + ANSI_CYAN + "$" + df.format(hotel.getMinCost()) + ANSI_RESET
                 + " | Rooms Available: " + ANSI_CYAN + hotel.getNumAvailableRooms(from, to)
                 + ANSI_RESET + " | Company: " + ANSI_CYAN + hotel.getCompany() + ANSI_RESET
                 + " | Rating: " + toStars(hotel.getRating());
@@ -537,7 +539,7 @@ public class Flighty {
     private String displayHotelFull(Hotel hotel, LocalDate from, LocalDate to) {
         return '\n' + ANSI_WHITE_BG + ANSI_BLACK + " " + hotel.getCompany().toUpperCase() + " at "
                 + hotel.getLocation().toUpperCase() + " " + ANSI_RESET + '\n' + "Price: "
-                + ANSI_CYAN + "$" + df.format(hotel.getCost()) + ANSI_RESET + '\n' + "Rating: "
+                + ANSI_CYAN + "$" + df.format(hotel.getMinCost()) + ANSI_RESET + '\n' + "Rating: "
                 + toStars(hotel.getRating()) + ANSI_CYAN + " (" + hotel.getRating() + ")"
                 + ANSI_RESET + '\n' + "Available Rooms: " + ANSI_CYAN
                 + hotel.getNumAvailableRooms(from, to) + ANSI_RESET + '\n' + "Amenities:" + '\n'
@@ -1542,13 +1544,15 @@ public class Flighty {
         }
         System.out.println("Searching for your perfect hotel..." + '\n'); // WANT: ANSI animated
                                                                           // dots
-        EnumMap<HotelFilter, String> query = new EnumMap<>(HotelFilter.class);
+        SearchPreferences prefs = new SearchPreferences();
+        EnumMap<HotelFilter, String> query = prefs.hPref;
+
         query.put(HotelFilter.LOCATION, location);
         query.put(HotelFilter.COMPANY, company);
         query.put(HotelFilter.DATE_START, toString(start));
         query.put(HotelFilter.DATE_END, toString(end));
 
-        hotelResult(query);
+        hotelResult(prefs);
         // This is intentional
         println("                        Thank you for using");
     }
@@ -1559,14 +1563,15 @@ public class Flighty {
      * @param query search parameters
      * @author rengotap
      */
-    private void hotelResult(EnumMap<HotelFilter, String> query) {
-        List<Hotel> results = SearchHotels.execute(query);
+    private void hotelResult(SearchPreferences prefs) {
+        List<Hotel> results = SearchHotels.execute(prefs);
         // List<Hotel> results = data.getHotels(); // Temporary stand in
         println("Here are the best results we could find: " + '\n'
                 + "Unsatisfied with your results? Try changing your search parameters!" + '\n');
 
-        LocalDate from = TimeUtils.getInstance().generateDate(query.get(HotelFilter.DATE_START));
-        LocalDate to = TimeUtils.getInstance().generateDate(query.get(HotelFilter.DATE_END));
+        LocalDate from =
+                TimeUtils.getInstance().generateDate(prefs.hPref.get(HotelFilter.DATE_START));
+        LocalDate to = TimeUtils.getInstance().generateDate(prefs.hPref.get(HotelFilter.DATE_END));
 
         // Assuming that these are the top.. 3?
         if (!results.isEmpty()) {

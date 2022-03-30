@@ -103,7 +103,7 @@ public class SearchFlightTrips implements Search {
         return true;
     }
 
-    public static List<Flight> getValidFlights(
+    private static List<Flight> getValidFlights(
             EnumMap<? extends SearchFilter, String> preferences) {
         List<Flight> out = new ArrayList<Flight>();
 
@@ -116,7 +116,7 @@ public class SearchFlightTrips implements Search {
         return out;
     }
 
-    public static class FlightPriorityElement implements Comparable<FlightPriorityElement> {
+    private static class FlightPriorityElement implements Comparable<FlightPriorityElement> {
         public Flight flight;
         public int stepsFromStart;
         private double cost;
