@@ -21,16 +21,6 @@ public class BookingAgent {
         this.data = Data.getInstance();
     }
 
-    /**
-     * Bogus Testing constructor. for testing purposes only
-     * 
-     * @param data
-     * @author rengotap
-     */
-    public BookingAgent(Data data) {
-        this.data = data;
-    }
-
     public Booking bookListing(Room bookable, User user, LocalDate from, LocalDate to) {
         bookable.bookRange(from, to);
         final Booking booking = new Booking(user, bookable, from, to);
