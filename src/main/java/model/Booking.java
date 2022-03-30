@@ -42,18 +42,6 @@ public class Booking {
         return to;
     }
 
-    /**
-     * Bogus constructor for Booking. for testing purposes only
-     * 
-     * @author rengotap
-     */
-    public Booking(String type) {
-        if (type.equals("r"))
-            booked = new Room(12, "", new Hotel());
-        if (type.equals("s"))
-            booked = new Seat(4, "A", new Flight());
-    }
-
     public Booking(final DBObject object) {
         // TODO update to account for from and to date
         this.id = (String) object.get("id");

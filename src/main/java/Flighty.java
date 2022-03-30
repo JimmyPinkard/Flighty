@@ -78,8 +78,9 @@ public class Flighty {
         userManager = new UserManager(data);
         bookingAgent = new BookingAgent();
         printer = Printer.getInstance();
-        // genBogusData();
-        // checkData();
+        checkData();
+
+        headStart();
     }
 
     /**
@@ -92,31 +93,14 @@ public class Flighty {
     }
 
     /**
-     * General purpose testing asistant for testing purposes only
-     * 
+     * SUPER TIME SAVER!
+     * Logs you into a test account 
+     * with preferences filled to make 
+     * life a little easier
      * @author rengotap
      */
-    private void genBogusData() {
-        boolean superUser = true;
-        boolean bodgeData = false;
-
-        int numToGenerate = 5;
-        List<User> users = new ArrayList<User>();
-        List<Flight> flights = new ArrayList<Flight>();
-        List<Hotel> hotels = new ArrayList<Hotel>();
-        List<Booking> bookings = new ArrayList<Booking>();
-
-        if (bodgeData) {
-            for (int i = 0; i < numToGenerate; i++) {
-                flights.add(new Flight());
-                hotels.add(new Hotel());
-                bookings.add(new Booking("r"));
-                bookings.add(new Booking("s"));
-            }
-        }
-
-        if (superUser) {
-            User newUser = new User();
+    private void headStart() {
+        User newUser = new User();
             // SUPER TIME SAVER
             newUser.getFPref().replaceAll((key, old) -> "any");
             newUser.getHPref().replaceAll((key, old) -> "any");
@@ -126,31 +110,10 @@ public class Flighty {
             userManager.registerUser(newUser);
             userManager.logoutCurrent();
             userManager.login("temp", "p");
-
-            if (bodgeData) {
-                for (int i = 0; i < numToGenerate; i++)
-                    userManager.getCurrentUser().addBooking(bookings.get(i));
-                users.add(newUser);
-            }
-        }
-
-        if (bodgeData) {
-            data = Data.bodge(users, flights, hotels, bookings);
-            bookingAgent = new BookingAgent(data);
-
-            Flight f = new Flight();
-            Hotel h = new Hotel();
-
-            println(displayFlightSimple(f));
-            println(displayFlightFull(f));
-            println(flightMap(f));
-            // println(displayHotelSimple(h));
-            // println(displayHotelFull(h));
-        }
     }
 
     /**
-     * Checks to make sure data is all there, terminates if it isn't For debugging
+     * Checks to make sure data is all there, terminates program if it isnt
      * 
      * @author rengotap
      */

@@ -44,19 +44,6 @@ public class Room extends Bookable {
         }
     }
 
-    /**
-     * Bogus constructor for Room. for testing purposes only
-     * 
-     * @author rengotap
-     */
-    public Room(int row, String col, Hotel obj) {
-        super(row, col, obj);
-        travelObject = obj;
-        id = "Test case";
-        price = 999;
-        info = "Two queen beds";
-    }
-
     public boolean isBooked(LocalDate from, LocalDate to) {
         for (LocalDate date = from; !date.isAfter(to); date = date.plusDays(1)) {
             if (bookedDays.contains(date)) {
