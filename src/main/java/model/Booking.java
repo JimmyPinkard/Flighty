@@ -43,15 +43,15 @@ public class Booking {
     }
 
     /**
-     * Bogus constructor for Booking.
-     * for testing purposes only
-     * @author rengotap 
+     * Bogus constructor for Booking. for testing purposes only
+     * 
+     * @author rengotap
      */
     public Booking(String type) {
         if (type.equals("r"))
-            booked = new Room(12,"",new Hotel());
+            booked = new Room(12, "", new Hotel());
         if (type.equals("s"))
-            booked = new Seat(4,"A",new Flight());
+            booked = new Seat(4, "A", new Flight());
     }
 
     public Booking(final DBObject object) {
@@ -76,9 +76,6 @@ public class Booking {
     // TODO update to account for from and to date
     @Override
     public String toString() {
-        return "{" +
-                "booked:" + booked +
-                ", user:" + user +
-                '}';
+        return "{" + "booked:" + booked + ", user:" + user + '}';
     }
 }

@@ -1,6 +1,8 @@
 package model.users;
 
 import com.mongodb.DBObject;
+
+import model.Booking;
 import model.bookables.Bookable;
 import model.users.info.Passport;
 import model.users.info.Person;
@@ -24,9 +26,9 @@ public class User {
     private String email;
     private SearchPreferences preferences;
 
-    private List<String>specialReq;
+    private List<String> specialReq;
     private List<Passport> travelers; // passport 0 should always be the user
-    private List<Bookable> bookingHistory;
+    private List<Booking> bookingHistory;
     private Person person;
 
     /**
@@ -44,7 +46,7 @@ public class User {
         preferences = new SearchPreferences();
         specialReq = new ArrayList<String>();
         travelers = new ArrayList<Passport>();
-        bookingHistory = new ArrayList<Bookable>();
+        bookingHistory = new ArrayList<Booking>();
     }
 
     @SuppressWarnings("unchecked")
@@ -94,7 +96,7 @@ public class User {
         preferences = new SearchPreferences();
         travelers = new ArrayList<Passport>();
         specialReq = new ArrayList<String>();
-        bookingHistory = new ArrayList<Bookable>();
+        bookingHistory = new ArrayList<Booking>();
     }
 
     public String getId() {
@@ -231,7 +233,7 @@ public class User {
      * For booking flights/reservations
      * @param toAdd
      */
-    public void addBooking(Bookable toAdd) {
+    public void addBooking(Booking toAdd) {
         bookingHistory.add(toAdd);
     }
 
@@ -240,7 +242,7 @@ public class User {
      * For canceling flights/reservations
      * @param toRemove
      */
-    public void removeBooking(Bookable toRemove) {
+    public void removeBooking(Booking toRemove) {
         bookingHistory.remove(toRemove);
     }
 
@@ -253,21 +255,20 @@ public class User {
      * Gets a list of the user's previous bookings
      * @return booking history
      */
-    public List<Bookable> getBookingHistory() {
+    public List<Booking> getBookingHistory() {
         return bookingHistory;
     }
 
     @Override
     public String toString() {
-        return ("{" +
-                "username:'" + username + '\'' +
-                ", password:'" + password + '\'' +
-                ", email:'" + email + '\'' +
-                ", preferences:" + preferences +
-                ", specialReq:" + specialReq +
-                ", travelers:" + travelers +
-                ", bookingHistory:" + bookingHistory +
-                ", person:" + person +
-                '}').replace('\'', '"');
+        return "{" + "\"id\": " + id + ", "
+                + "\"username\": " + username + ", "
+                + "\"password\": " + password + ", "
+                + "\"email\": " + email + ", "
+                + "\"preferences\": " + preferences + ", "
+                + "\"specialReq\": " + specialReq + ", "
+                + "\"travelers\": " + travelers + ", "
+                + "\"bookingHistory\": " + bookingHistory + ", "
+                + "\"person\": " + person + "}";
     }
 }

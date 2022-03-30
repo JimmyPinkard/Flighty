@@ -5,13 +5,15 @@ import java.util.List;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
 
-import model.bookables.Bookable;
+import model.Booking;
 import model.bookables.flight.Flight;
 import model.bookables.flight.Seat;
 import model.bookables.hotel.Hotel;
 import model.bookables.hotel.Room;
 import model.users.info.Passport;
+import utils.TimeUtils;
 
 /**
  * Printing means creating a beautifully formatted text file.
@@ -19,9 +21,11 @@ import model.users.info.Passport;
  */
 public class Printer {
     private static Printer instance;
-    private ArrayList<Bookable> printQueue;
-    final private String writeDir = "./database/userdata/";
-    final private String writeName = "itinerary";
+    private static TimeUtils tUtil;
+    private ArrayList<Booking> printQueue;
+    private static final String writeDir = "./";
+    private static final String writeName = "itinerary";
+    private static final DecimalFormat df = new DecimalFormat("0.00");
 
      // ANSI COLORS
      public static final String ANSI_RESET = "\u001B[0m";
@@ -32,15 +36,14 @@ public class Printer {
      // ASCII
      private static final String H0 = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
      private static final String H1 = "▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰";
-     private static final String H2 = "━━━━━━━━━━━━━━━━━━▲━━━━━━━━━━━━━━━━━━";
-     private static final String H3 = "━━━━━━━━━━━━━━━━━━▼━━━━━━━━━━━━━━━━━━";
 
     /**
      * Printer Constructor
      * @author rengotap
      */
     private Printer() {
-        printQueue = new ArrayList<Bookable>();
+        printQueue = new ArrayList<Booking>();
+        tUtil = TimeUtils.getInstance();
     }
 
     /**
@@ -64,7 +67,7 @@ public class Printer {
             String[] formatted = formatAll();
             try {
                 FileWriter w = new FileWriter(writeDir+writeName+".txt");
-                w.write(getFHeader());
+                w.write(getFileHeader());
                 for (int i = 0; i < formatted.length; i++)
                     w.write(formatted[i] + '\n' + '\n' + '\n');
                 w.close();
@@ -83,7 +86,9 @@ public class Printer {
      * @return formatted bookable
      * @author rengotap
      */
-    public String print(Bookable b) {
+    public String print(Booking b) {
+        if(b == null)
+            return "";
         return format(b);
     }
 
@@ -92,7 +97,7 @@ public class Printer {
      * @return all objects to be printed
      * @author rengotap
      */
-    public ArrayList<Bookable> getPrintQueue() {
+    public ArrayList<Booking> getPrintQueue() {
         return printQueue;
     }
 
@@ -101,8 +106,8 @@ public class Printer {
      * @param bookable
      * @author rengotap
      */
-    public void enqueue(Bookable bookable) {
-        printQueue.add(bookable);
+    public void enqueue(Booking booking) {
+        printQueue.add(booking);
     }
 
     /**
@@ -165,12 +170,24 @@ public class Printer {
      * @return formatted string
      * @author rengotap
      */
-    private String format(Bookable b) {
-        final String type = b.getClass().getSimpleName();
-        if(type.equals("Seat"))
-            return format((Seat)b);
-        if(type.equals("Room"))
-            return format((Room)b);
+    private String format(Booking b) {
+        final String type = b.getBooked().getClass().getSimpleName();
+        if(type.equals("Seat")) {
+            Seat s = (Seat)b.getBooked();
+            Passport p = s.getOwner();
+            return p.getPerson().getFirstName() + " " + p.getPerson().getLastName()
+            + "'s Flight Information" + '\n' + H1 + " ✈" + '\n'  // Header Line A
+            + "Booking ID: " + b.getId() + '\n'
+            + format(s);
+        }
+
+        if(type.equals("Room")) {
+            return "Hotel Reservation Info" + '\n' + H1 + " ⌂" + '\n'  // Header Line A
+                + "Booking ID: " + b.getId() + '\n'
+                + "Reservation Start: " + tUtil.toString(b.getFrom()) + '\n'
+                + "Reservation End: " + tUtil.toString(b.getTo()) + '\n'
+                + format((Room)b.getBooked());
+        }
         System.out.println(ANSI_YELLOW
             + "WARN: Unknown format passed" + ANSI_RESET);
         return "FORMAT ERROR";
@@ -182,26 +199,26 @@ public class Printer {
      * @return formatted seat
      * @author rengotap
      */
-    private String format(Seat s) {  // TODO: Finish filling out Seat Formating
+    private String format(Seat s) {
         Passport p = s.getOwner();
         Flight f = s.getFlight();
-        return p.getPerson().getFirstName() + " " + p.getPerson().getLastName()
-            + "'s Flight Information" + '\n' + H1 + " ✈" + '\n'  // Header Line A
-            + "Passport Number: " + p.getNumber() + '\n'
-            + "Booking ID: " + f.getId() + '\n'
-            + "Price Paid: $" + s.getPrice() + '\n'
-            + "Service: " + f.getCompany() + " Airlines" + '\n'
+        String[] tD = tUtil.splitTime(f.getDepartureTime());
+        String[] tA = tUtil.splitTime(f.getArrivalTime());
+        return "Passport Number: " + p.getNumber() + '\n'
+            + "Price Paid: $" + df.format(s.getPrice()) + '\n'
+            + "Service: " + f.getCompany() + '\n'
+            + "Duration: " + tUtil.toString(f.getTravelTime()) + '\n'
             + '\n' + "SEAT INFORMATION" +'\n' + H0 + " ✈" + '\n'  // Header Line B
             + "Seat: " + s.getRow() + s.getCol() + '\n'
             + "Class: " + s.getSeatClass() + '\n'
             + '\n' + "DEPARTURE INFORMATION" +'\n' + H0 + " ✈" + '\n'  // Header Line C
             + "Location: " + f.getAirportFrom() + '\n'
-            + "Date:" + f.getDepartureTime() + '\n'  // TODO: Separate time and date
-            + "Time: " + f.getDepartureTime() + '\n'
+            + "Date: " + tD[0] +'\n'
+            + "Time: " + tD[1] + "UTC" + '\n'
             + '\n' + "ARRIVAL INFORMATION" +'\n' + H0 + " ✈" + '\n'  // Header Line D
             + "Location: " + f.getAirportTo() + '\n'
-            + "Date:" + f.getArrivalTime() + '\n'
-            + "Time: " + f.getArrivalTime();
+            + "Date: " + tA[0] + '\n'
+            + "Time: " + tA[1] + "UTC";
 
     }
 
@@ -211,13 +228,9 @@ public class Printer {
      * @return formatted seat
      * @author rengotap
      */
-    private String format(Room r) {  // TODO: Finish filling out Room Formating
+    private String format(Room r) {
         Hotel h = r.getHotel();
-        return "Hotel Reservation Info" + '\n' + H1 + " ⌂" + '\n'  // Header Line A
-            + "Booking ID: " + h.getId() + '\n'
-            + "Reservation Start: " + "PLACEHOLDER" + '\n'
-            + "Reservation End: " + "PLACEHOLDER" + '\n'
-            + "Price Paid: $" +r.getPrice() + '\n'
+        return "Price Paid: $" + df.format(r.getPrice()) + '\n'
             + "Company Name: " + h.getCompany() + '\n'
             + '\n' + "ROOM INFORMATION" +'\n' + H0 + " ⌂" + '\n'  // Header Line B
             + "Room Number: " + r.getRoomNum() + '\n'
@@ -239,7 +252,7 @@ public class Printer {
         String ret = "";
         for (int i = 1; i < input.size() + 1; i++) {
             ret = ret + input.get(i - 1) + ", ";
-            if (i % width == 0)
+            if (i % width == 0 && i != input.size())
                 ret = ret + '\n';
         }
         return ret.replaceAll(", $", "");
@@ -250,7 +263,7 @@ public class Printer {
      * @return
      * @author rengotap
      */
-    private String getFHeader() {
+    private String getFileHeader() {
         return '\n' + "88888888888  88  88               88" + '\n' + "88           88  "
                 + "''" + "               88            ,d" + '\n'
                 + "88           88                   88            88" + '\n'

@@ -31,22 +31,24 @@ public class BookingAgent {
         this.data = data;
     }
 
-    public void bookListing(Room bookable, User user, LocalDate from, LocalDate to) {
+    public Booking bookListing(Room bookable, User user, LocalDate from, LocalDate to) {
         bookable.bookRange(from, to);
         final Booking booking = new Booking(user, bookable, from, to);
         addLinks(bookable, user, booking);
+        return booking;
     }
 
-    public void bookListing(Seat bookable, User user, Passport owner) {
+    public Booking bookListing(Seat bookable, User user, Passport owner) {
         bookable.book();
         final Booking booking = new Booking(user, bookable);
         bookable.setOwner(owner);
         addLinks(bookable, user, booking);
+        return booking;
     }
 
     private void addLinks(Bookable bookable, User user, Booking booking) {
         data.getBookings().add(booking);
-        user.addBooking(bookable);
+        user.addBooking(booking);
     }
 
     public void unbookListing(Booking booking) {
@@ -59,6 +61,6 @@ public class BookingAgent {
         }
 
         data.getBookings().remove(booking);
-        booking.getUser().removeBooking(booking.getBooked());
+        booking.getUser().removeBooking(booking);
     }
 }

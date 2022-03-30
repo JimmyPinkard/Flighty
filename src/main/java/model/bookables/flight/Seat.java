@@ -11,7 +11,6 @@ import model.users.info.Passport;
  */
 public class Seat extends Bookable {
     private String whichClass;
-    private Flight flight;
     private Passport owner;
     private boolean isBooked;
 
@@ -20,7 +19,6 @@ public class Seat extends Bookable {
      */
     public Seat(int seatRow, String seatCol, Flight travelObject) {
         super(seatRow, seatCol, travelObject);
-        flight = travelObject;
         whichClass = "First Class";
         price = 124;
         isBooked = false;
@@ -33,7 +31,7 @@ public class Seat extends Bookable {
     }
     
     public Flight getFlight() {
-        return flight;
+        return (Flight)travelObject;
     }
 
     /**
@@ -89,10 +87,12 @@ public class Seat extends Bookable {
 
     @Override
     public String toString() {
-        return "{" +
-                "bookable:" + super.toString() +
-                ", whichClass:'" + whichClass + '\'' +
-                ", isBooked:" + isBooked +
-                "}";
+        return "{" + "\"whichClass\": \"" + whichClass + "\", "
+                + "\"owner\": " + owner + ", "
+                + "\"id\": \"" + id + "\", "
+                + "\"row\": " + row + ", "
+                + "\"col\": \"" + col + "\", "
+                + "\"price\": " + price + ", "
+                + "\"isBooked\": " + isBooked + "}";
     }
 }
