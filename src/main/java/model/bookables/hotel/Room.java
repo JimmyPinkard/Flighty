@@ -58,7 +58,7 @@ public class Room extends Bookable {
     }
 
     public boolean isBooked(LocalDate from, LocalDate to) {
-        for (LocalDate date = from; date.isBefore(to); date = date.plusDays(1)) {
+        for (LocalDate date = from; !date.isAfter(to); date = date.plusDays(1)) {
             if (bookedDays.contains(date)) {
                 return false;
             }

@@ -46,18 +46,12 @@ public abstract class SearchHotels implements Search {
 
         boolean correctLocation = hotel.getLocation().equalsIgnoreCase(preferences.get(HotelFilter.LOCATION)) 
         || preferences.get(HotelFilter.LOCATION).equalsIgnoreCase("any") || preferences.get(HotelFilter.LOCATION).equalsIgnoreCase("none");
-        
-        boolean correctDates = false;
+
         TimeUtils timeUtil = TimeUtils.getInstance();
-        for(Room room : hotel.getOptions()) {
-            correctDates = true;
-            List<LocalDate> days = room.getBookedDays();
-            for(LocalDate date : days) {
-                if(date.isAfter(timeUtil.generateDate(preferences.get(HotelFilter.DATE_START))) 
-                && date.isBefore(timeUtil.generateDate(preferences.get(HotelFilter.DATE_END))))
-                    correctDates = false;
-            }
-        }
+        boolean correctDates = hotel
+                .getAvailableOptions(timeUtil.generateDate(preferences.get(HotelFilter.DATE_START)),
+                        timeUtil.generateDate(preferences.get(HotelFilter.DATE_END)))
+                .size() != 0;
 
         return correctLocation && correctCompany && correctDates;
     }
