@@ -84,8 +84,7 @@ public class Flighty {
         printer = Printer.getInstance();
         timeUtils = TimeUtils.getInstance();
         checkData();
-
-        //headStart();
+        headStart();
     }
 
     /**
@@ -167,6 +166,25 @@ public class Flighty {
         try {System.in.read();} 
         catch (Exception e) {e.printStackTrace();}
     }
+
+    /**
+     * ITS A LITTLE PLANE AND IT FLIES
+     * best thing i've ever made
+     * @rengotap
+     */
+    private void pBar() {
+        try {
+            for(int i = 0; i < 100; i++) {
+                TimeUnit.MILLISECONDS.sleep(85);
+                int width = (i + 1) ;
+                String bar = "🏠" + new String(new char[width]).replace("\0", "═") +"✈"
+                    + new String(new char[50-(width+1)]).replace("\0", " ") + "🗽";
+                System.out.print("\33[2K\r" + bar);
+                System.out.flush();
+            }
+        } catch (Exception e) {}
+    }
+
     /**
      * Prompts the user for input
      * 
@@ -1302,8 +1320,8 @@ public class Flighty {
         queryFlightPrefs.put(FlightFilter.COMPANY, company);
         
         clr();
-        System.out.println('\n'+"Searching for your perfect flight..." + '\n');
-        wait(2);
+        System.out.println('\n'+"Searching for your perfect flight...");
+        pBar();
         showTrips(queryPrefs);
     }
 
@@ -1479,8 +1497,8 @@ public class Flighty {
             }
         }
         clr();
-        System.out.println('\n'+"Searching for your perfect hotel..." + '\n'); // WANT: ANSI animated
-        wait(2);
+        System.out.println('\n'+"Searching for your perfect hotel...");
+        pBar();
         clr();
         
         EnumMap<HotelFilter, String> query = new EnumMap<>(HotelFilter.class);
@@ -1813,6 +1831,8 @@ public class Flighty {
             if (response.equals(OPT_BACK)) {
                 return;
             } else if (response.equals(OPT_EXP)) {
+                pBar();
+                clr();
                 printer.print();
                 awaitEnter();
             } else if (response.equals(OPT_ENQ)) {
