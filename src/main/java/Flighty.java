@@ -13,6 +13,7 @@ import controller.Printer;
 import controller.UserManager;
 
 import java.sql.Timestamp;
+import java.text.BreakIterator;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -74,8 +75,8 @@ public class Flighty {
         userManager = new UserManager(data);
         bookingAgent = new BookingAgent();
         printer = Printer.getInstance();
-        genBogusData();
-        //checkData();
+        // genBogusData();
+        // checkData();
     }
 
     /**
@@ -85,15 +86,6 @@ public class Flighty {
      */
     public void start() {
         menuMain();
-    }
-
-    /**
-     * Saves all data to database
-     * 
-     * @author JimmyPinkard
-     */
-    public void stop() {
-        data.saveAll();
     }
 
     /**
@@ -144,8 +136,8 @@ public class Flighty {
             println(displayFlightSimple(f));
             println(displayFlightFull(f));
             println(flightMap(f));
-            println(displayHotelSimple(h));
-            println(displayHotelFull(h));
+            // println(displayHotelSimple(h));
+            // println(displayHotelFull(h));
         }
     }
 
@@ -495,9 +487,10 @@ public class Flighty {
      * @return Hotel single line: PRICE, BEDS, COMPANY, STARS
      * @author rengotap
      */
-    private String displayHotelSimple(Hotel hotel) {
+    private String displayHotelSimple(Hotel hotel, LocalDate from, LocalDate to) {
         return "Price: " + ANSI_CYAN + "$" + hotel.getCost() 
-            + ANSI_RESET + " | Rooms Available: " + ANSI_CYAN + hotel.getNumAvailableRooms() 
+                + ANSI_RESET + " | Rooms Available: " + ANSI_CYAN
+                + hotel.getNumAvailableRooms(from, to)
             + ANSI_RESET + " | Company: " + ANSI_CYAN + hotel.getCompany()  
             + ANSI_RESET + " | Rating: " + toStars(hotel.getRating());
     }
@@ -509,12 +502,13 @@ public class Flighty {
      * @return Hotel string location, company, nl, price, stars, nl, beds
      * @author rengotap
      */
-    private String displayHotelFull(Hotel hotel) {
+    private String displayHotelFull(Hotel hotel, LocalDate from, LocalDate to) {
         return '\n' + ANSI_WHITE_BG + ANSI_BLACK + hotel.getCompany().toUpperCase() 
              + " at " + hotel.getLocation().toUpperCase() + ANSI_RESET + '\n' + "Price: "
              + ANSI_CYAN + "$" + hotel.getCost() + ANSI_RESET + '\n' + "Rating: " 
              + toStars(hotel.getRating()) + ANSI_CYAN + " (" + hotel.getRating() 
-             + ")" + ANSI_RESET + '\n' + "Available Rooms: " + ANSI_CYAN + hotel.getNumAvailableRooms() 
+                + ")" + ANSI_RESET + '\n' + "Available Rooms: " + ANSI_CYAN
+                + hotel.getNumAvailableRooms(from, to)
              + ANSI_RESET + '\n' + "Amenities:" + '\n' + ANSI_CYAN 
              + toBlock(hotel.getFeatures(), 3) + ANSI_RESET + '\n';
     }
@@ -1528,6 +1522,10 @@ public class Flighty {
         List<Hotel> results = data.getHotels(); // Temporary stand in
         println("Here are the best results we could find: " + '\n'
                 + "Unsatisfied with your results? Try changing your search parameters!" + '\n');
+
+        LocalDate from = TimeUtils.getInstance().generateDate(query.get(HotelFilter.DATE_START));
+        LocalDate to = TimeUtils.getInstance().generateDate(query.get(HotelFilter.DATE_END));
+
         // Assuming that these are the top.. 3?
         if (!results.isEmpty()) {
             List<String> options = new ArrayList<String>();
@@ -1536,7 +1534,7 @@ public class Flighty {
                 numDisplay = results.size();
 
             for (int i = 0; i < numDisplay; i++) {
-                options.add(displayHotelSimple(results.get(i)));
+                options.add(displayHotelSimple(results.get(i), from, to));
             }
             final String OPT_BACK = "Return to main menu";
             options.add(OPT_BACK);
@@ -1546,7 +1544,7 @@ public class Flighty {
                 if(response[0].equals(OPT_BACK)) {
                     return;
                 } else {
-                    if (investigateHotel(results.get(Integer.parseInt(response[1]))))
+                    if (investigateHotel(results.get(Integer.parseInt(response[1])), from, to))
                         return;
                 }
             }
@@ -1562,10 +1560,10 @@ public class Flighty {
      * @return returns true if hotel was booked
      * @author rengotap
      */
-    private boolean investigateHotel(Hotel hotel) {
-        println(displayHotelFull(hotel));
+    private boolean investigateHotel(Hotel hotel, LocalDate from, LocalDate to) {
+        println(displayHotelFull(hotel, from, to));
         if (promptYN("Book this hotel?")) {
-            if (menuPickRoom(hotel))
+            if (menuPickRoom(hotel, from, to))
                 return true;
         }
         return false; // go back to results
@@ -1577,8 +1575,8 @@ public class Flighty {
      * @return if a room was booked
      * @author rengotap
      */
-    private boolean menuPickRoom(Hotel hotel) {
-        List<Room> rooms = hotel.getAvailableOptions();
+    private boolean menuPickRoom(Hotel hotel, LocalDate from, LocalDate to) {
+        List<Room> rooms = hotel.getAvailableOptions(from, to);
 
         List<String> options = new ArrayList<String>();
         for (int i = 0; i < rooms.size(); i++) {
@@ -1593,8 +1591,9 @@ public class Flighty {
             if(response[0].equals(OPT_BACK)) {
                 return false;
             } else {
-                if (promptYN(displayRoom(rooms.get(Integer.parseInt(response[1])))+'\n'+"Book this room?")) {
-                    menuBookRoom(hotel, Integer.parseInt(response[1]));              
+                Room room = rooms.get(Integer.parseInt(response[1]));
+                if (promptYN(displayRoom(room) + '\n' + "Book this room?")) {
+                    menuBookRoom(hotel, room, from, to);
                     return true;
                 }
             }
@@ -1607,12 +1606,24 @@ public class Flighty {
      * @param room
      * @author rengotap
      */
-    private void menuBookRoom(Hotel hotel, int room) {
+    private void menuBookRoom(Hotel hotel, Room room, LocalDate from, LocalDate to) {
         if (!userManager.isAnyoneLoggedIn())
             forceAccount();
 
         try {
-            bookingAgent.bookListing(hotel.getAvailableOptions().get(room), userManager.getCurrentUser());
+            while (true) {
+                LocalDate bookFrom = promptDate("When do you want to book from?");
+                LocalDate bookTo = promptDate("When do you want to book to?");
+
+                if (room.isBooked(bookFrom, bookTo)) {
+                    println("Room is booked then, try again");
+                } else {
+                    break;
+                }
+            }
+
+
+            bookingAgent.bookListing(room, userManager.getCurrentUser(), from, to);
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             println('\n'+ANSI_WHITE_BG+ANSI_BLACK+timestamp+"   ROOM BOOKED SUCCESSFULLY   "+ANSI_RESET+'\n');
 
@@ -1890,6 +1901,7 @@ public class Flighty {
      */
     public void exit() {
         println("Exiting...");
+        data.saveAll();
         System.exit(0);
     }
 }

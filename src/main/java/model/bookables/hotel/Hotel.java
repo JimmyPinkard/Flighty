@@ -4,7 +4,7 @@ import com.mongodb.DBObject;
 
 import model.bookables.Bookable;
 import model.bookables.TravelObject;
-
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -77,11 +77,11 @@ public class Hotel extends TravelObject {
         return bookables.size();
     }
 
-    public int getNumAvailableRooms() {
+    public int getNumAvailableRooms(LocalDate from, LocalDate to) {
         int num = 0;
 
         for (Room room : getOptions())
-            if (!room.getIsBooked())
+            if (!room.isBooked(from, to))
                 num++;
 
         return num;
@@ -95,11 +95,11 @@ public class Hotel extends TravelObject {
         return rooms;
     }
 
-    public List<Room> getAvailableOptions() {
+    public List<Room> getAvailableOptions(LocalDate from, LocalDate to) {
         List<Room> rooms = new ArrayList<>();
         for (Room room : getOptions())
-            if (!room.getIsBooked())
-            rooms.add(room);
+            if (!room.isBooked(from, to))
+                rooms.add(room);
 
         return rooms;
     }

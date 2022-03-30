@@ -42,8 +42,6 @@ public class SearchFlightTrips implements Search {
     }
 
 
-    // TODO account for "any"
-    // TODO other filters
     private static boolean isValidOption(Flight flight,
             EnumMap<? extends SearchFilter, String> preferences) {
         String airportFrom = preferences.get(FlightFilter.AIRPORT_FROM);

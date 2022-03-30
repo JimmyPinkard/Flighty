@@ -6,7 +6,9 @@ import model.bookables.TravelObject;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 
@@ -14,17 +16,18 @@ import java.util.List;
  */
 public class Room extends Bookable {
     private String info;
-    private List<LocalDate> bookedDays;
-    protected int sleepingCapacity;
+    private Set<LocalDate> bookedDays;
+    private int sleepingCapacity;
     private Hotel hotel;
 
     /**
      * Constructor for room
      */
+    // TODO delete b/c unused
     public Room(int floor, String roomNum, int sleepingCapacity, TravelObject travelObject) {
         super(floor, roomNum, travelObject);
         info = "A Bookables.Hotel.Hotel.Room";
-        bookedDays = new ArrayList<LocalDate>();
+        bookedDays = new HashSet<LocalDate>();
         this.sleepingCapacity = sleepingCapacity;
     }
 
@@ -33,7 +36,7 @@ public class Room extends Bookable {
         super((int) object.get("num"), (String) object.get("floor"), object, travelObject);
         info = (String) object.get("bedInfo");
         this.sleepingCapacity = (int) object.get("bedCount");
-        bookedDays = new ArrayList<>();
+        bookedDays = new HashSet<>();
         bookedDays.addAll((List<LocalDate>)object.get("bookedDates"));
     }
 
@@ -50,15 +53,31 @@ public class Room extends Bookable {
         info = "Two queen beds";
     }
 
+    public boolean isBooked(LocalDate from, LocalDate to) {
+        for (LocalDate date = from; date.isBefore(to); date = date.plusDays(1)) {
+            if (bookedDays.contains(date)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     /**
      * Method to add days that are booked for a room
-     * @param start the start day to be booked
-     * @param end the end day to be booked
-     * @return true if it booked, false otherwise. Would mainly return false when there was a date already booked
+     * 
+     * @param from the from day to be booked
+     * @param to the to day to be booked
      */
-    public boolean setBookedDays(LocalDate start, LocalDate end) {
-      return true;  
+    public void bookRange(LocalDate from, LocalDate to) {
+        for (LocalDate date = from; !date.isAfter(to); date = date.plusDays(1)) {
+            bookedDays.add(date);
+        }
+    }
+
+    public void unbookRange(LocalDate from, LocalDate to) {
+        for (LocalDate date = from; !date.isAfter(to); date = date.plusDays(1)) {
+            bookedDays.remove(date);
+        }
     }
 
     public Hotel getHotel() {
@@ -86,7 +105,9 @@ public class Room extends Bookable {
      * @return List of days the room is booked
      */
     public List<LocalDate> getBookedDays() {
-        return this.bookedDays;
+        var l = new ArrayList<LocalDate>();
+        l.addAll(bookedDays);
+        return l;
     }
 
     public int getSleepingCapacity() {

@@ -2,12 +2,12 @@ package model;
 
 import com.mongodb.DBObject;
 import model.bookables.Bookable;
-import model.bookables.hotel.Hotel;
-import model.bookables.hotel.Room;
 import model.bookables.flight.Flight;
 import model.bookables.flight.Seat;
+import model.bookables.hotel.Hotel;
+import model.bookables.hotel.Room;
 import model.users.User;
-
+import java.time.LocalDate;
 import java.util.UUID;
 
 /**
@@ -17,17 +17,29 @@ public class Booking {
     private String id;
     private Bookable booked;
     private User user;
+    private LocalDate from;
+    private LocalDate to;
 
-    public Booking(final User user, final Bookable booked) {
+    public Booking(final User user, final Seat booked) {
         this.id = UUID.randomUUID().toString();
         this.user = user;
         this.booked = booked;
     }
 
-    public Booking(final DBObject object) {
-        this.id = (String) object.get("id");
-        this.user = new User(object);
-        this.booked = (Bookable) object.get("booked");
+    public Booking(final User user, final Room booked, final LocalDate from, final LocalDate to) {
+        this.id = UUID.randomUUID().toString();
+        this.user = user;
+        this.booked = booked;
+        this.from = from;
+        this.to = to;
+    }
+
+    public LocalDate getFrom() {
+        return from;
+    }
+
+    public LocalDate getTo() {
+        return to;
     }
 
     /**
@@ -42,6 +54,13 @@ public class Booking {
             booked = new Seat(4,"A",new Flight());
     }
 
+    public Booking(final DBObject object) {
+        // TODO update to account for from and to date
+        this.id = (String) object.get("id");
+        this.user = new User(object);
+        this.booked = (Bookable) object.get("booked");
+    }
+
     public String getId() {
         return id;
     }
@@ -54,6 +73,7 @@ public class Booking {
         return booked;
     }
 
+    // TODO update to account for from and to date
     @Override
     public String toString() {
         return "{" +

@@ -13,6 +13,7 @@ public class Seat extends Bookable {
     private String whichClass;
     private Flight flight;
     private Passport owner;
+    private boolean isBooked;
 
     /**
      * Constructor for seat
@@ -41,6 +42,33 @@ public class Seat extends Bookable {
      */
     public int getSeatNum() {
         return this.row;
+    }
+
+    /**
+     * Method to set the booking of the seat
+     * 
+     * @return true if it booked, false if already booked
+     */
+    public void book() {
+        isBooked = true;
+    }
+
+    /**
+     * Method to unbook the seat
+     * 
+     * @return false if unable to unbook
+     */
+    public void unbook() {
+        isBooked = false;
+    }
+
+    /**
+     * Method to get if the bookable is booked
+     * 
+     * @return the boolean of if the bookable is booked
+     */
+    public boolean getIsBooked() {
+        return this.isBooked;
     }
 
     /**
