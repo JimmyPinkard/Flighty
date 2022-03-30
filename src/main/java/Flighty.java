@@ -84,7 +84,7 @@ public class Flighty {
         printer = Printer.getInstance();
         timeUtils = TimeUtils.getInstance();
         checkData();
-        // headStart();
+        headStart();
     }
 
     /**
@@ -179,15 +179,27 @@ public class Flighty {
     private void pBar() {
         try {
             for (int i = 0; i < 100; i++) {
-                TimeUnit.MILLISECONDS.sleep(85);
+                TimeUnit.MILLISECONDS.sleep(70);
                 int width = (i + 1);
                 String bar = "🏠" + new String(new char[width]).replace("\0", "═") + "✈"
-                        + new String(new char[50 - (width + 1)]).replace("\0", " ") + "🗽";
+                        + new String(new char[36 - (width + 1)]).replace("\0", " ") + "🏝️  ";
                 System.out.print("\33[2K\r" + bar);
                 System.out.flush();
             }
         } catch (Exception e) {
         }
+    }
+
+    /**
+     * Adds spaces around a string
+     * @param s string
+     * @param w width
+     * @return
+     */
+    private String pad(String str, int w) {
+        int wStart = str.length() + (w - str.length()) / 2;
+        str = String.format("%" + wStart + "s", str); // pad left
+        return String.format("%" + (-w) + "s", str); // pad right
     }
 
     /**
@@ -350,16 +362,16 @@ public class Flighty {
     private String toString(Bookable b) {
         final String type = b.getClass().getSimpleName();
         String line = "Type: " + ANSI_CYAN + type + ANSI_RESET + " | Price: " + ANSI_CYAN + "$"
-                + String.valueOf(df.format(b.getPrice())) + ANSI_RESET;
+                + pad(String.valueOf(df.format(b.getPrice())),6) + ANSI_RESET;
         if (type.equals("Seat")) {
             Seat s = (Seat) b;
-            line = line + " | Destination: " + ANSI_CYAN + s.getFlight().getAirportTo() + ANSI_RESET
-                    + " | Airline: " + ANSI_CYAN + s.getTravelObject().getCompany() + ANSI_RESET
+            line = line + " | Destination: " + ANSI_CYAN + pad(s.getFlight().getAirportTo(),7) + ANSI_RESET
+                    + " | Airline: " + ANSI_CYAN + pad(s.getTravelObject().getCompany(),17) + ANSI_RESET
                     + " | Seat Number: " + ANSI_CYAN + s.getRow() + s.getCol() + ANSI_RESET;
         } else if (type.equals("Room")) {
             Room r = (Room) b;
-            line = line + " | Location: " + ANSI_CYAN + r.getHotel().getLocation() + ANSI_RESET
-                    + " | Company: " + ANSI_CYAN + r.getHotel().getCompany() + ANSI_RESET
+            line = line + " | Location: " + ANSI_CYAN + pad(r.getHotel().getLocation(),10) + ANSI_RESET
+                    + " | Company: " + ANSI_CYAN + pad(r.getHotel().getCompany(),17) + ANSI_RESET
                     + " | Room Number: " + ANSI_CYAN + r.getRoomNum() + ANSI_RESET;
         }
         return line;
@@ -374,18 +386,18 @@ public class Flighty {
      * @author rengotap
      */
     private String displayFlightSimple(Flight flight) {
-        return "Lowest Price: " + ANSI_CYAN + "$" + df.format(flight.getMinCost()) + ANSI_RESET
+        return "Lowest Price: " + ANSI_CYAN + "$" + pad(df.format(flight.getMinCost()),6) + ANSI_RESET
                 + " | " + ANSI_CYAN + flight.getAirportFrom() + ANSI_RESET + " ➡  " + ANSI_CYAN
                 + flight.getAirportTo() + ANSI_RESET + " | Travel Time: " + ANSI_CYAN
-                + timeUtils.toString(flight.getTravelTime()) + ANSI_RESET + " | Seats Available: "
-                + ANSI_CYAN + flight.getNumAvailableSeats() + ANSI_RESET + " | Company: "
-                + ANSI_CYAN + flight.getCompany() + ANSI_RESET + " | Rating: "
+                + pad(timeUtils.toString(flight.getTravelTime()),5) + ANSI_RESET + " | Seats Available: "
+                + ANSI_CYAN + pad(Integer.toString(flight.getNumAvailableSeats()),2) + ANSI_RESET + " | Company: "
+                + ANSI_CYAN + pad(flight.getCompany(),17) + ANSI_RESET + " | Rating: "
                 + toStars(flight.getRating());
     }
 
 
     private String displayFlightTripSimple(FlightTrip trip) {
-        return "Lowest Price: " + ANSI_CYAN + "$" + trip.getMinCost() + ANSI_RESET
+        return "Lowest Price: " + ANSI_CYAN + "$" + pad(df.format(trip.getMinCost()),6) + ANSI_RESET
                 + " | Departure: " + ANSI_CYAN
                 + TimeUtils.getInstance().toString(trip.getDepartureTime()) + ANSI_RESET
                 + " | Arrival: " + ANSI_CYAN
@@ -544,9 +556,9 @@ public class Flighty {
      * @author rengotap
      */
     private String displayHotelSimple(Hotel hotel, LocalDate from, LocalDate to) {
-        return "Price: " + ANSI_CYAN + "$" + df.format(hotel.getMinCost()) + ANSI_RESET
-                + " | Rooms Available: " + ANSI_CYAN + hotel.getNumAvailableRooms(from, to)
-                + ANSI_RESET + " | Company: " + ANSI_CYAN + hotel.getCompany() + ANSI_RESET
+        return "Price: " + ANSI_CYAN + "$" + pad(df.format(hotel.getMinCost()),6) + ANSI_RESET
+                + " | Rooms Available: " + ANSI_CYAN + pad(Integer.toString(hotel.getNumAvailableRooms(from, to)),2)
+                + ANSI_RESET + " | Company: " + ANSI_CYAN + pad(hotel.getCompany(),16) + ANSI_RESET
                 + " | Rating: " + toStars(hotel.getRating());
     }
 
@@ -558,7 +570,7 @@ public class Flighty {
      * @author rengotap
      */
     private String displayHotelFull(Hotel hotel, LocalDate from, LocalDate to) {
-        return '\n' + ANSI_WHITE_BG + ANSI_BLACK + " " + hotel.getCompany().toUpperCase() + " at "
+        return '\n' + ANSI_WHITE_BG + ANSI_BLACK + " " + hotel.getCompany().toUpperCase() + " AT "
                 + hotel.getLocation().toUpperCase() + " " + ANSI_RESET + '\n' + "Price: "
                 + ANSI_CYAN + "$" + df.format(hotel.getMinCost()) + ANSI_RESET + '\n' + "Rating: "
                 + toStars(hotel.getRating()) + ANSI_CYAN + " (" + hotel.getRating() + ")"
@@ -732,7 +744,8 @@ public class Flighty {
                 + "88           88  88   `'YbbdP'Y8  88       88   'Y888      Y88'" + '\n'
                 + "                      aa,    ,88                           d8'" + '\n'
                 + "                       'Y8bbdP'                           d8'" + ANSI_RESET
-                + '\n' + "                  Flight & Hotel Booking Program");
+                + '\n' + "                 "
+                +ANSI_B+" Flight & Hotel Booking Program " +ANSI_RESET);
     }
 
     /**
@@ -945,11 +958,10 @@ public class Flighty {
      */
     private void menuManagePassports() {
         while (true) {
+            clr();
             var passports = userManager.getCurrentUser().getTravelers();
             if (passports.size() > 0) {
-                for (String string : passportsToStringTable(passports)) {
-                    println(string);
-                }
+                print(printPassports());
             } else {
                 println(ANSI_RED + "No passports on file" + ANSI_RESET);
             }
@@ -978,6 +990,19 @@ public class Flighty {
             }
         }
 
+    }
+
+    /**
+     * Prints passports
+     * @return
+     */
+    public String printPassports() {
+        List<Passport> passports = userManager.getCurrentUser().getTravelers();
+        String ret = '\n' + ANSI_BLACK + ANSI_WHITE_BG + " SAVED PASSPORTS " + ANSI_RESET + '\n';
+        for (String string : passportsToStringTable(passports)) {
+            ret = ret + string + '\n';
+        }
+        return ret;
     }
 
     /**
@@ -1125,7 +1150,7 @@ public class Flighty {
     private void menuChangeFPref() {
         while (true) {
             clr();
-            println('\n' + ANSI_BLACK + ANSI_WHITE_BG + " Your current flight preferences: "
+            println('\n' + ANSI_BLACK + ANSI_WHITE_BG + " CURRENT FLIGHT PREFERENCES "
                     + ANSI_RESET + '\n');
             final String OPTION_HOMEPORT = "Home Airport Code: "
                     + userManager.getCurrentUser().getFPref().get(FlightFilter.AIRPORT_FROM);
@@ -1171,7 +1196,7 @@ public class Flighty {
     private void menuChangeHPref() {
         while (true) {
             clr();
-            println('\n' + ANSI_BLACK + ANSI_WHITE_BG + " Your current hotel preferences: "
+            println('\n' + ANSI_BLACK + ANSI_WHITE_BG + " CURRENT HOTEL PREFERENCES "
                     + ANSI_RESET + '\n');
             final String OPTION_COMPANY =
                     "Company: " + userManager.getCurrentUser().getHPref().get(HotelFilter.COMPANY);
@@ -1272,7 +1297,7 @@ public class Flighty {
         boolean confirmParam = false;
         while (!confirmParam) {
             clr();
-            println('\n' + ANSI_BLACK + ANSI_WHITE_BG + " Please confirm your search parameters "
+            println('\n' + ANSI_BLACK + ANSI_WHITE_BG + " CONFIRM SEARCH PARAMETERS "
                     + ANSI_RESET + '\n');
             final String OPT_DEST = "Destination: " + ANSI_CYAN + destination + ANSI_RESET;
             final String OPT_HOME = "Departing From:" + ANSI_CYAN + home + ANSI_RESET;
@@ -1326,7 +1351,7 @@ public class Flighty {
         queryFlightPrefs.put(FlightFilter.COMPANY, company);
 
         clr();
-        System.out.println('\n' + "Searching for your perfect flight...");
+        System.out.println('\n' + "Searching for your perfect flight..." + '\n');
         pBar();
         showTrips(queryPrefs);
     }
@@ -1335,8 +1360,10 @@ public class Flighty {
         List<FlightTrip> results = SearchFlightTrips.execute(query);
 
         if (results.isEmpty()) {
-            println(ANSI_RED + "Unable to find any matching results." + ANSI_RESET);
-            wait(2);
+            clr();
+            println('\n'+ANSI_RED + "Unable to find any matching results." + ANSI_RESET + '\n' 
+                + "Try changing your search parameters");
+            awaitEnter();
             return;
         }
 
@@ -1352,7 +1379,7 @@ public class Flighty {
         options.add(OPT_BACK);
         while (true) {
             clr();
-            println('\n' + ANSI_BLACK + ANSI_WHITE_BG + " Select a trip for more information "
+            println('\n' + ANSI_BLACK + ANSI_WHITE_BG + " SELECT TRIP FOR DETAILS "
                     + ANSI_RESET + '\n');
             String[] response = menuLong("Enter a Number", options);
             if (response[0].equals(OPT_BACK)) {
@@ -1381,12 +1408,14 @@ public class Flighty {
                         println('\n' + ANSI_WHITE_BG + ANSI_BLACK + "   NOW BOOKING FLIGHT "
                                 + (curr + 1) + " OF " + fl.size() + "   " + ANSI_RESET + '\n');
                         println(displayFlightSimple(fl.get(i)));
+                        /*
                         if (promptYN("View seat map?")) {
                             println(flightMap(fl.get(curr)));
                             println("Available seats are highlighted in " + ANSI_GREEN + "green"
                                     + ANSI_RESET + '\n');
                             awaitEnter();
                         }
+                        */
                         menuBookSeat(fl.get(curr), ticketHolder);
                     }
                     if (i + 1 < bookSeats) {
@@ -1404,17 +1433,32 @@ public class Flighty {
 
     private void menuBookSeat(Flight flight, Passport ticketHolder) {
         while (true) {
-            clr();
             List<Seat> seats = flight.getAvailableOptions();
 
             List<String> options = new ArrayList<String>();
             for (int i = 0; i < seats.size(); i++) {
                 options.add(displaySeat(seats.get(i)));
             }
-
-            println('\n' + ANSI_BLACK + ANSI_WHITE_BG + " Select a seat to book " + ANSI_RESET
-                    + '\n');
-            String[] response = menuLong("Enter a Number", options);
+            
+            final String OPT_DISPMAP = "Display Seat Map";
+            options.add(OPT_DISPMAP);
+            String[] response = new String[2];
+            Boolean chosen = false;
+            while(!chosen) {
+                clr();
+                println('\n' + ANSI_BLACK + ANSI_WHITE_BG + " SELECT SEAT OR '"
+                + options.size() +"' TO VIEW SEAT MAP "+ ANSI_RESET+ '\n');
+                response = menuLong("Enter a Number", options);
+                if(response[0].equals(OPT_DISPMAP)) {
+                    clr();
+                    println(flightMap(flight));
+                    println("Available seats are highlighted in " + ANSI_GREEN + "green"
+                            + ANSI_RESET + '\n');
+                    awaitEnter();
+                } else { // User chose an acual seat
+                    chosen = true;
+                }
+            }
             int index = Integer.parseInt(response[1]);
             if (promptYN(displaySeat(seats.get(index)) + '\n' + "Book this seat?")) {
                 try {
@@ -1477,7 +1521,7 @@ public class Flighty {
         boolean confirmParam = false;
         while (!confirmParam) {
             clr();
-            println('\n' + ANSI_BLACK + ANSI_WHITE_BG + " Please confirm your search parameters "
+            println('\n' + ANSI_BLACK + ANSI_WHITE_BG + " CONFIRM SEARCH PARAMETERS "
                     + ANSI_RESET + '\n');
             final String OPT_LOCATION = "Location: " + ANSI_CYAN + location + ANSI_RESET;
             final String OPT_START = "Start Date: " + ANSI_CYAN + toString(start) + ANSI_RESET;
@@ -1507,7 +1551,7 @@ public class Flighty {
             }
         }
         clr();
-        System.out.println('\n' + "Searching for your perfect hotel...");
+        System.out.println('\n' + "Searching for your perfect hotel..." + '\n');
         pBar();
         clr();
 
@@ -1546,7 +1590,7 @@ public class Flighty {
             options.add(OPT_BACK);
             while (true) {
                 clr();
-                println('\n' + ANSI_BLACK + ANSI_WHITE_BG + " Select a hotel for more information "
+                println('\n' + ANSI_BLACK + ANSI_WHITE_BG + " SELECT HOTEL FOR DETAILS "
                         + ANSI_RESET + '\n');
                 String[] response = menuLong("Enter a Number", options);
                 if (response[0].equals(OPT_BACK)) {
@@ -1557,8 +1601,13 @@ public class Flighty {
                 }
             }
         } else {
-            println(ANSI_RED + "Unable to find any matching results." + ANSI_RESET);
-            wait(2);
+            if (results.isEmpty()) {
+                clr();
+                println('\n'+ANSI_RED + "Unable to find any matching results." + ANSI_RESET + '\n' 
+                    + "Try changing your search parameters");
+                awaitEnter();
+                return;
+            }
         }
     }
 
@@ -1599,7 +1648,7 @@ public class Flighty {
         while (true) {
             clr();
             displayHotelFull(hotel, from, to);
-            println('\n' + ANSI_BLACK + ANSI_WHITE_BG + " Select a room to book " + ANSI_RESET
+            println('\n' + ANSI_BLACK + ANSI_WHITE_BG + " SELECT ROOM " + ANSI_RESET
                     + '\n');
             String[] response = menuLong("Enter a Number", options);
             if (response[0].equals(OPT_BACK)) {
@@ -1697,7 +1746,7 @@ public class Flighty {
             println(ANSI_RED + "No passports on file" + ANSI_RESET + '\n'
                     + "You need to create a passport before continuing" + '\n');
             menuAddPassport();
-        } else if (!promptYN("Use existing passport?")) // Bandaid fix
+        } else if (!promptYN(printPassports()+"Use existing passport?")) // Bandaid fix
             menuAddPassport();
 
         var passports = userManager.getCurrentUser().getTravelers();
