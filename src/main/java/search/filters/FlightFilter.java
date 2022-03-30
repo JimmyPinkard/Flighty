@@ -15,6 +15,5 @@ public enum FlightFilter implements SearchFilter {
     DATE_DEPART_EARLIEST, 
     TIME_ARRIVE_LATEST, 
     DATE_ARRIVE_LATEST,
-    PETS_ALLOWED,
     LAYOVERS,
 }

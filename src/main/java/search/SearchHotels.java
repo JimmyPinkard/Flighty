@@ -59,9 +59,6 @@ public abstract class SearchHotels implements Search {
             }
         }
 
-        boolean correctPet = hotel.getFeatures().contains("Pet Friendly") 
-        || preferences.get(HotelFilter.PETS_ALLOWED).equalsIgnoreCase("false");
-
-        return correctLocation && correctCompany && correctDates && correctPet;
+        return correctLocation && correctCompany && correctDates;
     }
 }

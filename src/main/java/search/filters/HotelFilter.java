@@ -9,6 +9,5 @@ public enum HotelFilter implements SearchFilter {
     COMPANY,
     DATE_START,
     DATE_END,
-    PETS_ALLOWED,
     RATING
 }
