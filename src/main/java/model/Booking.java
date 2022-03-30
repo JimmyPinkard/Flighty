@@ -8,6 +8,7 @@ import model.bookables.flight.Flight;
 import model.bookables.flight.Seat;
 import model.users.User;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 /**
@@ -17,11 +18,20 @@ public class Booking {
     private String id;
     private Bookable booked;
     private User user;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     public Booking(final User user, final Bookable booked) {
         this.id = UUID.randomUUID().toString();
         this.user = user;
         this.booked = booked;
+    }
+
+    public Booking(final User user, final Bookable booked, final LocalDate startDate, final LocalDate endDate) {
+        this.id = UUID.randomUUID().toString();
+        this.booked = booked;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     public Booking(final DBObject object) {
@@ -52,6 +62,14 @@ public class Booking {
 
     public Bookable getBooked() {
         return booked;
+    }
+
+    public LocalDate startDate() {
+        return startDate;
+    }
+
+    public LocalDate endDate() {
+        return endDate;
     }
 
     @Override

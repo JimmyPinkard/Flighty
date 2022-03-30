@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
-import model.bookables.Bookable;
+import model.Booking;
 import model.bookables.flight.Flight;
 import model.bookables.flight.Seat;
 import model.bookables.hotel.Hotel;
@@ -22,7 +22,7 @@ import utils.TimeUtils;
 public class Printer {
     private static Printer instance;
     private static TimeUtils tUtil;
-    private ArrayList<Bookable> printQueue;
+    private ArrayList<Booking> printQueue;
     private static final String writeDir = "./";
     private static final String writeName = "itinerary";
     private static final DecimalFormat df = new DecimalFormat("0.00");
@@ -42,7 +42,7 @@ public class Printer {
      * @author rengotap
      */
     private Printer() {
-        printQueue = new ArrayList<Bookable>();
+        printQueue = new ArrayList<Booking>();
         tUtil = TimeUtils.getInstance();
     }
 
@@ -86,7 +86,9 @@ public class Printer {
      * @return formatted bookable
      * @author rengotap
      */
-    public String print(Bookable b) {
+    public String print(Booking b) {
+        if(b == null)
+            return "";
         return format(b);
     }
 
@@ -95,7 +97,7 @@ public class Printer {
      * @return all objects to be printed
      * @author rengotap
      */
-    public ArrayList<Bookable> getPrintQueue() {
+    public ArrayList<Booking> getPrintQueue() {
         return printQueue;
     }
 
@@ -104,8 +106,8 @@ public class Printer {
      * @param bookable
      * @author rengotap
      */
-    public void enqueue(Bookable bookable) {
-        printQueue.add(bookable);
+    public void enqueue(Booking booking) {
+        printQueue.add(booking);
     }
 
     /**
@@ -168,12 +170,24 @@ public class Printer {
      * @return formatted string
      * @author rengotap
      */
-    private String format(Bookable b) {
-        final String type = b.getClass().getSimpleName();
-        if(type.equals("Seat"))
-            return format((Seat)b);
-        if(type.equals("Room"))
-            return format((Room)b);
+    private String format(Booking b) {
+        final String type = b.getBooked().getClass().getSimpleName();
+        if(type.equals("Seat")) {
+            Seat s = (Seat)b.getBooked();
+            Passport p = s.getOwner();
+            return p.getPerson().getFirstName() + " " + p.getPerson().getLastName()
+            + "'s Flight Information" + '\n' + H1 + " ✈" + '\n'  // Header Line A
+            + "Booking ID: " + b.getId() + '\n'
+            + format(s);
+        }
+
+        if(type.equals("Room")) {
+            return "Hotel Reservation Info" + '\n' + H1 + " ⌂" + '\n'  // Header Line A
+                + "Booking ID: " + b.getId() + '\n'
+                + "Reservation Start: " + tUtil.toString(b.startDate()) + '\n'
+                + "Reservation End: " + tUtil.toString(b.endDate()) + '\n' 
+                + format((Room)b.getBooked());
+        }
         System.out.println(ANSI_YELLOW
             + "WARN: Unknown format passed" + ANSI_RESET);
         return "FORMAT ERROR";
@@ -185,18 +199,15 @@ public class Printer {
      * @return formatted seat
      * @author rengotap
      */
-    private String format(Seat s) {  // TODO: Finish filling out Seat Formating
+    private String format(Seat s) {
         Passport p = s.getOwner();
         Flight f = s.getFlight();
         String[] tD = tUtil.splitTime(f.getDepartureTime());
         String[] tA = tUtil.splitTime(f.getArrivalTime());
-        return p.getPerson().getFirstName() + " " + p.getPerson().getLastName()
-            + "'s Flight Information" + '\n' + H1 + " ✈" + '\n'  // Header Line A
-            + "Passport Number: " + p.getNumber() + '\n'
-            + "Booking ID: " + f.getId() + '\n'
+        return "Passport Number: " + p.getNumber() + '\n'
             + "Price Paid: $" + df.format(s.getPrice()) + '\n'
             + "Service: " + f.getCompany() + '\n'
-            + "Duration: " + tUtil.toString(f.getTravelTime())
+            + "Duration: " + tUtil.toString(f.getTravelTime()) + '\n'
             + '\n' + "SEAT INFORMATION" +'\n' + H0 + " ✈" + '\n'  // Header Line B
             + "Seat: " + s.getRow() + s.getCol() + '\n'
             + "Class: " + s.getSeatClass() + '\n'
@@ -217,13 +228,9 @@ public class Printer {
      * @return formatted seat
      * @author rengotap
      */
-    private String format(Room r) {  // TODO: Finish filling out Room Formating
+    private String format(Room r) {
         Hotel h = r.getHotel();
-        return "Hotel Reservation Info" + '\n' + H1 + " ⌂" + '\n'  // Header Line A
-            + "Booking ID: " + h.getId() + '\n'
-            + "Reservation Start: " + "PLACEHOLDER" + '\n'
-            + "Reservation End: " + "PLACEHOLDER" + '\n'
-            + "Price Paid: $" + df.format(r.getPrice()) + '\n'
+        return "Price Paid: $" + df.format(r.getPrice()) + '\n'
             + "Company Name: " + h.getCompany() + '\n'
             + '\n' + "ROOM INFORMATION" +'\n' + H0 + " ⌂" + '\n'  // Header Line B
             + "Room Number: " + r.getRoomNum() + '\n'
