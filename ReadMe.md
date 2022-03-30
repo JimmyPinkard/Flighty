@@ -16,6 +16,9 @@
 
 Our final group project for CSCE 247.
 
-## Check for changes in doc/
-
-<strike>This is it boys our final battle</strike>
+## Running
+1. Install [MongoDB Community Edition](https://www.mongodb.com/docs/v5.0/administration/install-community/)
+2. Install [MongoDB Database Tools](https://www.mongodb.com/docs/database-tools/installation/installation/) (if not included with installation)
+3. Start the MongoDB service (on linux run mongod)
+4. Populate the database via the commands in `utils/import_db.sh`
+5. Run the java project
