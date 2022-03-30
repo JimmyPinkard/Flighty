@@ -58,35 +58,6 @@ public class Flight extends TravelObject {
         this.cityTo = (String) object.get("city_to");
     }
 
-    /**
-     * Bogus constructor for flight.
-     * for testing purposes only
-     * @author rengotap
-     */
-    public Flight() {
-        super();
-        airportFrom = "ATL";
-        airportTo = "LAX";
-        this.company = "Delta";
-        this.rating = 4.7;
-        bookables.add(new Seat(4,"A",Flight.this));
-        bookables.add(new Seat(9,"B",Flight.this));
-        bookables.add(new Seat(12,"F",Flight.this));
-        bookables.add(new Seat(2,"B",Flight.this));
-        bookables.add(new Seat(20,"E",Flight.this));
-        
-    }
-
-    /**
-     * Returns true if flight has a second starting point
-     * // TODO: actually make this method
-     * @return
-     * @author rengotap
-     */
-    public boolean hasLayover() {
-        return false;
-    }
-
     public double distanceToDestination(Flight flight) {
         double a2 = Math.pow(this.startX - flight.stopX, 2);
         double b2 = Math.pow(this.startY - flight.stopY, 2);

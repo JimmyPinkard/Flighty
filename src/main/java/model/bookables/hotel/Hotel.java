@@ -38,30 +38,6 @@ public class Hotel extends TravelObject {
     }
 
     /**
-     * Bogus constructor for Hotel.
-     * for testing purposes only
-     * @author rengotap
-     */
-    public Hotel() {
-        super();
-        location = "Fiji";
-        this.company = "Hilton";
-        this.rating = 3.5;
-        this.features = new ArrayList<>();
-        this.features.add("Feature A");
-        this.features.add("Feature B");
-        this.features.add("Feature C");
-        this.features.add("Feature D");
-        this.features.add("Feature E");
-        this.features.add("Feature F");
-        this.features.add("Feature G");
-        this.features.add("Feature H");
-        bookables.add(new Room(4,"",this));
-        bookables.add(new Room(9,"",this));
-        bookables.add(new Room(12,"",this));
-    }
-
-    /**
      * Gets the hotel's features
      * @return List of features
      */

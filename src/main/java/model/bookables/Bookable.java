@@ -34,18 +34,6 @@ public abstract class Bookable implements Comparable<Bookable> {
     }
 
     /**
-     * Bogus constructor for a bookable.
-     * for testing purposes only
-     * @author rengotap
-     */
-    public Bookable() {
-        id = "Test case";
-        row = 1;
-        col = "A";
-        price = 999;
-    }
-
-    /**
      * Gets bookable's ID
      * @return UUID
      */
