@@ -44,9 +44,9 @@ public class User {
         this.password = password;
 
         preferences = new SearchPreferences();
-        specialReq = new ArrayList<String>();
-        travelers = new ArrayList<Passport>();
-        bookingHistory = new ArrayList<Booking>();
+        specialReq = new ArrayList<>();
+        travelers = new ArrayList<>();
+        bookingHistory = new ArrayList<>();
     }
 
     @SuppressWarnings("unchecked")
@@ -261,11 +261,11 @@ public class User {
 
     @Override
     public String toString() {
-        return "{" + "\"id\": " + id + ", "
-                + "\"username\": " + username + ", "
-                + "\"password\": " + password + ", "
-                + "\"email\": " + email + ", "
-                + "\"preferences\": " + preferences + ", "
+        return "{" + "\"id\": \"" + id + "\", "
+                + "\"username\": \"" + username + "\", "
+                + "\"password\": \"" + password + "\", "
+                + "\"email\": \"" + email + "\", "
+                + "\"preferences: " + preferences + ", "
                 + "\"specialReq\": " + specialReq + ", "
                 + "\"travelers\": " + travelers + ", "
                 + "\"bookingHistory\": " + bookingHistory + ", "

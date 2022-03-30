@@ -27,6 +27,7 @@ public class Data {
         this.hotels = new ArrayList<>();
         this.bookings = new ArrayList<>();
         loadAll();
+        saveAll();
     }
 
     /**
@@ -139,6 +140,7 @@ public class Data {
     public void saveAll() {
         saveFlights();
         saveHotels();
+        System.out.println("Hello World!");
         saveUsers();
         saveBookings();
     }

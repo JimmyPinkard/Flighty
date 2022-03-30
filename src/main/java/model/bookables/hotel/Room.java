@@ -3,13 +3,11 @@ package model.bookables.hotel;
 import com.mongodb.DBObject;
 import model.bookables.Bookable;
 import model.bookables.TravelObject;
+import utils.CollectionUtils;
 import utils.TimeUtils;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 
@@ -19,7 +17,6 @@ public class Room extends Bookable {
     private String info;
     private Set<LocalDate> bookedDays;
     private int sleepingCapacity;
-    private Hotel hotel;
 
     /**
      * Constructor for room
@@ -110,7 +107,12 @@ public class Room extends Bookable {
 
     @Override
     public String toString() {
-        return "{" + "bookable:" + super.toString() + "info:'" + info + '\'' + ", numBeds:"
-                + sleepingCapacity + ", bookedDays:" + bookedDays + "}";
+        return "{" + "\"id\": \"" + id + "\", "
+                + "\"info\": \"" + info + "\", "
+                + "\"bookedDays\": " + CollectionUtils.stringList(Arrays.asList(bookedDays.toArray())) + ", "
+                + "\"sleepingCapacity\": " + sleepingCapacity + ", "
+                + "\"row\": " + row + ", "
+                + "\"col\": \"" + col + "\", "
+                + "\"price\": " + price + "}";
     }
 }
