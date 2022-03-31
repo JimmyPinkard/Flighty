@@ -87,7 +87,7 @@ public class Seat extends Bookable {
 
     @Override
     public String toString() {
-        return "{" + "\"whichClass\": \"" + whichClass + "\", "
+        return "{" + "\"class\": \"" + whichClass + "\", "
                 + "\"owner\": " + owner + ", "
                 + "\"id\": \"" + id + "\", "
                 + "\"row\": " + row + ", "
