@@ -1,6 +1,7 @@
 package model.users;
 
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 
 import com.mongodb.DBObject;
@@ -13,7 +14,7 @@ import search.filters.HotelFilter;
  */
 public class SearchPreferences implements Cloneable {
 
-    public EnumMap<FlightFilter, String> fpref;
+    public EnumMap<FlightFilter, String> fPref;
     public EnumMap<HotelFilter, String> hPref;
     public static final String EMPTY = "none";
     public static final String ANY = "any";
@@ -22,17 +23,17 @@ public class SearchPreferences implements Cloneable {
      * Generates default SearchPrefrences with all set to 'none'
      */
     public SearchPreferences() {
-        fpref = new EnumMap<>(FlightFilter.class);
-        fpref.put(FlightFilter.AIRPORT_FROM, EMPTY);
-        fpref.put(FlightFilter.AIRPORT_TO, EMPTY);
-        fpref.put(FlightFilter.COMPANY, EMPTY);
-        fpref.put(FlightFilter.PRICE, EMPTY);
-        fpref.put(FlightFilter.PEOPLE, EMPTY);
-        fpref.put(FlightFilter.TIME_DEPART_EARLIEST, EMPTY);
-        fpref.put(FlightFilter.TIME_ARRIVE_LATEST, EMPTY);
-        fpref.put(FlightFilter.DATE_DEPART_EARLIEST, EMPTY);
-        fpref.put(FlightFilter.DATE_ARRIVE_LATEST, EMPTY);
-        fpref.put(FlightFilter.LAYOVERS, EMPTY);
+        fPref = new EnumMap<>(FlightFilter.class);
+        fPref.put(FlightFilter.AIRPORT_FROM, EMPTY);
+        fPref.put(FlightFilter.AIRPORT_TO, EMPTY);
+        fPref.put(FlightFilter.COMPANY, EMPTY);
+        fPref.put(FlightFilter.PRICE, EMPTY);
+        fPref.put(FlightFilter.PEOPLE, EMPTY);
+        fPref.put(FlightFilter.TIME_DEPART_EARLIEST, EMPTY);
+        fPref.put(FlightFilter.TIME_ARRIVE_LATEST, EMPTY);
+        fPref.put(FlightFilter.DATE_DEPART_EARLIEST, EMPTY);
+        fPref.put(FlightFilter.DATE_ARRIVE_LATEST, EMPTY);
+        fPref.put(FlightFilter.LAYOVERS, EMPTY);
         
         hPref = new EnumMap<>(HotelFilter.class);
         hPref.put(HotelFilter.LOCATION, EMPTY);
@@ -43,24 +44,30 @@ public class SearchPreferences implements Cloneable {
 
     public SearchPreferences(DBObject object) {
         this();
-        for(FlightFilter key : fpref.keySet()) {
-            String value = (String) object.get(String.valueOf(key));
-            if(value != null) {
-                if(value.equals(EMPTY)) {
-                    fpref.remove(key);
-                    continue;
+        var list = (List<DBObject>)object.get("fPref");
+        for(FlightFilter key : fPref.keySet()) {
+            for(DBObject obj : list) {
+                String value = (String) obj.get(key.name());
+                if(value != null) {
+                    if(value.equals(EMPTY)) {
+                        fPref.remove(key);
+                        continue;
+                    }
+                    fPref.put(key, value);
                 }
-                fpref.put(key, value);
             }
         }
+        list = ((List<DBObject>)object.get("hPref"));
         for(HotelFilter key : hPref.keySet()) {
-            String value = (String) object.get(String.valueOf(key));
-            if(value != null) {
-                if(value.equals(EMPTY)) {
-                    hPref.remove(key);
-                    continue;
+            for(DBObject obj : list) {
+                String value = (String) obj.get(key.name());
+                if(value != null) {
+                    if(value.equals(EMPTY)) {
+                        hPref.remove(key);
+                        continue;
+                    }
+                    hPref.put(key, value);
                 }
-                hPref.put(key, value);
             }
         }
     }
@@ -70,7 +77,7 @@ public class SearchPreferences implements Cloneable {
      * @return fPref
      */
     public EnumMap<FlightFilter, String> getFPref(){
-        return fpref;
+        return fPref;
     }
 
     /**
@@ -85,7 +92,7 @@ public class SearchPreferences implements Cloneable {
     public SearchPreferences clone() {
         SearchPreferences newSearchPreferences = new SearchPreferences();
 
-        newSearchPreferences.fpref = this.fpref.clone();
+        newSearchPreferences.fPref = this.fPref.clone();
         newSearchPreferences.hPref = this.hPref.clone();
 
         return newSearchPreferences;
@@ -94,7 +101,7 @@ public class SearchPreferences implements Cloneable {
     @Override
     public String toString() {
         return ("{" +
-                "\"fpref\":" + mapString(fpref, null) +
+                "\"fPref\":" + mapString(fPref, null) +
                 ", \"hPref\":" + mapString(hPref) +
                 '}').replace('=', ':');
     }

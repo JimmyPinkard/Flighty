@@ -61,7 +61,7 @@ public class User {
             //
         }
         this.email = (String) object.get("email");
-        this.preferences = new SearchPreferences(object); // TODO import preferences from data
+        this.preferences = new SearchPreferences((DBObject) object.get("preferences")); // TODO import preferences from data
         this.specialReq = new ArrayList<>();
         this.specialReq.addAll((List<String>) object.get("specialReq"));
         this.travelers = new ArrayList<>();

@@ -7,9 +7,9 @@
 	"password": "p",
 	"email": "coleca.email.sc.edu",
 	"preferences": {
-		"fpref": [
+		"fPref": [
 			{
-				"AIRPORT_FROM": "none"
+				"AIRPORT_FROM": "LAX"
 			},
 			{
 				"AIRPORT_TO": "none"
@@ -74,7 +74,7 @@
 	"password": "p",
 	"email": "imaRealHughMann@email.com",
 	"preferences": {
-		"fpref": [
+		"fPref": [
 			{
 				"AIRPORT_FROM": "none"
 			},

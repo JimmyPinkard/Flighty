@@ -21,9 +21,9 @@ public class SearchFlightTrips implements Search {
 
     public static List<FlightTrip> execute(SearchPreferences preferences) {
         preferences = preferences.clone();
-        for (var pref : preferences.fpref.keySet()) {
-            if (preferences.fpref.get(pref).equalsIgnoreCase(SearchPreferences.ANY)) {
-                preferences.fpref.put(pref, SearchPreferences.EMPTY);
+        for (var pref : preferences.fPref.keySet()) {
+            if (preferences.fPref.get(pref).equalsIgnoreCase(SearchPreferences.ANY)) {
+                preferences.fPref.put(pref, SearchPreferences.EMPTY);
             }
         }
 
@@ -31,7 +31,7 @@ public class SearchFlightTrips implements Search {
 
         // layovers from Scenario 2
         for (String amountLayovers : new String[] {"0", "1", "1", "2"}) {
-            preferences.fpref.put(FlightFilter.LAYOVERS, amountLayovers);
+            preferences.fPref.put(FlightFilter.LAYOVERS, amountLayovers);
 
             List<Flight> route = findRoute(preferences, out);
             if (!route.isEmpty())
