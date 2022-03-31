@@ -1,13 +1,11 @@
 package model.users;
 
-import java.util.Arrays;
 import java.util.EnumMap;
-import java.util.List;
+import java.util.Map;
 
 import com.mongodb.DBObject;
 import search.filters.FlightFilter;
 import search.filters.HotelFilter;
-import utils.CollectionUtils;
 
 /**
  * Stores a user's prefrences
@@ -96,8 +94,30 @@ public class SearchPreferences implements Cloneable {
     @Override
     public String toString() {
         return ("{" +
-                "\"fpref\":" + fpref +
-                ", \"hPref\":" + hPref +
+                "\"fpref\":" + mapString(fpref, null) +
+                ", \"hPref\":" + mapString(hPref) +
                 '}').replace('=', ':');
+    }
+
+    public String mapString(Map<FlightFilter, String> map, String b) {
+        if(map.size() == 0) {
+            return "[]";
+        }
+        StringBuilder builder = new StringBuilder("[");
+        for(Map.Entry entry : map.entrySet()) {
+            builder.append("{\"").append(entry.getKey()).append("\": \"").append(entry.getValue().toString()).append("\"}, ");
+        }
+        return builder.delete(builder.lastIndexOf(","), builder.length()).append("]").toString();
+    }
+
+    public String mapString(Map<HotelFilter, String> map) {
+        if(map.size() == 0) {
+            return "[]";
+        }
+        StringBuilder builder = new StringBuilder("[");
+        for(Map.Entry entry : map.entrySet()) {
+            builder.append("{\"").append(entry.getKey()).append("\": \"").append(entry.getValue().toString()).append("\"}, ");
+        }
+        return builder.delete(builder.lastIndexOf(","), builder.length()).append("]").toString();
     }
 }

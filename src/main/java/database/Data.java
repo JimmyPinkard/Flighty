@@ -1,5 +1,6 @@
 package database;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
 import model.Booking;
 import model.bookables.flight.Flight;
@@ -61,11 +62,6 @@ public class Data {
         DBCursor cursor = db.getAll("Flights");
         while(cursor.hasNext()) {
             flights.add(new Flight(cursor.next()));
-            /*
-            System.out.println(cursor.curr());
-            System.out.println(flights.get(0));
-            System.exit(1);
-            */
         }
     }
 
@@ -73,11 +69,6 @@ public class Data {
         DBCursor cursor = db.getAll("Hotels");
         while(cursor.hasNext()) {
             hotels.add(new Hotel(cursor.next()));
-            /*
-            System.out.println(cursor.curr());
-            System.out.println(hotels.get(0));
-            System.exit(1);
-            */
         }
     }
 
@@ -85,11 +76,6 @@ public class Data {
         DBCursor cursor = db.getAll("Users");
         while(cursor.hasNext()) {
             users.add(new User(cursor.next()));
-            /*
-            System.out.println(cursor.curr());
-            System.out.println(users.get(0));
-            System.exit(1);
-            */
         }
     }
 
@@ -97,11 +83,6 @@ public class Data {
         DBCursor cursor = db.getAll("Bookings");
         while(cursor.hasNext()) {
             bookings.add(new Booking(cursor.next()));
-            /*
-            System.out.println(cursor.curr());
-            System.out.println(users.get(0));
-            System.exit(1);
-            */
         }
     }
 

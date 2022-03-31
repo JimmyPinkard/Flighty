@@ -274,7 +274,7 @@ public class User {
                 + "\"username\": \"" + username + "\", "
                 + "\"password\": \"" + password + "\", "
                 + "\"email\": \"" + email + "\", "
-                //+ "\"preferences: " + preferences + ", "
+                + "\"preferences\": " + preferences + ", "
                 + "\"specialReq\": " + CollectionUtils.stringList(Arrays.asList(specialReq.toArray())) + ", "
                 + "\"travelers\": " + CollectionUtils.stringList(Arrays.asList(travelers.toArray())) + ", "
                 + "\"bookingHistory\": " + CollectionUtils.stringList(Arrays.asList(bookingHistory.toArray())) + ", "

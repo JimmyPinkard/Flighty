@@ -6,13 +6,64 @@
 	"username": "coleca",
 	"password": "p",
 	"email": "coleca.email.sc.edu",
+	"preferences": {
+		"fpref": [
+			{
+				"AIRPORT_FROM": "none"
+			},
+			{
+				"AIRPORT_TO": "none"
+			},
+			{
+				"COMPANY": "none"
+			},
+			{
+				"PRICE": "none"
+			},
+			{
+				"PEOPLE": "none"
+			},
+			{
+				"TIME_DEPART_EARLIEST": "none"
+			},
+			{
+				"DATE_DEPART_EARLIEST": "none"
+			},
+			{
+				"TIME_ARRIVE_LATEST": "none"
+			},
+			{
+				"DATE_ARRIVE_LATEST": "none"
+			},
+			{
+				"LAYOVERS": "none"
+			}
+		],
+		"hPref": [
+			{
+				"LOCATION": "none"
+			},
+			{
+				"COMPANY": "none"
+			},
+			{
+				"DATE_START": "none"
+			},
+			{
+				"DATE_END": "none"
+			}
+		]
+	},
 	"specialReq": [
 		"Pregnant",
 		"Vegan"
 	],
 	"travelers": [],
 	"bookingHistory": [],
-	"person": {"firstName" : "coleca", "lastName": "last"}
+	"person": {
+		"firstName": "coleca",
+		"lastName": "last"
+	}
 },
 {
 	"_id": {
@@ -22,12 +73,63 @@
 	"username": "realHughMann",
 	"password": "p",
 	"email": "imaRealHughMann@email.com",
+	"preferences": {
+		"fpref": [
+			{
+				"AIRPORT_FROM": "none"
+			},
+			{
+				"AIRPORT_TO": "none"
+			},
+			{
+				"COMPANY": "none"
+			},
+			{
+				"PRICE": "none"
+			},
+			{
+				"PEOPLE": "none"
+			},
+			{
+				"TIME_DEPART_EARLIEST": "none"
+			},
+			{
+				"DATE_DEPART_EARLIEST": "none"
+			},
+			{
+				"TIME_ARRIVE_LATEST": "none"
+			},
+			{
+				"DATE_ARRIVE_LATEST": "none"
+			},
+			{
+				"LAYOVERS": "none"
+			}
+		],
+		"hPref": [
+			{
+				"LOCATION": "none"
+			},
+			{
+				"COMPANY": "none"
+			},
+			{
+				"DATE_START": "none"
+			},
+			{
+				"DATE_END": "none"
+			}
+		]
+	},
 	"specialReq": [
 		"Tree nut Allergy",
 		"High Blood Pressure"
 	],
 	"travelers": [],
 	"bookingHistory": [],
-	"person": {"firstName" : "realHughMann", "lastName": "last"}
+	"person": {
+		"firstName": "realHughMann",
+		"lastName": "last"
+	}
 }]
 
