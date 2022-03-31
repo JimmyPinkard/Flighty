@@ -71,7 +71,7 @@ public abstract class Bookable implements Comparable<Bookable> {
      * returns less than 0 if this bookable has a lower row, or a lower column if the rows are the same
      * returns greater than 0 if this bookable has a higher row, or a higher column if the rows are the same
      */
-    public int compareTo(Bookable other){
+    public int compareTo(Bookable other) {
         if(other==null)
             return 0;
         if(this.row!=other.getRow())

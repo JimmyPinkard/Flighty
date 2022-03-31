@@ -29,12 +29,25 @@ public class Hotel extends TravelObject {
     }
 
     @SuppressWarnings("unchecked")
+    /*
     public Hotel(DBObject object) {
         super(object);
         this.features = (ArrayList<String>) object.get("features");
         this.location = (String) object.get("location");
         this.bookables = new ArrayList<>();
         var rooms = (List<DBObject>) object.get("rooms");
+        for(DBObject room : rooms) {
+            this.bookables.add(new Room(room, this));
+        }
+    }
+    */
+
+    public Hotel(DBObject object) {
+        super(object);
+        this.features = (ArrayList<String>) object.get("features");
+        this.location = (String) object.get("location");
+        this.bookables = new ArrayList<>();
+        var rooms = (List<DBObject>) object.get("bookables");
         for(DBObject room : rooms) {
             this.bookables.add(new Room(room, this));
         }

@@ -41,6 +41,7 @@ public class Flight extends TravelObject {
     }
 
     @SuppressWarnings("unchecked")
+    /*
     public Flight(DBObject object) {
         super(object);
         this.departureTime = timeUtils.genDateTime(object.get("date_depart") + " "
@@ -58,6 +59,24 @@ public class Flight extends TravelObject {
         this.airportTo = (String) object.get("airport_code_to");
         this.cityFrom = (String) object.get("city_from");
         this.cityTo = (String) object.get("city_to");
+    }
+    */
+
+    public Flight(DBObject object) {
+        super(object);
+        this.departureTime = timeUtils.genDateTime((String) object.get("departureTime"));
+        this.arrivalTime = timeUtils.genDateTime((String) object.get("arrivalTime"));
+        this.startX = (double) object.get("startX");
+        this.startY = (double) object.get("startY");
+        this.stopX = (double) object.get("stopX");
+        this.stopY = (double) object.get("stopY");
+        this.bookables = new ArrayList<>();
+        for (DBObject obj : (List<DBObject>) object.get("bookables"))
+            bookables.add(new Seat(obj, this));
+        this.airportFrom = (String) object.get("airportFrom");
+        this.airportTo = (String) object.get("airportTo");
+        this.cityFrom = (String) object.get("cityFrom");
+        this.cityTo = (String) object.get("cityTo");
     }
 
     public double distanceToDestination(Flight flight) {
@@ -132,8 +151,8 @@ public class Flight extends TravelObject {
                 + "\"airportTo\": \"" + airportTo + "\", "
                 + "\"cityFrom\": \"" + cityFrom + "\", "
                 + "\"cityTo\": \"" + cityTo + "\", "
-                + "\"departureTime\": \"" + departureTime.toString() + "\", "
-                + "\"arrivalTime\": \"" + arrivalTime.toString() + "\", "
+                + "\"departureTime\": \"" + timeUtils.toString(departureTime) + "\", "
+                + "\"arrivalTime\": \"" + timeUtils.toString(arrivalTime) + "\", "
                 + "\"startX\": " + startX + ", "
                 + "\"startY\": " + startY + ", "
                 + "\"stopX\": " + stopX + ", "

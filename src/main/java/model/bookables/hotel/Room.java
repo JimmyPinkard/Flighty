@@ -25,11 +25,11 @@ public class Room extends Bookable {
     public Room(int floor, String roomNum, int sleepingCapacity, TravelObject travelObject) {
         super(floor, roomNum, travelObject);
         info = "A Bookables.Hotel.Hotel.Room";
-        bookedDays = new HashSet<LocalDate>();
+        bookedDays = new HashSet<>();
         this.sleepingCapacity = sleepingCapacity;
     }
 
-    @SuppressWarnings("unchecked")
+    /*
     public Room(DBObject object, TravelObject travelObject) {
         super((int) object.get("num"), (String) object.get("floor"), object, travelObject);
         TimeUtils timeUtils = TimeUtils.getInstance();
@@ -37,6 +37,19 @@ public class Room extends Bookable {
         this.sleepingCapacity = (int) object.get("bedCount");
         bookedDays = new HashSet<>();
         for (String day : (List<String>) object.get("bookedDates")) {
+            bookedDays.add(timeUtils.generateDate(day));
+        }
+    }
+    */
+
+    @SuppressWarnings("unchecked")
+    public Room(DBObject object, TravelObject travelObject) {
+        super((int) object.get("row"), (String) object.get("col"), object, travelObject);
+        TimeUtils timeUtils = TimeUtils.getInstance();
+        info = (String) object.get("info");
+        this.sleepingCapacity = (int) object.get("sleepingCapacity");
+        bookedDays = new HashSet<>();
+        for (String day : (List<String>) object.get("bookedDays")) {
             bookedDays.add(timeUtils.generateDate(day));
         }
     }
@@ -107,9 +120,10 @@ public class Room extends Bookable {
 
     @Override
     public String toString() {
+        TimeUtils timeUtils = TimeUtils.getInstance();
         return "{" + "\"id\": \"" + id + "\", "
                 + "\"info\": \"" + info + "\", "
-                + "\"bookedDays\": " + CollectionUtils.stringList(Arrays.asList(bookedDays.toArray())) + ", "
+                + "\"bookedDays\": " + CollectionUtils.stringList(Arrays.asList(bookedDays.stream().map(timeUtils::toString).toArray())) + ", "
                 + "\"sleepingCapacity\": " + sleepingCapacity + ", "
                 + "\"row\": " + row + ", "
                 + "\"col\": \"" + col + "\", "
