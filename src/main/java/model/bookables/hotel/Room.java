@@ -29,7 +29,7 @@ public class Room extends Bookable {
         this.sleepingCapacity = sleepingCapacity;
     }
 
-    /*
+    ///*
     public Room(DBObject object, TravelObject travelObject) {
         super((int) object.get("num"), (String) object.get("floor"), object, travelObject);
         TimeUtils timeUtils = TimeUtils.getInstance();
@@ -40,9 +40,10 @@ public class Room extends Bookable {
             bookedDays.add(timeUtils.generateDate(day));
         }
     }
-    */
+    //*/
 
     @SuppressWarnings("unchecked")
+    /*
     public Room(DBObject object, TravelObject travelObject) {
         super((int) object.get("row"), (String) object.get("col"), object, travelObject);
         TimeUtils timeUtils = TimeUtils.getInstance();
@@ -53,6 +54,7 @@ public class Room extends Bookable {
             bookedDays.add(timeUtils.generateDate(day));
         }
     }
+     */
 
     public boolean isBooked(LocalDate from, LocalDate to) {
         for (LocalDate date = from; !date.isAfter(to); date = date.plusDays(1)) {
@@ -123,7 +125,7 @@ public class Room extends Bookable {
         TimeUtils timeUtils = TimeUtils.getInstance();
         return "{" + "\"id\": \"" + id + "\", "
                 + "\"info\": \"" + info + "\", "
-                + "\"bookedDays\": " + CollectionUtils.stringList(Arrays.asList(bookedDays.stream().map(timeUtils::toString).toArray())) + ", "
+                + "\"bookedDays\": " + CollectionUtils.stringArray(bookedDays.stream().map(timeUtils::toString).toArray()) + ", "
                 + "\"sleepingCapacity\": " + sleepingCapacity + ", "
                 + "\"row\": " + row + ", "
                 + "\"col\": \"" + col + "\", "

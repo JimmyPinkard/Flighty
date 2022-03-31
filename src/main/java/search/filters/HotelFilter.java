@@ -5,6 +5,7 @@ package search.filters;
  *  @author Rengotap
  */
 public enum HotelFilter implements SearchFilter {
+    HOTEL,
     LOCATION,
     COMPANY,
     DATE_START,

@@ -38,9 +38,9 @@ public abstract class TravelObject {
                 return flightFilter;
             }
         }
-        for (SearchFilter hotelFilters : HotelFilter.values()) {
-            if (filter.equals(hotelFilters)) {
-                return hotelFilters;
+        for (SearchFilter hotelFilter : HotelFilter.values()) {
+            if (filter.equals(hotelFilter.toString())) {
+                return hotelFilter;
             }
         }
         return null;

@@ -3,7 +3,6 @@ package model.users;
 import com.mongodb.DBObject;
 
 import model.Booking;
-import model.bookables.Bookable;
 import model.users.info.Passport;
 import model.users.info.Person;
 import search.filters.FlightFilter;
@@ -55,6 +54,7 @@ public class User {
         //Duct Tape
         //TODO not this
         try {
+            System.out.println(object.keySet());
             this.person = new Person((DBObject) object.get("person"));
         }
         catch (Exception e) {
@@ -275,9 +275,9 @@ public class User {
                 + "\"password\": \"" + password + "\", "
                 + "\"email\": \"" + email + "\", "
                 + "\"preferences\": " + preferences + ", "
-                + "\"specialReq\": " + CollectionUtils.stringList(Arrays.asList(specialReq.toArray())) + ", "
-                + "\"travelers\": " + CollectionUtils.stringList(Arrays.asList(travelers.toArray())) + ", "
-                + "\"bookingHistory\": " + CollectionUtils.stringList(Arrays.asList(bookingHistory.toArray())) + ", "
+                + "\"specialReq\": " + CollectionUtils.stringArray(specialReq.toArray()) + ", "
+                + "\"travelers\": " + CollectionUtils.stringArray(travelers.toArray()) + ", "
+                + "\"bookingHistory\": " + CollectionUtils.stringArray(bookingHistory.toArray()) + ", "
                 + "\"person\": " + person + "}";
     }
 }

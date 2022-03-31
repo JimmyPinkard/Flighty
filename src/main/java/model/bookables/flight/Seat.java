@@ -91,7 +91,7 @@ public class Seat extends Bookable {
                 + "\"owner\": " + owner + ", "
                 + "\"id\": \"" + id + "\", "
                 + "\"row\": " + row + ", "
-                + "\"col\": \"" + col + "\", "
+                + "\"column\": \"" + col + "\", "
                 + "\"price\": " + price + ", "
                 + "\"isBooked\": " + isBooked + "}";
     }

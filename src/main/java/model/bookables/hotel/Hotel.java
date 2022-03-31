@@ -29,7 +29,7 @@ public class Hotel extends TravelObject {
     }
 
     @SuppressWarnings("unchecked")
-    /*
+    ///*
     public Hotel(DBObject object) {
         super(object);
         this.features = (ArrayList<String>) object.get("features");
@@ -40,8 +40,8 @@ public class Hotel extends TravelObject {
             this.bookables.add(new Room(room, this));
         }
     }
-    */
-
+    //*/
+/*
     public Hotel(DBObject object) {
         super(object);
         this.features = (ArrayList<String>) object.get("features");
@@ -52,6 +52,7 @@ public class Hotel extends TravelObject {
             this.bookables.add(new Room(room, this));
         }
     }
+    */
 
     /**
      * Gets the hotel's features
@@ -112,7 +113,7 @@ public class Hotel extends TravelObject {
                 + "\"bookables\": " + bookables + ", "
                 + "\"company\": \"" + company + "\", "
                 + "\"rating\": " + rating + ", "
-                + "\"features\": " + CollectionUtils.stringList(Collections.singletonList(features)) + ", "
-                + "\"filters\": " + CollectionUtils.stringList(Collections.singletonList(filters)) + "}";
+                + "\"features\": " + CollectionUtils.stringArray(features.toArray()) + ", "
+                + "\"filters\": " + CollectionUtils.stringArray(filters.toArray()) + "}";
     }
 }
