@@ -1,0 +1,33 @@
+[{
+	"_id": {
+		"$oid": "6244f657cb1ce22a4ea5df36"
+	},
+	"id": "34c68600-4ab7-4cd1-b0b9-0048dfd4d8c7",
+	"username": "coleca",
+	"password": "p",
+	"email": "coleca.email.sc.edu",
+	"specialReq": [
+		"Pregnant",
+		"Vegan"
+	],
+	"travelers": [],
+	"bookingHistory": [],
+	"person": null
+},
+{
+	"_id": {
+		"$oid": "6244f6573c9783e53731f004"
+	},
+	"id": "34c68600-4ab7-4cd1-b0b9-0048dfd4d8c6",
+	"username": "realHughMann",
+	"password": "p",
+	"email": "imaRealHughMann@email.com",
+	"specialReq": [
+		"Tree nut Allergy",
+		"High Blood Pressure"
+	],
+	"travelers": [],
+	"bookingHistory": [],
+	"person": null
+}]
+
