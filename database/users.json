@@ -1,71 +1,135 @@
-[
-	{
-		"id": "34c68600-4ab7-4cd1-b0b9-0048dfd4d8c7",
-		"person": {
-			"firstName": "coleca",
-			"lastName": "last"
-		},
-		"username": "coleca",
-		"password": "p",
-		"email": "coleca.email.sc.edu",
-		"phone": "555-555-5555",
-		"preferences": {
-			"fPref": [
-				{"COMPANY": "United"},
-				{"AIRPORT_FROM": "CAE"}
-			],
-			"hPref": [
-				{"prefHotel": "none"}
-			]
-		},
-		"depEarly":1000,
-		"depLate":1730,
-		"specialReq":
-		[
-			"Pregnant", "Vegan"
+[{
+	"_id": {
+		"$oid": "6245255024a8d1cf147b8fd1"
+	},
+	"id": "34c68600-4ab7-4cd1-b0b9-0048dfd4d8c6",
+	"username": "realHughMann",
+	"password": "p",
+	"email": "imaRealHughMann@email.com",
+	"preferences": {
+		"fPref": [
+			{
+				"AIRPORT_FROM": "ATL"
+			},
+			{
+				"AIRPORT_TO": "none"
+			},
+			{
+				"COMPANY": "Delta"
+			},
+			{
+				"PRICE": "none"
+			},
+			{
+				"PEOPLE": "none"
+			},
+			{
+				"TIME_DEPART_EARLIEST": "none"
+			},
+			{
+				"DATE_DEPART_EARLIEST": "none"
+			},
+			{
+				"TIME_ARRIVE_LATEST": "none"
+			},
+			{
+				"DATE_ARRIVE_LATEST": "none"
+			},
+			{
+				"LAYOVERS": "none"
+			}
 		],
-		"passports":
-		[
-			"de72302c-ea30-4054-8333-1c2c4b8c08df"
-		],
-		"bookedListings":
-		[
-			"7ce9ffe5-e973-404d-a505-efe963f33308", "a7a4ea7d-7d50-4bed-b1d5-bfd045f9f908"
+		"hPref": [
+			{
+				"LOCATION": "none"
+			},
+			{
+				"COMPANY": "none"
+			},
+			{
+				"DATE_START": "none"
+			},
+			{
+				"DATE_END": "none"
+			}
 		]
 	},
-	{
-		"id": "34c68600-4ab7-4cd1-b0b9-0048dfd4d8c6",
-		"person": {
-			"firstName": "realHughMann",
-			"lastName": "last"
-		},
-		"username": "realHughMann",
-		"password": "p",
-		"email": "imaRealHughMann@email.com",
-		"phone": "555-555-5555",
-		"preferences": {
-			"fPref": [
-				{"COMPANY":"Delta"},
-				{"AIRPORT_FROM":"ATL"}
-			],
-			"hPref": [
-				{"prefHotel": "Hilton"}
-			]
-		},
-		"depEarly":900,
-		"depLate":1900,
-		"specialReq":
-		[
-			"Tree nut Allergy", "High Blood Pressure"
-		],
-		"passports":
-		[
-			"de72302c-ea30-4054-8333-1c2c4b8c08df", "422344ba-257d-46ef-ad13-25263d575556"
-		],
-		"bookedListings":
-		[
-			"7ce9ffe5-e973-404d-a505-efe963f33308", "a7a4ea7d-7d50-4bed-b1d5-bfd045f9f908"
-		]
+	"specialReq": [
+		"Tree nut Allergy",
+		"High Blood Pressure"
+	],
+	"travelers": [],
+	"bookingHistory": [],
+	"person": {
+		"firstName": "realHughMann",
+		"lastName": "last"
 	}
-]
+},
+{
+	"_id": {
+		"$oid": "6245255024a8d1cf147b8fd2"
+	},
+	"id": "34c68600-4ab7-4cd1-b0b9-0048dfd4d8c7",
+	"username": "coleca",
+	"password": "p",
+	"email": "coleca.email.sc.edu",
+	"preferences": {
+		"fPref": [
+			{
+				"AIRPORT_FROM": "CAE"
+			},
+			{
+				"AIRPORT_TO": "none"
+			},
+			{
+				"COMPANY": "United"
+			},
+			{
+				"PRICE": "none"
+			},
+			{
+				"PEOPLE": "none"
+			},
+			{
+				"TIME_DEPART_EARLIEST": "none"
+			},
+			{
+				"DATE_DEPART_EARLIEST": "none"
+			},
+			{
+				"TIME_ARRIVE_LATEST": "none"
+			},
+			{
+				"DATE_ARRIVE_LATEST": "none"
+			},
+			{
+				"LAYOVERS": "none"
+			}
+		],
+		"hPref": [
+			{
+				"LOCATION": "none"
+			},
+			{
+				"COMPANY": "none"
+			},
+			{
+				"DATE_START": "none"
+			},
+			{
+				"DATE_END": "none"
+			}
+		]
+	},
+	"specialReq": [
+		"Pregnant",
+		"Vegan"
+	],
+	"travelers": [],
+	"bookingHistory": [],
+	"person": {
+		"firstName": "coleca",
+		"lastName": "last"
+	}
+}]
 

@@ -1,4935 +1,5062 @@
-[
-	{
-		"id": "c55ca6a2-ef01-47b2-b9e3-07d4caade1ac",
-		"company": "InterContinental",
-		"location": "McAllen",
-		"check_out_time": "12:00 UTS",
-		"rating": 1.5,
-		"features": [
-			"Parking",
-			"Pool",
-			"Pet friendly",
-			"Bar"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "6cbb27dd-b5d4-44cd-a884-68c2bdf5a58b",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 277,
-				"floor": "A",
-				"num": 17,
-				"bookedDates": [
-					"1/4/22",
-					"1/5/22"
-				]
-			},
-			{
-				"id": "2c731f3d-faa9-4c8d-82aa-0c9b4babe838",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 101,
-				"floor": "B",
-				"num": 10,
-				"bookedDates": [
-					"1/3/22",
-					"1/4/22",
-					"1/6/22",
-					"1/7/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "6a0048fb-f638-413f-b4d6-ce9e94dd3aa7",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 117,
-				"floor": "C",
-				"num": 13,
-				"bookedDates": []
-			},
-			{
-				"id": "c2a7f209-e875-4e25-9bae-66bb0ddf62a3",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 272,
-				"floor": "D",
-				"num": 9,
-				"bookedDates": [
-					"1/9/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "39aa491f-8bb2-4bce-bcb8-9d79b961a5c8",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 54,
-				"floor": "E",
-				"num": 7,
-				"bookedDates": [
-					"1/1/22",
-					"1/7/22",
-					"1/8/22"
-				]
-			}
-		]
+[{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0ce"
 	},
-	{
-		"id": "a3c574f7-b119-4a75-b54d-895037733d8e",
-		"company": "InterContinental",
-		"location": "Houston",
-		"check_out_time": "10:00 UTS",
-		"rating": 4.4,
-		"features": [
-			"Parking",
-			"Pool",
-			"Bar",
-			"Lounge Area",
-			"Restaurant",
-			"Gym",
-			"Pet friendly"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "9d1ea230-9ebc-4341-8373-65ce2a79ebc9",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 221,
-				"floor": "A",
-				"num": 17,
-				"bookedDates": [
-					"1/1/22",
-					"1/3/22",
-					"1/6/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "7ee72078-d78b-4ee5-a0e1-1c46536480b5",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 283,
-				"floor": "B",
-				"num": 7,
-				"bookedDates": [
-					"1/8/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "ea55c63e-177d-40b6-9f9f-8c720efa5e6e",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 228,
-				"floor": "C",
-				"num": 8,
-				"bookedDates": []
-			},
-			{
-				"id": "146726f2-fcc1-481a-ac06-c9c7bc30e1a3",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 213,
-				"floor": "D",
-				"num": 18,
-				"bookedDates": [
-					"1/9/22"
-				]
-			}
-		]
+	"id": "f492db30-7683-4d2c-8f59-5247f9372114",
+	"location": "McAllen",
+	"bookables": [
+		{
+			"id": "713cda4e-278c-4be1-ac6a-20c5511bd650",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/6/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 15,
+			"col": "A",
+			"price": 148.0
+		},
+		{
+			"id": "aaffa2b1-eb60-449f-9a3b-c3d5e375b7d9",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/8/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 2,
+			"col": "B",
+			"price": 239.0
+		},
+		{
+			"id": "0e8ac012-2ea6-4e6d-babc-2a0ac355e475",
+			"info": "1 Queen Bed",
+			"bookedDays": [],
+			"sleepingCapacity": 1,
+			"row": 6,
+			"col": "C",
+			"price": 53.0
+		},
+		{
+			"id": "498ea02c-e7fe-4f4e-8148-46cc6838f223",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/6/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 10,
+			"col": "D",
+			"price": 121.0
+		},
+		{
+			"id": "e9296017-ed28-4958-a36e-0aabd0290897",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/7/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 17,
+			"col": "E",
+			"price": 271.0
+		}
+	],
+	"company": "Choice",
+	"rating": 3.3,
+	"features": [
+		"Lounge Area",
+		"Restaurant",
+		"Gym",
+		"Bar",
+		"Pet friendly"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0cf"
 	},
-	{
-		"id": "f492db30-7683-4d2c-8f59-5247f9372114",
-		"company": "Choice",
-		"location": "McAllen",
-		"check_out_time": "11:00 UTS",
-		"rating": 3.3,
-		"features": [
-			"Lounge Area",
-			"Restaurant",
-			"Gym",
-			"Bar",
-			"Pet friendly"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "713cda4e-278c-4be1-ac6a-20c5511bd650",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 148,
-				"floor": "A",
-				"num": 15,
-				"bookedDates": [
-					"1/6/22"
-				]
-			},
-			{
-				"id": "aaffa2b1-eb60-449f-9a3b-c3d5e375b7d9",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 239,
-				"floor": "B",
-				"num": 2,
-				"bookedDates": [
-					"1/8/22"
-				]
-			},
-			{
-				"id": "0e8ac012-2ea6-4e6d-babc-2a0ac355e475",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 53,
-				"floor": "C",
-				"num": 6,
-				"bookedDates": []
-			},
-			{
-				"id": "498ea02c-e7fe-4f4e-8148-46cc6838f223",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 121,
-				"floor": "D",
-				"num": 10,
-				"bookedDates": [
-					"1/6/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "e9296017-ed28-4958-a36e-0aabd0290897",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 271,
-				"floor": "E",
-				"num": 17,
-				"bookedDates": [
-					"1/7/22"
-				]
-			}
-		]
+	"id": "34112223-1efb-4f14-abd1-b785b928337c",
+	"location": "Dallas",
+	"bookables": [
+		{
+			"id": "3271a544-b02f-4b11-b793-9f48d68d5984",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/5/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 8,
+			"col": "A",
+			"price": 256.0
+		},
+		{
+			"id": "69cb2883-a570-4a33-88e5-38d814439e98",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/4/22",
+				"1/5/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 4,
+			"col": "B",
+			"price": 230.0
+		},
+		{
+			"id": "f9ac4c4c-794b-41f0-9aa1-37d074518cf4",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/3/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 8,
+			"col": "C",
+			"price": 201.0
+		},
+		{
+			"id": "0ab84f2f-ab9d-46b0-9d16-fd3e98abd7ea",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/2/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 7,
+			"col": "D",
+			"price": 91.0
+		}
+	],
+	"company": "Choice",
+	"rating": 1.4,
+	"features": [
+		"Lounge Area",
+		"Bar",
+		"Pet friendly",
+		"Pool",
+		"Restaurant",
+		"Free Wifi",
+		"Parking"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0d0"
 	},
-	{
-		"id": "00520dd3-4a8a-425a-93e8-ead3cdcc5614",
-		"company": "Wyndham",
-		"location": "Houston",
-		"check_out_time": "12:00 UTS",
-		"rating": 1.5,
-		"features": [
-			"Lounge Area",
-			"Free Wifi",
-			"Bar"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "466dbe0b-9d4d-4444-b934-9cd8acb23791",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 209,
-				"floor": "A",
-				"num": 7,
-				"bookedDates": [
-					"1/4/22",
-					"1/7/22"
-				]
-			},
-			{
-				"id": "6725dd6d-e2d6-4486-8f1c-e17684583cb9",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 223,
-				"floor": "B",
-				"num": 16,
-				"bookedDates": [
-					"1/1/22",
-					"1/2/22"
-				]
-			},
-			{
-				"id": "17ce5000-096f-46e8-bebd-cc740cf443ca",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 275,
-				"floor": "C",
-				"num": 8,
-				"bookedDates": [
-					"1/4/22",
-					"1/5/22"
-				]
-			},
-			{
-				"id": "c9f86249-adae-4c02-92b2-7dbcbe9ce0b7",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 241,
-				"floor": "D",
-				"num": 16,
-				"bookedDates": [
-					"1/4/22",
-					"1/5/22",
-					"1/8/22"
-				]
-			}
-		]
+	"id": "00520dd3-4a8a-425a-93e8-ead3cdcc5614",
+	"location": "Houston",
+	"bookables": [
+		{
+			"id": "466dbe0b-9d4d-4444-b934-9cd8acb23791",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/4/22",
+				"1/7/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 7,
+			"col": "A",
+			"price": 209.0
+		},
+		{
+			"id": "6725dd6d-e2d6-4486-8f1c-e17684583cb9",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/1/22",
+				"1/2/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 16,
+			"col": "B",
+			"price": 223.0
+		},
+		{
+			"id": "17ce5000-096f-46e8-bebd-cc740cf443ca",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/4/22",
+				"1/5/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 8,
+			"col": "C",
+			"price": 275.0
+		},
+		{
+			"id": "c9f86249-adae-4c02-92b2-7dbcbe9ce0b7",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/4/22",
+				"1/5/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 16,
+			"col": "D",
+			"price": 241.0
+		}
+	],
+	"company": "Wyndham",
+	"rating": 1.5,
+	"features": [
+		"Lounge Area",
+		"Free Wifi",
+		"Bar"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0d1"
 	},
-	{
-		"id": "34112223-1efb-4f14-abd1-b785b928337c",
-		"company": "Choice",
-		"location": "Dallas",
-		"check_out_time": "12:00 UTS",
-		"rating": 1.4,
-		"features": [
-			"Lounge Area",
-			"Bar",
-			"Pet friendly",
-			"Pool",
-			"Restaurant",
-			"Free Wifi",
-			"Parking"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "3271a544-b02f-4b11-b793-9f48d68d5984",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 256,
-				"floor": "A",
-				"num": 8,
-				"bookedDates": [
-					"1/5/22"
-				]
-			},
-			{
-				"id": "69cb2883-a570-4a33-88e5-38d814439e98",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 230,
-				"floor": "B",
-				"num": 4,
-				"bookedDates": [
-					"1/4/22",
-					"1/5/22"
-				]
-			},
-			{
-				"id": "f9ac4c4c-794b-41f0-9aa1-37d074518cf4",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 201,
-				"floor": "C",
-				"num": 8,
-				"bookedDates": [
-					"1/3/22"
-				]
-			},
-			{
-				"id": "0ab84f2f-ab9d-46b0-9d16-fd3e98abd7ea",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 91,
-				"floor": "D",
-				"num": 7,
-				"bookedDates": [
-					"1/2/22"
-				]
-			}
-		]
+	"id": "32e147c4-020a-4baf-9838-dfb37df8003a",
+	"location": "El Paso",
+	"bookables": [
+		{
+			"id": "3ed6280f-43e9-4091-9695-8e2ade2fd8b2",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/1/22",
+				"1/7/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 16,
+			"col": "A",
+			"price": 178.0
+		},
+		{
+			"id": "82437423-7583-4bae-9aa9-69d887cd6c18",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/5/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 9,
+			"col": "B",
+			"price": 219.0
+		},
+		{
+			"id": "5756c2e0-6c13-48c0-9903-ffe6505e0fbe",
+			"info": "2 Queen Beds",
+			"bookedDays": [],
+			"sleepingCapacity": 4,
+			"row": 13,
+			"col": "C",
+			"price": 197.0
+		},
+		{
+			"id": "656fe4c3-b111-4943-b790-6f352d840bf9",
+			"info": "1 Queen Bed",
+			"bookedDays": [],
+			"sleepingCapacity": 1,
+			"row": 7,
+			"col": "D",
+			"price": 199.0
+		}
+	],
+	"company": "Hilton",
+	"rating": 2.6,
+	"features": [
+		"Pet friendly",
+		"Gym",
+		"Pool",
+		"Lounge Area",
+		"Restaurant",
+		"Free Wifi",
+		"Parking",
+		"Bar"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0d2"
 	},
-	{
-		"id": "af5db5b4-e8cc-4e0d-adbb-56fb418f8981",
-		"company": "Marriott",
-		"location": "Houston",
-		"check_out_time": "11:00 UTS",
-		"rating": 0.7,
-		"features": [
-			"Pool",
-			"Gym",
-			"Free Wifi",
-			"Parking",
-			"Pet friendly"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "f17436ea-e6f7-4391-8cab-8acc4681ec90",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 85,
-				"floor": "A",
-				"num": 6,
-				"bookedDates": [
-					"1/1/22",
-					"1/2/22",
-					"1/3/22",
-					"1/7/22"
-				]
-			},
-			{
-				"id": "19e49195-7b0c-4615-be7a-e11c2f1fd28b",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 138,
-				"floor": "B",
-				"num": 15,
-				"bookedDates": [
-					"1/6/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "fd82f12b-8afc-4c4f-afa8-4c548730dd6e",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 157,
-				"floor": "C",
-				"num": 16,
-				"bookedDates": [
-					"1/8/22",
-					"1/9/22"
-				]
-			}
-		]
+	"id": "e42710e1-80b9-401e-9db9-3f803ca2f888",
+	"location": "Laredo",
+	"bookables": [
+		{
+			"id": "8f74e84a-8cc3-4a6b-8615-f0de6897b966",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/6/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 8,
+			"col": "A",
+			"price": 168.0
+		},
+		{
+			"id": "3e5185a0-dc84-4b88-be03-46244cc9d7d6",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/3/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 9,
+			"col": "B",
+			"price": 232.0
+		},
+		{
+			"id": "1915af5c-7c63-40c2-84cb-97b6eed92274",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/8/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 16,
+			"col": "C",
+			"price": 215.0
+		},
+		{
+			"id": "c43ea6b8-131d-4a53-877c-c2d90af7e7ac",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/4/22",
+				"1/5/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 2,
+			"col": "D",
+			"price": 62.0
+		},
+		{
+			"id": "71987134-fcc4-44b1-9288-53614a0c157c",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/3/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 8,
+			"col": "E",
+			"price": 150.0
+		},
+		{
+			"id": "eb92b49e-db4f-492a-b459-6bf9adaa4b3b",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/2/22",
+				"1/5/22",
+				"1/6/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 14,
+			"col": "F",
+			"price": 293.0
+		}
+	],
+	"company": "InterContinental",
+	"rating": 0.6,
+	"features": [
+		"Bar",
+		"Free Wifi",
+		"Pet friendly"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0d3"
 	},
-	{
-		"id": "13de9b94-02da-4ea6-a462-ef69fcaa01ed",
-		"company": "InterContinental",
-		"location": "Laredo",
-		"check_out_time": "12:00 UTS",
-		"rating": 0.1,
-		"features": [
-			"Free Wifi",
-			"Restaurant",
-			"Pet friendly",
-			"Pool"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "7d253922-62dc-4bf4-bde6-5e3ee7f99bad",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 152,
-				"floor": "A",
-				"num": 10,
-				"bookedDates": [
-					"1/7/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "6148e251-90fe-4c66-9683-4f70959d36a8",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 152,
-				"floor": "B",
-				"num": 8,
-				"bookedDates": [
-					"1/8/22",
-					"1/9/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "28d4efff-4efc-4f07-bfd3-082000414891",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 129,
-				"floor": "C",
-				"num": 8,
-				"bookedDates": [
-					"1/9/22",
-					"1/10/22"
-				]
-			}
-		]
+	"id": "acced7c8-2fcc-4684-b0b4-dadebb1d5434",
+	"location": "Houston",
+	"bookables": [
+		{
+			"id": "25327eb9-b262-4a44-abd3-625996bbd478",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/1/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 5,
+			"col": "A",
+			"price": 175.0
+		},
+		{
+			"id": "a48578f6-89b3-4163-a548-87b93d38ac6d",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/1/22",
+				"1/3/22",
+				"1/4/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 9,
+			"col": "B",
+			"price": 141.0
+		},
+		{
+			"id": "d46e7040-f6cb-4270-86e4-e83ce02083b9",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/3/22",
+				"1/5/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 14,
+			"col": "C",
+			"price": 79.0
+		},
+		{
+			"id": "7629a0a4-2703-4903-8dd9-67338c555aca",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/8/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 2,
+			"col": "D",
+			"price": 202.0
+		}
+	],
+	"company": "Wyndham",
+	"rating": 1.7,
+	"features": [
+		"Bar",
+		"Lounge Area",
+		"Restaurant",
+		"Pool",
+		"Pet friendly",
+		"Free Wifi",
+		"Gym"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0d4"
 	},
-	{
-		"id": "acced7c8-2fcc-4684-b0b4-dadebb1d5434",
-		"company": "Wyndham",
-		"location": "Houston",
-		"check_out_time": "11:00 UTS",
-		"rating": 1.7,
-		"features": [
-			"Bar",
-			"Lounge Area",
-			"Restaurant",
-			"Pool",
-			"Pet friendly",
-			"Free Wifi",
-			"Gym"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "25327eb9-b262-4a44-abd3-625996bbd478",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 175,
-				"floor": "A",
-				"num": 5,
-				"bookedDates": [
-					"1/1/22"
-				]
-			},
-			{
-				"id": "a48578f6-89b3-4163-a548-87b93d38ac6d",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 141,
-				"floor": "B",
-				"num": 9,
-				"bookedDates": [
-					"1/1/22",
-					"1/3/22",
-					"1/4/22"
-				]
-			},
-			{
-				"id": "d46e7040-f6cb-4270-86e4-e83ce02083b9",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 79,
-				"floor": "C",
-				"num": 14,
-				"bookedDates": [
-					"1/3/22",
-					"1/5/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "7629a0a4-2703-4903-8dd9-67338c555aca",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 202,
-				"floor": "D",
-				"num": 2,
-				"bookedDates": [
-					"1/8/22",
-					"1/10/22"
-				]
-			}
-		]
+	"id": "39eb8da9-640f-4144-9a4f-04b89a6a8a9e",
+	"location": "Austin",
+	"bookables": [
+		{
+			"id": "aa5c9c09-5e07-4b3d-b5a3-f65ae739db16",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/7/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 4,
+			"col": "A",
+			"price": 225.0
+		},
+		{
+			"id": "722c7f63-0f55-4b2b-b943-d5f15c5fbb30",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/9/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 10,
+			"col": "B",
+			"price": 161.0
+		},
+		{
+			"id": "020bdb38-7255-47f1-9b0d-909069828c96",
+			"info": "2 Double Beds",
+			"bookedDays": [],
+			"sleepingCapacity": 4,
+			"row": 12,
+			"col": "C",
+			"price": 140.0
+		}
+	],
+	"company": "Marriott",
+	"rating": 1.2,
+	"features": [
+		"Pet friendly",
+		"Restaurant",
+		"Pool",
+		"Parking",
+		"Free Wifi",
+		"Bar"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0d5"
 	},
-	{
-		"id": "32e147c4-020a-4baf-9838-dfb37df8003a",
-		"company": "Hilton",
-		"location": "El Paso",
-		"check_out_time": "10:00 UTS",
-		"rating": 2.6,
-		"features": [
-			"Pet friendly",
-			"Gym",
-			"Pool",
-			"Lounge Area",
-			"Restaurant",
-			"Free Wifi",
-			"Parking",
-			"Bar"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "3ed6280f-43e9-4091-9695-8e2ade2fd8b2",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 178,
-				"floor": "A",
-				"num": 16,
-				"bookedDates": [
-					"1/1/22",
-					"1/7/22"
-				]
-			},
-			{
-				"id": "82437423-7583-4bae-9aa9-69d887cd6c18",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 219,
-				"floor": "B",
-				"num": 9,
-				"bookedDates": [
-					"1/5/22"
-				]
-			},
-			{
-				"id": "5756c2e0-6c13-48c0-9903-ffe6505e0fbe",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 197,
-				"floor": "C",
-				"num": 13,
-				"bookedDates": []
-			},
-			{
-				"id": "656fe4c3-b111-4943-b790-6f352d840bf9",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 199,
-				"floor": "D",
-				"num": 7,
-				"bookedDates": []
-			}
-		]
+	"id": "819ad46a-11c1-435b-845b-ea507f7ff74b",
+	"location": "Laredo",
+	"bookables": [
+		{
+			"id": "6f3047b9-5138-442d-ad25-b6470242c3eb",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/2/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 5,
+			"col": "A",
+			"price": 162.0
+		},
+		{
+			"id": "57a0106f-a418-45d3-9e97-d10e95dcd3cb",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/2/22",
+				"1/4/22",
+				"1/7/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 6,
+			"col": "B",
+			"price": 241.0
+		},
+		{
+			"id": "0d97d6c3-5224-42d5-9789-db196de07d2a",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/6/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 7,
+			"col": "C",
+			"price": 127.0
+		},
+		{
+			"id": "a59765aa-e711-47a4-81b9-2b4e5b95638b",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/3/22",
+				"1/9/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 16,
+			"col": "D",
+			"price": 114.0
+		},
+		{
+			"id": "5be09dd1-ec10-4bf1-90fa-c87c3d7bfeab",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/1/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 2,
+			"col": "E",
+			"price": 125.0
+		},
+		{
+			"id": "830fda4f-aa84-44f5-aded-46b0bf0fcaca",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/1/22",
+				"1/5/22",
+				"1/6/22",
+				"1/7/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 10,
+			"col": "F",
+			"price": 167.0
+		}
+	],
+	"company": "Hilton",
+	"rating": 1.5,
+	"features": [
+		"Parking",
+		"Gym",
+		"Pet friendly",
+		"Lounge Area",
+		"Restaurant",
+		"Bar",
+		"Pool",
+		"Free Wifi"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0d6"
 	},
-	{
-		"id": "e42710e1-80b9-401e-9db9-3f803ca2f888",
-		"company": "InterContinental",
-		"location": "Laredo",
-		"check_out_time": "11:00 UTS",
-		"rating": 0.6,
-		"features": [
-			"Bar",
-			"Free Wifi",
-			"Pet friendly"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "8f74e84a-8cc3-4a6b-8615-f0de6897b966",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 168,
-				"floor": "A",
-				"num": 8,
-				"bookedDates": [
-					"1/6/22"
-				]
-			},
-			{
-				"id": "3e5185a0-dc84-4b88-be03-46244cc9d7d6",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 232,
-				"floor": "B",
-				"num": 9,
-				"bookedDates": [
-					"1/3/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "1915af5c-7c63-40c2-84cb-97b6eed92274",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 215,
-				"floor": "C",
-				"num": 16,
-				"bookedDates": [
-					"1/8/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "c43ea6b8-131d-4a53-877c-c2d90af7e7ac",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 62,
-				"floor": "D",
-				"num": 2,
-				"bookedDates": [
-					"1/4/22",
-					"1/5/22"
-				]
-			},
-			{
-				"id": "71987134-fcc4-44b1-9288-53614a0c157c",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 150,
-				"floor": "E",
-				"num": 8,
-				"bookedDates": [
-					"1/3/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "eb92b49e-db4f-492a-b459-6bf9adaa4b3b",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 293,
-				"floor": "F",
-				"num": 14,
-				"bookedDates": [
-					"1/2/22",
-					"1/5/22",
-					"1/6/22",
-					"1/10/22"
-				]
-			}
-		]
+	"id": "38295294-95fe-45e8-b377-305537b84427",
+	"location": "El Paso",
+	"bookables": [
+		{
+			"id": "45f7b516-4811-4cc2-afe6-2f8dc55f2957",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/1/22",
+				"1/3/22",
+				"1/4/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 7,
+			"col": "A",
+			"price": 286.0
+		},
+		{
+			"id": "0b11fd70-092f-47d4-a311-37186500a398",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/1/22",
+				"1/2/22",
+				"1/7/22",
+				"1/8/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 5,
+			"col": "B",
+			"price": 101.0
+		},
+		{
+			"id": "07095809-a633-4f7f-9b23-ea07960f6fed",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/7/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 16,
+			"col": "C",
+			"price": 82.0
+		},
+		{
+			"id": "6664c343-581a-4c2f-bbf4-de29ffdaf8cd",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/5/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 4,
+			"col": "D",
+			"price": 260.0
+		},
+		{
+			"id": "7b642739-c29b-4188-bfdb-7e7c77f7df30",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/1/22",
+				"1/3/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 8,
+			"col": "E",
+			"price": 177.0
+		}
+	],
+	"company": "Marriott",
+	"rating": 0.7,
+	"features": [
+		"Gym",
+		"Restaurant",
+		"Parking",
+		"Pet friendly"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0d7"
 	},
-	{
-		"id": "819ad46a-11c1-435b-845b-ea507f7ff74b",
-		"company": "Hilton",
-		"location": "Laredo",
-		"check_out_time": "10:00 UTS",
-		"rating": 1.5,
-		"features": [
-			"Parking",
-			"Gym",
-			"Pet friendly",
-			"Lounge Area",
-			"Restaurant",
-			"Bar",
-			"Pool",
-			"Free Wifi"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "6f3047b9-5138-442d-ad25-b6470242c3eb",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 162,
-				"floor": "A",
-				"num": 5,
-				"bookedDates": [
-					"1/2/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "57a0106f-a418-45d3-9e97-d10e95dcd3cb",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 241,
-				"floor": "B",
-				"num": 6,
-				"bookedDates": [
-					"1/2/22",
-					"1/4/22",
-					"1/7/22"
-				]
-			},
-			{
-				"id": "0d97d6c3-5224-42d5-9789-db196de07d2a",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 127,
-				"floor": "C",
-				"num": 7,
-				"bookedDates": [
-					"1/6/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "a59765aa-e711-47a4-81b9-2b4e5b95638b",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 114,
-				"floor": "D",
-				"num": 16,
-				"bookedDates": [
-					"1/3/22",
-					"1/9/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "5be09dd1-ec10-4bf1-90fa-c87c3d7bfeab",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 125,
-				"floor": "E",
-				"num": 2,
-				"bookedDates": [
-					"1/1/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "830fda4f-aa84-44f5-aded-46b0bf0fcaca",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 167,
-				"floor": "F",
-				"num": 10,
-				"bookedDates": [
-					"1/1/22",
-					"1/5/22",
-					"1/6/22",
-					"1/7/22",
-					"1/9/22"
-				]
-			}
-		]
+	"id": "16b4a0f2-8427-4ee2-90b3-25ef22420d1f",
+	"location": "Houston",
+	"bookables": [
+		{
+			"id": "85d80fb2-57eb-46c3-a570-b2bc4532649f",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/1/22",
+				"1/4/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 18,
+			"col": "A",
+			"price": 112.0
+		},
+		{
+			"id": "021a311e-89f0-4d15-beb7-22d7fb4d4a6d",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/9/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 3,
+			"col": "B",
+			"price": 231.0
+		},
+		{
+			"id": "8e4b8bb9-b0ea-4c73-a185-f6910f19197e",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/3/22",
+				"1/5/22",
+				"1/7/22",
+				"1/8/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 8,
+			"col": "C",
+			"price": 59.0
+		},
+		{
+			"id": "4eeb51bf-3e97-4352-94b2-de5fa8a44cf8",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/3/22",
+				"1/6/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 10,
+			"col": "D",
+			"price": 169.0
+		}
+	],
+	"company": "Wyndham",
+	"rating": 2.9,
+	"features": [
+		"Restaurant",
+		"Bar",
+		"Gym",
+		"Lounge Area",
+		"Pet friendly",
+		"Free Wifi",
+		"Parking",
+		"Pool"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0d8"
 	},
-	{
-		"id": "38295294-95fe-45e8-b377-305537b84427",
-		"company": "Marriott",
-		"location": "El Paso",
-		"check_out_time": "12:00 UTS",
-		"rating": 0.7,
-		"features": [
-			"Gym",
-			"Restaurant",
-			"Parking",
-			"Pet friendly"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "45f7b516-4811-4cc2-afe6-2f8dc55f2957",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 286,
-				"floor": "A",
-				"num": 7,
-				"bookedDates": [
-					"1/1/22",
-					"1/3/22",
-					"1/4/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "0b11fd70-092f-47d4-a311-37186500a398",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 101,
-				"floor": "B",
-				"num": 5,
-				"bookedDates": [
-					"1/1/22",
-					"1/2/22",
-					"1/7/22",
-					"1/8/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "07095809-a633-4f7f-9b23-ea07960f6fed",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 82,
-				"floor": "C",
-				"num": 16,
-				"bookedDates": [
-					"1/7/22"
-				]
-			},
-			{
-				"id": "6664c343-581a-4c2f-bbf4-de29ffdaf8cd",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 260,
-				"floor": "D",
-				"num": 4,
-				"bookedDates": [
-					"1/5/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "7b642739-c29b-4188-bfdb-7e7c77f7df30",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 177,
-				"floor": "E",
-				"num": 8,
-				"bookedDates": [
-					"1/1/22",
-					"1/3/22",
-					"1/8/22"
-				]
-			}
-		]
+	"id": "9e752c30-8358-405b-9c99-eed9e72453e3",
+	"location": "Houston",
+	"bookables": [
+		{
+			"id": "ab6fa428-e06c-4489-b1ec-213e0eb03f83",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/7/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 16,
+			"col": "A",
+			"price": 93.0
+		},
+		{
+			"id": "54b61a44-ca17-4e8f-a694-bae4c73d28a7",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/5/22",
+				"1/7/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 17,
+			"col": "B",
+			"price": 246.0
+		},
+		{
+			"id": "73e0fc17-fdef-48c6-bf02-d3799e30a433",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/1/22",
+				"1/3/22",
+				"1/5/22",
+				"1/6/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 5,
+			"col": "C",
+			"price": 239.0
+		},
+		{
+			"id": "85f9d90d-8451-4087-8194-357c1eb91361",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/7/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 9,
+			"col": "D",
+			"price": 239.0
+		},
+		{
+			"id": "bd3bddb7-6849-40fc-ba54-159d8716b94b",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/3/22",
+				"1/4/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 19,
+			"col": "E",
+			"price": 121.0
+		},
+		{
+			"id": "552c5b6d-9a9d-45bb-82f9-a40bd00d201a",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/7/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 17,
+			"col": "F",
+			"price": 281.0
+		}
+	],
+	"company": "Accor",
+	"rating": 4.9,
+	"features": [
+		"Pool",
+		"Parking",
+		"Gym",
+		"Bar",
+		"Pet friendly",
+		"Lounge Area",
+		"Restaurant",
+		"Free Wifi"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0d9"
 	},
-	{
-		"id": "39eb8da9-640f-4144-9a4f-04b89a6a8a9e",
-		"company": "Marriott",
-		"location": "Austin",
-		"check_out_time": "11:00 UTS",
-		"rating": 1.2,
-		"features": [
-			"Pet friendly",
-			"Restaurant",
-			"Pool",
-			"Parking",
-			"Free Wifi",
-			"Bar"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "aa5c9c09-5e07-4b3d-b5a3-f65ae739db16",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 225,
-				"floor": "A",
-				"num": 4,
-				"bookedDates": [
-					"1/7/22"
-				]
-			},
-			{
-				"id": "722c7f63-0f55-4b2b-b943-d5f15c5fbb30",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 161,
-				"floor": "B",
-				"num": 10,
-				"bookedDates": [
-					"1/9/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "020bdb38-7255-47f1-9b0d-909069828c96",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 140,
-				"floor": "C",
-				"num": 12,
-				"bookedDates": []
-			}
-		]
+	"id": "5b968637-0049-4151-96b8-08e6e62c9dda",
+	"location": "San Angelo",
+	"bookables": [
+		{
+			"id": "6d4647b1-14c3-47af-a17a-58d3de682929",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/2/22",
+				"1/3/22",
+				"1/4/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 8,
+			"col": "A",
+			"price": 59.0
+		},
+		{
+			"id": "d0f6af47-0a2c-4024-acf1-058bfba4d321",
+			"info": "2 Queen Beds",
+			"bookedDays": [],
+			"sleepingCapacity": 4,
+			"row": 6,
+			"col": "B",
+			"price": 190.0
+		},
+		{
+			"id": "d670e458-55aa-4f38-a3f1-57fabe8b6709",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/3/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 10,
+			"col": "C",
+			"price": 300.0
+		},
+		{
+			"id": "d0826ea4-c750-4fd2-9e8b-6f39159a4a7a",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/2/22",
+				"1/3/22",
+				"1/5/22",
+				"1/6/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 18,
+			"col": "D",
+			"price": 275.0
+		},
+		{
+			"id": "82b2e04e-74e1-46f4-98c3-8d6bd9bb5cfa",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/7/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 9,
+			"col": "E",
+			"price": 66.0
+		}
+	],
+	"company": "Choice",
+	"rating": 4.3,
+	"features": [
+		"Bar",
+		"Lounge Area",
+		"Pet friendly",
+		"Free Wifi",
+		"Parking",
+		"Gym",
+		"Restaurant",
+		"Pool"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0da"
 	},
-	{
-		"id": "5b968637-0049-4151-96b8-08e6e62c9dda",
-		"company": "Choice",
-		"location": "San Angelo",
-		"check_out_time": "10:00 UTS",
-		"rating": 4.3,
-		"features": [
-			"Bar",
-			"Lounge Area",
-			"Pet friendly",
-			"Free Wifi",
-			"Parking",
-			"Gym",
-			"Restaurant",
-			"Pool"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "6d4647b1-14c3-47af-a17a-58d3de682929",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 59,
-				"floor": "A",
-				"num": 8,
-				"bookedDates": [
-					"1/2/22",
-					"1/3/22",
-					"1/4/22"
-				]
-			},
-			{
-				"id": "d0f6af47-0a2c-4024-acf1-058bfba4d321",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 190,
-				"floor": "B",
-				"num": 6,
-				"bookedDates": []
-			},
-			{
-				"id": "d670e458-55aa-4f38-a3f1-57fabe8b6709",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 300,
-				"floor": "C",
-				"num": 10,
-				"bookedDates": [
-					"1/3/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "d0826ea4-c750-4fd2-9e8b-6f39159a4a7a",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 275,
-				"floor": "D",
-				"num": 18,
-				"bookedDates": [
-					"1/2/22",
-					"1/3/22",
-					"1/5/22",
-					"1/6/22"
-				]
-			},
-			{
-				"id": "82b2e04e-74e1-46f4-98c3-8d6bd9bb5cfa",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 66,
-				"floor": "E",
-				"num": 9,
-				"bookedDates": [
-					"1/7/22",
-					"1/8/22"
-				]
-			}
-		]
+	"id": "541ac131-4979-415c-8765-7533e2eb063a",
+	"location": "El Paso",
+	"bookables": [
+		{
+			"id": "2a97f8b6-19cb-4cee-b6ea-a9880f1b8ae6",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/2/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 7,
+			"col": "A",
+			"price": 60.0
+		},
+		{
+			"id": "ec71f41f-fa27-46bf-b1d6-50271ca50edf",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/3/22",
+				"1/4/22",
+				"1/8/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 9,
+			"col": "B",
+			"price": 181.0
+		},
+		{
+			"id": "b5669e35-07f8-40c3-86f6-b0f1a67bc1ef",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/1/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 13,
+			"col": "C",
+			"price": 271.0
+		},
+		{
+			"id": "21893b18-0acf-4a00-821b-45cf6a371626",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/1/22",
+				"1/2/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 7,
+			"col": "D",
+			"price": 161.0
+		},
+		{
+			"id": "996f40ba-9953-4bad-aef4-2b424b24f242",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/1/22",
+				"1/8/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 10,
+			"col": "E",
+			"price": 71.0
+		},
+		{
+			"id": "cc51e943-5038-45f0-adb5-93be7d9e55bb",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/1/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 10,
+			"col": "F",
+			"price": 90.0
+		}
+	],
+	"company": "Red Lion",
+	"rating": 3.9,
+	"features": [
+		"Pet friendly",
+		"Pool",
+		"Parking",
+		"Lounge Area",
+		"Gym",
+		"Restaurant",
+		"Bar"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0db"
 	},
-	{
-		"id": "9e752c30-8358-405b-9c99-eed9e72453e3",
-		"company": "Accor",
-		"location": "Houston",
-		"check_out_time": "12:00 UTS",
-		"rating": 4.9,
-		"features": [
-			"Pool",
-			"Parking",
-			"Gym",
-			"Bar",
-			"Pet friendly",
-			"Lounge Area",
-			"Restaurant",
-			"Free Wifi"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "ab6fa428-e06c-4489-b1ec-213e0eb03f83",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 93,
-				"floor": "A",
-				"num": 16,
-				"bookedDates": [
-					"1/7/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "54b61a44-ca17-4e8f-a694-bae4c73d28a7",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 246,
-				"floor": "B",
-				"num": 17,
-				"bookedDates": [
-					"1/5/22",
-					"1/7/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "73e0fc17-fdef-48c6-bf02-d3799e30a433",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 239,
-				"floor": "C",
-				"num": 5,
-				"bookedDates": [
-					"1/1/22",
-					"1/3/22",
-					"1/5/22",
-					"1/6/22"
-				]
-			},
-			{
-				"id": "85f9d90d-8451-4087-8194-357c1eb91361",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 239,
-				"floor": "D",
-				"num": 9,
-				"bookedDates": [
-					"1/7/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "bd3bddb7-6849-40fc-ba54-159d8716b94b",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 121,
-				"floor": "E",
-				"num": 19,
-				"bookedDates": [
-					"1/3/22",
-					"1/4/22"
-				]
-			},
-			{
-				"id": "552c5b6d-9a9d-45bb-82f9-a40bd00d201a",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 281,
-				"floor": "F",
-				"num": 17,
-				"bookedDates": [
-					"1/7/22"
-				]
-			}
-		]
+	"id": "13de9b94-02da-4ea6-a462-ef69fcaa01ed",
+	"location": "Laredo",
+	"bookables": [
+		{
+			"id": "7d253922-62dc-4bf4-bde6-5e3ee7f99bad",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/7/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 10,
+			"col": "A",
+			"price": 152.0
+		},
+		{
+			"id": "6148e251-90fe-4c66-9683-4f70959d36a8",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/8/22",
+				"1/9/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 8,
+			"col": "B",
+			"price": 152.0
+		},
+		{
+			"id": "28d4efff-4efc-4f07-bfd3-082000414891",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/9/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 8,
+			"col": "C",
+			"price": 129.0
+		}
+	],
+	"company": "InterContinental",
+	"rating": 0.1,
+	"features": [
+		"Free Wifi",
+		"Restaurant",
+		"Pet friendly",
+		"Pool"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0dc"
 	},
-	{
-		"id": "541ac131-4979-415c-8765-7533e2eb063a",
-		"company": "Red Lion",
-		"location": "El Paso",
-		"check_out_time": "12:00 UTS",
-		"rating": 3.9,
-		"features": [
-			"Pet friendly",
-			"Pool",
-			"Parking",
-			"Lounge Area",
-			"Gym",
-			"Restaurant",
-			"Bar"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "2a97f8b6-19cb-4cee-b6ea-a9880f1b8ae6",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 60,
-				"floor": "A",
-				"num": 7,
-				"bookedDates": [
-					"1/2/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "ec71f41f-fa27-46bf-b1d6-50271ca50edf",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 181,
-				"floor": "B",
-				"num": 9,
-				"bookedDates": [
-					"1/3/22",
-					"1/4/22",
-					"1/8/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "b5669e35-07f8-40c3-86f6-b0f1a67bc1ef",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 271,
-				"floor": "C",
-				"num": 13,
-				"bookedDates": [
-					"1/1/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "21893b18-0acf-4a00-821b-45cf6a371626",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 161,
-				"floor": "D",
-				"num": 7,
-				"bookedDates": [
-					"1/1/22",
-					"1/2/22"
-				]
-			},
-			{
-				"id": "996f40ba-9953-4bad-aef4-2b424b24f242",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 71,
-				"floor": "E",
-				"num": 10,
-				"bookedDates": [
-					"1/1/22",
-					"1/8/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "cc51e943-5038-45f0-adb5-93be7d9e55bb",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 90,
-				"floor": "F",
-				"num": 10,
-				"bookedDates": [
-					"1/1/22"
-				]
-			}
-		]
+	"id": "af5db5b4-e8cc-4e0d-adbb-56fb418f8981",
+	"location": "Houston",
+	"bookables": [
+		{
+			"id": "f17436ea-e6f7-4391-8cab-8acc4681ec90",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/1/22",
+				"1/2/22",
+				"1/3/22",
+				"1/7/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 6,
+			"col": "A",
+			"price": 85.0
+		},
+		{
+			"id": "19e49195-7b0c-4615-be7a-e11c2f1fd28b",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/6/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 15,
+			"col": "B",
+			"price": 138.0
+		},
+		{
+			"id": "fd82f12b-8afc-4c4f-afa8-4c548730dd6e",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/8/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 16,
+			"col": "C",
+			"price": 157.0
+		}
+	],
+	"company": "Marriott",
+	"rating": 0.7,
+	"features": [
+		"Pool",
+		"Gym",
+		"Free Wifi",
+		"Parking",
+		"Pet friendly"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0dd"
 	},
-	{
-		"id": "16b4a0f2-8427-4ee2-90b3-25ef22420d1f",
-		"company": "Wyndham",
-		"location": "Houston",
-		"check_out_time": "10:00 UTS",
-		"rating": 2.9,
-		"features": [
-			"Restaurant",
-			"Bar",
-			"Gym",
-			"Lounge Area",
-			"Pet friendly",
-			"Free Wifi",
-			"Parking",
-			"Pool"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "85d80fb2-57eb-46c3-a570-b2bc4532649f",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 112,
-				"floor": "A",
-				"num": 18,
-				"bookedDates": [
-					"1/1/22",
-					"1/4/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "021a311e-89f0-4d15-beb7-22d7fb4d4a6d",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 231,
-				"floor": "B",
-				"num": 3,
-				"bookedDates": [
-					"1/9/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "8e4b8bb9-b0ea-4c73-a185-f6910f19197e",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 59,
-				"floor": "C",
-				"num": 8,
-				"bookedDates": [
-					"1/3/22",
-					"1/5/22",
-					"1/7/22",
-					"1/8/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "4eeb51bf-3e97-4352-94b2-de5fa8a44cf8",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 169,
-				"floor": "D",
-				"num": 10,
-				"bookedDates": [
-					"1/3/22",
-					"1/6/22"
-				]
-			}
-		]
+	"id": "a3c574f7-b119-4a75-b54d-895037733d8e",
+	"location": "Houston",
+	"bookables": [
+		{
+			"id": "9d1ea230-9ebc-4341-8373-65ce2a79ebc9",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/1/22",
+				"1/3/22",
+				"1/6/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 17,
+			"col": "A",
+			"price": 221.0
+		},
+		{
+			"id": "7ee72078-d78b-4ee5-a0e1-1c46536480b5",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/8/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 7,
+			"col": "B",
+			"price": 283.0
+		},
+		{
+			"id": "ea55c63e-177d-40b6-9f9f-8c720efa5e6e",
+			"info": "2 Double Beds",
+			"bookedDays": [],
+			"sleepingCapacity": 4,
+			"row": 8,
+			"col": "C",
+			"price": 228.0
+		},
+		{
+			"id": "146726f2-fcc1-481a-ac06-c9c7bc30e1a3",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/9/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 18,
+			"col": "D",
+			"price": 213.0
+		}
+	],
+	"company": "InterContinental",
+	"rating": 4.4,
+	"features": [
+		"Parking",
+		"Pool",
+		"Bar",
+		"Lounge Area",
+		"Restaurant",
+		"Gym",
+		"Pet friendly"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0de"
 	},
-	{
-		"id": "9764db0a-647b-454f-a5a3-2d3c12650959",
-		"company": "Choice",
-		"location": "Fort Worth",
-		"check_out_time": "10:00 UTS",
-		"rating": 2.1,
-		"features": [
-			"Restaurant",
-			"Pool",
-			"Lounge Area",
-			"Gym",
-			"Parking",
-			"Free Wifi",
-			"Bar",
-			"Pet friendly"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "1a66ea83-47f9-4269-b2c0-dc98746460ae",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 65,
-				"floor": "A",
-				"num": 18,
-				"bookedDates": [
-					"1/3/22",
-					"1/4/22",
-					"1/6/22"
-				]
-			},
-			{
-				"id": "3a080403-db2b-4aef-a587-b91014e6ac15",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 168,
-				"floor": "B",
-				"num": 11,
-				"bookedDates": [
-					"1/2/22",
-					"1/9/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "e8ef33f8-a047-441e-9934-385e05dbb23e",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 181,
-				"floor": "C",
-				"num": 9,
-				"bookedDates": []
-			},
-			{
-				"id": "c8ebe977-32a0-4d89-9c56-a4ba0a26e681",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 292,
-				"floor": "D",
-				"num": 9,
-				"bookedDates": [
-					"1/2/22",
-					"1/7/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "95eaaaaf-0be3-4e51-8137-bc7c47ef5335",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 203,
-				"floor": "E",
-				"num": 12,
-				"bookedDates": [
-					"1/8/22",
-					"1/9/22"
-				]
-			}
-		]
+	"id": "9764db0a-647b-454f-a5a3-2d3c12650959",
+	"location": "Fort Worth",
+	"bookables": [
+		{
+			"id": "1a66ea83-47f9-4269-b2c0-dc98746460ae",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/3/22",
+				"1/4/22",
+				"1/6/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 18,
+			"col": "A",
+			"price": 65.0
+		},
+		{
+			"id": "3a080403-db2b-4aef-a587-b91014e6ac15",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/2/22",
+				"1/9/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 11,
+			"col": "B",
+			"price": 168.0
+		},
+		{
+			"id": "e8ef33f8-a047-441e-9934-385e05dbb23e",
+			"info": "1 Queen Bed",
+			"bookedDays": [],
+			"sleepingCapacity": 1,
+			"row": 9,
+			"col": "C",
+			"price": 181.0
+		},
+		{
+			"id": "c8ebe977-32a0-4d89-9c56-a4ba0a26e681",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/2/22",
+				"1/7/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 9,
+			"col": "D",
+			"price": 292.0
+		},
+		{
+			"id": "95eaaaaf-0be3-4e51-8137-bc7c47ef5335",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/8/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 12,
+			"col": "E",
+			"price": 203.0
+		}
+	],
+	"company": "Choice",
+	"rating": 2.1,
+	"features": [
+		"Restaurant",
+		"Pool",
+		"Lounge Area",
+		"Gym",
+		"Parking",
+		"Free Wifi",
+		"Bar",
+		"Pet friendly"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0df"
 	},
-	{
-		"id": "eea670f0-6c88-4662-83bf-24ef190cf007",
-		"company": "Marriott",
-		"location": "Houston",
-		"check_out_time": "10:00 UTS",
-		"rating": 1.9,
-		"features": [
-			"Gym",
-			"Restaurant",
-			"Parking",
-			"Pet friendly"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "2bd4bf52-56f7-49da-9b8a-d4508853b48a",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 129,
-				"floor": "A",
-				"num": 17,
-				"bookedDates": [
-					"1/3/22"
-				]
-			},
-			{
-				"id": "4276d99c-f1b2-405e-8980-04817eb8d260",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 128,
-				"floor": "B",
-				"num": 3,
-				"bookedDates": [
-					"1/2/22",
-					"1/3/22"
-				]
-			},
-			{
-				"id": "686b9d3e-e8c5-4115-bf39-3948e2ed029a",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 294,
-				"floor": "C",
-				"num": 8,
-				"bookedDates": [
-					"1/8/22"
-				]
-			},
-			{
-				"id": "e43573da-6f3a-418d-ae36-20b36bf5aa91",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 299,
-				"floor": "D",
-				"num": 15,
-				"bookedDates": [
-					"1/3/22",
-					"1/8/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "0a9e3764-2f90-4207-b345-8086c0fd8cb0",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 228,
-				"floor": "E",
-				"num": 18,
-				"bookedDates": [
-					"1/5/22",
-					"1/7/22",
-					"1/8/22"
-				]
-			}
-		]
+	"id": "0c47ea03-eb21-47ea-a0d0-06965c9b532d",
+	"location": "McAllen",
+	"bookables": [
+		{
+			"id": "5269f47d-636a-496e-a16a-2d6919fffde8",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/3/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 5,
+			"col": "A",
+			"price": 199.0
+		},
+		{
+			"id": "c67ea9cd-f651-4f72-8e80-78c2691d1f28",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/3/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 5,
+			"col": "B",
+			"price": 271.0
+		},
+		{
+			"id": "b714b3ba-f4e0-4718-b258-be6ba44d974f",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/7/22",
+				"1/8/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 11,
+			"col": "C",
+			"price": 197.0
+		},
+		{
+			"id": "6c79ea56-440e-469b-969b-6319ee2f84ac",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/5/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 7,
+			"col": "D",
+			"price": 191.0
+		},
+		{
+			"id": "aa480683-f81b-416c-8f4e-cb3ed0f319bf",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/1/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 12,
+			"col": "E",
+			"price": 185.0
+		},
+		{
+			"id": "632b0f04-892f-41ee-aef6-df074753ae2a",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 2,
+			"col": "F",
+			"price": 170.0
+		}
+	],
+	"company": "Hilton",
+	"rating": 5.0,
+	"features": [
+		"Free Wifi",
+		"Parking",
+		"Gym",
+		"Pool",
+		"Lounge Area"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0e0"
 	},
-	{
-		"id": "c14869be-a69b-4870-a439-ee2e5fca5692",
-		"company": "Choice",
-		"location": "Brownsville",
-		"check_out_time": "10:00 UTS",
-		"rating": 2.3,
-		"features": [
-			"Free Wifi",
-			"Pool",
-			"Lounge Area",
-			"Gym",
-			"Pet friendly",
-			"Restaurant"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "7969b83e-ddb4-4da6-84e8-b6b2508ce8e0",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 54,
-				"floor": "A",
-				"num": 8,
-				"bookedDates": [
-					"1/3/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "4d993f70-b52b-413c-baed-169df02a8b09",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 286,
-				"floor": "B",
-				"num": 19,
-				"bookedDates": [
-					"1/2/22",
-					"1/7/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "40efa7d9-c7c3-4a8b-a513-9b1fda3a0fb6",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 234,
-				"floor": "C",
-				"num": 16,
-				"bookedDates": [
-					"1/3/22",
-					"1/6/22"
-				]
-			},
-			{
-				"id": "fdfa8ce4-8e37-4498-8861-8ca72dea189c",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 281,
-				"floor": "D",
-				"num": 8,
-				"bookedDates": [
-					"1/6/22",
-					"1/7/22"
-				]
-			},
-			{
-				"id": "c44741ae-9de5-4a4e-a9df-dcd9b09aa806",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 269,
-				"floor": "E",
-				"num": 15,
-				"bookedDates": [
-					"1/2/22"
-				]
-			},
-			{
-				"id": "f9c2ac80-4be3-46cb-8696-8ad557061f48",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 260,
-				"floor": "F",
-				"num": 3,
-				"bookedDates": [
-					"1/8/22",
-					"1/10/22"
-				]
-			}
-		]
+	"id": "13afbbf0-01d7-48b9-a12b-974907b74bab",
+	"location": "Abilene",
+	"bookables": [
+		{
+			"id": "6267d985-c9f9-4832-8faa-7e7acd1a8d8e",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/1/22",
+				"1/4/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 5,
+			"col": "A",
+			"price": 246.0
+		},
+		{
+			"id": "b147c1bc-b8d2-43f0-91c0-ef77b114ef7a",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/3/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 3,
+			"col": "B",
+			"price": 172.0
+		},
+		{
+			"id": "77af8058-0bf2-414b-af62-0bb61184bf1f",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/1/22",
+				"1/4/22",
+				"1/7/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 19,
+			"col": "C",
+			"price": 227.0
+		}
+	],
+	"company": "Red Lion",
+	"rating": 0.6,
+	"features": [
+		"Bar",
+		"Parking",
+		"Free Wifi",
+		"Restaurant",
+		"Pet friendly",
+		"Pool",
+		"Lounge Area"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0e1"
 	},
-	{
-		"id": "efe8c9c6-6259-4aa2-9757-0cb75d721937",
-		"company": "Choice",
-		"location": "Longview",
-		"check_out_time": "10:00 UTS",
-		"rating": 2.0,
-		"features": [
-			"Gym",
-			"Lounge Area",
-			"Pet friendly",
-			"Restaurant"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "eeef2249-a9fb-4a28-b2f3-c8eae1f98d76",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 273,
-				"floor": "A",
-				"num": 17,
-				"bookedDates": [
-					"1/1/22",
-					"1/7/22",
-					"1/8/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "b3211544-e764-4ab8-9da1-209b0e9326d2",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 280,
-				"floor": "B",
-				"num": 10,
-				"bookedDates": [
-					"1/1/22",
-					"1/7/22"
-				]
-			},
-			{
-				"id": "2355aae9-4844-4e80-bda3-d4d296140396",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 126,
-				"floor": "C",
-				"num": 4,
-				"bookedDates": [
-					"1/1/22"
-				]
-			},
-			{
-				"id": "a13224b1-3b65-4884-8f39-d6c0fbce05c6",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 167,
-				"floor": "D",
-				"num": 11,
-				"bookedDates": [
-					"1/6/22",
-					"1/7/22"
-				]
-			},
-			{
-				"id": "a38523b3-e8ac-462b-8e81-602aad84d6fa",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 169,
-				"floor": "E",
-				"num": 4,
-				"bookedDates": []
-			},
-			{
-				"id": "6582419c-77df-4b09-9d4e-5e6d147680e7",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 124,
-				"floor": "F",
-				"num": 9,
-				"bookedDates": [
-					"1/8/22"
-				]
-			}
-		]
+	"id": "beb422ce-ec1c-4fdf-a8f6-d097a6321b8f",
+	"location": "Fort Worth",
+	"bookables": [
+		{
+			"id": "2e30a95f-0c13-4905-a247-c5bffebe18cb",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/10/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 2,
+			"col": "A",
+			"price": 101.0
+		},
+		{
+			"id": "667e158f-da99-4fb1-82c9-c9c7083e0542",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/4/22",
+				"1/6/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 14,
+			"col": "B",
+			"price": 56.0
+		},
+		{
+			"id": "e96e459a-6f99-454b-8a92-41d60a0de346",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/6/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 15,
+			"col": "C",
+			"price": 143.0
+		},
+		{
+			"id": "e9cb1c96-0822-462e-b5f0-1536fe17ba27",
+			"info": "1 Queen Bed",
+			"bookedDays": [],
+			"sleepingCapacity": 1,
+			"row": 13,
+			"col": "D",
+			"price": 189.0
+		},
+		{
+			"id": "eb7876a3-cd72-4dde-8ade-0af737804197",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/3/22",
+				"1/7/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 10,
+			"col": "E",
+			"price": 297.0
+		},
+		{
+			"id": "52cacc24-f604-4aa1-b3ec-4595beb50c00",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/2/22",
+				"1/7/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 16,
+			"col": "F",
+			"price": 83.0
+		}
+	],
+	"company": "Choice",
+	"rating": 4.6,
+	"features": [
+		"Bar",
+		"Pool",
+		"Lounge Area",
+		"Free Wifi",
+		"Parking",
+		"Gym"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0e2"
 	},
-	{
-		"id": "339cd625-92b4-463a-81da-29acb520ff3c",
-		"company": "Marriott",
-		"location": "Houston",
-		"check_out_time": "12:00 UTS",
-		"rating": 2.5,
-		"features": [
-			"Parking",
-			"Gym",
-			"Pool"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "c7d12792-1ad3-4835-8533-faed2cf58811",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 284,
-				"floor": "A",
-				"num": 6,
-				"bookedDates": [
-					"1/3/22",
-					"1/4/22",
-					"1/7/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "10d8e1c0-aab5-4db9-ad91-378dd1d7754f",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 274,
-				"floor": "B",
-				"num": 9,
-				"bookedDates": []
-			},
-			{
-				"id": "96d9b36c-c39b-483e-abc4-d9c1642f6cf6",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 122,
-				"floor": "C",
-				"num": 19,
-				"bookedDates": [
-					"1/6/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "7756f6bc-783e-48d6-b53b-be530c1d8113",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 172,
-				"floor": "D",
-				"num": 8,
-				"bookedDates": [
-					"1/2/22",
-					"1/5/22",
-					"1/6/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "4ec2b024-ecb7-43c7-aa8a-431cc7bc2b7b",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 80,
-				"floor": "E",
-				"num": 10,
-				"bookedDates": [
-					"1/2/22",
-					"1/6/22"
-				]
-			}
-		]
+	"id": "c14869be-a69b-4870-a439-ee2e5fca5692",
+	"location": "Brownsville",
+	"bookables": [
+		{
+			"id": "7969b83e-ddb4-4da6-84e8-b6b2508ce8e0",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/3/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 8,
+			"col": "A",
+			"price": 54.0
+		},
+		{
+			"id": "4d993f70-b52b-413c-baed-169df02a8b09",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/2/22",
+				"1/7/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 19,
+			"col": "B",
+			"price": 286.0
+		},
+		{
+			"id": "40efa7d9-c7c3-4a8b-a513-9b1fda3a0fb6",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/3/22",
+				"1/6/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 16,
+			"col": "C",
+			"price": 234.0
+		},
+		{
+			"id": "fdfa8ce4-8e37-4498-8861-8ca72dea189c",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/6/22",
+				"1/7/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 8,
+			"col": "D",
+			"price": 281.0
+		},
+		{
+			"id": "c44741ae-9de5-4a4e-a9df-dcd9b09aa806",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/2/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 15,
+			"col": "E",
+			"price": 269.0
+		},
+		{
+			"id": "f9c2ac80-4be3-46cb-8696-8ad557061f48",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/8/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 3,
+			"col": "F",
+			"price": 260.0
+		}
+	],
+	"company": "Choice",
+	"rating": 2.3,
+	"features": [
+		"Free Wifi",
+		"Pool",
+		"Lounge Area",
+		"Gym",
+		"Pet friendly",
+		"Restaurant"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0e3"
 	},
-	{
-		"id": "beb422ce-ec1c-4fdf-a8f6-d097a6321b8f",
-		"company": "Choice",
-		"location": "Fort Worth",
-		"check_out_time": "10:00 UTS",
-		"rating": 4.6,
-		"features": [
-			"Bar",
-			"Pool",
-			"Lounge Area",
-			"Free Wifi",
-			"Parking",
-			"Gym"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "2e30a95f-0c13-4905-a247-c5bffebe18cb",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 101,
-				"floor": "A",
-				"num": 2,
-				"bookedDates": [
-					"1/10/22"
-				]
-			},
-			{
-				"id": "667e158f-da99-4fb1-82c9-c9c7083e0542",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 56,
-				"floor": "B",
-				"num": 14,
-				"bookedDates": [
-					"1/4/22",
-					"1/6/22"
-				]
-			},
-			{
-				"id": "e96e459a-6f99-454b-8a92-41d60a0de346",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 143,
-				"floor": "C",
-				"num": 15,
-				"bookedDates": [
-					"1/6/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "e9cb1c96-0822-462e-b5f0-1536fe17ba27",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 189,
-				"floor": "D",
-				"num": 13,
-				"bookedDates": []
-			},
-			{
-				"id": "eb7876a3-cd72-4dde-8ade-0af737804197",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 297,
-				"floor": "E",
-				"num": 10,
-				"bookedDates": [
-					"1/3/22",
-					"1/7/22"
-				]
-			},
-			{
-				"id": "52cacc24-f604-4aa1-b3ec-4595beb50c00",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 83,
-				"floor": "F",
-				"num": 16,
-				"bookedDates": [
-					"1/2/22",
-					"1/7/22"
-				]
-			}
-		]
+	"id": "339cd625-92b4-463a-81da-29acb520ff3c",
+	"location": "Houston",
+	"bookables": [
+		{
+			"id": "c7d12792-1ad3-4835-8533-faed2cf58811",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/3/22",
+				"1/4/22",
+				"1/7/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 6,
+			"col": "A",
+			"price": 284.0
+		},
+		{
+			"id": "10d8e1c0-aab5-4db9-ad91-378dd1d7754f",
+			"info": "1 King Bed",
+			"bookedDays": [],
+			"sleepingCapacity": 2,
+			"row": 9,
+			"col": "B",
+			"price": 274.0
+		},
+		{
+			"id": "96d9b36c-c39b-483e-abc4-d9c1642f6cf6",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/6/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 19,
+			"col": "C",
+			"price": 122.0
+		},
+		{
+			"id": "7756f6bc-783e-48d6-b53b-be530c1d8113",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/2/22",
+				"1/5/22",
+				"1/6/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 8,
+			"col": "D",
+			"price": 172.0
+		},
+		{
+			"id": "4ec2b024-ecb7-43c7-aa8a-431cc7bc2b7b",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/2/22",
+				"1/6/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 10,
+			"col": "E",
+			"price": 80.0
+		}
+	],
+	"company": "Marriott",
+	"rating": 2.5,
+	"features": [
+		"Parking",
+		"Gym",
+		"Pool"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0e4"
 	},
-	{
-		"id": "0c47ea03-eb21-47ea-a0d0-06965c9b532d",
-		"company": "Hilton",
-		"location": "McAllen",
-		"check_out_time": "12:00 UTS",
-		"rating": 5.0,
-		"features": [
-			"Free Wifi",
-			"Parking",
-			"Gym",
-			"Pool",
-			"Lounge Area"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "5269f47d-636a-496e-a16a-2d6919fffde8",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 199,
-				"floor": "A",
-				"num": 5,
-				"bookedDates": [
-					"1/3/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "c67ea9cd-f651-4f72-8e80-78c2691d1f28",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 271,
-				"floor": "B",
-				"num": 5,
-				"bookedDates": [
-					"1/3/22"
-				]
-			},
-			{
-				"id": "b714b3ba-f4e0-4718-b258-be6ba44d974f",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 197,
-				"floor": "C",
-				"num": 11,
-				"bookedDates": [
-					"1/7/22",
-					"1/8/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "6c79ea56-440e-469b-969b-6319ee2f84ac",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 191,
-				"floor": "D",
-				"num": 7,
-				"bookedDates": [
-					"1/5/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "aa480683-f81b-416c-8f4e-cb3ed0f319bf",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 185,
-				"floor": "E",
-				"num": 12,
-				"bookedDates": [
-					"1/1/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "632b0f04-892f-41ee-aef6-df074753ae2a",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 170,
-				"floor": "F",
-				"num": 2,
-				"bookedDates": [
-					"1/10/22"
-				]
-			}
-		]
+	"id": "8d208e9b-0cef-4001-b919-45b7590a232e",
+	"location": "Houston",
+	"bookables": [
+		{
+			"id": "141eb302-7c80-4b32-a999-7fe332f41de2",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/2/22",
+				"1/5/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 3,
+			"col": "A",
+			"price": 235.0
+		},
+		{
+			"id": "f063b77f-61bb-4bb2-a55e-4916a95e278e",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/1/22",
+				"1/2/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 9,
+			"col": "B",
+			"price": 65.0
+		},
+		{
+			"id": "9efa54ec-085e-459f-a432-d352ea94b570",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/1/22",
+				"1/6/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 17,
+			"col": "C",
+			"price": 297.0
+		}
+	],
+	"company": "Hilton",
+	"rating": 4.7,
+	"features": [
+		"Pool",
+		"Restaurant",
+		"Lounge Area"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0e5"
 	},
-	{
-		"id": "13afbbf0-01d7-48b9-a12b-974907b74bab",
-		"company": "Red Lion",
-		"location": "Abilene",
-		"check_out_time": "10:00 UTS",
-		"rating": 0.6,
-		"features": [
-			"Bar",
-			"Parking",
-			"Free Wifi",
-			"Restaurant",
-			"Pet friendly",
-			"Pool",
-			"Lounge Area"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "6267d985-c9f9-4832-8faa-7e7acd1a8d8e",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 246,
-				"floor": "A",
-				"num": 5,
-				"bookedDates": [
-					"1/1/22",
-					"1/4/22"
-				]
-			},
-			{
-				"id": "b147c1bc-b8d2-43f0-91c0-ef77b114ef7a",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 172,
-				"floor": "B",
-				"num": 3,
-				"bookedDates": [
-					"1/3/22"
-				]
-			},
-			{
-				"id": "77af8058-0bf2-414b-af62-0bb61184bf1f",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 227,
-				"floor": "C",
-				"num": 19,
-				"bookedDates": [
-					"1/1/22",
-					"1/4/22",
-					"1/7/22",
-					"1/9/22"
-				]
-			}
-		]
+	"id": "efe8c9c6-6259-4aa2-9757-0cb75d721937",
+	"location": "Longview",
+	"bookables": [
+		{
+			"id": "eeef2249-a9fb-4a28-b2f3-c8eae1f98d76",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/1/22",
+				"1/7/22",
+				"1/8/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 17,
+			"col": "A",
+			"price": 273.0
+		},
+		{
+			"id": "b3211544-e764-4ab8-9da1-209b0e9326d2",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/1/22",
+				"1/7/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 10,
+			"col": "B",
+			"price": 280.0
+		},
+		{
+			"id": "2355aae9-4844-4e80-bda3-d4d296140396",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/1/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 4,
+			"col": "C",
+			"price": 126.0
+		},
+		{
+			"id": "a13224b1-3b65-4884-8f39-d6c0fbce05c6",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/6/22",
+				"1/7/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 11,
+			"col": "D",
+			"price": 167.0
+		},
+		{
+			"id": "a38523b3-e8ac-462b-8e81-602aad84d6fa",
+			"info": "1 Queen Bed",
+			"bookedDays": [],
+			"sleepingCapacity": 1,
+			"row": 4,
+			"col": "E",
+			"price": 169.0
+		},
+		{
+			"id": "6582419c-77df-4b09-9d4e-5e6d147680e7",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/8/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 9,
+			"col": "F",
+			"price": 124.0
+		}
+	],
+	"company": "Choice",
+	"rating": 2.0,
+	"features": [
+		"Gym",
+		"Lounge Area",
+		"Pet friendly",
+		"Restaurant"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0e6"
 	},
-	{
-		"id": "8d208e9b-0cef-4001-b919-45b7590a232e",
-		"company": "Hilton",
-		"location": "Houston",
-		"check_out_time": "10:00 UTS",
-		"rating": 4.7,
-		"features": [
-			"Pool",
-			"Restaurant",
-			"Lounge Area"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "141eb302-7c80-4b32-a999-7fe332f41de2",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 235,
-				"floor": "A",
-				"num": 3,
-				"bookedDates": [
-					"1/2/22",
-					"1/5/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "f063b77f-61bb-4bb2-a55e-4916a95e278e",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 65,
-				"floor": "B",
-				"num": 9,
-				"bookedDates": [
-					"1/1/22",
-					"1/2/22"
-				]
-			},
-			{
-				"id": "9efa54ec-085e-459f-a432-d352ea94b570",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 297,
-				"floor": "C",
-				"num": 17,
-				"bookedDates": [
-					"1/1/22",
-					"1/6/22",
-					"1/8/22"
-				]
-			}
-		]
+	"id": "c6af9c99-2ca5-4875-a466-93f9c12c66ae",
+	"location": "Dallas-Fort Worth",
+	"bookables": [
+		{
+			"id": "8a2f36fe-ec01-4fb6-83ca-19075fd1fa50",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/1/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 11,
+			"col": "A",
+			"price": 224.0
+		},
+		{
+			"id": "543f2f4f-087a-4627-aefe-1fec8b936c90",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/4/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 12,
+			"col": "B",
+			"price": 76.0
+		},
+		{
+			"id": "0933be4f-d9ee-4d6f-93d9-e6b61db94fd6",
+			"info": "2 Double Beds",
+			"bookedDays": [],
+			"sleepingCapacity": 4,
+			"row": 19,
+			"col": "C",
+			"price": 218.0
+		},
+		{
+			"id": "54d2f23c-4778-4bb1-9317-6a62139ca3af",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/2/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 18,
+			"col": "D",
+			"price": 234.0
+		}
+	],
+	"company": "Accor",
+	"rating": 3.4,
+	"features": [
+		"Gym",
+		"Pool",
+		"Restaurant",
+		"Free Wifi"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0e7"
 	},
-	{
-		"id": "c6af9c99-2ca5-4875-a466-93f9c12c66ae",
-		"company": "Accor",
-		"location": "Dallas-Fort Worth",
-		"check_out_time": "11:00 UTS",
-		"rating": 3.4,
-		"features": [
-			"Gym",
-			"Pool",
-			"Restaurant",
-			"Free Wifi"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "8a2f36fe-ec01-4fb6-83ca-19075fd1fa50",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 224,
-				"floor": "A",
-				"num": 11,
-				"bookedDates": [
-					"1/1/22"
-				]
-			},
-			{
-				"id": "543f2f4f-087a-4627-aefe-1fec8b936c90",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 76,
-				"floor": "B",
-				"num": 12,
-				"bookedDates": [
-					"1/4/22"
-				]
-			},
-			{
-				"id": "0933be4f-d9ee-4d6f-93d9-e6b61db94fd6",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 218,
-				"floor": "C",
-				"num": 19,
-				"bookedDates": []
-			},
-			{
-				"id": "54d2f23c-4778-4bb1-9317-6a62139ca3af",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 234,
-				"floor": "D",
-				"num": 18,
-				"bookedDates": [
-					"1/2/22",
-					"1/10/22"
-				]
-			}
-		]
+	"id": "eea670f0-6c88-4662-83bf-24ef190cf007",
+	"location": "Houston",
+	"bookables": [
+		{
+			"id": "2bd4bf52-56f7-49da-9b8a-d4508853b48a",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/3/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 17,
+			"col": "A",
+			"price": 129.0
+		},
+		{
+			"id": "4276d99c-f1b2-405e-8980-04817eb8d260",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/2/22",
+				"1/3/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 3,
+			"col": "B",
+			"price": 128.0
+		},
+		{
+			"id": "686b9d3e-e8c5-4115-bf39-3948e2ed029a",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/8/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 8,
+			"col": "C",
+			"price": 294.0
+		},
+		{
+			"id": "e43573da-6f3a-418d-ae36-20b36bf5aa91",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/3/22",
+				"1/8/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 15,
+			"col": "D",
+			"price": 299.0
+		},
+		{
+			"id": "0a9e3764-2f90-4207-b345-8086c0fd8cb0",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/5/22",
+				"1/7/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 18,
+			"col": "E",
+			"price": 228.0
+		}
+	],
+	"company": "Marriott",
+	"rating": 1.9,
+	"features": [
+		"Gym",
+		"Restaurant",
+		"Parking",
+		"Pet friendly"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0e8"
 	},
-	{
-		"id": "4cdd854b-e0ca-4e9b-8221-f8ed78ec6499",
-		"company": "Marriott",
-		"location": "Fort Worth",
-		"check_out_time": "12:00 UTS",
-		"rating": 4.6,
-		"features": [
-			"Gym",
-			"Bar",
-			"Pet friendly",
-			"Parking",
-			"Free Wifi"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "99499947-a093-4f10-a04d-08b92a5724e2",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 284,
-				"floor": "A",
-				"num": 16,
-				"bookedDates": [
-					"1/8/22"
-				]
-			},
-			{
-				"id": "d08a5dd8-3a1e-4ac1-9ef3-3e235d5c4645",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 229,
-				"floor": "B",
-				"num": 14,
-				"bookedDates": [
-					"1/2/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "e3079ac2-b30a-4a9b-ab82-209a4b7f3ca1",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 132,
-				"floor": "C",
-				"num": 4,
-				"bookedDates": [
-					"1/10/22"
-				]
-			},
-			{
-				"id": "d883ee37-bb02-4f17-8d5b-cd8cb6bf5647",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 163,
-				"floor": "D",
-				"num": 4,
-				"bookedDates": [
-					"1/6/22",
-					"1/8/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "fa79cd3b-d92b-48f6-b125-3a6df05223c9",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 107,
-				"floor": "E",
-				"num": 11,
-				"bookedDates": [
-					"1/3/22"
-				]
-			},
-			{
-				"id": "20de95ca-76fa-4ff4-9d75-a609650fe667",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 91,
-				"floor": "F",
-				"num": 19,
-				"bookedDates": [
-					"1/5/22"
-				]
-			},
-			{
-				"id": "2705b624-3d9c-4afa-b854-9d157332bbb4",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 275,
-				"floor": "G",
-				"num": 5,
-				"bookedDates": [
-					"1/4/22",
-					"1/9/22"
-				]
-			}
-		]
+	"id": "daf3207d-9a8e-4a2f-83ed-4c7acbe03934",
+	"location": "Houston",
+	"bookables": [
+		{
+			"id": "e2bb889b-aac4-41e5-a5e2-5375d6403187",
+			"info": "2 Double Beds",
+			"bookedDays": [],
+			"sleepingCapacity": 4,
+			"row": 12,
+			"col": "A",
+			"price": 151.0
+		},
+		{
+			"id": "c6b66473-d3ba-426c-85a3-d1ffb0e75400",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/3/22",
+				"1/6/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 11,
+			"col": "B",
+			"price": 282.0
+		},
+		{
+			"id": "61355b22-63be-4f71-97a1-69d0f4709196",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/1/22",
+				"1/3/22",
+				"1/5/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 10,
+			"col": "C",
+			"price": 218.0
+		},
+		{
+			"id": "7b0dec18-e1b4-4f57-8859-9bdedac55e9a",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/3/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 13,
+			"col": "D",
+			"price": 98.0
+		},
+		{
+			"id": "54f9b975-a3cc-40ad-b2b1-e04488c5bc8f",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/1/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 10,
+			"col": "E",
+			"price": 252.0
+		}
+	],
+	"company": "InterContinental",
+	"rating": 0.2,
+	"features": [
+		"Restaurant",
+		"Free Wifi",
+		"Lounge Area"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0e9"
 	},
-	{
-		"id": "daf3207d-9a8e-4a2f-83ed-4c7acbe03934",
-		"company": "InterContinental",
-		"location": "Houston",
-		"check_out_time": "10:00 UTS",
-		"rating": 0.2,
-		"features": [
-			"Restaurant",
-			"Free Wifi",
-			"Lounge Area"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "e2bb889b-aac4-41e5-a5e2-5375d6403187",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 151,
-				"floor": "A",
-				"num": 12,
-				"bookedDates": []
-			},
-			{
-				"id": "c6b66473-d3ba-426c-85a3-d1ffb0e75400",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 282,
-				"floor": "B",
-				"num": 11,
-				"bookedDates": [
-					"1/3/22",
-					"1/6/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "61355b22-63be-4f71-97a1-69d0f4709196",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 218,
-				"floor": "C",
-				"num": 10,
-				"bookedDates": [
-					"1/1/22",
-					"1/3/22",
-					"1/5/22"
-				]
-			},
-			{
-				"id": "7b0dec18-e1b4-4f57-8859-9bdedac55e9a",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 98,
-				"floor": "D",
-				"num": 13,
-				"bookedDates": [
-					"1/3/22"
-				]
-			},
-			{
-				"id": "54f9b975-a3cc-40ad-b2b1-e04488c5bc8f",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 252,
-				"floor": "E",
-				"num": 10,
-				"bookedDates": [
-					"1/1/22",
-					"1/9/22"
-				]
-			}
-		]
+	"id": "4823fde3-875c-4cb4-b5cc-69f6f908e907",
+	"location": "Fort Worth",
+	"bookables": [
+		{
+			"id": "a9c1e17e-7c1b-4063-a0dd-eba69ebd870d",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/3/22",
+				"1/7/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 17,
+			"col": "A",
+			"price": 114.0
+		},
+		{
+			"id": "4cbf69f9-aee5-4a3f-ac56-a1f3f75ed46a",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 18,
+			"col": "B",
+			"price": 117.0
+		},
+		{
+			"id": "7dded6d3-6580-4c3d-b961-6df5bd756eab",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/5/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 15,
+			"col": "C",
+			"price": 199.0
+		},
+		{
+			"id": "369818dc-2fee-4ebc-8cf8-7697e58ac643",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/8/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 11,
+			"col": "D",
+			"price": 250.0
+		},
+		{
+			"id": "9d23e318-71cb-49ae-bc6a-ef66c27d2c0c",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/2/22",
+				"1/3/22",
+				"1/6/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 14,
+			"col": "E",
+			"price": 251.0
+		},
+		{
+			"id": "5ec3c302-a8b5-40fb-b149-ecd23f8627bb",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/1/22",
+				"1/6/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 13,
+			"col": "F",
+			"price": 92.0
+		},
+		{
+			"id": "d393d728-5db4-4f5c-9268-a147b25a576c",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/5/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 10,
+			"col": "G",
+			"price": 210.0
+		}
+	],
+	"company": "Hilton",
+	"rating": 1.3,
+	"features": [
+		"Restaurant",
+		"Parking",
+		"Free Wifi",
+		"Gym"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0ea"
 	},
-	{
-		"id": "4823fde3-875c-4cb4-b5cc-69f6f908e907",
-		"company": "Hilton",
-		"location": "Fort Worth",
-		"check_out_time": "12:00 UTS",
-		"rating": 1.3,
-		"features": [
-			"Restaurant",
-			"Parking",
-			"Free Wifi",
-			"Gym"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "a9c1e17e-7c1b-4063-a0dd-eba69ebd870d",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 114,
-				"floor": "A",
-				"num": 17,
-				"bookedDates": [
-					"1/3/22",
-					"1/7/22"
-				]
-			},
-			{
-				"id": "4cbf69f9-aee5-4a3f-ac56-a1f3f75ed46a",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 117,
-				"floor": "B",
-				"num": 18,
-				"bookedDates": [
-					"1/10/22"
-				]
-			},
-			{
-				"id": "7dded6d3-6580-4c3d-b961-6df5bd756eab",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 199,
-				"floor": "C",
-				"num": 15,
-				"bookedDates": [
-					"1/5/22"
-				]
-			},
-			{
-				"id": "369818dc-2fee-4ebc-8cf8-7697e58ac643",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 250,
-				"floor": "D",
-				"num": 11,
-				"bookedDates": [
-					"1/8/22"
-				]
-			},
-			{
-				"id": "9d23e318-71cb-49ae-bc6a-ef66c27d2c0c",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 251,
-				"floor": "E",
-				"num": 14,
-				"bookedDates": [
-					"1/2/22",
-					"1/3/22",
-					"1/6/22"
-				]
-			},
-			{
-				"id": "5ec3c302-a8b5-40fb-b149-ecd23f8627bb",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 92,
-				"floor": "F",
-				"num": 13,
-				"bookedDates": [
-					"1/1/22",
-					"1/6/22"
-				]
-			},
-			{
-				"id": "d393d728-5db4-4f5c-9268-a147b25a576c",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 210,
-				"floor": "G",
-				"num": 10,
-				"bookedDates": [
-					"1/5/22"
-				]
-			}
-		]
+	"id": "4cdd854b-e0ca-4e9b-8221-f8ed78ec6499",
+	"location": "Fort Worth",
+	"bookables": [
+		{
+			"id": "99499947-a093-4f10-a04d-08b92a5724e2",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/8/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 16,
+			"col": "A",
+			"price": 284.0
+		},
+		{
+			"id": "d08a5dd8-3a1e-4ac1-9ef3-3e235d5c4645",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/2/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 14,
+			"col": "B",
+			"price": 229.0
+		},
+		{
+			"id": "e3079ac2-b30a-4a9b-ab82-209a4b7f3ca1",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/10/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 4,
+			"col": "C",
+			"price": 132.0
+		},
+		{
+			"id": "d883ee37-bb02-4f17-8d5b-cd8cb6bf5647",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/6/22",
+				"1/8/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 4,
+			"col": "D",
+			"price": 163.0
+		},
+		{
+			"id": "fa79cd3b-d92b-48f6-b125-3a6df05223c9",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/3/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 11,
+			"col": "E",
+			"price": 107.0
+		},
+		{
+			"id": "20de95ca-76fa-4ff4-9d75-a609650fe667",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/5/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 19,
+			"col": "F",
+			"price": 91.0
+		},
+		{
+			"id": "2705b624-3d9c-4afa-b854-9d157332bbb4",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/4/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 5,
+			"col": "G",
+			"price": 275.0
+		}
+	],
+	"company": "Marriott",
+	"rating": 4.6,
+	"features": [
+		"Gym",
+		"Bar",
+		"Pet friendly",
+		"Parking",
+		"Free Wifi"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0eb"
 	},
-	{
-		"id": "821586fd-38ea-41d0-811f-9f6f81d7b602",
-		"company": "InterContinental",
-		"location": "San Antonio",
-		"check_out_time": "10:00 UTS",
-		"rating": 4.6,
-		"features": [
-			"Gym",
-			"Bar",
-			"Pool",
-			"Parking"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "673ff827-0bfc-46b5-9ebf-b5be08bb9247",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 106,
-				"floor": "A",
-				"num": 5,
-				"bookedDates": [
-					"1/3/22",
-					"1/7/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "31a342b4-24db-4ae2-9b8e-49aab63b97cd",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 88,
-				"floor": "B",
-				"num": 19,
-				"bookedDates": [
-					"1/1/22",
-					"1/3/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "7a775df8-8835-4c82-b2cc-a7233cc01f9e",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 267,
-				"floor": "C",
-				"num": 10,
-				"bookedDates": [
-					"1/3/22",
-					"1/4/22",
-					"1/6/22"
-				]
-			},
-			{
-				"id": "b76b771a-9b6d-487f-9764-252b6176a3de",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 53,
-				"floor": "D",
-				"num": 5,
-				"bookedDates": [
-					"1/5/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "06f8d7d8-9394-424f-b683-b7734395de33",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 221,
-				"floor": "E",
-				"num": 3,
-				"bookedDates": [
-					"1/2/22",
-					"1/3/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "0675707c-d2a9-44df-872f-2fd5fa35f2e7",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 174,
-				"floor": "F",
-				"num": 4,
-				"bookedDates": [
-					"1/3/22",
-					"1/7/22"
-				]
-			},
-			{
-				"id": "5b6b6768-5570-45cd-91c0-e8a193b6e46d",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 116,
-				"floor": "G",
-				"num": 3,
-				"bookedDates": [
-					"1/3/22",
-					"1/4/22"
-				]
-			}
-		]
+	"id": "821586fd-38ea-41d0-811f-9f6f81d7b602",
+	"location": "San Antonio",
+	"bookables": [
+		{
+			"id": "673ff827-0bfc-46b5-9ebf-b5be08bb9247",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/3/22",
+				"1/7/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 5,
+			"col": "A",
+			"price": 106.0
+		},
+		{
+			"id": "31a342b4-24db-4ae2-9b8e-49aab63b97cd",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/1/22",
+				"1/3/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 19,
+			"col": "B",
+			"price": 88.0
+		},
+		{
+			"id": "7a775df8-8835-4c82-b2cc-a7233cc01f9e",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/3/22",
+				"1/4/22",
+				"1/6/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 10,
+			"col": "C",
+			"price": 267.0
+		},
+		{
+			"id": "b76b771a-9b6d-487f-9764-252b6176a3de",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/5/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 5,
+			"col": "D",
+			"price": 53.0
+		},
+		{
+			"id": "06f8d7d8-9394-424f-b683-b7734395de33",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/2/22",
+				"1/3/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 3,
+			"col": "E",
+			"price": 221.0
+		},
+		{
+			"id": "0675707c-d2a9-44df-872f-2fd5fa35f2e7",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/3/22",
+				"1/7/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 4,
+			"col": "F",
+			"price": 174.0
+		},
+		{
+			"id": "5b6b6768-5570-45cd-91c0-e8a193b6e46d",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/3/22",
+				"1/4/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 3,
+			"col": "G",
+			"price": 116.0
+		}
+	],
+	"company": "InterContinental",
+	"rating": 4.6,
+	"features": [
+		"Gym",
+		"Bar",
+		"Pool",
+		"Parking"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0ec"
 	},
-	{
-		"id": "3a5ae99f-0798-425f-b55a-923093cd40ed",
-		"company": "Choice",
-		"location": "San Antonio",
-		"check_out_time": "12:00 UTS",
-		"rating": 3.7,
-		"features": [
-			"Restaurant",
-			"Gym",
-			"Free Wifi",
-			"Bar"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "6f7580c9-bb3e-4579-93a3-1b4c3dc02148",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 64,
-				"floor": "A",
-				"num": 3,
-				"bookedDates": [
-					"1/4/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "cd5d144f-f030-4b76-8b3c-7416e160a86c",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 278,
-				"floor": "B",
-				"num": 10,
-				"bookedDates": [
-					"1/1/22",
-					"1/2/22"
-				]
-			},
-			{
-				"id": "83600cb8-b420-4bae-836c-4511d6afa502",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 294,
-				"floor": "C",
-				"num": 15,
-				"bookedDates": [
-					"1/7/22"
-				]
-			},
-			{
-				"id": "713fd8c8-703f-4590-aff9-07d876bec200",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 120,
-				"floor": "D",
-				"num": 2,
-				"bookedDates": [
-					"1/4/22"
-				]
-			},
-			{
-				"id": "6f71f72c-66b9-4e4a-9b9f-e71a316ebaf4",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 70,
-				"floor": "E",
-				"num": 4,
-				"bookedDates": []
-			},
-			{
-				"id": "0368bdd0-7d9a-4f2a-ad87-2cbcf545f8c1",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 202,
-				"floor": "F",
-				"num": 19,
-				"bookedDates": [
-					"1/4/22",
-					"1/6/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "01c9ee86-5aed-4f01-ac7d-c52e0eb7c9a5",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 204,
-				"floor": "G",
-				"num": 9,
-				"bookedDates": [
-					"1/8/22",
-					"1/10/22"
-				]
-			}
-		]
+	"id": "676a61f0-40f7-4370-bd70-1f5336de7532",
+	"location": "Dallas-Fort Worth",
+	"bookables": [
+		{
+			"id": "22f4fb80-1468-46dd-8d58-38e3ce7158cb",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/2/22",
+				"1/8/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 9,
+			"col": "A",
+			"price": 63.0
+		},
+		{
+			"id": "4b5f1623-5703-4ad2-9b6e-fb682040679a",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/2/22",
+				"1/3/22",
+				"1/4/22",
+				"1/9/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 16,
+			"col": "B",
+			"price": 137.0
+		},
+		{
+			"id": "51949961-dc8a-4493-8259-d7e58e079265",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/7/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 6,
+			"col": "C",
+			"price": 135.0
+		}
+	],
+	"company": "InterContinental",
+	"rating": 3.5,
+	"features": [
+		"Lounge Area",
+		"Pet friendly",
+		"Pool",
+		"Bar"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0ed"
 	},
-	{
-		"id": "676a61f0-40f7-4370-bd70-1f5336de7532",
-		"company": "InterContinental",
-		"location": "Dallas-Fort Worth",
-		"check_out_time": "12:00 UTS",
-		"rating": 3.5,
-		"features": [
-			"Lounge Area",
-			"Pet friendly",
-			"Pool",
-			"Bar"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "22f4fb80-1468-46dd-8d58-38e3ce7158cb",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 63,
-				"floor": "A",
-				"num": 9,
-				"bookedDates": [
-					"1/2/22",
-					"1/8/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "4b5f1623-5703-4ad2-9b6e-fb682040679a",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 137,
-				"floor": "B",
-				"num": 16,
-				"bookedDates": [
-					"1/2/22",
-					"1/3/22",
-					"1/4/22",
-					"1/9/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "51949961-dc8a-4493-8259-d7e58e079265",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 135,
-				"floor": "C",
-				"num": 6,
-				"bookedDates": [
-					"1/7/22",
-					"1/10/22"
-				]
-			}
-		]
+	"id": "3a5ae99f-0798-425f-b55a-923093cd40ed",
+	"location": "San Antonio",
+	"bookables": [
+		{
+			"id": "6f7580c9-bb3e-4579-93a3-1b4c3dc02148",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/4/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 3,
+			"col": "A",
+			"price": 64.0
+		},
+		{
+			"id": "cd5d144f-f030-4b76-8b3c-7416e160a86c",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/1/22",
+				"1/2/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 10,
+			"col": "B",
+			"price": 278.0
+		},
+		{
+			"id": "83600cb8-b420-4bae-836c-4511d6afa502",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/7/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 15,
+			"col": "C",
+			"price": 294.0
+		},
+		{
+			"id": "713fd8c8-703f-4590-aff9-07d876bec200",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/4/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 2,
+			"col": "D",
+			"price": 120.0
+		},
+		{
+			"id": "6f71f72c-66b9-4e4a-9b9f-e71a316ebaf4",
+			"info": "2 Queen Beds",
+			"bookedDays": [],
+			"sleepingCapacity": 4,
+			"row": 4,
+			"col": "E",
+			"price": 70.0
+		},
+		{
+			"id": "0368bdd0-7d9a-4f2a-ad87-2cbcf545f8c1",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/4/22",
+				"1/6/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 19,
+			"col": "F",
+			"price": 202.0
+		},
+		{
+			"id": "01c9ee86-5aed-4f01-ac7d-c52e0eb7c9a5",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/8/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 9,
+			"col": "G",
+			"price": 204.0
+		}
+	],
+	"company": "Choice",
+	"rating": 3.7,
+	"features": [
+		"Restaurant",
+		"Gym",
+		"Free Wifi",
+		"Bar"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0ee"
 	},
-	{
-		"id": "9f507746-c65c-43e5-8460-a4a3dbf2153d",
-		"company": "Wyndham",
-		"location": "Fort Worth",
-		"check_out_time": "10:00 UTS",
-		"rating": 3.2,
-		"features": [
-			"Pet friendly",
-			"Restaurant",
-			"Free Wifi",
-			"Pool",
-			"Lounge Area",
-			"Parking",
-			"Gym"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "806d064f-399b-460e-98a3-8e4cf48025b3",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 59,
-				"floor": "A",
-				"num": 16,
-				"bookedDates": [
-					"1/2/22"
-				]
-			},
-			{
-				"id": "16d558f6-7436-4c3a-b3af-ccfc6bb2956e",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 214,
-				"floor": "B",
-				"num": 6,
-				"bookedDates": [
-					"1/4/22"
-				]
-			},
-			{
-				"id": "8df39edb-ebb9-4b88-a2e0-8504cf9eca0b",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 123,
-				"floor": "C",
-				"num": 14,
-				"bookedDates": [
-					"1/4/22"
-				]
-			},
-			{
-				"id": "bb6a0356-6aef-4dd1-8c75-aa107b168c68",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 115,
-				"floor": "D",
-				"num": 15,
-				"bookedDates": [
-					"1/2/22",
-					"1/9/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "e3735c6e-1142-4491-88fa-0cfc8e4eef6b",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 300,
-				"floor": "E",
-				"num": 14,
-				"bookedDates": []
-			},
-			{
-				"id": "ca78ebed-bcca-4b7d-9883-73129c5edd52",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 123,
-				"floor": "F",
-				"num": 16,
-				"bookedDates": [
-					"1/1/22"
-				]
-			},
-			{
-				"id": "185fad13-c1b7-40af-9582-3464afd5fb67",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 253,
-				"floor": "G",
-				"num": 12,
-				"bookedDates": [
-					"1/3/22",
-					"1/5/22",
-					"1/9/22"
-				]
-			}
-		]
+	"id": "9f507746-c65c-43e5-8460-a4a3dbf2153d",
+	"location": "Fort Worth",
+	"bookables": [
+		{
+			"id": "806d064f-399b-460e-98a3-8e4cf48025b3",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/2/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 16,
+			"col": "A",
+			"price": 59.0
+		},
+		{
+			"id": "16d558f6-7436-4c3a-b3af-ccfc6bb2956e",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/4/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 6,
+			"col": "B",
+			"price": 214.0
+		},
+		{
+			"id": "8df39edb-ebb9-4b88-a2e0-8504cf9eca0b",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/4/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 14,
+			"col": "C",
+			"price": 123.0
+		},
+		{
+			"id": "bb6a0356-6aef-4dd1-8c75-aa107b168c68",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/2/22",
+				"1/9/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 15,
+			"col": "D",
+			"price": 115.0
+		},
+		{
+			"id": "e3735c6e-1142-4491-88fa-0cfc8e4eef6b",
+			"info": "1 Queen Bed",
+			"bookedDays": [],
+			"sleepingCapacity": 1,
+			"row": 14,
+			"col": "E",
+			"price": 300.0
+		},
+		{
+			"id": "ca78ebed-bcca-4b7d-9883-73129c5edd52",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/1/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 16,
+			"col": "F",
+			"price": 123.0
+		},
+		{
+			"id": "185fad13-c1b7-40af-9582-3464afd5fb67",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/3/22",
+				"1/5/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 12,
+			"col": "G",
+			"price": 253.0
+		}
+	],
+	"company": "Wyndham",
+	"rating": 3.2,
+	"features": [
+		"Pet friendly",
+		"Restaurant",
+		"Free Wifi",
+		"Pool",
+		"Lounge Area",
+		"Parking",
+		"Gym"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0ef"
 	},
-	{
-		"id": "2788cc70-eaa6-4622-befd-9dfa695d9a4f",
-		"company": "Wyndham",
-		"location": "Fort Worth",
-		"check_out_time": "11:00 UTS",
-		"rating": 4.3,
-		"features": [
-			"Gym",
-			"Bar",
-			"Pool",
-			"Parking",
-			"Lounge Area"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "b785e91f-29a7-4cf4-b22c-9f72fe4b7d05",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 110,
-				"floor": "A",
-				"num": 19,
-				"bookedDates": [
-					"1/9/22"
-				]
-			},
-			{
-				"id": "bf7bcdf5-5b6e-4b18-aa20-e6db0f3a3131",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 299,
-				"floor": "B",
-				"num": 18,
-				"bookedDates": [
-					"1/5/22"
-				]
-			},
-			{
-				"id": "2a6ff0d6-4c4c-430a-8e69-159db256c872",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 210,
-				"floor": "C",
-				"num": 9,
-				"bookedDates": [
-					"1/7/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "7cc1c615-359d-46ef-9f03-12236a1ce552",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 65,
-				"floor": "D",
-				"num": 15,
-				"bookedDates": [
-					"1/5/22"
-				]
-			},
-			{
-				"id": "725694de-ebfc-4734-80fb-48bd1426e366",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 151,
-				"floor": "E",
-				"num": 8,
-				"bookedDates": [
-					"1/1/22",
-					"1/2/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "16317e2f-d414-4a8f-a636-9ddf47ed56c9",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 136,
-				"floor": "F",
-				"num": 8,
-				"bookedDates": [
-					"1/3/22",
-					"1/4/22",
-					"1/9/22"
-				]
-			}
-		]
+	"id": "47fcb990-034e-4496-ba62-6b602dd835bb",
+	"location": "Wichita Falls",
+	"bookables": [
+		{
+			"id": "57387667-00c2-4c7c-a280-c0c9a3433f45",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/10/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 5,
+			"col": "A",
+			"price": 242.0
+		},
+		{
+			"id": "d43bf996-c6d0-4590-8ed7-ab85b1dc6592",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/2/22",
+				"1/3/22",
+				"1/6/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 18,
+			"col": "B",
+			"price": 248.0
+		},
+		{
+			"id": "2dcba14e-f1fd-45a0-9df1-466752a3f473",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/4/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 4,
+			"col": "C",
+			"price": 232.0
+		}
+	],
+	"company": "Accor",
+	"rating": 1.4,
+	"features": [
+		"Parking",
+		"Restaurant",
+		"Pet friendly",
+		"Bar",
+		"Free Wifi",
+		"Lounge Area",
+		"Pool",
+		"Gym"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0f0"
 	},
-	{
-		"id": "47fcb990-034e-4496-ba62-6b602dd835bb",
-		"company": "Accor",
-		"location": "Wichita Falls",
-		"check_out_time": "10:00 UTS",
-		"rating": 1.4,
-		"features": [
-			"Parking",
-			"Restaurant",
-			"Pet friendly",
-			"Bar",
-			"Free Wifi",
-			"Lounge Area",
-			"Pool",
-			"Gym"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "57387667-00c2-4c7c-a280-c0c9a3433f45",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 242,
-				"floor": "A",
-				"num": 5,
-				"bookedDates": [
-					"1/10/22"
-				]
-			},
-			{
-				"id": "d43bf996-c6d0-4590-8ed7-ab85b1dc6592",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 248,
-				"floor": "B",
-				"num": 18,
-				"bookedDates": [
-					"1/2/22",
-					"1/3/22",
-					"1/6/22"
-				]
-			},
-			{
-				"id": "2dcba14e-f1fd-45a0-9df1-466752a3f473",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 232,
-				"floor": "C",
-				"num": 4,
-				"bookedDates": [
-					"1/4/22"
-				]
-			}
-		]
+	"id": "2788cc70-eaa6-4622-befd-9dfa695d9a4f",
+	"location": "Fort Worth",
+	"bookables": [
+		{
+			"id": "b785e91f-29a7-4cf4-b22c-9f72fe4b7d05",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 19,
+			"col": "A",
+			"price": 110.0
+		},
+		{
+			"id": "bf7bcdf5-5b6e-4b18-aa20-e6db0f3a3131",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/5/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 18,
+			"col": "B",
+			"price": 299.0
+		},
+		{
+			"id": "2a6ff0d6-4c4c-430a-8e69-159db256c872",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/7/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 9,
+			"col": "C",
+			"price": 210.0
+		},
+		{
+			"id": "7cc1c615-359d-46ef-9f03-12236a1ce552",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/5/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 15,
+			"col": "D",
+			"price": 65.0
+		},
+		{
+			"id": "725694de-ebfc-4734-80fb-48bd1426e366",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/1/22",
+				"1/2/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 8,
+			"col": "E",
+			"price": 151.0
+		},
+		{
+			"id": "16317e2f-d414-4a8f-a636-9ddf47ed56c9",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/3/22",
+				"1/4/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 8,
+			"col": "F",
+			"price": 136.0
+		}
+	],
+	"company": "Wyndham",
+	"rating": 4.3,
+	"features": [
+		"Gym",
+		"Bar",
+		"Pool",
+		"Parking",
+		"Lounge Area"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0f1"
 	},
-	{
-		"id": "68db3deb-0a01-4bcd-82bd-88a58341a096",
-		"company": "InterContinental",
-		"location": "San Antonio",
-		"check_out_time": "10:00 UTS",
-		"rating": 3.8,
-		"features": [
-			"Gym",
-			"Free Wifi",
-			"Lounge Area",
-			"Parking",
-			"Pool"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "028f6192-20d1-4f30-bc2f-89952f7c5f77",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 269,
-				"floor": "A",
-				"num": 4,
-				"bookedDates": [
-					"1/1/22",
-					"1/4/22",
-					"1/6/22",
-					"1/7/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "b63a50fa-89bb-4043-8978-1f49c0301e3f",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 57,
-				"floor": "B",
-				"num": 12,
-				"bookedDates": [
-					"1/7/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "53b5a898-6cf7-4123-8e3e-1c9b25a030c1",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 63,
-				"floor": "C",
-				"num": 5,
-				"bookedDates": [
-					"1/8/22"
-				]
-			},
-			{
-				"id": "061cfc3c-ddb3-4ccc-832b-b7376973da55",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 238,
-				"floor": "D",
-				"num": 12,
-				"bookedDates": [
-					"1/3/22"
-				]
-			},
-			{
-				"id": "dc4b214a-aad0-4d70-acdf-56064ef8a98c",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 120,
-				"floor": "E",
-				"num": 14,
-				"bookedDates": [
-					"1/3/22",
-					"1/9/22"
-				]
-			}
-		]
+	"id": "c55ca6a2-ef01-47b2-b9e3-07d4caade1ac",
+	"location": "McAllen",
+	"bookables": [
+		{
+			"id": "6cbb27dd-b5d4-44cd-a884-68c2bdf5a58b",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/4/22",
+				"1/5/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 17,
+			"col": "A",
+			"price": 277.0
+		},
+		{
+			"id": "2c731f3d-faa9-4c8d-82aa-0c9b4babe838",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/3/22",
+				"1/4/22",
+				"1/6/22",
+				"1/7/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 10,
+			"col": "B",
+			"price": 101.0
+		},
+		{
+			"id": "6a0048fb-f638-413f-b4d6-ce9e94dd3aa7",
+			"info": "1 Queen Bed",
+			"bookedDays": [],
+			"sleepingCapacity": 1,
+			"row": 13,
+			"col": "C",
+			"price": 117.0
+		},
+		{
+			"id": "c2a7f209-e875-4e25-9bae-66bb0ddf62a3",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/9/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 9,
+			"col": "D",
+			"price": 272.0
+		},
+		{
+			"id": "39aa491f-8bb2-4bce-bcb8-9d79b961a5c8",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/1/22",
+				"1/7/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 7,
+			"col": "E",
+			"price": 54.0
+		}
+	],
+	"company": "InterContinental",
+	"rating": 1.5,
+	"features": [
+		"Parking",
+		"Pool",
+		"Pet friendly",
+		"Bar"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0f2"
 	},
-	{
-		"id": "72102dee-16ab-495f-b6de-073fed068334",
-		"company": "Red Lion",
-		"location": "Dallas-Fort Worth",
-		"check_out_time": "10:00 UTS",
-		"rating": 3.5,
-		"features": [
-			"Pool",
-			"Bar",
-			"Free Wifi",
-			"Pet friendly",
-			"Parking",
-			"Lounge Area",
-			"Restaurant"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "411c056a-2a70-4dc9-8ec8-4fa05d5d7478",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 211,
-				"floor": "A",
-				"num": 9,
-				"bookedDates": [
-					"1/3/22",
-					"1/7/22",
-					"1/8/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "43e61674-2f93-4571-a91a-58a31dbdf223",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 109,
-				"floor": "B",
-				"num": 17,
-				"bookedDates": []
-			},
-			{
-				"id": "81fb825f-fef3-4762-8996-16b8038a6d47",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 101,
-				"floor": "C",
-				"num": 9,
-				"bookedDates": []
-			},
-			{
-				"id": "4dff648f-dcd4-46c6-a767-01117a249fb4",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 204,
-				"floor": "D",
-				"num": 12,
-				"bookedDates": [
-					"1/10/22"
-				]
-			},
-			{
-				"id": "84ee8562-4eb5-4527-856f-efac046eeee1",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 162,
-				"floor": "E",
-				"num": 8,
-				"bookedDates": [
-					"1/9/22"
-				]
-			}
-		]
+	"id": "cbb105ce-de42-49df-a002-651071b2cc35",
+	"location": "Dallas-Fort Worth",
+	"bookables": [
+		{
+			"id": "9d69c4a8-fa49-4545-9870-ee9ea868e9a1",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/1/22",
+				"1/2/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 13,
+			"col": "A",
+			"price": 243.0
+		},
+		{
+			"id": "704d4462-dc23-426e-b2d1-86a85e9d1912",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/2/22",
+				"1/3/22",
+				"1/5/22",
+				"1/7/22",
+				"1/8/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 10,
+			"col": "B",
+			"price": 272.0
+		},
+		{
+			"id": "768006f6-9d80-4142-8d36-2c560b4658e6",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/3/22",
+				"1/5/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 13,
+			"col": "C",
+			"price": 212.0
+		}
+	],
+	"company": "Marriott",
+	"rating": 1.5,
+	"features": [
+		"Free Wifi",
+		"Gym",
+		"Lounge Area",
+		"Pet friendly",
+		"Restaurant",
+		"Bar"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0f3"
 	},
-	{
-		"id": "9da3ea80-ce8c-457e-89e8-5dd37902b422",
-		"company": "Marriott",
-		"location": "San Antonio",
-		"check_out_time": "11:00 UTS",
-		"rating": 3.2,
-		"features": [
-			"Free Wifi",
-			"Pet friendly",
-			"Parking"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "770840f7-3c91-446d-95f3-80208abd9fc7",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 163,
-				"floor": "A",
-				"num": 10,
-				"bookedDates": [
-					"1/2/22",
-					"1/3/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "70166842-55fc-4113-908d-7bee9d2c0075",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 69,
-				"floor": "B",
-				"num": 12,
-				"bookedDates": [
-					"1/3/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "6b764b7e-880a-4876-8eed-d15bfdb145d3",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 92,
-				"floor": "C",
-				"num": 8,
-				"bookedDates": [
-					"1/2/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "21f8e2c9-1901-41e2-b11d-9a316eb4bc56",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 176,
-				"floor": "D",
-				"num": 3,
-				"bookedDates": [
-					"1/1/22",
-					"1/9/22",
-					"1/10/22"
-				]
-			}
-		]
+	"id": "3e70f9a9-1e66-4f8d-bebb-2917a0eaa811",
+	"location": "McAllen",
+	"bookables": [
+		{
+			"id": "bf0f2f19-f711-477c-853d-5881ef02f8c5",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/2/22",
+				"1/5/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 13,
+			"col": "A",
+			"price": 203.0
+		},
+		{
+			"id": "dc8a3910-34b7-4040-8961-3d3e1a0d7fcd",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/5/22",
+				"1/8/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 10,
+			"col": "B",
+			"price": 229.0
+		},
+		{
+			"id": "a809b419-a8d9-4be6-b8eb-c5919db931d3",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/2/22",
+				"1/6/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 2,
+			"col": "C",
+			"price": 107.0
+		},
+		{
+			"id": "b9ec5f42-ed55-40d9-b9d6-480db1a42498",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/2/22",
+				"1/4/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 5,
+			"col": "D",
+			"price": 235.0
+		},
+		{
+			"id": "58b441de-e62d-4694-a512-2976d959f075",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/3/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 14,
+			"col": "E",
+			"price": 213.0
+		}
+	],
+	"company": "Hilton",
+	"rating": 2.3,
+	"features": [
+		"Gym",
+		"Pool",
+		"Bar",
+		"Restaurant"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0f4"
 	},
-	{
-		"id": "6e76f99c-fbc5-43f4-9924-fafc561fdff9",
-		"company": "Choice",
-		"location": "Houston",
-		"check_out_time": "11:00 UTS",
-		"rating": 2.1,
-		"features": [
-			"Pet friendly",
-			"Restaurant",
-			"Bar",
-			"Free Wifi",
-			"Pool"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "87ce1e77-8378-4092-9616-32bdbda62445",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 75,
-				"floor": "A",
-				"num": 9,
-				"bookedDates": [
-					"1/6/22"
-				]
-			},
-			{
-				"id": "66974709-f4c3-428b-b24d-8105a0333490",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 244,
-				"floor": "B",
-				"num": 18,
-				"bookedDates": [
-					"1/3/22",
-					"1/5/22",
-					"1/7/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "c0ed7056-0dcf-4585-96fa-aba2daffd280",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 110,
-				"floor": "C",
-				"num": 11,
-				"bookedDates": [
-					"1/1/22",
-					"1/3/22",
-					"1/4/22",
-					"1/7/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "02da85c2-0804-4ff6-bee5-769d81084a7b",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 105,
-				"floor": "D",
-				"num": 15,
-				"bookedDates": [
-					"1/4/22",
-					"1/7/22"
-				]
-			},
-			{
-				"id": "7c92d49a-ec9e-4453-a45c-dbd7f656ef6d",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 204,
-				"floor": "E",
-				"num": 16,
-				"bookedDates": []
-			}
-		]
+	"id": "68db3deb-0a01-4bcd-82bd-88a58341a096",
+	"location": "San Antonio",
+	"bookables": [
+		{
+			"id": "028f6192-20d1-4f30-bc2f-89952f7c5f77",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/1/22",
+				"1/4/22",
+				"1/6/22",
+				"1/7/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 4,
+			"col": "A",
+			"price": 269.0
+		},
+		{
+			"id": "b63a50fa-89bb-4043-8978-1f49c0301e3f",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/7/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 12,
+			"col": "B",
+			"price": 57.0
+		},
+		{
+			"id": "53b5a898-6cf7-4123-8e3e-1c9b25a030c1",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/8/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 5,
+			"col": "C",
+			"price": 63.0
+		},
+		{
+			"id": "061cfc3c-ddb3-4ccc-832b-b7376973da55",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/3/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 12,
+			"col": "D",
+			"price": 238.0
+		},
+		{
+			"id": "dc4b214a-aad0-4d70-acdf-56064ef8a98c",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/3/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 14,
+			"col": "E",
+			"price": 120.0
+		}
+	],
+	"company": "InterContinental",
+	"rating": 3.8,
+	"features": [
+		"Gym",
+		"Free Wifi",
+		"Lounge Area",
+		"Parking",
+		"Pool"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0f5"
 	},
-	{
-		"id": "cbb105ce-de42-49df-a002-651071b2cc35",
-		"company": "Marriott",
-		"location": "Dallas-Fort Worth",
-		"check_out_time": "10:00 UTS",
-		"rating": 1.5,
-		"features": [
-			"Free Wifi",
-			"Gym",
-			"Lounge Area",
-			"Pet friendly",
-			"Restaurant",
-			"Bar"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "9d69c4a8-fa49-4545-9870-ee9ea868e9a1",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 243,
-				"floor": "A",
-				"num": 13,
-				"bookedDates": [
-					"1/1/22",
-					"1/2/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "704d4462-dc23-426e-b2d1-86a85e9d1912",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 272,
-				"floor": "B",
-				"num": 10,
-				"bookedDates": [
-					"1/2/22",
-					"1/3/22",
-					"1/5/22",
-					"1/7/22",
-					"1/8/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "768006f6-9d80-4142-8d36-2c560b4658e6",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 212,
-				"floor": "C",
-				"num": 13,
-				"bookedDates": [
-					"1/3/22",
-					"1/5/22"
-				]
-			}
-		]
+	"id": "e553d85c-52ff-4bcd-9f23-4e0d082767bb",
+	"location": "College Station",
+	"bookables": [
+		{
+			"id": "22c24233-41e3-4c1b-9918-7cb8938e1d7c",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/1/22",
+				"1/3/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 7,
+			"col": "A",
+			"price": 264.0
+		},
+		{
+			"id": "9eea1d9d-9d6a-4670-b684-165b999b066e",
+			"info": "1 King Bed",
+			"bookedDays": [],
+			"sleepingCapacity": 2,
+			"row": 11,
+			"col": "B",
+			"price": 160.0
+		},
+		{
+			"id": "bfff6858-5520-437c-9dde-653b192aae68",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/2/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 7,
+			"col": "C",
+			"price": 270.0
+		},
+		{
+			"id": "62d80be0-1920-4bd8-a2c2-697092e40333",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/3/22",
+				"1/4/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 8,
+			"col": "D",
+			"price": 187.0
+		},
+		{
+			"id": "58f77803-9e3f-46c4-894e-d5b1c8aaa14d",
+			"info": "2 Double Beds",
+			"bookedDays": [],
+			"sleepingCapacity": 4,
+			"row": 3,
+			"col": "E",
+			"price": 197.0
+		}
+	],
+	"company": "Wyndham",
+	"rating": 3.7,
+	"features": [
+		"Gym",
+		"Free Wifi",
+		"Bar"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0f6"
 	},
-	{
-		"id": "3e70f9a9-1e66-4f8d-bebb-2917a0eaa811",
-		"company": "Hilton",
-		"location": "McAllen",
-		"check_out_time": "11:00 UTS",
-		"rating": 2.3,
-		"features": [
-			"Gym",
-			"Pool",
-			"Bar",
-			"Restaurant"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "bf0f2f19-f711-477c-853d-5881ef02f8c5",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 203,
-				"floor": "A",
-				"num": 13,
-				"bookedDates": [
-					"1/2/22",
-					"1/5/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "dc8a3910-34b7-4040-8961-3d3e1a0d7fcd",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 229,
-				"floor": "B",
-				"num": 10,
-				"bookedDates": [
-					"1/5/22",
-					"1/8/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "a809b419-a8d9-4be6-b8eb-c5919db931d3",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 107,
-				"floor": "C",
-				"num": 2,
-				"bookedDates": [
-					"1/2/22",
-					"1/6/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "b9ec5f42-ed55-40d9-b9d6-480db1a42498",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 235,
-				"floor": "D",
-				"num": 5,
-				"bookedDates": [
-					"1/2/22",
-					"1/4/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "58b441de-e62d-4694-a512-2976d959f075",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 213,
-				"floor": "E",
-				"num": 14,
-				"bookedDates": [
-					"1/3/22"
-				]
-			}
-		]
+	"id": "c7269d21-dbd6-4b96-a5e2-fb7d980caab4",
+	"location": "College Station",
+	"bookables": [
+		{
+			"id": "12fda3e9-83d4-4a60-b9a3-f1eef526386c",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/5/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 19,
+			"col": "A",
+			"price": 103.0
+		},
+		{
+			"id": "a202e5a9-434f-48ee-8de8-d18db4e1b62b",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/2/22",
+				"1/5/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 2,
+			"col": "B",
+			"price": 192.0
+		},
+		{
+			"id": "eda04566-a756-4820-a578-c042a4686013",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/3/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 10,
+			"col": "C",
+			"price": 280.0
+		},
+		{
+			"id": "8a1e620c-6f2f-4add-8daf-183311e4c0a8",
+			"info": "2 Double Beds",
+			"bookedDays": [],
+			"sleepingCapacity": 4,
+			"row": 3,
+			"col": "D",
+			"price": 112.0
+		},
+		{
+			"id": "027f659f-0ec6-4d23-914d-66de6840eec3",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/1/22",
+				"1/2/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 12,
+			"col": "E",
+			"price": 176.0
+		}
+	],
+	"company": "InterContinental",
+	"rating": 0.1,
+	"features": [
+		"Pool",
+		"Lounge Area",
+		"Bar",
+		"Pet friendly",
+		"Parking",
+		"Gym",
+		"Restaurant",
+		"Free Wifi"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0f7"
 	},
-	{
-		"id": "c7269d21-dbd6-4b96-a5e2-fb7d980caab4",
-		"company": "InterContinental",
-		"location": "College Station",
-		"check_out_time": "11:00 UTS",
-		"rating": 0.1,
-		"features": [
-			"Pool",
-			"Lounge Area",
-			"Bar",
-			"Pet friendly",
-			"Parking",
-			"Gym",
-			"Restaurant",
-			"Free Wifi"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "12fda3e9-83d4-4a60-b9a3-f1eef526386c",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 103,
-				"floor": "A",
-				"num": 19,
-				"bookedDates": [
-					"1/5/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "a202e5a9-434f-48ee-8de8-d18db4e1b62b",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 192,
-				"floor": "B",
-				"num": 2,
-				"bookedDates": [
-					"1/2/22",
-					"1/5/22"
-				]
-			},
-			{
-				"id": "eda04566-a756-4820-a578-c042a4686013",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 280,
-				"floor": "C",
-				"num": 10,
-				"bookedDates": [
-					"1/3/22"
-				]
-			},
-			{
-				"id": "8a1e620c-6f2f-4add-8daf-183311e4c0a8",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 112,
-				"floor": "D",
-				"num": 3,
-				"bookedDates": []
-			},
-			{
-				"id": "027f659f-0ec6-4d23-914d-66de6840eec3",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 176,
-				"floor": "E",
-				"num": 12,
-				"bookedDates": [
-					"1/1/22",
-					"1/2/22"
-				]
-			}
-		]
+	"id": "a2f5f8e1-055b-4e6b-b124-46a1c39ed62a",
+	"location": "Lubbock",
+	"bookables": [
+		{
+			"id": "e59043e9-09bc-4ff4-8156-c995643487ca",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/6/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 9,
+			"col": "A",
+			"price": 250.0
+		},
+		{
+			"id": "4456e70a-41eb-40cb-b230-af58f080cf6d",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/7/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 2,
+			"col": "B",
+			"price": 91.0
+		},
+		{
+			"id": "c769ee1e-8149-4fde-bec7-468d42802df7",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/2/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 16,
+			"col": "C",
+			"price": 109.0
+		},
+		{
+			"id": "ac8022bd-f4bf-4788-ac5c-a1f95e80d7f4",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/2/22",
+				"1/6/22",
+				"1/8/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 13,
+			"col": "D",
+			"price": 115.0
+		},
+		{
+			"id": "7d8b945a-6090-41e4-a09e-67983463785f",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/2/22",
+				"1/5/22",
+				"1/6/22",
+				"1/9/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 3,
+			"col": "E",
+			"price": 111.0
+		},
+		{
+			"id": "b0dc604b-be75-4531-80a3-4d6df935fba2",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/8/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 2,
+			"col": "F",
+			"price": 168.0
+		},
+		{
+			"id": "f58f75a3-f982-4772-bc35-de1c76adb356",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/2/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 9,
+			"col": "G",
+			"price": 54.0
+		}
+	],
+	"company": "Wyndham",
+	"rating": 1.1,
+	"features": [
+		"Gym",
+		"Restaurant",
+		"Pet friendly",
+		"Lounge Area",
+		"Parking"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0f8"
 	},
-	{
-		"id": "a2f5f8e1-055b-4e6b-b124-46a1c39ed62a",
-		"company": "Wyndham",
-		"location": "Lubbock",
-		"check_out_time": "11:00 UTS",
-		"rating": 1.1,
-		"features": [
-			"Gym",
-			"Restaurant",
-			"Pet friendly",
-			"Lounge Area",
-			"Parking"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "e59043e9-09bc-4ff4-8156-c995643487ca",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 250,
-				"floor": "A",
-				"num": 9,
-				"bookedDates": [
-					"1/6/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "4456e70a-41eb-40cb-b230-af58f080cf6d",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 91,
-				"floor": "B",
-				"num": 2,
-				"bookedDates": [
-					"1/7/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "c769ee1e-8149-4fde-bec7-468d42802df7",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 109,
-				"floor": "C",
-				"num": 16,
-				"bookedDates": [
-					"1/2/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "ac8022bd-f4bf-4788-ac5c-a1f95e80d7f4",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 115,
-				"floor": "D",
-				"num": 13,
-				"bookedDates": [
-					"1/2/22",
-					"1/6/22",
-					"1/8/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "7d8b945a-6090-41e4-a09e-67983463785f",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 111,
-				"floor": "E",
-				"num": 3,
-				"bookedDates": [
-					"1/2/22",
-					"1/5/22",
-					"1/6/22",
-					"1/9/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "b0dc604b-be75-4531-80a3-4d6df935fba2",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 168,
-				"floor": "F",
-				"num": 2,
-				"bookedDates": [
-					"1/8/22"
-				]
-			},
-			{
-				"id": "f58f75a3-f982-4772-bc35-de1c76adb356",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 54,
-				"floor": "G",
-				"num": 9,
-				"bookedDates": [
-					"1/2/22"
-				]
-			}
-		]
+	"id": "c3bf7ac3-4ecc-43b2-b254-261b2ee6536a",
+	"location": "Tyler",
+	"bookables": [
+		{
+			"id": "207742c0-129a-45b2-9585-1b9fbfb37a15",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/4/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 15,
+			"col": "A",
+			"price": 230.0
+		},
+		{
+			"id": "098a179f-f9e1-4221-a66d-d3ab39125ec9",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/3/22",
+				"1/6/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 18,
+			"col": "B",
+			"price": 174.0
+		},
+		{
+			"id": "6ae231a6-a113-4969-9119-a59312010328",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/2/22",
+				"1/3/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 18,
+			"col": "C",
+			"price": 114.0
+		},
+		{
+			"id": "b4d5a9df-0418-46e1-824f-15755c321615",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/5/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 8,
+			"col": "D",
+			"price": 259.0
+		},
+		{
+			"id": "41d1b116-4970-4ed0-aa54-a1ad0faabe80",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/2/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 4,
+			"col": "E",
+			"price": 228.0
+		},
+		{
+			"id": "c08c4f21-3fbc-4670-b24a-3eb91d60aedb",
+			"info": "2 Queen Beds",
+			"bookedDays": [],
+			"sleepingCapacity": 4,
+			"row": 8,
+			"col": "F",
+			"price": 125.0
+		}
+	],
+	"company": "Marriott",
+	"rating": 2.5,
+	"features": [
+		"Gym",
+		"Pet friendly",
+		"Bar"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0f9"
 	},
-	{
-		"id": "e553d85c-52ff-4bcd-9f23-4e0d082767bb",
-		"company": "Wyndham",
-		"location": "College Station",
-		"check_out_time": "11:00 UTS",
-		"rating": 3.7,
-		"features": [
-			"Gym",
-			"Free Wifi",
-			"Bar"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "22c24233-41e3-4c1b-9918-7cb8938e1d7c",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 264,
-				"floor": "A",
-				"num": 7,
-				"bookedDates": [
-					"1/1/22",
-					"1/3/22"
-				]
-			},
-			{
-				"id": "9eea1d9d-9d6a-4670-b684-165b999b066e",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 160,
-				"floor": "B",
-				"num": 11,
-				"bookedDates": []
-			},
-			{
-				"id": "bfff6858-5520-437c-9dde-653b192aae68",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 270,
-				"floor": "C",
-				"num": 7,
-				"bookedDates": [
-					"1/2/22"
-				]
-			},
-			{
-				"id": "62d80be0-1920-4bd8-a2c2-697092e40333",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 187,
-				"floor": "D",
-				"num": 8,
-				"bookedDates": [
-					"1/3/22",
-					"1/4/22"
-				]
-			},
-			{
-				"id": "58f77803-9e3f-46c4-894e-d5b1c8aaa14d",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 197,
-				"floor": "E",
-				"num": 3,
-				"bookedDates": []
-			}
-		]
+	"id": "4b1e6952-c61f-4c2c-91ed-6fad9f7b7d77",
+	"location": "Midland",
+	"bookables": [
+		{
+			"id": "d9ec631a-c825-4ba9-9d8a-56b10cd3266d",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/4/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 11,
+			"col": "A",
+			"price": 272.0
+		},
+		{
+			"id": "6f076629-f240-48d4-a318-fd782ac73d80",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/9/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 7,
+			"col": "B",
+			"price": 243.0
+		},
+		{
+			"id": "de88dc60-9b8a-4dcd-a93e-d1e3925b66e1",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/2/22",
+				"1/6/22",
+				"1/7/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 11,
+			"col": "C",
+			"price": 125.0
+		},
+		{
+			"id": "04fb9153-f34c-4375-8497-d14fe4ffd0ce",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/2/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 13,
+			"col": "D",
+			"price": 161.0
+		}
+	],
+	"company": "Marriott",
+	"rating": 3.8,
+	"features": [
+		"Bar",
+		"Restaurant",
+		"Free Wifi",
+		"Pool",
+		"Pet friendly",
+		"Gym",
+		"Parking"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0fa"
 	},
-	{
-		"id": "c3bf7ac3-4ecc-43b2-b254-261b2ee6536a",
-		"company": "Marriott",
-		"location": "Tyler",
-		"check_out_time": "11:00 UTS",
-		"rating": 2.5,
-		"features": [
-			"Gym",
-			"Pet friendly",
-			"Bar"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "207742c0-129a-45b2-9585-1b9fbfb37a15",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 230,
-				"floor": "A",
-				"num": 15,
-				"bookedDates": [
-					"1/4/22"
-				]
-			},
-			{
-				"id": "098a179f-f9e1-4221-a66d-d3ab39125ec9",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 174,
-				"floor": "B",
-				"num": 18,
-				"bookedDates": [
-					"1/3/22",
-					"1/6/22"
-				]
-			},
-			{
-				"id": "6ae231a6-a113-4969-9119-a59312010328",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 114,
-				"floor": "C",
-				"num": 18,
-				"bookedDates": [
-					"1/2/22",
-					"1/3/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "b4d5a9df-0418-46e1-824f-15755c321615",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 259,
-				"floor": "D",
-				"num": 8,
-				"bookedDates": [
-					"1/5/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "41d1b116-4970-4ed0-aa54-a1ad0faabe80",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 228,
-				"floor": "E",
-				"num": 4,
-				"bookedDates": [
-					"1/2/22"
-				]
-			},
-			{
-				"id": "c08c4f21-3fbc-4670-b24a-3eb91d60aedb",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 125,
-				"floor": "F",
-				"num": 8,
-				"bookedDates": []
-			}
-		]
+	"id": "47f1a3db-fed0-4042-9692-1b3d598448d1",
+	"location": "Houston",
+	"bookables": [
+		{
+			"id": "1ff22f9b-5478-4743-96d0-b8add693f7d1",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/1/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 8,
+			"col": "A",
+			"price": 60.0
+		},
+		{
+			"id": "2597e422-81fc-4334-b81f-61edd90b04a8",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/2/22",
+				"1/6/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 11,
+			"col": "B",
+			"price": 182.0
+		},
+		{
+			"id": "1be154ef-cfa1-4c47-959d-d402e78fbfce",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/2/22",
+				"1/3/22",
+				"1/6/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 8,
+			"col": "C",
+			"price": 267.0
+		}
+	],
+	"company": "Hilton",
+	"rating": 4.4,
+	"features": [
+		"Bar",
+		"Lounge Area",
+		"Pool",
+		"Free Wifi"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0fb"
 	},
-	{
-		"id": "a6f8155b-3746-4019-bd56-08b402b022e7",
-		"company": "InterContinental",
-		"location": "Houston",
-		"check_out_time": "12:00 UTS",
-		"rating": 2.4,
-		"features": [
-			"Gym",
-			"Bar",
-			"Parking",
-			"Free Wifi",
-			"Pool",
-			"Pet friendly",
-			"Restaurant"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "eb416aa8-78ad-49fb-b753-6a674f03d8c5",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 296,
-				"floor": "A",
-				"num": 13,
-				"bookedDates": [
-					"1/1/22",
-					"1/3/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "4c2d87be-860c-4c01-b7c8-65e337027fbb",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 124,
-				"floor": "B",
-				"num": 10,
-				"bookedDates": [
-					"1/1/22",
-					"1/4/22",
-					"1/5/22",
-					"1/9/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "cbbf7968-c5b6-4eef-a8ef-f54c2ee82ac9",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 205,
-				"floor": "C",
-				"num": 18,
-				"bookedDates": []
-			},
-			{
-				"id": "0557c587-29ae-4a24-b4ef-b5dc8d4b8e62",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 209,
-				"floor": "D",
-				"num": 18,
-				"bookedDates": [
-					"1/1/22",
-					"1/4/22"
-				]
-			}
-		]
+	"id": "a6f8155b-3746-4019-bd56-08b402b022e7",
+	"location": "Houston",
+	"bookables": [
+		{
+			"id": "eb416aa8-78ad-49fb-b753-6a674f03d8c5",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/1/22",
+				"1/3/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 13,
+			"col": "A",
+			"price": 296.0
+		},
+		{
+			"id": "4c2d87be-860c-4c01-b7c8-65e337027fbb",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/1/22",
+				"1/4/22",
+				"1/5/22",
+				"1/9/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 10,
+			"col": "B",
+			"price": 124.0
+		},
+		{
+			"id": "cbbf7968-c5b6-4eef-a8ef-f54c2ee82ac9",
+			"info": "1 Queen Bed",
+			"bookedDays": [],
+			"sleepingCapacity": 1,
+			"row": 18,
+			"col": "C",
+			"price": 205.0
+		},
+		{
+			"id": "0557c587-29ae-4a24-b4ef-b5dc8d4b8e62",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/1/22",
+				"1/4/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 18,
+			"col": "D",
+			"price": 209.0
+		}
+	],
+	"company": "InterContinental",
+	"rating": 2.4,
+	"features": [
+		"Gym",
+		"Bar",
+		"Parking",
+		"Free Wifi",
+		"Pool",
+		"Pet friendly",
+		"Restaurant"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0fc"
 	},
-	{
-		"id": "4b1e6952-c61f-4c2c-91ed-6fad9f7b7d77",
-		"company": "Marriott",
-		"location": "Midland",
-		"check_out_time": "11:00 UTS",
-		"rating": 3.8,
-		"features": [
-			"Bar",
-			"Restaurant",
-			"Free Wifi",
-			"Pool",
-			"Pet friendly",
-			"Gym",
-			"Parking"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "d9ec631a-c825-4ba9-9d8a-56b10cd3266d",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 272,
-				"floor": "A",
-				"num": 11,
-				"bookedDates": [
-					"1/4/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "6f076629-f240-48d4-a318-fd782ac73d80",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 243,
-				"floor": "B",
-				"num": 7,
-				"bookedDates": [
-					"1/9/22"
-				]
-			},
-			{
-				"id": "de88dc60-9b8a-4dcd-a93e-d1e3925b66e1",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 125,
-				"floor": "C",
-				"num": 11,
-				"bookedDates": [
-					"1/2/22",
-					"1/6/22",
-					"1/7/22"
-				]
-			},
-			{
-				"id": "04fb9153-f34c-4375-8497-d14fe4ffd0ce",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 161,
-				"floor": "D",
-				"num": 13,
-				"bookedDates": [
-					"1/2/22"
-				]
-			}
-		]
+	"id": "8c2734f8-bf7f-49ca-b1c0-d6379602774f",
+	"location": "Fort Worth",
+	"bookables": [
+		{
+			"id": "3d9f9366-222a-4eb6-ae24-c28ffa1a243b",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/5/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 8,
+			"col": "A",
+			"price": 118.0
+		},
+		{
+			"id": "ab794a8f-9203-4c25-b196-b0776a8979f0",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/1/22",
+				"1/4/22",
+				"1/6/22",
+				"1/7/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 10,
+			"col": "B",
+			"price": 81.0
+		},
+		{
+			"id": "4127c6fd-c445-4a33-8c77-ba9d0083e886",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/2/22",
+				"1/3/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 15,
+			"col": "C",
+			"price": 246.0
+		},
+		{
+			"id": "67f3b418-17e9-4798-9b3d-b1f8790c6253",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/10/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 6,
+			"col": "D",
+			"price": 116.0
+		}
+	],
+	"company": "Hilton",
+	"rating": 0.3,
+	"features": [
+		"Free Wifi",
+		"Parking",
+		"Gym",
+		"Lounge Area",
+		"Bar",
+		"Pool",
+		"Pet friendly",
+		"Restaurant"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0fd"
 	},
-	{
-		"id": "8c2734f8-bf7f-49ca-b1c0-d6379602774f",
-		"company": "Hilton",
-		"location": "Fort Worth",
-		"check_out_time": "11:00 UTS",
-		"rating": 0.3,
-		"features": [
-			"Free Wifi",
-			"Parking",
-			"Gym",
-			"Lounge Area",
-			"Bar",
-			"Pool",
-			"Pet friendly",
-			"Restaurant"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "3d9f9366-222a-4eb6-ae24-c28ffa1a243b",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 118,
-				"floor": "A",
-				"num": 8,
-				"bookedDates": [
-					"1/5/22"
-				]
-			},
-			{
-				"id": "ab794a8f-9203-4c25-b196-b0776a8979f0",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 81,
-				"floor": "B",
-				"num": 10,
-				"bookedDates": [
-					"1/1/22",
-					"1/4/22",
-					"1/6/22",
-					"1/7/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "4127c6fd-c445-4a33-8c77-ba9d0083e886",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 246,
-				"floor": "C",
-				"num": 15,
-				"bookedDates": [
-					"1/2/22",
-					"1/3/22"
-				]
-			},
-			{
-				"id": "67f3b418-17e9-4798-9b3d-b1f8790c6253",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 116,
-				"floor": "D",
-				"num": 6,
-				"bookedDates": [
-					"1/10/22"
-				]
-			}
-		]
+	"id": "72102dee-16ab-495f-b6de-073fed068334",
+	"location": "Dallas-Fort Worth",
+	"bookables": [
+		{
+			"id": "411c056a-2a70-4dc9-8ec8-4fa05d5d7478",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/3/22",
+				"1/7/22",
+				"1/8/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 9,
+			"col": "A",
+			"price": 211.0
+		},
+		{
+			"id": "43e61674-2f93-4571-a91a-58a31dbdf223",
+			"info": "1 King Bed",
+			"bookedDays": [],
+			"sleepingCapacity": 2,
+			"row": 17,
+			"col": "B",
+			"price": 109.0
+		},
+		{
+			"id": "81fb825f-fef3-4762-8996-16b8038a6d47",
+			"info": "2 Double Beds",
+			"bookedDays": [],
+			"sleepingCapacity": 4,
+			"row": 9,
+			"col": "C",
+			"price": 101.0
+		},
+		{
+			"id": "4dff648f-dcd4-46c6-a767-01117a249fb4",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 12,
+			"col": "D",
+			"price": 204.0
+		},
+		{
+			"id": "84ee8562-4eb5-4527-856f-efac046eeee1",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/9/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 8,
+			"col": "E",
+			"price": 162.0
+		}
+	],
+	"company": "Red Lion",
+	"rating": 3.5,
+	"features": [
+		"Pool",
+		"Bar",
+		"Free Wifi",
+		"Pet friendly",
+		"Parking",
+		"Lounge Area",
+		"Restaurant"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0fe"
 	},
-	{
-		"id": "47f1a3db-fed0-4042-9692-1b3d598448d1",
-		"company": "Hilton",
-		"location": "Houston",
-		"check_out_time": "10:00 UTS",
-		"rating": 4.4,
-		"features": [
-			"Bar",
-			"Lounge Area",
-			"Pool",
-			"Free Wifi"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "1ff22f9b-5478-4743-96d0-b8add693f7d1",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 60,
-				"floor": "A",
-				"num": 8,
-				"bookedDates": [
-					"1/1/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "2597e422-81fc-4334-b81f-61edd90b04a8",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 182,
-				"floor": "B",
-				"num": 11,
-				"bookedDates": [
-					"1/2/22",
-					"1/6/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "1be154ef-cfa1-4c47-959d-d402e78fbfce",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 267,
-				"floor": "C",
-				"num": 8,
-				"bookedDates": [
-					"1/2/22",
-					"1/3/22",
-					"1/6/22",
-					"1/9/22"
-				]
-			}
-		]
+	"id": "3431bde1-109d-4dc0-a392-ade1ce8a7f7c",
+	"location": "Laredo",
+	"bookables": [
+		{
+			"id": "fc0c838a-dfe5-43ed-8269-1cdae5eab2eb",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/7/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 6,
+			"col": "A",
+			"price": 74.0
+		},
+		{
+			"id": "77e07e74-9716-4003-bb26-b892231f9dfa",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/1/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 6,
+			"col": "B",
+			"price": 262.0
+		},
+		{
+			"id": "9cada377-b1a9-418e-a8b4-91c392bc0378",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/1/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 17,
+			"col": "C",
+			"price": 172.0
+		},
+		{
+			"id": "4b8769b6-fbfa-4c37-b793-27edf1fc539b",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/5/22",
+				"1/6/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 13,
+			"col": "D",
+			"price": 110.0
+		},
+		{
+			"id": "b752e271-7985-4215-8b7f-db539f083688",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/4/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 12,
+			"col": "E",
+			"price": 252.0
+		}
+	],
+	"company": "Choice",
+	"rating": 1.8,
+	"features": [
+		"Bar",
+		"Pool",
+		"Restaurant",
+		"Free Wifi",
+		"Parking",
+		"Gym"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a0ff"
 	},
-	{
-		"id": "3431bde1-109d-4dc0-a392-ade1ce8a7f7c",
-		"company": "Choice",
-		"location": "Laredo",
-		"check_out_time": "12:00 UTS",
-		"rating": 1.8,
-		"features": [
-			"Bar",
-			"Pool",
-			"Restaurant",
-			"Free Wifi",
-			"Parking",
-			"Gym"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "fc0c838a-dfe5-43ed-8269-1cdae5eab2eb",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 74,
-				"floor": "A",
-				"num": 6,
-				"bookedDates": [
-					"1/7/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "77e07e74-9716-4003-bb26-b892231f9dfa",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 262,
-				"floor": "B",
-				"num": 6,
-				"bookedDates": [
-					"1/1/22"
-				]
-			},
-			{
-				"id": "9cada377-b1a9-418e-a8b4-91c392bc0378",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 172,
-				"floor": "C",
-				"num": 17,
-				"bookedDates": [
-					"1/1/22"
-				]
-			},
-			{
-				"id": "4b8769b6-fbfa-4c37-b793-27edf1fc539b",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 110,
-				"floor": "D",
-				"num": 13,
-				"bookedDates": [
-					"1/5/22",
-					"1/6/22"
-				]
-			},
-			{
-				"id": "b752e271-7985-4215-8b7f-db539f083688",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 252,
-				"floor": "E",
-				"num": 12,
-				"bookedDates": [
-					"1/4/22",
-					"1/8/22"
-				]
-			}
-		]
+	"id": "9da3ea80-ce8c-457e-89e8-5dd37902b422",
+	"location": "San Antonio",
+	"bookables": [
+		{
+			"id": "770840f7-3c91-446d-95f3-80208abd9fc7",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/2/22",
+				"1/3/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 10,
+			"col": "A",
+			"price": 163.0
+		},
+		{
+			"id": "70166842-55fc-4113-908d-7bee9d2c0075",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/3/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 12,
+			"col": "B",
+			"price": 69.0
+		},
+		{
+			"id": "6b764b7e-880a-4876-8eed-d15bfdb145d3",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/2/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 8,
+			"col": "C",
+			"price": 92.0
+		},
+		{
+			"id": "21f8e2c9-1901-41e2-b11d-9a316eb4bc56",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/1/22",
+				"1/9/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 3,
+			"col": "D",
+			"price": 176.0
+		}
+	],
+	"company": "Marriott",
+	"rating": 3.2,
+	"features": [
+		"Free Wifi",
+		"Pet friendly",
+		"Parking"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a100"
 	},
-	{
-		"id": "08762b2f-1e09-420f-87fb-ed5e2a4d55bd",
-		"company": "Red Lion",
-		"location": "Harlingen",
-		"check_out_time": "12:00 UTS",
-		"rating": 4.0,
-		"features": [
-			"Bar",
-			"Restaurant",
-			"Pet friendly",
-			"Lounge Area",
-			"Parking"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "1c6df76c-8e08-463e-a46c-e3786fbf6c3d",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 149,
-				"floor": "A",
-				"num": 9,
-				"bookedDates": [
-					"1/2/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "e4396f2d-bcc2-44d8-84c9-352727f6bc7f",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 108,
-				"floor": "B",
-				"num": 15,
-				"bookedDates": [
-					"1/3/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "5d22c104-892a-4114-b181-4177fb5af2f4",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 143,
-				"floor": "C",
-				"num": 4,
-				"bookedDates": [
-					"1/2/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "5d1cab86-93a7-464b-b6e3-c7bb40ac8cd5",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 178,
-				"floor": "D",
-				"num": 19,
-				"bookedDates": [
-					"1/2/22"
-				]
-			},
-			{
-				"id": "6d412b72-4edf-4360-bb0e-e1f5d5d5356e",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 53,
-				"floor": "E",
-				"num": 11,
-				"bookedDates": []
-			},
-			{
-				"id": "c4ab8b1b-9d68-4c24-b612-69bbd66bace2",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 157,
-				"floor": "F",
-				"num": 14,
-				"bookedDates": [
-					"1/2/22",
-					"1/4/22",
-					"1/10/22"
-				]
-			}
-		]
+	"id": "6e76f99c-fbc5-43f4-9924-fafc561fdff9",
+	"location": "Houston",
+	"bookables": [
+		{
+			"id": "87ce1e77-8378-4092-9616-32bdbda62445",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/6/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 9,
+			"col": "A",
+			"price": 75.0
+		},
+		{
+			"id": "66974709-f4c3-428b-b24d-8105a0333490",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/3/22",
+				"1/5/22",
+				"1/7/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 18,
+			"col": "B",
+			"price": 244.0
+		},
+		{
+			"id": "c0ed7056-0dcf-4585-96fa-aba2daffd280",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/1/22",
+				"1/3/22",
+				"1/4/22",
+				"1/7/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 11,
+			"col": "C",
+			"price": 110.0
+		},
+		{
+			"id": "02da85c2-0804-4ff6-bee5-769d81084a7b",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/4/22",
+				"1/7/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 15,
+			"col": "D",
+			"price": 105.0
+		},
+		{
+			"id": "7c92d49a-ec9e-4453-a45c-dbd7f656ef6d",
+			"info": "1 King Bed",
+			"bookedDays": [],
+			"sleepingCapacity": 2,
+			"row": 16,
+			"col": "E",
+			"price": 204.0
+		}
+	],
+	"company": "Choice",
+	"rating": 2.1,
+	"features": [
+		"Pet friendly",
+		"Restaurant",
+		"Bar",
+		"Free Wifi",
+		"Pool"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a101"
 	},
-	{
-		"id": "42fa87a4-0358-432b-ba7e-5b52fe1011d3",
-		"company": "Hilton",
-		"location": "Lubbock",
-		"check_out_time": "10:00 UTS",
-		"rating": 1.1,
-		"features": [
-			"Lounge Area",
-			"Pet friendly",
-			"Free Wifi",
-			"Gym",
-			"Restaurant",
-			"Parking",
-			"Pool"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "54f7a6b8-f34a-4ab2-8b0e-4302a771f4ee",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 242,
-				"floor": "A",
-				"num": 14,
-				"bookedDates": [
-					"1/2/22",
-					"1/6/22"
-				]
-			},
-			{
-				"id": "406c6dc0-fc64-4bf1-8865-462f691adda0",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 141,
-				"floor": "B",
-				"num": 15,
-				"bookedDates": [
-					"1/4/22",
-					"1/5/22",
-					"1/7/22",
-					"1/8/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "85086de4-a673-4e16-853c-14e1d107d6c2",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 128,
-				"floor": "C",
-				"num": 15,
-				"bookedDates": [
-					"1/1/22",
-					"1/4/22",
-					"1/6/22"
-				]
-			},
-			{
-				"id": "30a33423-7c30-425c-8d8f-3b19ecfaf448",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 241,
-				"floor": "D",
-				"num": 14,
-				"bookedDates": [
-					"1/1/22",
-					"1/3/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "4085ebba-f02d-4d0a-a141-1d3b15791ed9",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 164,
-				"floor": "E",
-				"num": 7,
-				"bookedDates": []
-			}
-		]
+	"id": "08762b2f-1e09-420f-87fb-ed5e2a4d55bd",
+	"location": "Harlingen",
+	"bookables": [
+		{
+			"id": "1c6df76c-8e08-463e-a46c-e3786fbf6c3d",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/2/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 9,
+			"col": "A",
+			"price": 149.0
+		},
+		{
+			"id": "e4396f2d-bcc2-44d8-84c9-352727f6bc7f",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/3/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 15,
+			"col": "B",
+			"price": 108.0
+		},
+		{
+			"id": "5d22c104-892a-4114-b181-4177fb5af2f4",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/2/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 4,
+			"col": "C",
+			"price": 143.0
+		},
+		{
+			"id": "5d1cab86-93a7-464b-b6e3-c7bb40ac8cd5",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/2/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 19,
+			"col": "D",
+			"price": 178.0
+		},
+		{
+			"id": "6d412b72-4edf-4360-bb0e-e1f5d5d5356e",
+			"info": "2 Double Beds",
+			"bookedDays": [],
+			"sleepingCapacity": 4,
+			"row": 11,
+			"col": "E",
+			"price": 53.0
+		},
+		{
+			"id": "c4ab8b1b-9d68-4c24-b612-69bbd66bace2",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/2/22",
+				"1/4/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 14,
+			"col": "F",
+			"price": 157.0
+		}
+	],
+	"company": "Red Lion",
+	"rating": 4.0,
+	"features": [
+		"Bar",
+		"Restaurant",
+		"Pet friendly",
+		"Lounge Area",
+		"Parking"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a102"
 	},
-	{
-		"id": "3bb17819-d4f0-465a-b631-0703b4a8a98f",
-		"company": "Choice",
-		"location": "Corpus Christi",
-		"check_out_time": "11:00 UTS",
-		"rating": 0.5,
-		"features": [
-			"Lounge Area",
-			"Pet friendly",
-			"Bar",
-			"Free Wifi",
-			"Gym",
-			"Parking",
-			"Restaurant",
-			"Pool"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "6bf592b9-affb-40b2-891f-524fa0406409",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 92,
-				"floor": "A",
-				"num": 4,
-				"bookedDates": [
-					"1/3/22",
-					"1/5/22",
-					"1/8/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "dce91a28-9c98-452f-b171-8bca68fb1ace",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 104,
-				"floor": "B",
-				"num": 13,
-				"bookedDates": [
-					"1/4/22"
-				]
-			},
-			{
-				"id": "c5e0573c-6014-49cc-887e-f78379cd6534",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 58,
-				"floor": "C",
-				"num": 11,
-				"bookedDates": [
-					"1/8/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "e1c80a52-320d-4f5f-9cb5-d72a97561ed1",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 155,
-				"floor": "D",
-				"num": 8,
-				"bookedDates": [
-					"1/5/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "72153dac-9c99-4885-96f9-b6ca1ea5ad60",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 190,
-				"floor": "E",
-				"num": 15,
-				"bookedDates": [
-					"1/3/22",
-					"1/4/22"
-				]
-			}
-		]
+	"id": "42fa87a4-0358-432b-ba7e-5b52fe1011d3",
+	"location": "Lubbock",
+	"bookables": [
+		{
+			"id": "54f7a6b8-f34a-4ab2-8b0e-4302a771f4ee",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/2/22",
+				"1/6/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 14,
+			"col": "A",
+			"price": 242.0
+		},
+		{
+			"id": "406c6dc0-fc64-4bf1-8865-462f691adda0",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/4/22",
+				"1/5/22",
+				"1/7/22",
+				"1/8/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 15,
+			"col": "B",
+			"price": 141.0
+		},
+		{
+			"id": "85086de4-a673-4e16-853c-14e1d107d6c2",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/1/22",
+				"1/4/22",
+				"1/6/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 15,
+			"col": "C",
+			"price": 128.0
+		},
+		{
+			"id": "30a33423-7c30-425c-8d8f-3b19ecfaf448",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/1/22",
+				"1/3/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 14,
+			"col": "D",
+			"price": 241.0
+		},
+		{
+			"id": "4085ebba-f02d-4d0a-a141-1d3b15791ed9",
+			"info": "2 Queen Beds",
+			"bookedDays": [],
+			"sleepingCapacity": 4,
+			"row": 7,
+			"col": "E",
+			"price": 164.0
+		}
+	],
+	"company": "Hilton",
+	"rating": 1.1,
+	"features": [
+		"Lounge Area",
+		"Pet friendly",
+		"Free Wifi",
+		"Gym",
+		"Restaurant",
+		"Parking",
+		"Pool"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a103"
 	},
-	{
-		"id": "d0016d30-b152-42f1-a382-071954b8d3cd",
-		"company": "Accor",
-		"location": "McAllen",
-		"check_out_time": "12:00 UTS",
-		"rating": 1.4,
-		"features": [
-			"Gym",
-			"Bar",
-			"Free Wifi"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "2c35a409-3ec5-4a4b-8a90-b3adaa551b25",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 71,
-				"floor": "A",
-				"num": 9,
-				"bookedDates": [
-					"1/6/22"
-				]
-			},
-			{
-				"id": "0d961a53-7944-44d5-be1c-a049132f6169",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 124,
-				"floor": "B",
-				"num": 9,
-				"bookedDates": [
-					"1/8/22"
-				]
-			},
-			{
-				"id": "371f9d02-8779-4957-9960-f389bafc2235",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 176,
-				"floor": "C",
-				"num": 10,
-				"bookedDates": [
-					"1/10/22"
-				]
-			}
-		]
+	"id": "cbe3aa76-0cac-40fb-b88c-fc2d679c7383",
+	"location": "Harlingen",
+	"bookables": [
+		{
+			"id": "c492af38-631f-4bf2-bbc2-33d87ccf10b6",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/2/22",
+				"1/6/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 13,
+			"col": "A",
+			"price": 112.0
+		},
+		{
+			"id": "70412240-0e5c-4474-9d18-80853652aec6",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/1/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 4,
+			"col": "B",
+			"price": 288.0
+		},
+		{
+			"id": "9c34566f-6bec-42d8-9816-5470e32ab187",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/1/22",
+				"1/3/22",
+				"1/4/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 13,
+			"col": "C",
+			"price": 87.0
+		},
+		{
+			"id": "7cdb3f25-5e55-419f-a03d-76f1deafac82",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/7/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 15,
+			"col": "D",
+			"price": 281.0
+		}
+	],
+	"company": "Wyndham",
+	"rating": 0.1,
+	"features": [
+		"Pet friendly",
+		"Bar",
+		"Free Wifi"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a104"
 	},
-	{
-		"id": "e6a451c0-572c-46bb-a8ff-3853ef970b71",
-		"company": "Choice",
-		"location": "Midland",
-		"check_out_time": "12:00 UTS",
-		"rating": 1.5,
-		"features": [
-			"Gym",
-			"Pool",
-			"Parking"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "7fc5982b-4179-4466-ba65-7974197bba76",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 60,
-				"floor": "A",
-				"num": 7,
-				"bookedDates": [
-					"1/4/22",
-					"1/6/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "cbf5dbd8-9830-4546-ac30-5e06b524f3bb",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 293,
-				"floor": "B",
-				"num": 17,
-				"bookedDates": [
-					"1/3/22",
-					"1/6/22"
-				]
-			},
-			{
-				"id": "11fcc7e2-bc36-4430-8f9b-ff63c433d7c3",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 219,
-				"floor": "C",
-				"num": 6,
-				"bookedDates": [
-					"1/5/22",
-					"1/7/22"
-				]
-			},
-			{
-				"id": "1b576b93-a50a-4770-9ea3-93257353f83f",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 105,
-				"floor": "D",
-				"num": 6,
-				"bookedDates": [
-					"1/1/22"
-				]
-			}
-		]
+	"id": "c51fe4d5-9f12-4a0c-90cb-7302c48c0ae9",
+	"location": "Austin",
+	"bookables": [
+		{
+			"id": "43891149-a912-4e13-b9cb-dfe2ba046dfb",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/4/22",
+				"1/5/22",
+				"1/7/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 6,
+			"col": "A",
+			"price": 128.0
+		},
+		{
+			"id": "2116e35d-8a79-4886-a2dc-ba71259be60d",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/4/22",
+				"1/6/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 2,
+			"col": "B",
+			"price": 283.0
+		},
+		{
+			"id": "6b5ce472-4589-45af-8261-41ebfcc0bd68",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/8/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 18,
+			"col": "C",
+			"price": 81.0
+		},
+		{
+			"id": "d0b5db8d-4524-41c5-9825-7bb39d0d2fe2",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/4/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 13,
+			"col": "D",
+			"price": 206.0
+		}
+	],
+	"company": "Accor",
+	"rating": 3.9,
+	"features": [
+		"Lounge Area",
+		"Restaurant",
+		"Gym",
+		"Parking"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a105"
 	},
-	{
-		"id": "aabb3fb6-261e-4710-9c80-413cd68ce21a",
-		"company": "Red Lion",
-		"location": "Dallas",
-		"check_out_time": "12:00 UTS",
-		"rating": 2.1,
-		"features": [
-			"Gym",
-			"Parking",
-			"Pool",
-			"Bar",
-			"Free Wifi",
-			"Pet friendly",
-			"Restaurant",
-			"Lounge Area"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "9d06b916-7cda-4f80-90cf-525765e3bd74",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 249,
-				"floor": "A",
-				"num": 18,
-				"bookedDates": [
-					"1/6/22"
-				]
-			},
-			{
-				"id": "fdcaa632-891d-44df-9d61-2ca55864a6c2",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 295,
-				"floor": "B",
-				"num": 9,
-				"bookedDates": [
-					"1/7/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "6bc337d8-d8db-4353-85ca-cbdd7282d25d",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 249,
-				"floor": "C",
-				"num": 14,
-				"bookedDates": [
-					"1/1/22"
-				]
-			},
-			{
-				"id": "5be9de25-0dbf-48d3-b5ef-f18f2790b747",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 294,
-				"floor": "D",
-				"num": 8,
-				"bookedDates": [
-					"1/3/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "dbe1b61a-d1d1-4c82-9149-dc843e4b1cf4",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 72,
-				"floor": "E",
-				"num": 7,
-				"bookedDates": [
-					"1/3/22"
-				]
-			},
-			{
-				"id": "31c4dcdc-5d77-4f43-85af-cd8a3271f004",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 129,
-				"floor": "F",
-				"num": 17,
-				"bookedDates": [
-					"1/1/22",
-					"1/4/22"
-				]
-			},
-			{
-				"id": "b6b85d04-b089-4f18-8b28-9be3652d33b2",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 116,
-				"floor": "G",
-				"num": 6,
-				"bookedDates": [
-					"1/3/22",
-					"1/8/22",
-					"1/9/22"
-				]
-			}
-		]
+	"id": "f070c321-d26c-4ef3-9832-40e95686a6fb",
+	"location": "Longview",
+	"bookables": [
+		{
+			"id": "d756e0b0-8e25-4b46-aba5-22ceeb7fc654",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/9/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 4,
+			"col": "A",
+			"price": 150.0
+		},
+		{
+			"id": "292a3c4e-6fda-44cf-bfa0-3478648da939",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/1/22",
+				"1/7/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 6,
+			"col": "B",
+			"price": 241.0
+		},
+		{
+			"id": "b91e7780-f38c-4b3d-a476-afe782cde01d",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/2/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 16,
+			"col": "C",
+			"price": 68.0
+		}
+	],
+	"company": "Wyndham",
+	"rating": 2.0,
+	"features": [
+		"Parking",
+		"Pet friendly",
+		"Pool",
+		"Free Wifi",
+		"Restaurant",
+		"Lounge Area",
+		"Gym"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a106"
 	},
-	{
-		"id": "ff7ed947-267e-44e3-9182-b63cf6321849",
-		"company": "Hilton",
-		"location": "Corpus Christi",
-		"check_out_time": "10:00 UTS",
-		"rating": 2.5,
-		"features": [
-			"Restaurant",
-			"Parking",
-			"Pet friendly",
-			"Bar",
-			"Pool",
-			"Lounge Area",
-			"Gym"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "20fbdc14-d4be-466f-a480-475153cf23fd",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 250,
-				"floor": "A",
-				"num": 6,
-				"bookedDates": [
-					"1/2/22",
-					"1/4/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "1c5982a2-5bc8-45f6-b2c9-40b17239d1d1",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 295,
-				"floor": "B",
-				"num": 7,
-				"bookedDates": [
-					"1/3/22"
-				]
-			},
-			{
-				"id": "8efdf768-42bd-47cd-a158-e8eb6254be07",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 136,
-				"floor": "C",
-				"num": 13,
-				"bookedDates": [
-					"1/1/22",
-					"1/3/22",
-					"1/10/22"
-				]
-			}
-		]
+	"id": "3bb17819-d4f0-465a-b631-0703b4a8a98f",
+	"location": "Corpus Christi",
+	"bookables": [
+		{
+			"id": "6bf592b9-affb-40b2-891f-524fa0406409",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/3/22",
+				"1/5/22",
+				"1/8/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 4,
+			"col": "A",
+			"price": 92.0
+		},
+		{
+			"id": "dce91a28-9c98-452f-b171-8bca68fb1ace",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/4/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 13,
+			"col": "B",
+			"price": 104.0
+		},
+		{
+			"id": "c5e0573c-6014-49cc-887e-f78379cd6534",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/8/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 11,
+			"col": "C",
+			"price": 58.0
+		},
+		{
+			"id": "e1c80a52-320d-4f5f-9cb5-d72a97561ed1",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/5/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 8,
+			"col": "D",
+			"price": 155.0
+		},
+		{
+			"id": "72153dac-9c99-4885-96f9-b6ca1ea5ad60",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/3/22",
+				"1/4/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 15,
+			"col": "E",
+			"price": 190.0
+		}
+	],
+	"company": "Choice",
+	"rating": 0.5,
+	"features": [
+		"Lounge Area",
+		"Pet friendly",
+		"Bar",
+		"Free Wifi",
+		"Gym",
+		"Parking",
+		"Restaurant",
+		"Pool"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a107"
 	},
-	{
-		"id": "f070c321-d26c-4ef3-9832-40e95686a6fb",
-		"company": "Wyndham",
-		"location": "Longview",
-		"check_out_time": "11:00 UTS",
-		"rating": 2.0,
-		"features": [
-			"Parking",
-			"Pet friendly",
-			"Pool",
-			"Free Wifi",
-			"Restaurant",
-			"Lounge Area",
-			"Gym"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "d756e0b0-8e25-4b46-aba5-22ceeb7fc654",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 150,
-				"floor": "A",
-				"num": 4,
-				"bookedDates": [
-					"1/9/22"
-				]
-			},
-			{
-				"id": "292a3c4e-6fda-44cf-bfa0-3478648da939",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 241,
-				"floor": "B",
-				"num": 6,
-				"bookedDates": [
-					"1/1/22",
-					"1/7/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "b91e7780-f38c-4b3d-a476-afe782cde01d",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 68,
-				"floor": "C",
-				"num": 16,
-				"bookedDates": [
-					"1/2/22"
-				]
-			}
-		]
+	"id": "01fc2d88-fc80-4b8d-9824-6579c59c9799",
+	"location": "El Paso",
+	"bookables": [
+		{
+			"id": "b0f300d1-311d-4aba-89ec-4cd049c0746e",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 17,
+			"col": "A",
+			"price": 145.0
+		},
+		{
+			"id": "f3aeb319-4494-46af-a490-72ba8b001317",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/2/22",
+				"1/3/22",
+				"1/5/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 15,
+			"col": "B",
+			"price": 127.0
+		},
+		{
+			"id": "d34100e5-1e5b-474d-996b-be24666a5b40",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/2/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 17,
+			"col": "C",
+			"price": 235.0
+		},
+		{
+			"id": "a09e9109-13f9-48ae-9feb-d7ad77807791",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/3/22",
+				"1/5/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 17,
+			"col": "D",
+			"price": 92.0
+		},
+		{
+			"id": "6d786c75-e172-4354-9c5f-65faa8d1ae0d",
+			"info": "2 Queen Beds",
+			"bookedDays": [],
+			"sleepingCapacity": 4,
+			"row": 6,
+			"col": "E",
+			"price": 112.0
+		},
+		{
+			"id": "02e48adb-6c75-4c94-9b70-eeeca7b98b76",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/5/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 6,
+			"col": "F",
+			"price": 278.0
+		}
+	],
+	"company": "Red Lion",
+	"rating": 5.0,
+	"features": [
+		"Free Wifi",
+		"Lounge Area",
+		"Pet friendly",
+		"Restaurant",
+		"Bar",
+		"Pool",
+		"Parking"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a108"
 	},
-	{
-		"id": "cbe3aa76-0cac-40fb-b88c-fc2d679c7383",
-		"company": "Wyndham",
-		"location": "Harlingen",
-		"check_out_time": "11:00 UTS",
-		"rating": 0.1,
-		"features": [
-			"Pet friendly",
-			"Bar",
-			"Free Wifi"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "c492af38-631f-4bf2-bbc2-33d87ccf10b6",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 112,
-				"floor": "A",
-				"num": 13,
-				"bookedDates": [
-					"1/2/22",
-					"1/6/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "70412240-0e5c-4474-9d18-80853652aec6",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 288,
-				"floor": "B",
-				"num": 4,
-				"bookedDates": [
-					"1/1/22"
-				]
-			},
-			{
-				"id": "9c34566f-6bec-42d8-9816-5470e32ab187",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 87,
-				"floor": "C",
-				"num": 13,
-				"bookedDates": [
-					"1/1/22",
-					"1/3/22",
-					"1/4/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "7cdb3f25-5e55-419f-a03d-76f1deafac82",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 281,
-				"floor": "D",
-				"num": 15,
-				"bookedDates": [
-					"1/7/22"
-				]
-			}
-		]
+	"id": "475da1b7-9b85-4934-8d6e-1b70ff729c5f",
+	"location": "Lubbock",
+	"bookables": [
+		{
+			"id": "aaf31810-e566-47b8-8b6b-435d325bcfce",
+			"info": "1 Queen Bed",
+			"bookedDays": [],
+			"sleepingCapacity": 1,
+			"row": 6,
+			"col": "A",
+			"price": 223.0
+		},
+		{
+			"id": "8f38796c-a93d-410b-995f-7b6b15364107",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/1/22",
+				"1/4/22",
+				"1/5/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 14,
+			"col": "B",
+			"price": 181.0
+		},
+		{
+			"id": "f9341262-a6ef-4234-9010-d8f0e34c23fc",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/5/22",
+				"1/6/22",
+				"1/8/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 11,
+			"col": "C",
+			"price": 66.0
+		},
+		{
+			"id": "05ba3e29-dd26-4f22-9fb3-e5aa5c38f6ae",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/5/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 13,
+			"col": "D",
+			"price": 164.0
+		},
+		{
+			"id": "1ae8e272-9a55-4910-ab8b-a45982c637b5",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/4/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 16,
+			"col": "E",
+			"price": 152.0
+		},
+		{
+			"id": "a9c85a75-9b0e-489c-b2c9-3b54b777cf41",
+			"info": "2 Queen Beds",
+			"bookedDays": [],
+			"sleepingCapacity": 4,
+			"row": 3,
+			"col": "F",
+			"price": 92.0
+		},
+		{
+			"id": "31284f2c-6894-4c4a-90eb-9b1e260dbad0",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/1/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 19,
+			"col": "G",
+			"price": 237.0
+		}
+	],
+	"company": "Marriott",
+	"rating": 0.3,
+	"features": [
+		"Gym",
+		"Free Wifi",
+		"Pool",
+		"Lounge Area",
+		"Parking",
+		"Pet friendly",
+		"Restaurant"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a109"
 	},
-	{
-		"id": "c51fe4d5-9f12-4a0c-90cb-7302c48c0ae9",
-		"company": "Accor",
-		"location": "Austin",
-		"check_out_time": "11:00 UTS",
-		"rating": 3.9,
-		"features": [
-			"Lounge Area",
-			"Restaurant",
-			"Gym",
-			"Parking"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "43891149-a912-4e13-b9cb-dfe2ba046dfb",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 128,
-				"floor": "A",
-				"num": 6,
-				"bookedDates": [
-					"1/4/22",
-					"1/5/22",
-					"1/7/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "2116e35d-8a79-4886-a2dc-ba71259be60d",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 283,
-				"floor": "B",
-				"num": 2,
-				"bookedDates": [
-					"1/4/22",
-					"1/6/22"
-				]
-			},
-			{
-				"id": "6b5ce472-4589-45af-8261-41ebfcc0bd68",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 81,
-				"floor": "C",
-				"num": 18,
-				"bookedDates": [
-					"1/8/22"
-				]
-			},
-			{
-				"id": "d0b5db8d-4524-41c5-9825-7bb39d0d2fe2",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 206,
-				"floor": "D",
-				"num": 13,
-				"bookedDates": [
-					"1/4/22"
-				]
-			}
-		]
+	"id": "d0016d30-b152-42f1-a382-071954b8d3cd",
+	"location": "McAllen",
+	"bookables": [
+		{
+			"id": "2c35a409-3ec5-4a4b-8a90-b3adaa551b25",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/6/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 9,
+			"col": "A",
+			"price": 71.0
+		},
+		{
+			"id": "0d961a53-7944-44d5-be1c-a049132f6169",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/8/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 9,
+			"col": "B",
+			"price": 124.0
+		},
+		{
+			"id": "371f9d02-8779-4957-9960-f389bafc2235",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/10/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 10,
+			"col": "C",
+			"price": 176.0
+		}
+	],
+	"company": "Accor",
+	"rating": 1.4,
+	"features": [
+		"Gym",
+		"Bar",
+		"Free Wifi"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a10a"
 	},
-	{
-		"id": "01fc2d88-fc80-4b8d-9824-6579c59c9799",
-		"company": "Red Lion",
-		"location": "El Paso",
-		"check_out_time": "11:00 UTS",
-		"rating": 5.0,
-		"features": [
-			"Free Wifi",
-			"Lounge Area",
-			"Pet friendly",
-			"Restaurant",
-			"Bar",
-			"Pool",
-			"Parking"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "b0f300d1-311d-4aba-89ec-4cd049c0746e",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 145,
-				"floor": "A",
-				"num": 17,
-				"bookedDates": [
-					"1/9/22"
-				]
-			},
-			{
-				"id": "f3aeb319-4494-46af-a490-72ba8b001317",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 127,
-				"floor": "B",
-				"num": 15,
-				"bookedDates": [
-					"1/2/22",
-					"1/3/22",
-					"1/5/22"
-				]
-			},
-			{
-				"id": "d34100e5-1e5b-474d-996b-be24666a5b40",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 235,
-				"floor": "C",
-				"num": 17,
-				"bookedDates": [
-					"1/2/22",
-					"1/10/22"
-				]
-			},
-			{
-				"id": "a09e9109-13f9-48ae-9feb-d7ad77807791",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 92,
-				"floor": "D",
-				"num": 17,
-				"bookedDates": [
-					"1/3/22",
-					"1/5/22"
-				]
-			},
-			{
-				"id": "6d786c75-e172-4354-9c5f-65faa8d1ae0d",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 112,
-				"floor": "E",
-				"num": 6,
-				"bookedDates": []
-			},
-			{
-				"id": "02e48adb-6c75-4c94-9b70-eeeca7b98b76",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 278,
-				"floor": "F",
-				"num": 6,
-				"bookedDates": [
-					"1/5/22",
-					"1/10/22"
-				]
-			}
-		]
+	"id": "417cb042-5dfc-4620-bb06-d0beb926aed3",
+	"location": "Austin",
+	"bookables": [
+		{
+			"id": "9c793416-3408-4ff9-9b8c-f44f07613cb0",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/7/22",
+				"1/8/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 6,
+			"col": "A",
+			"price": 185.0
+		},
+		{
+			"id": "e0cd2424-8ced-416b-89df-2555c8bd413f",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/4/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 7,
+			"col": "B",
+			"price": 84.0
+		},
+		{
+			"id": "60ea1902-bdb9-4669-877b-2e9c3bed99bb",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/2/22",
+				"1/6/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 12,
+			"col": "C",
+			"price": 197.0
+		},
+		{
+			"id": "e6f67393-2813-483e-b217-00eee5334406",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/1/22",
+				"1/6/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 7,
+			"col": "D",
+			"price": 141.0
+		},
+		{
+			"id": "cb9f37c1-9d14-47d8-9b4d-3b71c463ef92",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/5/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 7,
+			"col": "E",
+			"price": 95.0
+		}
+	],
+	"company": "InterContinental",
+	"rating": 0.9,
+	"features": [
+		"Gym",
+		"Free Wifi",
+		"Parking",
+		"Bar"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a10b"
 	},
-	{
-		"id": "475da1b7-9b85-4934-8d6e-1b70ff729c5f",
-		"company": "Marriott",
-		"location": "Lubbock",
-		"check_out_time": "11:00 UTS",
-		"rating": 0.3,
-		"features": [
-			"Gym",
-			"Free Wifi",
-			"Pool",
-			"Lounge Area",
-			"Parking",
-			"Pet friendly",
-			"Restaurant"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "aaf31810-e566-47b8-8b6b-435d325bcfce",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 223,
-				"floor": "A",
-				"num": 6,
-				"bookedDates": []
-			},
-			{
-				"id": "8f38796c-a93d-410b-995f-7b6b15364107",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 181,
-				"floor": "B",
-				"num": 14,
-				"bookedDates": [
-					"1/1/22",
-					"1/4/22",
-					"1/5/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "f9341262-a6ef-4234-9010-d8f0e34c23fc",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 66,
-				"floor": "C",
-				"num": 11,
-				"bookedDates": [
-					"1/5/22",
-					"1/6/22",
-					"1/8/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "05ba3e29-dd26-4f22-9fb3-e5aa5c38f6ae",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 164,
-				"floor": "D",
-				"num": 13,
-				"bookedDates": [
-					"1/5/22"
-				]
-			},
-			{
-				"id": "1ae8e272-9a55-4910-ab8b-a45982c637b5",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 152,
-				"floor": "E",
-				"num": 16,
-				"bookedDates": [
-					"1/4/22"
-				]
-			},
-			{
-				"id": "a9c85a75-9b0e-489c-b2c9-3b54b777cf41",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 92,
-				"floor": "F",
-				"num": 3,
-				"bookedDates": []
-			},
-			{
-				"id": "31284f2c-6894-4c4a-90eb-9b1e260dbad0",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 237,
-				"floor": "G",
-				"num": 19,
-				"bookedDates": [
-					"1/1/22"
-				]
-			}
-		]
+	"id": "aabb3fb6-261e-4710-9c80-413cd68ce21a",
+	"location": "Dallas",
+	"bookables": [
+		{
+			"id": "9d06b916-7cda-4f80-90cf-525765e3bd74",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/6/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 18,
+			"col": "A",
+			"price": 249.0
+		},
+		{
+			"id": "fdcaa632-891d-44df-9d61-2ca55864a6c2",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/7/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 9,
+			"col": "B",
+			"price": 295.0
+		},
+		{
+			"id": "6bc337d8-d8db-4353-85ca-cbdd7282d25d",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/1/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 14,
+			"col": "C",
+			"price": 249.0
+		},
+		{
+			"id": "5be9de25-0dbf-48d3-b5ef-f18f2790b747",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/3/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 8,
+			"col": "D",
+			"price": 294.0
+		},
+		{
+			"id": "dbe1b61a-d1d1-4c82-9149-dc843e4b1cf4",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/3/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 7,
+			"col": "E",
+			"price": 72.0
+		},
+		{
+			"id": "31c4dcdc-5d77-4f43-85af-cd8a3271f004",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/1/22",
+				"1/4/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 17,
+			"col": "F",
+			"price": 129.0
+		},
+		{
+			"id": "b6b85d04-b089-4f18-8b28-9be3652d33b2",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/3/22",
+				"1/8/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 6,
+			"col": "G",
+			"price": 116.0
+		}
+	],
+	"company": "Red Lion",
+	"rating": 2.1,
+	"features": [
+		"Gym",
+		"Parking",
+		"Pool",
+		"Bar",
+		"Free Wifi",
+		"Pet friendly",
+		"Restaurant",
+		"Lounge Area"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a10c"
 	},
-	{
-		"id": "417cb042-5dfc-4620-bb06-d0beb926aed3",
-		"company": "InterContinental",
-		"location": "Austin",
-		"check_out_time": "12:00 UTS",
-		"rating": 0.9,
-		"features": [
-			"Gym",
-			"Free Wifi",
-			"Parking",
-			"Bar"
-		],
-		"filters": [
-			"HOTEL"
-		],
-		"rooms": [
-			{
-				"id": "9c793416-3408-4ff9-9b8c-f44f07613cb0",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 185,
-				"floor": "A",
-				"num": 6,
-				"bookedDates": [
-					"1/7/22",
-					"1/8/22"
-				]
-			},
-			{
-				"id": "e0cd2424-8ced-416b-89df-2555c8bd413f",
-				"bedInfo": "2 Double Beds",
-				"bedCount": 4,
-				"price": 84,
-				"floor": "B",
-				"num": 7,
-				"bookedDates": [
-					"1/4/22",
-					"1/9/22"
-				]
-			},
-			{
-				"id": "60ea1902-bdb9-4669-877b-2e9c3bed99bb",
-				"bedInfo": "1 King Bed",
-				"bedCount": 2,
-				"price": 197,
-				"floor": "C",
-				"num": 12,
-				"bookedDates": [
-					"1/2/22",
-					"1/6/22"
-				]
-			},
-			{
-				"id": "e6f67393-2813-483e-b217-00eee5334406",
-				"bedInfo": "2 Queen Beds",
-				"bedCount": 4,
-				"price": 141,
-				"floor": "D",
-				"num": 7,
-				"bookedDates": [
-					"1/1/22",
-					"1/6/22"
-				]
-			},
-			{
-				"id": "cb9f37c1-9d14-47d8-9b4d-3b71c463ef92",
-				"bedInfo": "1 Queen Bed",
-				"bedCount": 1,
-				"price": 95,
-				"floor": "E",
-				"num": 7,
-				"bookedDates": [
-					"1/5/22",
-					"1/10/22"
-				]
-			}
-		]
-	}
-]
+	"id": "e6a451c0-572c-46bb-a8ff-3853ef970b71",
+	"location": "Midland",
+	"bookables": [
+		{
+			"id": "7fc5982b-4179-4466-ba65-7974197bba76",
+			"info": "1 King Bed",
+			"bookedDays": [
+				"1/4/22",
+				"1/6/22",
+				"1/9/22"
+			],
+			"sleepingCapacity": 2,
+			"row": 7,
+			"col": "A",
+			"price": 60.0
+		},
+		{
+			"id": "cbf5dbd8-9830-4546-ac30-5e06b524f3bb",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/3/22",
+				"1/6/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 17,
+			"col": "B",
+			"price": 293.0
+		},
+		{
+			"id": "11fcc7e2-bc36-4430-8f9b-ff63c433d7c3",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/5/22",
+				"1/7/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 6,
+			"col": "C",
+			"price": 219.0
+		},
+		{
+			"id": "1b576b93-a50a-4770-9ea3-93257353f83f",
+			"info": "2 Queen Beds",
+			"bookedDays": [
+				"1/1/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 6,
+			"col": "D",
+			"price": 105.0
+		}
+	],
+	"company": "Choice",
+	"rating": 1.5,
+	"features": [
+		"Gym",
+		"Pool",
+		"Parking"
+	],
+	"filters": [
+		"HOTEL"
+	]
+},
+{
+	"_id": {
+		"$oid": "62452550d081b08dd7d9a10d"
+	},
+	"id": "ff7ed947-267e-44e3-9182-b63cf6321849",
+	"location": "Corpus Christi",
+	"bookables": [
+		{
+			"id": "20fbdc14-d4be-466f-a480-475153cf23fd",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/2/22",
+				"1/4/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 6,
+			"col": "A",
+			"price": 250.0
+		},
+		{
+			"id": "1c5982a2-5bc8-45f6-b2c9-40b17239d1d1",
+			"info": "1 Queen Bed",
+			"bookedDays": [
+				"1/3/22"
+			],
+			"sleepingCapacity": 1,
+			"row": 7,
+			"col": "B",
+			"price": 295.0
+		},
+		{
+			"id": "8efdf768-42bd-47cd-a158-e8eb6254be07",
+			"info": "2 Double Beds",
+			"bookedDays": [
+				"1/1/22",
+				"1/3/22",
+				"1/10/22"
+			],
+			"sleepingCapacity": 4,
+			"row": 13,
+			"col": "C",
+			"price": 136.0
+		}
+	],
+	"company": "Hilton",
+	"rating": 2.5,
+	"features": [
+		"Restaurant",
+		"Parking",
+		"Pet friendly",
+		"Bar",
+		"Pool",
+		"Lounge Area",
+		"Gym"
+	],
+	"filters": [
+		"HOTEL"
+	]
+}]
+
