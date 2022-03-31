@@ -3,11 +3,13 @@ package model.bookables.flight;
 import com.mongodb.DBObject;
 import model.bookables.Bookable;
 import model.bookables.TravelObject;
+import utils.CollectionUtils;
 import utils.TimeUtils;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -152,16 +154,7 @@ public class Flight extends TravelObject {
                 + "\"bookables\": " + bookables + ", "
                 + "\"company\": \"" + company + "\", "
                 + "\"rating\": " + rating + ", "
-                + "\"features\": " + stringArray(features.toArray()) + ", "
-                + "\"filters\": " + stringArray(filters.toArray()) + "}";
-    }
-
-    public String stringArray(Object[] arr) {
-        StringBuilder builder = new StringBuilder();
-        builder.append("[");
-        for(Object object : arr) {
-            builder.append("\"").append(object.toString()).append("\", ");
-        }
-        return builder.delete(builder.length() - 2, builder.length()).append("]").toString();
+                + "\"features\": " + CollectionUtils.stringList(Collections.singletonList(features)) + ", "
+                + "\"filters\": " + CollectionUtils.stringList(Collections.singletonList(filters)) + "}";
     }
 }

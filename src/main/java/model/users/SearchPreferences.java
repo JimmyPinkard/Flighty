@@ -1,10 +1,13 @@
 package model.users;
 
+import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.List;
 
 import com.mongodb.DBObject;
 import search.filters.FlightFilter;
 import search.filters.HotelFilter;
+import utils.CollectionUtils;
 
 /**
  * Stores a user's prefrences
@@ -93,8 +96,8 @@ public class SearchPreferences implements Cloneable {
     @Override
     public String toString() {
         return ("{" +
-                "fpref:" + fpref +
-                ", hPref:" + hPref +
+                "\"fpref\":" + fpref +
+                ", \"hPref\":" + hPref +
                 '}').replace('=', ':');
     }
 }

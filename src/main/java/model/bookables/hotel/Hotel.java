@@ -4,8 +4,11 @@ import com.mongodb.DBObject;
 
 import model.bookables.Bookable;
 import model.bookables.TravelObject;
+import utils.CollectionUtils;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 /**
  * Bookables.Hotel.Hotel object
@@ -91,10 +94,12 @@ public class Hotel extends TravelObject {
 
     @Override
     public String toString() {
-        return "{" +
-                "features:" + features +
-                ", location:'" + location + '\'' +
-                ", travelObject:" + super.toString() +
-                "}";
+        return "{" + "\"id\": \"" + id + "\", "
+                + "\"location\": \"" + location + "\", "
+                + "\"bookables\": " + bookables + ", "
+                + "\"company\": \"" + company + "\", "
+                + "\"rating\": " + rating + ", "
+                + "\"features\": " + CollectionUtils.stringList(Collections.singletonList(features)) + ", "
+                + "\"filters\": " + CollectionUtils.stringList(Collections.singletonList(filters)) + "}";
     }
 }

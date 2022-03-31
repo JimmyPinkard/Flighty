@@ -8,11 +8,9 @@ import model.users.info.Passport;
 import model.users.info.Person;
 import search.filters.FlightFilter;
 import search.filters.HotelFilter;
+import utils.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.EnumMap;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * All user related data
@@ -44,9 +42,9 @@ public class User {
         this.password = password;
 
         preferences = new SearchPreferences();
-        specialReq = new ArrayList<String>();
-        travelers = new ArrayList<Passport>();
-        bookingHistory = new ArrayList<Booking>();
+        specialReq = new ArrayList<>();
+        travelers = new ArrayList<>();
+        bookingHistory = new ArrayList<>();
     }
 
     @SuppressWarnings("unchecked")
@@ -54,29 +52,40 @@ public class User {
         this.id = (String) object.get("id");
         this.username = (String) object.get("username");
         this.password = (String) object.get("password");
-        this.person = (Person) object.get("person");
+        //Duct Tape
+        //TODO not this
+        try {
+            this.person = (Person) object.get("person");
+        }
+        catch (Exception e) {
+            //
+        }
         this.email = (String) object.get("email");
         this.preferences = new SearchPreferences(object); // TODO import preferences from data
         this.specialReq = new ArrayList<>();
         this.specialReq.addAll((List<String>) object.get("specialReq"));
         this.travelers = new ArrayList<>();
-        /*
-        System.out.println(object.get("passports"));
-        for(DBObject passport : (List<DBObject>) object.get("passports")) {
-            this.travelers.add(new Passport(passport));
+        //Duct tape
+        //TODO not this
+        try {
+            for (DBObject passport : (List<DBObject>) object.get("passports")) {
+                this.travelers.add(new Passport(passport));
+            }
         }
-        */
+        catch (Exception e) {
+            //
+        }
         this.bookingHistory = new ArrayList<>();
-        /*
-        for(DBObject bookable : (List<DBObject>) object.get("bookedListings")) {
-            if(bookable.keySet().contains("bedCount")) {
-                this.bookingHistory.add(new Room(bookable));
-            }
-            else {
-                this.bookingHistory.add(new Seat(bookable));
+        //If it's null duct tape
+        //TODO not this
+        try {
+            for(DBObject bookable : (List<DBObject>) object.get("bookedListings")) {
+                this.bookingHistory.add(new Booking(bookable));
             }
         }
-        */
+        catch (Exception e) {
+            //
+        }
     }
 
     /**
@@ -94,9 +103,9 @@ public class User {
         email = "email@email.com";
         this.person = new Person("temp", "temp");
         preferences = new SearchPreferences();
-        travelers = new ArrayList<Passport>();
-        specialReq = new ArrayList<String>();
-        bookingHistory = new ArrayList<Booking>();
+        travelers = new ArrayList<>();
+        specialReq = new ArrayList<>();
+        bookingHistory = new ArrayList<>();
     }
 
     public String getId() {
@@ -261,14 +270,14 @@ public class User {
 
     @Override
     public String toString() {
-        return "{" + "\"id\": " + id + ", "
-                + "\"username\": " + username + ", "
-                + "\"password\": " + password + ", "
-                + "\"email\": " + email + ", "
-                + "\"preferences\": " + preferences + ", "
-                + "\"specialReq\": " + specialReq + ", "
-                + "\"travelers\": " + travelers + ", "
-                + "\"bookingHistory\": " + bookingHistory + ", "
+        return "{" + "\"id\": \"" + id + "\", "
+                + "\"username\": \"" + username + "\", "
+                + "\"password\": \"" + password + "\", "
+                + "\"email\": \"" + email + "\", "
+                //+ "\"preferences: " + preferences + ", "
+                + "\"specialReq\": " + CollectionUtils.stringList(Arrays.asList(specialReq.toArray())) + ", "
+                + "\"travelers\": " + CollectionUtils.stringList(Arrays.asList(travelers.toArray())) + ", "
+                + "\"bookingHistory\": " + CollectionUtils.stringList(Arrays.asList(bookingHistory.toArray())) + ", "
                 + "\"person\": " + person + "}";
     }
 }
