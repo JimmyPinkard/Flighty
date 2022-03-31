@@ -83,7 +83,7 @@ public class Flighty {
         printer = Printer.getInstance();
         timeUtils = TimeUtils.getInstance();
         checkData();
-        headStart();
+        //headStart();
     }
 
     /**
