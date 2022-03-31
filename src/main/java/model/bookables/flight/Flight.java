@@ -125,6 +125,18 @@ public class Flight extends TravelObject {
         return seats;
     }
 
+    public double getBusinessPrice() {
+        int i = 0;
+        while(true) {
+            Seat s = (Seat)bookables.get(i);
+            if (s.getSeatClass().equals("Business"))
+                return s.getPrice();
+            if(i == bookables.size())
+                return 0;
+            i=i+1;
+        }
+    }
+
     /**
      * 
      * @return the departure time of the flight as a LocalDate data type

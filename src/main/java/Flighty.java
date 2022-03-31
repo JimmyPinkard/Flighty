@@ -13,7 +13,6 @@ import controller.Printer;
 import controller.UserManager;
 
 import java.sql.Timestamp;
-import java.text.BreakIterator;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -84,7 +83,7 @@ public class Flighty {
         printer = Printer.getInstance();
         timeUtils = TimeUtils.getInstance();
         checkData();
-        headStart();
+        //headStart();
     }
 
     /**
@@ -111,6 +110,15 @@ public class Flighty {
         newUser.addTraveler(
                 new Passport(new Person("Hugh", "Mann"), timeUtils.generateDate("1/1/1"),
                         timeUtils.generateDate("1/1/1"), "8346903", "Male"));
+        newUser.addTraveler(
+                new Passport(new Person("Abdullaahi", "Thorburn"), timeUtils.generateDate("04/20/69"),
+                        timeUtils.generateDate("11/1/25"), "694201337", "Male"));
+        newUser.addTraveler(
+                new Passport(new Person("Jarmo", "Dijkstra"), timeUtils.generateDate("07/15/92"),
+                        timeUtils.generateDate("7/1/28"), "849264", "Female"));
+        newUser.addTraveler(
+                new Passport(new Person("Yusif", "Ó Maolagáin"), timeUtils.generateDate("04/12/40"),
+                        timeUtils.generateDate("6/1/29"), "7777777", "Other"));
         userManager.registerUser(newUser);
         userManager.logoutCurrent();
         userManager.login("temp", "p");
@@ -143,19 +151,6 @@ public class Flighty {
         print("\033[H\033[2J");
     }
 
-    /**
-     * Pauses the program for s seconds
-     * 
-     * @param s seconds
-     * @author rengotap
-     */
-    private void wait(int s) {
-        try {
-            TimeUnit.SECONDS.sleep(s);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Keeps the screen until the user hits enter
@@ -250,88 +245,6 @@ public class Flighty {
      */
     private String toString(LocalDate date) {
         return TimeUtils.getInstance().toString(date);
-    }
-
-    /**
-     * Prompts the user for a table
-     * 
-     * @param prompt
-     * @param table
-     * @return
-     * @author jbytes1027
-     */
-    private String promptTable(String prompt, List<String> table) {
-        String header = table.get(0);
-        table.remove(0);
-
-        println("   " + header);
-        return menuNumbered(prompt, table);
-    }
-
-    /**
-     * Converts passports into a table of strings
-     * 
-     * @param passports
-     * @return table
-     * @author jbytes1027
-     */
-    private List<String> passportsToStringTable(List<Passport> passports) {
-        List<List<String>> table = new ArrayList<List<String>>();
-
-        List<String> headerRow = new ArrayList<String>();
-        headerRow.add("NAME");
-        headerRow.add("DOB");
-        headerRow.add("GENDER");
-        headerRow.add("EXPIRATION");
-        headerRow.add("NUMBER");
-
-        table.add(headerRow);
-
-        for (Passport passport : passports) {
-            table.add(toRow(passport));
-        }
-
-        return toStringTable(table);
-    }
-
-    /**
-     * Helper method for passportsToStringTable()
-     * 
-     * @param passport
-     * @return
-     * @author jbytes1027
-     */
-    private List<String> toRow(Passport passport) {
-        List<String> row = new ArrayList<String>();
-
-        row.add(passport.getPerson().getFirstName() + " " + passport.getPerson().getLastName());
-        row.add(TimeUtils.getInstance().toString(passport.getDOB()));
-        row.add(passport.getGender());
-        row.add(TimeUtils.getInstance().toString(passport.getExpDate()));
-        row.add(passport.getNumber());
-
-        return row;
-    }
-
-    /**
-     * Turns the list of options into a string
-     * 
-     * @param options list of options
-     * @return converted string
-     * @author jbytes1027
-     */
-    private String toString(List<String> options) {
-        String out = "";
-        out += " [";
-        for (int i = 0; i < options.size(); i++) {
-            out += options.get(i);
-            if (i != options.size() - 1) {
-                out += "/";
-            }
-        }
-        out += "]\n";
-
-        return out;
     }
 
     /**
@@ -452,7 +365,7 @@ public class Flighty {
      */
     private String flightMap(Flight flight) {
         final String pEconomy = df.format(flight.getMinCost());
-        final String pBusiness = df.format(flight.getAvgCost());
+        final String pBusiness = df.format(flight.getBusinessPrice());
         final String pFirst = df.format(flight.getMaxCost());
 
         String ret = '\n' + ANSI_BLACK + ANSI_WHITE_BG + " CLASS: ECONOMY      PRICE: $" + pEconomy
@@ -503,13 +416,10 @@ public class Flighty {
         for (int i = 0; i < flight.getNumAvailableSeats(); i++)
             openSeats.add(flight.getAvailableOptions().get(i).getRow()
                     + flight.getAvailableOptions().get(i).getCol());
-
         for (int j = 0; j < map[0].length; j++) {
             String temp = "";
             for (int i = 0; i < map.length; i++) {
-
                 String seat = map[i][j];
-
                 if (openSeats.contains(map[i][j]))
                     seat = ANSI_GREEN + map[i][j] + ANSI_RESET;
 
@@ -620,31 +530,6 @@ public class Flighty {
     }
 
     /**
-     * Prompts the user to choose an option
-     * 
-     * @param options entered string must be in
-     * @return string user entered
-     * @author jbytes1027
-     */
-    private String promptOptions(String prompt, List<String> options) {
-        print(prompt + toString(options));
-
-        while (true) {
-            print("> ");
-
-            String response = input.nextLine();
-
-            for (String option : options) {
-                if (option.equalsIgnoreCase(response)) {
-                    return option;
-                }
-            }
-
-            println("Invalid option");
-        }
-    }
-
-    /**
      * Prompts the user for a number
      * 
      * @param from entered number must be greater than or equal to
@@ -673,17 +558,6 @@ public class Flighty {
 
             println("Invalid option");
         }
-    }
-
-    /**
-     * Prompts the user to input a number
-     * 
-     * @param prompt Query
-     * @return user input
-     * @author jbytes1027
-     */
-    private int promptNumber(String prompt) {
-        return promptNumber(prompt, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
     /**
@@ -887,8 +761,10 @@ public class Flighty {
                     Username: %s
                     Name: %s %s
                     Email: %s
-                    """, currUser.getUsername(), currUser.getRegisteredPerson().getFirstName(),
-                    currUser.getRegisteredPerson().getLastName(), currUser.getEmail()));
+                    """, ANSI_CYAN+currUser.getUsername()+ANSI_RESET, ANSI_CYAN
+                    +currUser.getRegisteredPerson().getFirstName(),
+                    currUser.getRegisteredPerson().getLastName()
+                    +ANSI_RESET, ANSI_CYAN+currUser.getEmail()+ANSI_RESET));
 
             String response = menuNumbered("Enter a Number", options);
 
@@ -952,75 +828,93 @@ public class Flighty {
     }
 
     /**
-     * Menu that manages the user's passports
-     * 
-     * @author jbytes1027
+     * Home menu for managing Passports
+     * @author rengotap
      */
     private void menuManagePassports() {
-        while (true) {
+        while(true) {
             clr();
-            var passports = userManager.getCurrentUser().getTravelers();
-            if (passports.size() > 0) {
-                print(printPassports());
-            } else {
-                println(ANSI_RED + "No passports on file" + ANSI_RESET);
-            }
-            println("");
-
-            final String OPTION_ADD = "Add passport";
-            final String OPTION_REMOVE = "Remove passport";
-            final String OPTION_BACK = "Back";
-
+            println(printPassports());
+            final String OPT_ADD = "Add passport";
+            final String OPT_RM = "Remove passport";
+            final String OPT_BACK = "Back";
             List<String> options = new ArrayList<String>();
-
-            options.add(OPTION_ADD);
-            if (userManager.getCurrentUser().getTravelers().size() != 0) {
-                options.add(OPTION_REMOVE);
-            }
-            options.add(OPTION_BACK);
-
+            if (userManager.getCurrentUser().getTravelers().size() != 0)
+                options.add(OPT_RM);
+            options.add(OPT_ADD);
+            options.add(OPT_BACK);
             String response = menuNumbered("Enter a Number", options);
-
-            if (response.equals(OPTION_ADD)) {
+            if(response.equals(OPT_ADD)) {
                 menuAddPassport();
-            } else if (response.equals(OPTION_REMOVE)) {
+            } else if (response.equals(OPT_RM)) {
                 menuRemovePassport();
-            } else if (response.equals(OPTION_BACK)) {
+            } else if (response.equals(OPT_BACK)) {
                 return;
             }
         }
-
     }
 
     /**
-     * Prints passports
+     * Displays a passport
+     * @param p
      * @return
+     * @author rengotap
      */
-    public String printPassports() {
+    private String displayPassport(Passport p) {
+        return ANSI_CYAN+pad(p.getPerson().getFirstName(), 18)+ANSI_RESET + " | " 
+        + ANSI_CYAN+pad(p.getPerson().getLastName(), 18)+ANSI_RESET + " | " 
+        + ANSI_CYAN+pad(p.getGender(),6) + ANSI_RESET + " | " + ANSI_CYAN
+        + pad(timeUtils.toString(p.getDOB()),8)+ANSI_RESET + " | " + ANSI_CYAN
+        + pad(p.getNumber(),10) + ANSI_RESET + " | " + ANSI_CYAN + pad(timeUtils
+        .toString(p.getExpDate()),8)+ANSI_RESET;
+    }
+
+    /**
+     * Prints Current User's Passports
+     * @return passportString
+     */
+    private String printPassports() {
         List<Passport> passports = userManager.getCurrentUser().getTravelers();
-        String ret = '\n' + ANSI_BLACK + ANSI_WHITE_BG + " SAVED PASSPORTS " + ANSI_RESET + '\n';
-        for (String string : passportsToStringTable(passports)) {
-            ret = ret + string + '\n';
+        String ret = '\n' + ANSI_BLACK + ANSI_WHITE_BG + " SAVED PASSPORTS " 
+                + ANSI_RESET + '\n';
+        if (passports.isEmpty())
+            ret = ret + ANSI_RED + "No passports on file" + ANSI_RESET + '\n';
+        else {
+            // Header
+            ret = ret + '\n' + pad("First Name",18) + "   " + pad("Last Name",18) + "   "
+            + "Gender" + "   " + pad("D.O.B",8) + "   " + pad("Passport #",10) + "   "
+            + "EXP Date" + '\n';
+            for(int i = 0; i < passports.size(); i++) {
+                ret = ret + displayPassport(passports.get(i)) + '\n';
+            }
         }
         return ret;
     }
 
     /**
      * Menu that removes a passport
-     * 
-     * @author jbytes1027
+     * @author rengotap
      */
     private void menuRemovePassport() {
-        var passports = userManager.getCurrentUser().getTravelers();
-
-        List<String> options = passportsToStringTable(passports);
-        String choice = promptTable("Choose a passport to remove", options);
-
-        for (Passport passport : userManager.getCurrentUser().getTravelers()) {
-            String currRow = String.join("", toRow(passport)).replace(" ", "");
-            String choiceRow = choice.replace(" ", "");
-            if (currRow.equals(choiceRow)) {
-                userManager.getCurrentUser().removeTraveler(passport);
+        while (!userManager.getCurrentUser().getTravelers().isEmpty()) {
+            clr();
+            println('\n' + ANSI_BLACK + ANSI_WHITE_BG + " SAVED PASSPORTS " 
+                + ANSI_RESET + '\n');
+            List<Passport> passports = userManager.getCurrentUser().getTravelers();
+            List<String> options = new ArrayList<String>();
+            for (int i = 0; i < passports.size(); i++)
+                options.add(displayPassport(passports.get(i)));
+            final String OPT_BACK = "Back";
+            options.add("Back");
+            // Header
+            println("    " + pad("First Name",18) + "   " + pad("Last Name",18) + "   "
+            + "Gender" + "   " + pad("D.O.B",8) + "   " + pad("Passport #",10) + "   "
+            + "EXP Date");
+            String[] response = menuLong("Choose a number to remove, or '"+options.size()+"' to go back", options);
+            if (response[0].equals(OPT_BACK)) {
+                return;
+            } else if (promptYN("Are you sure you want to remove this passport?")) {
+                userManager.getCurrentUser().removeTraveler(passports.get(Integer.parseInt(response[1])));
                 println("Passport removed");
                 return;
             }
@@ -1032,17 +926,17 @@ public class Flighty {
      * 
      * @author jbytes1027
      */
-    private void menuAddPassport() {
+    private Passport menuAddPassport() {
         Person newPerson = promptCreatePerson();
         String gender = promptString("Enter a gender");
         LocalDate birth = promptDate("Enter the date of birth");
         String number = promptString("Enter the passport number");
         LocalDate expiration = promptDate("Enter the passport expiration date");
 
+        Passport created = new Passport(newPerson, birth, expiration, number, gender);
         userManager.getCurrentUser()
-                .addTraveler(new Passport(newPerson, birth, expiration, number, gender));
-
-        println("Passport added");
+                .addTraveler(created);
+        return created;
     }
 
     /**
@@ -1152,14 +1046,17 @@ public class Flighty {
             clr();
             println('\n' + ANSI_BLACK + ANSI_WHITE_BG + " CURRENT FLIGHT PREFERENCES "
                     + ANSI_RESET + '\n');
-            final String OPTION_HOMEPORT = "Home Airport Code: "
-                    + userManager.getCurrentUser().getFPref().get(FlightFilter.AIRPORT_FROM);
-            final String OPTION_COMPANY =
-                    "Company: " + userManager.getCurrentUser().getFPref().get(FlightFilter.COMPANY);
-            final String OPTION_TIME_DEPART = "Earliest Departure Time (HH:MM): " + userManager
-                    .getCurrentUser().getFPref().get(FlightFilter.TIME_DEPART_EARLIEST);
-            final String OPTION_TIME_ARRIVE = "Latest Arrival Time (HH:MM): "
-                    + userManager.getCurrentUser().getFPref().get(FlightFilter.TIME_ARRIVE_LATEST);
+            final String OPTION_HOMEPORT = "Home Airport Code: " + ANSI_CYAN
+                    + userManager.getCurrentUser().getFPref().get(FlightFilter.AIRPORT_FROM)
+                    + ANSI_RESET;
+            final String OPTION_COMPANY = "Company: " + ANSI_CYAN + userManager.getCurrentUser()
+                    .getFPref().get(FlightFilter.COMPANY) + ANSI_RESET;
+            final String OPTION_TIME_DEPART = "Earliest Departure Time (HH:MM): " + ANSI_CYAN 
+                    + userManager.getCurrentUser().getFPref().get(FlightFilter
+                    .TIME_DEPART_EARLIEST) + ANSI_RESET;
+            final String OPTION_TIME_ARRIVE = "Latest Arrival Time (HH:MM): " + ANSI_CYAN
+                    + userManager.getCurrentUser().getFPref()
+                    .get(FlightFilter.TIME_ARRIVE_LATEST) + ANSI_RESET;
             final String OPTION_BACK = "Back to User Menu";
             List<String> options = new ArrayList<String>();
 
@@ -1198,8 +1095,8 @@ public class Flighty {
             clr();
             println('\n' + ANSI_BLACK + ANSI_WHITE_BG + " CURRENT HOTEL PREFERENCES "
                     + ANSI_RESET + '\n');
-            final String OPTION_COMPANY =
-                    "Company: " + userManager.getCurrentUser().getHPref().get(HotelFilter.COMPANY);
+            final String OPTION_COMPANY = "Company: " + ANSI_CYAN + userManager
+                    .getCurrentUser().getHPref().get(HotelFilter.COMPANY) + ANSI_RESET;
             final String OPTION_BACK = "Back to User Menu";
 
             List<String> options = new ArrayList<String>();
@@ -1331,9 +1228,9 @@ public class Flighty {
             } else if (response.equals(OPT_END)) {
                 arrive = promptDate("Enter a new arrival date");
             } else if (response.equals(OPT_TIME_EARLY)) {
-                timeEarly = promptString("Enter the earliest time you would be willing to leave");
+                timeEarly = promptString("Enter the earliest time you would be willing to leave (HH:MM)");
             } else if (response.equals(OPT_TIME_LATE)) {
-                timeLate = promptString("Enter the latest time you would be willing to arrive");
+                timeLate = promptString("Enter the latest time you would be willing to arrive (HH:MM)");
             } else if (response.equals(OPT_COMPANY)) {
                 company = promptString("Enter a new airline");
             } else if (response.equals(OPT_CONFIRM)) {
@@ -1401,6 +1298,7 @@ public class Flighty {
 
                 int bookSeats = promptNumber("How many seats would you like to book?", 0, 10);
                 List<Flight> fl = trip.getFlights(); // flight list
+                clr();
                 for (int i = 0; i < bookSeats; i++) {
                     Passport ticketHolder = forcePassport();
                     for (int curr = 0; curr < fl.size(); curr++) {
@@ -1408,20 +1306,12 @@ public class Flighty {
                         println('\n' + ANSI_WHITE_BG + ANSI_BLACK + "   NOW BOOKING FLIGHT "
                                 + (curr + 1) + " OF " + fl.size() + "   " + ANSI_RESET + '\n');
                         println(displayFlightSimple(fl.get(i)));
-                        /*
-                        if (promptYN("View seat map?")) {
-                            println(flightMap(fl.get(curr)));
-                            println("Available seats are highlighted in " + ANSI_GREEN + "green"
-                                    + ANSI_RESET + '\n');
-                            awaitEnter();
-                        }
-                        */
                         menuBookSeat(fl.get(curr), ticketHolder);
                     }
                     if (i + 1 < bookSeats) {
+                        clr();
                         println('\n' + ANSI_WHITE_BG + ANSI_BLACK + "   NOW BOOKING NEXT USER "
                                 + ANSI_RESET + '\n');
-                        clr();
                     }
                 }
                 return true;
@@ -1444,8 +1334,9 @@ public class Flighty {
             options.add(OPT_DISPMAP);
             String[] response = new String[2];
             Boolean chosen = false;
+            Boolean flag = true;
             while(!chosen) {
-                clr();
+                if(flag){flag=false;}else{clr();} // Does not clear on first call
                 println('\n' + ANSI_BLACK + ANSI_WHITE_BG + " SELECT SEAT OR '"
                 + options.size() +"' TO VIEW SEAT MAP "+ ANSI_RESET+ '\n');
                 response = menuLong("Enter a Number", options);
@@ -1716,7 +1607,6 @@ public class Flighty {
 
     /**
      * Forces a guest user to either login or create account Ensures bookings have a place to go
-     * 
      * @author rengotap
      */
     private void forceAccount() {
@@ -1738,33 +1628,35 @@ public class Flighty {
 
     /**
      * Forces the user to either pick or make a passport for their ticket
-     * 
      * @return
      */
     private Passport forcePassport() {
-        if (userManager.getCurrentUser().getTravelers().isEmpty()) { // No passport?
+        List<Passport> passports = userManager.getCurrentUser().getTravelers();
+        if (passports.isEmpty()) { // No passport?
             println(ANSI_RED + "No passports on file" + ANSI_RESET + '\n'
                     + "You need to create a passport before continuing" + '\n');
-            menuAddPassport();
-        } else if (!promptYN(printPassports()+"Use existing passport?")) // Bandaid fix
-            menuAddPassport();
-
-        var passports = userManager.getCurrentUser().getTravelers();
-        List<String> options = passportsToStringTable(passports);
-        String choice = promptTable("Choose a passport to assign to this ticket", options);
-        for (Passport passport : userManager.getCurrentUser().getTravelers()) {
-            String currRow = String.join("", toRow(passport)).replace(" ", "");
-            String choiceRow = choice.replace(" ", "");
-            if (currRow.equals(choiceRow)) {
-                return passport;
-            }
+            return menuAddPassport();
         }
-
-        return null;
+        List<String> options = new ArrayList<String>();
+        for (int i = 0; i < passports.size(); i++)
+            options.add(displayPassport(passports.get(i)));
+        final String OPT_NEW = "Create New";
+        options.add(OPT_NEW);
+        println('\n' + ANSI_BLACK + ANSI_WHITE_BG + " SAVED PASSPORTS " 
+                + ANSI_RESET + '\n');
+        println("    " + pad("First Name",18) + "   " + pad("Last Name",18) + "   "
+            + "Gender" + "   " + pad("D.O.B",8) + "   " + pad("Passport #",10) + "   "
+            + "EXP Date");
+        String[] response = menuLong("Choose a number to book with, or '"+options.size()+"' to create new", options);
+        if (response[0].equals(OPT_NEW)) {
+            return menuAddPassport();
+        } else {
+            return passports.get(Integer.parseInt(response[1]));
+        }
     }
 
     /**
-     * UI for editing (deleting really) booking history
+     * Menu for viewing, exporting, and deleting bookings
      * 
      * @author rengotap
      */
@@ -1887,6 +1779,7 @@ public class Flighty {
             if (response.equals(OPT_BACK)) {
                 return;
             } else if (response.equals(OPT_EXP)) {
+                println(ANSI_B + pad("Exporting to file.", 41) + ANSI_RESET + '\n');
                 pBar();
                 clr();
                 printer.print();
