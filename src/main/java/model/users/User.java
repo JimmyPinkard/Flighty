@@ -55,7 +55,7 @@ public class User {
         //Duct Tape
         //TODO not this
         try {
-            this.person = (Person) object.get("person");
+            this.person = new Person((DBObject) object.get("person"));
         }
         catch (Exception e) {
             //

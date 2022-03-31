@@ -12,7 +12,7 @@
 	],
 	"travelers": [],
 	"bookingHistory": [],
-	"person": null
+	"person": {"firstName" : "coleca", "lastName": "last"}
 },
 {
 	"_id": {
@@ -28,6 +28,6 @@
 	],
 	"travelers": [],
 	"bookingHistory": [],
-	"person": null
+	"person": {"firstName" : "realHughMann", "lastName": "last"}
 }]
 
