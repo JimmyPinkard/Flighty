@@ -27,8 +27,6 @@ public class Data {
         this.hotels = new ArrayList<>();
         this.bookings = new ArrayList<>();
         loadAll();
-        System.out.println(hotels.get(0));
-        System.exit(0);
     }
 
     /**

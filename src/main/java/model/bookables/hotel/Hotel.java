@@ -29,7 +29,7 @@ public class Hotel extends TravelObject {
     }
 
     @SuppressWarnings("unchecked")
-    ///*
+    /*
     public Hotel(DBObject object) {
         super(object);
         this.features = (ArrayList<String>) object.get("features");
@@ -40,8 +40,7 @@ public class Hotel extends TravelObject {
             this.bookables.add(new Room(room, this));
         }
     }
-    //*/
-/*
+    */
     public Hotel(DBObject object) {
         super(object);
         this.features = (ArrayList<String>) object.get("features");
@@ -52,7 +51,6 @@ public class Hotel extends TravelObject {
             this.bookables.add(new Room(room, this));
         }
     }
-    */
 
     /**
      * Gets the hotel's features

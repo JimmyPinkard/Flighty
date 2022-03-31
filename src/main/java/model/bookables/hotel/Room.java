@@ -29,7 +29,7 @@ public class Room extends Bookable {
         this.sleepingCapacity = sleepingCapacity;
     }
 
-    ///*
+    /*
     public Room(DBObject object, TravelObject travelObject) {
         super((int) object.get("num"), (String) object.get("floor"), object, travelObject);
         TimeUtils timeUtils = TimeUtils.getInstance();
@@ -40,10 +40,9 @@ public class Room extends Bookable {
             bookedDays.add(timeUtils.generateDate(day));
         }
     }
-    //*/
+    */
 
     @SuppressWarnings("unchecked")
-    /*
     public Room(DBObject object, TravelObject travelObject) {
         super((int) object.get("row"), (String) object.get("col"), object, travelObject);
         TimeUtils timeUtils = TimeUtils.getInstance();
@@ -54,7 +53,6 @@ public class Room extends Bookable {
             bookedDays.add(timeUtils.generateDate(day));
         }
     }
-     */
 
     public boolean isBooked(LocalDate from, LocalDate to) {
         for (LocalDate date = from; !date.isAfter(to); date = date.plusDays(1)) {

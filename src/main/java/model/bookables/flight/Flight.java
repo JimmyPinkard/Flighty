@@ -41,7 +41,7 @@ public class Flight extends TravelObject {
     }
 
     @SuppressWarnings("unchecked")
-    ///*
+    /*
     public Flight(DBObject object) {
         super(object);
         this.departureTime = timeUtils.genDateTime(object.get("date_depart") + " "
@@ -60,8 +60,7 @@ public class Flight extends TravelObject {
         this.cityFrom = (String) object.get("city_from");
         this.cityTo = (String) object.get("city_to");
     }
-    //*/
-/*
+    */
     public Flight(DBObject object) {
         super(object);
         this.departureTime = timeUtils.genDateTime((String) object.get("departureTime"));
@@ -78,7 +77,7 @@ public class Flight extends TravelObject {
         this.cityFrom = (String) object.get("cityFrom");
         this.cityTo = (String) object.get("cityTo");
     }
-*/
+
     public double distanceToDestination(Flight flight) {
         double a2 = Math.pow(this.startX - flight.stopX, 2);
         double b2 = Math.pow(this.startY - flight.stopY, 2);

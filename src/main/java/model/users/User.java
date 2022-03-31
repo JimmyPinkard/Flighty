@@ -51,15 +51,7 @@ public class User {
         this.id = (String) object.get("id");
         this.username = (String) object.get("username");
         this.password = (String) object.get("password");
-        //Duct Tape
-        //TODO not this
-        try {
-            System.out.println(object.keySet());
-            this.person = new Person((DBObject) object.get("person"));
-        }
-        catch (Exception e) {
-            //
-        }
+        this.person = new Person((DBObject) object.get("person"));
         this.email = (String) object.get("email");
         this.preferences = new SearchPreferences((DBObject) object.get("preferences")); // TODO import preferences from data
         this.specialReq = new ArrayList<>();
