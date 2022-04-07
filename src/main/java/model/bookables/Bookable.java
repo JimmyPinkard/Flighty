@@ -1,7 +1,6 @@
 package model.bookables;
 
 import com.mongodb.DBObject;
-import java.time.LocalDate;
 import java.util.UUID;
 
 

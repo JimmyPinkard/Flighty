@@ -8,7 +8,6 @@ import utils.CollectionUtils;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 /**
  * Bookables.Hotel.Hotel object

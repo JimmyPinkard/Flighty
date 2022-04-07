@@ -2,9 +2,7 @@ package model;
 
 import com.mongodb.DBObject;
 import model.bookables.Bookable;
-import model.bookables.flight.Flight;
 import model.bookables.flight.Seat;
-import model.bookables.hotel.Hotel;
 import model.bookables.hotel.Room;
 import model.users.User;
 import utils.TimeUtils;
@@ -65,7 +63,6 @@ public class Booking {
         return booked;
     }
 
-    // TODO update to account for from and to date
     @Override
     public String toString() {
         return "{" + "\"id\": \"" + id + "\", "

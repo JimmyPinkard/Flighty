@@ -18,13 +18,9 @@ public class Room extends Bookable {
     private Set<LocalDate> bookedDays;
     private int sleepingCapacity;
 
-    /**
-     * Constructor for room
-     */
-    // TODO delete b/c unused
     public Room(int floor, String roomNum, int sleepingCapacity, TravelObject travelObject) {
         super(floor, roomNum, travelObject);
-        info = "A Bookables.Hotel.Hotel.Room";
+        info = "A Room";
         bookedDays = new HashSet<>();
         this.sleepingCapacity = sleepingCapacity;
     }
