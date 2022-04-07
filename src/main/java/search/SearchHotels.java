@@ -1,14 +1,11 @@
 package search;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
-import java.util.ListIterator;
-
 import database.Data;
+import database.DatabaseData;
 import model.bookables.hotel.Hotel;
-import model.bookables.hotel.Room;
 import model.users.SearchPreferences;
 import search.filters.HotelFilter;
 import search.filters.SearchFilter;
@@ -16,7 +13,7 @@ import utils.TimeUtils;
 
 public class SearchHotels implements Search {
     public static List<Hotel> execute(SearchPreferences preferences) {
-        Data data = Data.getInstance();
+        Data data = DatabaseData.getInstance();
         List<Hotel> out = new ArrayList<Hotel>();
         // Loop through all the hotels
         for(Hotel hotel : data.getHotels()) {

@@ -21,11 +21,9 @@ public class Hotel extends TravelObject {
     /**
      * Creates a new hotel object
      */
-    public Hotel(List<String> features, String location) {
+    public Hotel(String location) {
         super();
-        this.features = features;
         this.location = location;
-
     }
 
     @SuppressWarnings("unchecked")

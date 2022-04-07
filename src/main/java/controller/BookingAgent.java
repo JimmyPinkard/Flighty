@@ -6,6 +6,7 @@ import model.bookables.flight.Seat;
 import model.bookables.hotel.Room;
 import java.time.LocalDate;
 import database.Data;
+import database.DatabaseData;
 import model.users.User;
 import model.users.info.Passport;
 
@@ -16,7 +17,7 @@ public class BookingAgent {
     private final Data data;
 
     public BookingAgent() {
-        this.data = Data.getInstance();
+        this.data = DatabaseData.getInstance();
     }
 
     public Booking bookListing(Room bookable, User user, LocalDate from, LocalDate to) {

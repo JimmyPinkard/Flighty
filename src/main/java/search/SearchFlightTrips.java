@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
-import database.Data;
+import database.DatabaseData;
 import model.bookables.flight.Flight;
 import model.bookables.flight.FlightTrip;
 import model.users.SearchPreferences;
@@ -107,7 +107,7 @@ public class SearchFlightTrips implements Search {
             EnumMap<? extends SearchFilter, String> preferences) {
         List<Flight> out = new ArrayList<Flight>();
 
-        for (Flight flight : Data.getInstance().getFlights()) {
+        for (Flight flight : DatabaseData.getInstance().getFlights()) {
             if (isValidOption(flight, preferences)) {
                 out.add(flight);
             }

@@ -1,4 +1,5 @@
 import database.Data;
+import database.DatabaseData;
 import model.bookables.Bookable;
 import model.bookables.flight.Flight;
 import model.bookables.flight.FlightTrip;
@@ -76,7 +77,7 @@ public class Flighty {
      * @author jbytes1027
      */
     public Flighty() {
-        data = Data.getInstance();
+        data = DatabaseData.getInstance();
         input = new Scanner(System.in);
         userManager = new UserManager(data);
         bookingAgent = new BookingAgent();
