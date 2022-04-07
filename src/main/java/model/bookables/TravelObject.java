@@ -1,6 +1,7 @@
 package model.bookables;
 
 import com.mongodb.DBObject;
+import search.Search;
 import search.filters.FlightFilter;
 import search.filters.HotelFilter;
 import search.filters.SearchFilter;
@@ -44,6 +45,15 @@ public abstract class TravelObject {
             }
         }
         return null;
+    }
+
+    protected TravelObject(List<Bookable> bookables, String company, double rating) {
+        this.id = UUID.randomUUID().toString();
+        this.company = company;
+        this.rating = rating;
+        this.bookables = bookables;
+        this.features = new ArrayList<String>();
+        this.filters = new ArrayList<>();
     }
 
     protected TravelObject() {

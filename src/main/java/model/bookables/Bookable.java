@@ -32,6 +32,14 @@ public abstract class Bookable implements Comparable<Bookable> {
         this.travelObject = travelObject;
     }
 
+    public Bookable(int row, String col, double price, TravelObject travelObject) {
+        this.row = row;
+        this.col = col;
+        this.id = UUID.randomUUID().toString();
+        this.price = price;
+        this.travelObject = travelObject;
+    }
+
     /**
      * Gets bookable's ID
      * @return UUID

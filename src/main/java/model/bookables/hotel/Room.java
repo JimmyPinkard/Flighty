@@ -18,6 +18,14 @@ public class Room extends Bookable {
     private Set<LocalDate> bookedDays;
     private int sleepingCapacity;
 
+    public Room(int floor, String roomNum, int sleepingCapacity, Set<LocalDate> bookedDays,
+            TravelObject travelObject) {
+        super(floor, roomNum, travelObject);
+        info = "A Room";
+        this.bookedDays = bookedDays;
+        this.sleepingCapacity = sleepingCapacity;
+    }
+
     public Room(int floor, String roomNum, int sleepingCapacity, TravelObject travelObject) {
         super(floor, roomNum, travelObject);
         info = "A Room";
@@ -53,10 +61,10 @@ public class Room extends Bookable {
     public boolean isBooked(LocalDate from, LocalDate to) {
         for (LocalDate date = from; !date.isAfter(to); date = date.plusDays(1)) {
             if (bookedDays.contains(date)) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     /**

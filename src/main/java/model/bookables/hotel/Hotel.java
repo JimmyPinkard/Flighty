@@ -20,8 +20,13 @@ public class Hotel extends TravelObject {
     /**
      * Creates a new hotel object
      */
-    public Hotel(String location) {
+    public Hotel() {
         super();
+        this.location = "";
+    }
+
+    public Hotel(List<Bookable> bookables, String company, double rating, String location) {
+        super(bookables, company, rating);
         this.location = location;
     }
 
