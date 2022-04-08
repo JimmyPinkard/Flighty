@@ -1,7 +1,6 @@
 package model.bookables;
 
 import com.mongodb.DBObject;
-import search.Search;
 import search.filters.FlightFilter;
 import search.filters.HotelFilter;
 import search.filters.SearchFilter;

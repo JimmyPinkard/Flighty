@@ -1,7 +1,5 @@
 package utils;
 
-import java.util.List;
-
 public class CollectionUtils {
     public static String stringArray(Object[] arr) {
         if(arr.length == 0) {

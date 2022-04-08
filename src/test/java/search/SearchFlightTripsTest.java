@@ -2,22 +2,14 @@ package search;
 
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import org.junit.jupiter.api.*;
 import database.Data;
 import database.FakeData;
-import model.bookables.Bookable;
 import model.bookables.flight.Flight;
-import model.bookables.flight.Seat;
-import model.bookables.hotel.Hotel;
-import model.bookables.hotel.Room;
 import model.users.SearchPreferences;
 import search.filters.FlightFilter;
-import search.filters.HotelFilter;
 
 class SearchFlightTripsTest {
     static FakeData fakeData;
