@@ -42,7 +42,7 @@ public class SearchFlightTrips implements Search {
     }
 
 
-    private static boolean isValidOption(Flight flight,
+    public static boolean isValidOption(Flight flight,
             EnumMap<? extends SearchFilter, String> preferences) {
         String airportFrom = preferences.get(FlightFilter.AIRPORT_FROM);
         String airportTo = preferences.get(FlightFilter.AIRPORT_TO);
@@ -103,7 +103,7 @@ public class SearchFlightTrips implements Search {
         return true;
     }
 
-    private static List<Flight> getValidFlights(
+    public static List<Flight> getValidFlights(
             EnumMap<? extends SearchFilter, String> preferences) {
         List<Flight> out = new ArrayList<Flight>();
 
@@ -133,7 +133,7 @@ public class SearchFlightTrips implements Search {
         }
     }
 
-    private static List<Flight> findRoute(SearchPreferences preferences,
+    public static List<Flight> findRoute(SearchPreferences preferences,
             List<FlightTrip> excludingTrips) {
         Map<Flight, Flight> prevInPath = new HashMap<>();
         Map<Flight, Double> costToReachFromStart = new HashMap<>();

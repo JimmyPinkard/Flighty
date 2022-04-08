@@ -31,12 +31,17 @@ public class Flight extends TravelObject {
      * Constructor for Bookables.Flight.Flight
      */
     public Flight(LocalDateTime departureTime, LocalDateTime arrivalTime, String airportFrom,
-            String airportTo) {
-        super();
+            String airportTo, List<Bookable> bookables, String company, double rating,
+            double startX, double startY, double stopX, double stopY) {
+        super(bookables, company, rating);
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
         this.airportFrom = airportFrom;
         this.airportTo = airportTo;
+        this.startX = startX;
+        this.startY = startY;
+        this.stopX = stopX;
+        this.stopY = stopY;
     }
 
     @SuppressWarnings("unchecked")

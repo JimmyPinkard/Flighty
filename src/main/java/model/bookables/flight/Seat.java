@@ -17,10 +17,9 @@ public class Seat extends Bookable {
     /**
      * Constructor for seat
      */
-    public Seat(int seatRow, String seatCol, Flight travelObject) {
-        super(seatRow, seatCol, travelObject);
+    public Seat(int seatRow, String seatCol, boolean isBooked, double price, Flight travelObject) {
+        super(seatRow, seatCol, price, travelObject);
         whichClass = "First Class";
-        price = 124;
         isBooked = false;
     }
 
