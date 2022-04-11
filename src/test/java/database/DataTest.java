@@ -4,11 +4,19 @@ import model.Booking;
 import model.bookables.flight.Flight;
 import model.bookables.hotel.Hotel;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+/**
+ * @author Jimmy
+ */
 class DataTest {
 
-    Data data = DatabaseData.getInstance();
+    static Data data;
+    @BeforeAll
+    static void init() {
+        data = DatabaseData.getInstance();
+    }
 
     @Test
     void testValidFlight() {
