@@ -6,8 +6,6 @@ import model.bookables.hotel.Hotel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 class DataTest {
 
     Data data = DatabaseData.getInstance();
@@ -16,6 +14,7 @@ class DataTest {
     void testValidFlight() {
         for(Flight flight : data.getFlights()) {
             Assertions.assertNotNull(flight);
+            Assertions.assertFalse(flight.toString().contains("null"));
         }
     }
 
@@ -23,6 +22,7 @@ class DataTest {
     void testValidHotel() {
         for(Hotel hotel : data.getHotels()) {
             Assertions.assertNotNull(hotel);
+            Assertions.assertFalse(hotel.toString().contains("null"));
         }
     }
 
@@ -30,6 +30,7 @@ class DataTest {
     void testValidBookings() {
         for(Booking booking : data.getBookings()) {
             Assertions.assertNotNull(booking);
+            Assertions.assertFalse(booking.toString().contains("null"));
         }
     }
 }
