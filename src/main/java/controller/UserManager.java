@@ -3,6 +3,7 @@ package controller;
 import database.Data;
 import model.users.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -112,6 +113,10 @@ public class UserManager {
         } else {
             return false;
         }
+    }
+
+    public List<User> getUList() {
+        return users;
     }
 
 }
